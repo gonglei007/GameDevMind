@@ -6,5 +6,9 @@
 ![alt text](https://github.com/gonglei007/GameDevMind/blob/main/exports/0.总览.png?raw=true)
 
 ----
+## 详情
+[1.开发技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术知识点?raw=true)
+
+----
 ## 交流
 QQ讨论群:242500383
