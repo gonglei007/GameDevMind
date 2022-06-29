@@ -7,7 +7,7 @@
 
 ----
 ## 详情
-[1.开发技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术知识点?raw=true)
+[1.开发技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术知识点.png?raw=true)
 
 ----
 ## 交流
