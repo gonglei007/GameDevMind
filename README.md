@@ -7,14 +7,14 @@
 
 ----
 ## 详情
-*[1.开发技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术知识点.png?raw=true)
-*[2.编程语言知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.编程语言知识点.png?raw=true)
-*[3.程序设计知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/3.程序设计知识点.png?raw=true)
-*[4.产品研发地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.产品研发地图.png?raw=true)
-*[5.项目管理地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/5.项目管理地图.png?raw=true)
-*[6.运维技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/6.运维技术知识点.png?raw=true)
-*[7.产品运营地图（）](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.产品运营地图.png?raw=true)
-*[8.产品商业化业务地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.产品商业化业务地图?raw=true)
+* [1.开发技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术知识点.png?raw=true)
+* [2.编程语言知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.编程语言知识点.png?raw=true)
+* [3.程序设计知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/3.程序设计知识点.png?raw=true)
+* [4.产品研发地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.产品研发地图.png?raw=true)
+* [5.项目管理地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/5.项目管理地图.png?raw=true)
+* [6.运维技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/6.运维技术知识点.png?raw=true)
+* [7.产品运营地图（）](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.产品运营地图.png?raw=true)
+* [8.产品商业化业务地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.产品商业化业务地图?raw=true)
 
 ----
 ## 交流
