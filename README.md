@@ -6,7 +6,7 @@
 ![alt text](https://github.com/gonglei007/GameDevMind/blob/main/exports/0.总览.png?raw=true)
 
 ----
-## 详情
+## 目录
 * [1.开发技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术知识点.png?raw=true)
     * [1.1.客户端技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.客户端技术知识点.png?raw=true)
     * [1.2.服务端技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.2.服务端技术知识点.png?raw=true)
