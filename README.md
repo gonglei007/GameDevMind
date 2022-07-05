@@ -20,6 +20,7 @@
 * [3.程序设计知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/3.程序设计知识点.png?raw=true)
 * [4.产品研发地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.产品研发地图.png?raw=true)
     * [4.1.客户端产品研发地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.客户端产品研发地图.png?raw=true)
+    * [4.2.服务端产品研发地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.2.服务端产品研发地图.png?raw=true)
 * [5.项目管理地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/5.项目管理地图.png?raw=true)
 * [6.运维技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/6.运维技术知识点.png?raw=true)
 * [7.产品运营地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.产品运营地图.png?raw=true)
