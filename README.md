@@ -27,6 +27,10 @@
 * [8.产品商业化业务地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.产品商业化业务地图.png?raw=true)
 
 ----
+## 贡献者
+[公雷（发起者）](https://github.com/gonglei007)
+
+----
 ## 交流
 欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
 
