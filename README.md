@@ -25,6 +25,7 @@
 * [6.运维技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/6.运维技术知识点.png?raw=true)
 * [7.产品运营地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.产品运营地图.png?raw=true)
 * [8.产品商业化业务地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.产品商业化业务地图.png?raw=true)
+    * [8.1.游戏安全地图](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.1.游戏安全地图.png?raw=true)
 
 ----
 ## 贡献者（拼音首字母排序）
