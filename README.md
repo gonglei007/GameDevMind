@@ -16,7 +16,7 @@
 * [1.开发技术](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术.png?raw=true)
     * [1.1.客户端技术](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.客户端技术.png?raw=true)
         * [1.1.1.图形与渲染](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.1.图形与渲染.png?raw=true)
-    * [1.2.服务端技术知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.2.服务端技术知识点.png?raw=true)
+    * [1.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.2.服务端技术.png?raw=true)
     * [1.x.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.x.开发者工具箱.png?raw=true)
 * [2.编程语言知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.编程语言知识点.png?raw=true)
     * [2.1.编程语言通用知识点](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.1.编程语言通用知识点.png?raw=true)
