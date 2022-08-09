@@ -20,6 +20,8 @@
     * [1.x.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.x.开发者工具箱.png?raw=true)
 * [2.编程语言](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.编程语言.png?raw=true)
     * [2.1.编程语言共通概念](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.1.编程语言共通概念.png?raw=true)
+    * [2.2.C++语言](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.2.C++语言.png?raw=true)
+    * [2.3.C#语言](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.3.C#语言.png?raw=true)
 * [3.程序设计](https://github.com/gonglei007/GameDevMind/blob/main/exports/3.程序设计.png?raw=true)
 * [4.产品研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.产品研发.png?raw=true)
     * [4.1.客户端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.客户端产品研发.png?raw=true)
