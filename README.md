@@ -52,3 +52,7 @@
 欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
 
 QQ讨论群:242500383
+
+----
+## 联系我们
+![微信:g-gonglei](https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true)
