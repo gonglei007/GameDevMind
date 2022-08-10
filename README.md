@@ -55,4 +55,6 @@ QQ讨论群:242500383
 
 ----
 ## 联系我们
+<img src="https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
+----
 ![微信:g-gonglei](https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true)
