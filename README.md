@@ -38,6 +38,7 @@
 * [6.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/exports/6.运维技术.png?raw=true)
 * [7.产品运营支持](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.产品运营支持.png?raw=true)
     * [7.1.GM后台](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.1.GM后台.png?raw=true)
+    * [7.2.数据统计分析](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.2.数据统计分析.png?raw=true)
 * [8.产品商业化](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.产品商业化.png?raw=true)
     * [8.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.1.游戏安全.png?raw=true)
 
