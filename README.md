@@ -43,6 +43,10 @@
     * [8.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.1.游戏安全.png?raw=true)
 
 ----
+## 缩略预览
+![alt text](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
+
+----
 ## 贡献者（拼音首字母排序）
 [公雷（发起者）](https://github.com/gonglei007) , 【虚席以待...】
 
