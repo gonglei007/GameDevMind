@@ -48,6 +48,11 @@
 ![alt text](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
 
 ----
+## 编辑与查看
+资料库使用XMind编辑内容（/xminds/目录）。
+也可以简单的查看导出图（/exports/目录）。
+
+----
 ## 贡献者（拼音首字母排序）
 [公雷（发起者）](https://github.com/gonglei007) , 【虚席以待...】
 
