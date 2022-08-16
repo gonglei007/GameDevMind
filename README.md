@@ -69,5 +69,13 @@
 QQ讨论群:242500383
 
 ----
+## 支持者
+Stargazers
+[![Stargazers repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/stargazers)
+<br/>
+Forkers
+[![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
+
+----
 ## 联系我们
 <img src="https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
