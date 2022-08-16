@@ -29,6 +29,7 @@
         * [4.1.2.客户端3D场景开发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.2.客户端3D场景开发.png?raw=true)
         * [4.1.3.客户端优化](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.3.客户端优化.png?raw=true)
     * [4.2.服务端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.2.服务端产品研发.png?raw=true)
+        * [4.2.1.服务端架构](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.2.1.服务端架构.png?raw=true)
     * [4.3.生产线研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.3.生产线研发.png?raw=true)
     * [4.5.技术中台研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.5.技术中台研发.png?raw=true)
     * [4.6.业务层功能系统](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.6.业务层功能系统.png?raw=true)
