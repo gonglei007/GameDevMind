@@ -1,6 +1,9 @@
 <h1 align="center">C++常见问题</h1>
+
 # 野指针怎么产生的
+
 ## 示例1
+
 ```
 int main(){
 	int *myNum = new int(12);
@@ -15,6 +18,7 @@ int main(){
 ```
 
 ## 示例2
+
 ```
 int* badFunction(){
 	int num = 10;
@@ -34,12 +38,14 @@ int main(){
 
 	return 0;
 }
-
 ```
 
 # 内存对齐
+
 ## 示例1
+
 ### 代码
+
 ```
 #include <iostream>
 using namespace std;
@@ -80,7 +86,6 @@ int main()
     cout<<"x3 的大小 "<<sizeof(x3)<<"\n";
     return 0;
 }
-
 ```
 
 ### 输出
