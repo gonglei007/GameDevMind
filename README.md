@@ -19,7 +19,7 @@
 
 ----
 ## 目录
-* [1.开发技术](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.开发技术.png?raw=true)
+* [1.开发技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/开发技术.md)
     * [1.1.客户端技术](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.客户端技术.png?raw=true)
         * [1.1.1.图形与渲染](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.1.图形与渲染.png?raw=true)
         * [1.1.2.物理](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.2.物理.png?raw=true)
