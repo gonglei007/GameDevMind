@@ -1,7 +1,11 @@
 <h1 align="center">C++找bug训练</h1>
+
 # 指针
+
 ## Bug1
+
 ### 代码
+
 ```
 char *CUT_CramMd5::GetClientResponse(LPCSTR ServerChallenge) 
 { 
@@ -19,6 +23,7 @@ char *CUT_CramMd5::GetClientResponse(LPCSTR ServerChallenge)
 ```
 
 ### 说明
+
 ```
 此代码段的意图是：确保指针m_szPassword不是空指针，并且其内容也不是空字符串。
 “if (m_szPassword != ‘\0’) ”是要检查字符串的第一个字符不是结束符。
@@ -26,7 +31,9 @@ char *CUT_CramMd5::GetClientResponse(LPCSTR ServerChallenge)
 ```
 
 ## Bug2
+
 ### 代码
+
 ```
 void CG_RegisterItemVisuals( int itemNum ) { 
 	...   
@@ -39,6 +46,7 @@ void CG_RegisterItemVisuals( int itemNum ) {
 ```
 
 ### 说明
+
 ```
 sizeof操作符返回的是指针的大小（32bit），而不是itemInfo_t这个结构体的大小。
 应该写成"sizeof(*itemInfo)" 
@@ -46,10 +54,12 @@ sizeof操作符返回的是指针的大小（32bit），而不是itemInfo_t这�
 ```
 
 # 数组
-## Bug1
-### 代码
-```
 
+## Bug1
+
+### 代码
+
+```
 ID_INLINE mat3_t::mat3_t( float (&src)[3][3] ) 
 { 
 memcpy( mat, src, sizeof( src ) ); 
@@ -57,6 +67,7 @@ memcpy( mat, src, sizeof( src ) );
 ```
 
 ### 说明
+
 ```
 正确的写法如下：
 ID_INLINE mat3_t::mat3_t( float (&src)[3][3] ) 
@@ -66,8 +77,11 @@ memcpy( mat, src, sizeof( src ) );
 ```
 
 # 字符串
+
 ## Bug1
+
 ### 代码
+
 ```
 这段代码有什么问题？
 typedef struct bot_state_s
@@ -85,13 +99,13 @@ void BotTeamAI( bot_state_t* bs ){
 ```
 
 ### 说明
+
 ```
 正确的写法如下：
 首先，至少要用 sizeof(bs->teamleader) – 1
 最好这样写，这样写在数组类型改为其它类型时也不会出错：
 bs->teamleader[sizeof(bs->teamleader) / sizeof(bs->teamleader[0])-1] = ‘\0’; 
 ```
-
 
 # 运算符
 ## Bug1
@@ -244,8 +258,6 @@ int main()
     printf( "%d/%d == %d\n", n, m, q );
     return 0;
 }
-
-
 ```
 
 ### 说明
