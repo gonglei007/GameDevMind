@@ -24,7 +24,7 @@
         * [1.1.2.Physics](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.2.物理.png?raw=true)
         * [1.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.3.UI.png?raw=true)
         * [1.1.4.Sound](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.1.4.声音.png?raw=true)
-    * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.2.服务端技术.png?raw=true)
+    * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
     * [1.x.Toolbox of developer](https://github.com/gonglei007/GameDevMind/blob/main/exports/1.x.开发者工具箱.png?raw=true)
 * [2.Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.编程语言.png?raw=true)
     * [2.1.Common Concept of Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/exports/2.1.编程语言共通概念.png?raw=true)
@@ -49,7 +49,7 @@
     * [7.1.GM Console](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.1.GM后台.png?raw=true)
     * [7.2.Data Statistics and Analysis](https://github.com/gonglei007/GameDevMind/blob/main/exports/7.2.数据统计分析.png?raw=true)
 * [8.Product Commercialization](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.产品商业化.png?raw=true)
-    * [8.1.Game Safe](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.1.游戏安全.png?raw=true)
+    * [8.1.Game Safe](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
 
 ----
 ## Preview
