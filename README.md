@@ -49,6 +49,7 @@
     * [5.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
 * [6.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.运维技术.md)
     * [6.1.网络维护](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
+    * [6.2.数据存储](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
 * [7.产品运营支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.产品运营支持.md)
     * [7.1.GM后台](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.1.GM后台.md)
     * [7.2.数据统计分析](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.2.数据统计分析.md)
