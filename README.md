@@ -32,7 +32,7 @@
     * [2.2.C++语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.C++语言.md)
     * [2.3.C#语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.3.C#语言.md)
 * [3.程序设计](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.程序设计.md)
-* [4.产品研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.产品研发.png?raw=true)
+* [4.产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.产品研发.md)
     * [4.1.客户端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.客户端产品研发.png?raw=true)
         * [4.1.1.客户端底层通用系统](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.1.客户端底层通用系统.png?raw=true)
         * [4.1.2.客户端3D场景开发](https://github.com/gonglei007/GameDevMind/blob/main/exports/4.1.2.客户端3D场景开发.png?raw=true)
