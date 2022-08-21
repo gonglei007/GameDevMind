@@ -1,4 +1,4 @@
-<h1 align="center">C++找bug训练</h1>
+<h2 align="center">C++找bug训练</h2>
 
 # 指针
 

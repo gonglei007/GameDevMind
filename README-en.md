@@ -1,6 +1,8 @@
-<h1 align="center">Network Mobile Game Development Map</h1>
-<p align="center">A quick navigation map for game developers.</p>
-
+<p align="center">
+  <img src="images/GLTOP_logo_circle_512x512.png" height="128">
+  <h2 align="center">Network Mobile Game Development Map</h2>
+  <p align="center">A quick navigation map for game developers.</p>
+</p>
 [中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)
 
 ## Introduction

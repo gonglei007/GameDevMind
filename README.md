@@ -1,5 +1,8 @@
-<h1 align="center">网络手游开发技术图谱</h1>
-<p align="center">游戏技术开发者的快速导航地图。</p>
+<p align="center">
+  <img src="images/GLTOP_logo_circle_512x512.png" height="128">
+  <h2 align="center">网络手游开发技术图谱</h2>
+  <p align="center">游戏技术开发者的快速导航地图。</p>
+</p>
 
 [English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)
 
