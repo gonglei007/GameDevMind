@@ -3,6 +3,7 @@
   <h2 align="center">Network Mobile Game Development Map</h2>
   <p align="center">A quick navigation map for game developers.</p>
 </p>
+
 [中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)
 
 ## Introduction
@@ -49,6 +50,7 @@
     * [5.1.Process Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
     * [5.2.Version Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
     * [5.3.QA](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
+    * [5.4.Team and Organization](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.4.团队与组织.md)
 * [6.Operation and Maintenance Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.运维技术.md)
     * [6.1.Network Maintenance](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
     * [6.2.Data Storage](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
@@ -64,20 +66,25 @@
 ![Diagram-2、Keep maintaining the content...](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
 
 ----
+## Discussions
+
+[![Discussions repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/discussions)
+
+----
 ## Edit and View
 Use XMind to edit content of folder /xminds/.<br/>
 View quickly in folder /exports/.
+
+----
+## History
+2022-06-22
+The first version pushed to github.
 
 ----
 ## Contributors
 [公雷(Gong Lei)](https://github.com/gonglei007) 
 
 We sincerely invite more contributors.
-
-----
-## Discussions
-
-[![Discussions repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/discussions)
 
 ----
 ## Repo rosters

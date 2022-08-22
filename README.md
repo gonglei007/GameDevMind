@@ -51,6 +51,7 @@
     * [5.1.研发过程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
     * [5.2.版本管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
     * [5.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
+    * [5.4.团队与组织](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.4.团队与组织.md)
 * [6.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.运维技术.md)
     * [6.1.网络维护](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
     * [6.2.数据存储](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
@@ -66,21 +67,30 @@
 ![图2、这个知识图谱还在持续的补充扩展中](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
 
 ----
+## 交流
+欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
+
+QQ讨论群:242500383
+
+----
+
+[![Discussions repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/discussions)
+
+----
 ## 编辑与查看
 资料库使用XMind编辑内容（/xminds/目录）。<br/>
 也可以简单的查看导出图（/exports/目录）。
+
+----
+## 历史
+2022-06-22
+第一个版本的资料库提交到了github。
 
 ----
 ## 贡献者（拼音首字母排序）
 [公雷（发起者）](https://github.com/gonglei007) , 【虚席以待...】
 
 诚挚的邀请更多游戏行业重要参与者来一起完善资料库。
-
-----
-## 交流
-欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
-
-QQ讨论群:242500383
 
 ----
 ## 支持者
