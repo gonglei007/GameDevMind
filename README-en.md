@@ -17,7 +17,7 @@
 
 ----
 ## Overview
-![Diagram-1、The content framework](https://github.com/gonglei007/GameDevMind/blob/main/exports/0.总览.png?raw=true)
+![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/exports-en/0.Overview.png?raw=true)
 
 ----
 ## Menu
@@ -28,7 +28,7 @@
         * [1.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.UI.md)
         * [1.1.4.Sound](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.声音.md)
     * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
-    * [1.x.Toolbox of developer](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
+    * [1.x.Toolbox of Developer](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
 * [2.Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/md/2.编程语言.md)
     * [2.1.Common Concept of Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.编程语言共通概念.md)
     * [2.2.C++ Language](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.C++语言.md)
@@ -38,13 +38,13 @@
     * [3.2.Data Structure](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
 * [4.Product Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.产品研发.md)
     * [4.1.Client Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.客户端产品研发.md)
-        * [4.1.1.Client Common System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.客户端底层通用系统.md)
+        * [4.1.1.Client Base System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.客户端底层通用系统.md)
         * [4.1.2.Client 3D Scene Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.2.客户端3D场景开发.md)
         * [4.1.3.Client Optimization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.3.客户端优化.md)
     * [4.2.Server Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.服务端产品研发.md)
         * [4.2.1.Server Architecture](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.1.服务端架构.md)
         * [4.2.3.Server Optimization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.3.服务端优化.md)
-    * [4.3.Pipeline Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.生产线研发.md)
+    * [4.3.Game Pipeline](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.生产线研发.md)
     * [4.5.Technical Center](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台研发.md)
     * [4.6.Game Functional System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.6.业务层功能系统.md)
 * [5.Project Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.项目管理.md)
