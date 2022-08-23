@@ -7,8 +7,10 @@
 [中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)
 
 ## Introduction
+<p>
 &emsp;&emsp;We recently organized an open source material library——"Network Mobile Game Development Map". The purpose is provide a quick manual for game technical developer to search or view the technology content in his work.
 <br/>
+</p>
 
 
 | ``` ✅Has ``` | ``` ❌Has not ``` |
