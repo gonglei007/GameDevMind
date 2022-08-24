@@ -23,7 +23,7 @@
 
 ----
 ## Menu
-* [1.Development Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.开发技术.md)
+* [1.Development Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.Development%20Technology.md)
     * [1.1.Client Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.客户端技术.md)
         * [1.1.1.Graphic and Rendering](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.图形与渲染.md)
         * [1.1.2.Physics](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.2.物理.md)
