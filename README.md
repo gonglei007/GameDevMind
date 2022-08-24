@@ -99,7 +99,7 @@ QQ讨论群:242500383
 第一个版本的资料库提交到了github。
 
 ----
-## 贡献者（拼音首字母排序）
+## 贡献者
 [公雷（发起者）](https://github.com/gonglei007), [Game Atom](https://github.com/gameatom), 【虚席以待...】
 
 诚挚的邀请更多游戏行业重要参与者来一起完善资料库。
