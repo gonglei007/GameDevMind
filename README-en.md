@@ -62,6 +62,7 @@
 * [7.Product Operation Support](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.产品运营支持.md)
     * [7.1.GM Console](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.1.GM后台.md)
     * [7.2.Data Statistics and Analysis](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.2.数据统计分析.md)
+    * [7.3.Product Hotfix](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.3.产品热更新.md)
 * [8.Product Commercialization](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.产品商业化.md)
     * [8.1.Game Safe](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
 
