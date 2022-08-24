@@ -1,0 +1,208 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		671182FC152531B2000A4A16 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 671182FB152531B2000A4A16 /* main.cpp */; };
+		671182FE152531B2000A4A16 /* gltop_bug2.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 671182FD152531B2000A4A16 /* gltop_bug2.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		671182F5152531B2000A4A16 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				671182FE152531B2000A4A16 /* gltop_bug2.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		671182F7152531B2000A4A16 /* gltop_bug2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gltop_bug2; sourceTree = BUILT_PRODUCTS_DIR; };
+		671182FB152531B2000A4A16 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		671182FD152531B2000A4A16 /* gltop_bug2.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = gltop_bug2.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		671182F4152531B2000A4A16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		671182EC152531B2000A4A16 = {
+			isa = PBXGroup;
+			children = (
+				671182FA152531B2000A4A16 /* gltop_bug2 */,
+				671182F8152531B2000A4A16 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		671182F8152531B2000A4A16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				671182F7152531B2000A4A16 /* gltop_bug2 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		671182FA152531B2000A4A16 /* gltop_bug2 */ = {
+			isa = PBXGroup;
+			children = (
+				671182FB152531B2000A4A16 /* main.cpp */,
+				671182FD152531B2000A4A16 /* gltop_bug2.1 */,
+			);
+			path = gltop_bug2;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		671182F6152531B2000A4A16 /* gltop_bug2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67118301152531B2000A4A16 /* Build configuration list for PBXNativeTarget "gltop_bug2" */;
+			buildPhases = (
+				671182F3152531B2000A4A16 /* Sources */,
+				671182F4152531B2000A4A16 /* Frameworks */,
+				671182F5152531B2000A4A16 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gltop_bug2;
+			productName = gltop_bug2;
+			productReference = 671182F7152531B2000A4A16 /* gltop_bug2 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		671182EE152531B2000A4A16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 671182F1152531B2000A4A16 /* Build configuration list for PBXProject "gltop_bug2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 671182EC152531B2000A4A16;
+			productRefGroup = 671182F8152531B2000A4A16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				671182F6152531B2000A4A16 /* gltop_bug2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		671182F3152531B2000A4A16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				671182FC152531B2000A4A16 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		671182FF152531B2000A4A16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		67118300152531B2000A4A16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		67118302152531B2000A4A16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		67118303152531B2000A4A16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		671182F1152531B2000A4A16 /* Build configuration list for PBXProject "gltop_bug2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671182FF152531B2000A4A16 /* Debug */,
+				67118300152531B2000A4A16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67118301152531B2000A4A16 /* Build configuration list for PBXNativeTarget "gltop_bug2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67118302152531B2000A4A16 /* Debug */,
+				67118303152531B2000A4A16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 671182EE152531B2000A4A16 /* Project object */;
+}

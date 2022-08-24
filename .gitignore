@@ -1,1 +1,14 @@
 output
+cpp_samples.suo
+cpp_samples.userprefs
+cpp_samples.sdf
+samples/bug1536/config/xcode/bug1536.xcodeproj/xcuserdata
+samples/bug542/config/xcode/bug542.xcodeproj/xcuserdata
+samples/bug602/config/xcode/bug602.xcodeproj/xcuserdata
+samples/bug603/config/xcode/bug603.xcodeproj/xcuserdata
+samples/cpp_training.xcworkspace/xcuserdata
+samples/gltop_bug1/config/xcode/gltop_bug1.xcodeproj/xcuserdata
+samples/gltop_bug2/config/vc2010/Debug
+samples/gltop_bug2/config/xcode/gltop_bug2.xcodeproj/xcuserdata
+samples/ipch
+samples/Debug
