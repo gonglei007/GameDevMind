@@ -1,6 +1,6 @@
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
-  <h2 align="center">Network Mobile Game Development Map</h2>
+  <h2 align="center">Online Game Development Map</h2>
   <p align="center">A quick navigation map for game developers.</p>
 </p>
 
