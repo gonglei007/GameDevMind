@@ -4,7 +4,7 @@
   <p align="center">A quick navigation map for game developers.</p>
 </p>
 
-[中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)
+*[（中文）](https://github.com/gonglei007/GameDevMind/blob/main/README.md)*
 
 ## Introduction
 <p>

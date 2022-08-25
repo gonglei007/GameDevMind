@@ -4,7 +4,7 @@
   <p align="center">游戏技术开发者的快速导航地图。</p>
 </p>
 
-[English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)
+*[(English)](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
 
 ## 介绍
 <p>
