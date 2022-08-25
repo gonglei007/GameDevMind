@@ -39,6 +39,7 @@
         * [1.1.4.声音](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.声音.md)
     * [1.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
     * [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
+        * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
     * [1.x.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
 * [2.编程语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.编程语言.md)
     * [2.1.编程语言共通概念](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.编程语言共通概念.md)
