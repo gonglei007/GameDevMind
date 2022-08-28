@@ -32,6 +32,7 @@
     * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
     * [1.3.Common Base](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.Mathematics](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
+        * [1.3.4.Memory Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.4.内存管理.md)
     * [1.x.Toolbox of Developer](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
 * [2.Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/md/2.编程语言.md)
     * [2.1.Common Concept of Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.编程语言共通概念.md)
