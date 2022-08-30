@@ -30,7 +30,7 @@
         * [1.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.UI.md)
         * [1.1.4.Sound](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.声音.md)
         * [1.1.5.Animation and FX](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.5.动画与特效.md)
-    * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
+    * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.2.Server%20Technology.md)
     * [1.3.Common Base](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.Mathematics](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
         * [1.3.4.Memory Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.4.内存管理.md)
