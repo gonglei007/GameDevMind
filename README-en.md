@@ -43,6 +43,7 @@
 * [3.Programming Design](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.程序设计.md)
     * [3.1.Design Patterns](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.设计模式.md)
     * [3.2.Data Structure](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
+    * [3.3.Algorithm](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.算法.md)
 * [4.Product Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.产品研发.md)
     * [4.1.Client Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.客户端产品研发.md)
         * [4.1.1.Client Base System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.客户端底层通用系统.md)
