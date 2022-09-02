@@ -55,7 +55,7 @@
     * [4.3.Game Pipeline](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.生产线研发.md)
     * [4.5.Technical Center](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
     * [4.6.Game Functional System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.6.业务层功能系统.md)
-* [5.Project Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.项目管理.md)
+* [5.Project Management](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/5.Project%20Management.md)
     * [5.1.Process Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
     * [5.2.Version Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
     * [5.3.QA](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)

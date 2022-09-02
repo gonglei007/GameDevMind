@@ -5,6 +5,6 @@
 *Keywords*
 
 ## Map
-![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/exports/8.1.Title.png?raw=true)
+![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/exports-en/8.1.Title.png?raw=true)
 
 ## Sub Subject
