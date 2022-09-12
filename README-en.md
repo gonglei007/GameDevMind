@@ -70,6 +70,7 @@
     * [7.3.Product Hotfix](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.3.产品热更新.md)
 * [8.Product Commercialization](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.产品商业化.md)
     * [8.1.Game Safe](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
+    * [8.2.Account and Pay](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.2.帐号与支付.md)
 
 ----
 ## Preview
