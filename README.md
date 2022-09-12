@@ -78,6 +78,7 @@
     * [7.3.产品热更新](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.3.产品热更新.md)
 * [8.产品商业化](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.产品商业化.md)
     * [8.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
+    * [8.2.帐号与支付](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.2.帐号与支付.md)
 
 ----
 ## 缩略预览
