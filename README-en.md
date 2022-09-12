@@ -51,6 +51,7 @@
         * [4.1.3.Client Optimization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.3.客户端优化.md)
     * [4.2.Server Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.服务端产品研发.md)
         * [4.2.1.Server Architecture](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.1.服务端架构.md)
+        * [4.2.2.Multiplayer Game Synchronization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.2.网游网络同步.md)
         * [4.2.3.Server Optimization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.3.服务端优化.md)
     * [4.3.Game Pipeline](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.生产线研发.md)
     * [4.5.Technical Center](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
