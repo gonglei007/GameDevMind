@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
 montage $(ls ../exports/*.png | grep -v "0.") 	\
 	-auto-orient 	\
-	-resize 400x *  \
+	-resize 200x *  \
 	-mode Concatenate	\
 	-tile 6x	\
 	-border 1 	\
