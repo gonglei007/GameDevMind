@@ -4,6 +4,14 @@
   <p align="center">游戏技术开发者的快速导航地图。</p>
 </p>
 
+```cpp
+#include <iostream>
+int main(){
+    std::cout<< "Hello, Game Development World!" <<std::endl;
+    return 0;
+}
+```
+
 *[(English)](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
 
 ## 介绍

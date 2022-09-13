@@ -4,6 +4,14 @@
   <p align="center">A quick navigation map for game developers.</p>
 </p>
 
+```cpp
+#include <iostream>
+int main(){
+    std::cout<< "Hello, Game Development World!" <<std::endl;
+    return 0;
+}
+```
+
 *[（中文）](https://github.com/gonglei007/GameDevMind/blob/main/README.md)*
 
 ## Introduction
