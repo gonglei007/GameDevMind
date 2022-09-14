@@ -23,7 +23,7 @@ int main(){
 
 | ``` ✅Has ``` | ``` ❌Has not ``` |
 | --- | --- |
-| *   What is it<br /> *   Features and Values<br /> *   Application and Experience<br /> |  *   Complete knowledge<br /> *   Systemic introduction。<br /> *   Detail of implementation<br /> |
+| *   What is needed<br /> *   Features and Values<br /> *   Application and Experience<br /> |  *   Complete knowledge<br /> *   Systemic introduction。<br /> *   Detail of implementation<br /> |
 
 ----
 ## Overview
