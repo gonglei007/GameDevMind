@@ -68,6 +68,7 @@ int main(){
         * [4.3.2.Continuous Delivery](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.2.持续交付.md)
     * [4.4.Game Functional System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.业务层功能系统.md)
     * [4.5.Technical Center](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
+        * [4.5.1.Game Development Support](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.1.游戏开发支持.md)
 ### Management Capability
 * [5.Project Management](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/5.Project%20Management.md)
     * [5.1.Process Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
