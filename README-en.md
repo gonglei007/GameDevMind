@@ -31,6 +31,7 @@ int main(){
 
 ----
 ## Menu
+### Basic Capability
 * [1.Development Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.Development%20Technology.md)
     * [1.1.Client Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.1.Client%20Technology.md)
         * [1.1.1.Graphic and Rendering](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.图形与渲染.md)
@@ -52,6 +53,7 @@ int main(){
     * [3.1.Design Patterns](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.设计模式.md)
     * [3.2.Data Structure](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
     * [3.3.Algorithm](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.算法.md)
+### Development Capability
 * [4.Product Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.产品研发.md)
     * [4.1.Client Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.客户端产品研发.md)
         * [4.1.1.Client Base System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.客户端底层通用系统.md)
@@ -62,13 +64,16 @@ int main(){
         * [4.2.2.Multiplayer Game Synchronization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.2.网游网络同步.md)
         * [4.2.3.Server Optimization](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.3.服务端优化.md)
     * [4.3.Game Pipeline](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.生产线研发.md)
+        * [4.3.1.Digital Content Pipeline](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.1.数字内容生产线.md)
     * [4.5.Technical Center](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
     * [4.6.Game Functional System](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.6.业务层功能系统.md)
+### Management Capability
 * [5.Project Management](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/5.Project%20Management.md)
     * [5.1.Process Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
     * [5.2.Version Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
     * [5.3.QA](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
     * [5.4.Team and Organization](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.4.团队与组织.md)
+### Commercialization Capability
 * [6.Operation and Maintenance Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.运维技术.md)
     * [6.1.Network Maintenance](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
     * [6.2.Data Storage](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
