@@ -39,7 +39,12 @@ int main(){
 
 ----
 ## 目录
+
 ### 基础能力
+<p>
+团队中的技术人员都需要的具备的基本功。这些基本功越强，整个产品的开发过程就会越稳健、高效。
+</p>
+
 * [1.开发技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.开发技术.md)
     * [1.1.客户端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.客户端技术.md)
         * [1.1.1.图形与渲染](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.图形与渲染.md)
@@ -61,7 +66,12 @@ int main(){
     * [3.1.设计模式](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.设计模式.md)
     * [3.2.数据结构](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
     * [3.3.算法](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.算法.md)
+
 ### 研发能力
+<p>
+游戏是一种有艺术成分的商品，它是由数字内容和互动功能构建起来的。开发一款游戏产品，要有跟其它软件产品不同的一系列的技术、方法、流程。
+</p>
+
 * [4.产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.产品研发.md)
     * [4.1.客户端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.客户端产品研发.md)
         * [4.1.1.客户端底层通用系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.客户端底层通用系统.md)
@@ -77,13 +87,23 @@ int main(){
     * [4.4.业务层功能系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.业务层功能系统.md)
     * [4.5.技术中台](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
         * [4.5.1.游戏开发支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.1.游戏开发支持.md)
+
 ### 管理能力
+<p>
+管理中最具挑战的是尺度、分寸与随机应变。火候少一分，生了；火候多一分，焦了。追求是复杂的事情简单化；面对的也可能是简单的事情复杂化。
+</p>
+
 * [5.项目管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.项目管理.md)
     * [5.1.研发过程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
     * [5.2.版本管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
     * [5.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
     * [5.4.团队与组织](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.4.团队与组织.md)
+
 ### 商品化能力
+<p>
+作为一个组织，不论你有什么样的技术、有什么样的能力，有一个最重要的目标是——赚钱。一款好玩的游戏做出来了不一定就能能赚钱，特别是在当下的市场环境下。还需要有一系列商品化能力，才能让产品盈利，让团队存活。
+</p>
+
 * [6.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.运维技术.md)
     * [6.1.网络维护](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
     * [6.2.数据存储](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
