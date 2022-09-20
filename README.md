@@ -39,7 +39,6 @@ int main(){
 
 ----
 ## 目录
-<div style="background-color:rgba(1, 1, 1, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 
 ### 基础能力
 <p>
@@ -68,8 +67,6 @@ int main(){
     * [3.2.数据结构](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
     * [3.3.算法](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.算法.md)
     
-</div>
-
 ### 研发能力
 <p>
 游戏是一种有艺术成分的商品，它是由数字内容和互动功能构建起来的。开发一款游戏产品，要有跟其它软件产品不同的一系列的技术、方法、流程。
