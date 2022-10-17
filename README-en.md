@@ -109,7 +109,7 @@ The first version pushed to github.
 
 ----
 ## Contributors
-[公雷(Gong Lei)](https://github.com/gonglei007), [Game Atom](https://github.com/gameatom) 
+[公雷（发起者）](https://github.com/gonglei007), [Game Atom](https://github.com/gameatom)， [管仲才](https://github.com/guanzhongcai)
 
 We sincerely invite more contributors.
 
