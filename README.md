@@ -1,7 +1,7 @@
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <h2 align="center">网络游戏开发技术图谱</h2>
-  <p align="center">让我们一起来解决网游开发中遇到的问题。</p>
+  <p align="center">我们一起来解决网络游戏开发中的问题</p>
 </p>
 
 ```cpp
