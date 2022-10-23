@@ -1,6 +1,6 @@
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
-  <h2 align="center">网络游戏开发技术图谱</h2>
+  <h2 align="center">网络游戏开发图谱（技术侧）</h2>
   <p align="center">我们一起来解决网络游戏开发中的问题</p>
 </p>
 
