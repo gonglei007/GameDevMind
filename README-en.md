@@ -4,6 +4,8 @@
   <p align="center">A quick navigation map for game developers.</p>
 </p>
 
+*[中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)* | *[English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
+
 ```cpp
 #include <iostream>
 int main(){
@@ -11,8 +13,8 @@ int main(){
     return 0;
 }
 ```
-
-*[（中文）](https://github.com/gonglei007/GameDevMind/blob/main/README.md)*
+<br/>
+<br/>
 
 ## Introduction
 <p>
