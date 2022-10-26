@@ -130,9 +130,9 @@ int main(){
 ## 交流讨论
 欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
 
-#### QQ群: 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi)
+| * QQ群 * | 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi) |
 
-#### Github讨论区：[https://github.com/gonglei007/GameDevMind/discussions](https://github.com/gonglei007/GameDevMind/discussions)
+| * Github讨论区 * | [https://github.com/gonglei007/GameDevMind/discussions](https://github.com/gonglei007/GameDevMind/discussions) |
 
 <br/>
 
