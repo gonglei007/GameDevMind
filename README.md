@@ -131,12 +131,11 @@ int main(){
 <br/>
 
 ----
-## 交流
+## 交流讨论
 欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
 
 #### QQ群: 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi)
-
-----
+<br/>
 
 [![Discussions repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/discussions)
 
@@ -144,11 +143,13 @@ int main(){
 ## 编辑与查看
 资料库使用XMind编辑内容（/xminds/目录）。<br/>
 也可以简单的查看导出图（/exports/目录）。
+<br/>
 
 ----
 ## 历史
 2022-06-22
 第一个版本的资料库提交到了github。
+<br/>
 
 ----
 ## 贡献者
@@ -157,6 +158,7 @@ int main(){
 【虚席以待...】
 
 诚挚的邀请更多游戏行业重要参与者来一起完善资料库。
+<br/>
 
 ----
 ## 支持者
@@ -165,7 +167,9 @@ int main(){
 <br/>
 ### Forkers
 [![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
+<br/>
 
 ----
 ## 联系我们
 <img src="https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
+<br/>
