@@ -133,8 +133,7 @@ int main(){
 #### QQ群: 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi)
 <br/>
 
-[![Github讨论区](https://github.com/gonglei007/GameDevMind/discussions)]
-
+#### * [Github讨论区](https://github.com/gonglei007/GameDevMind/discussions)
 <br/>
 
 ## 编辑与查看
