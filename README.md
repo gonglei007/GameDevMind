@@ -128,18 +128,19 @@ int main(){
 <br/>
 
 ## 交流讨论
-欢迎同行们多来交流和分享，共同促进游戏行业和游戏技术人员的发展。
+欢迎进群、进讨论区交流和分享游戏开发中遇到的问题或者解决方案。
 
-| ```  ``` | ```  ``` |
-| * QQ群 * | 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi) |
-
-| * Github讨论区 * | [https://github.com/gonglei007/GameDevMind/discussions](https://github.com/gonglei007/GameDevMind/discussions) |
+|  |  |
+| --- | -------- |
+| QQ群: | 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi) |
+|  |  |
+| 讨论区: | [https://github.com/gonglei007/GameDevMind/discussions](https://github.com/gonglei007/GameDevMind/discussions) |
 
 <br/>
 
 ## 编辑与查看
-资料库使用XMind编辑内容（/xminds/目录）。<br/>
-也可以简单的查看导出图（/exports/目录）。
+* 资料库使用XMind编辑内容（/xminds/目录）。<br/>
+* 也可以简单的查看导出图（/exports/目录）。
 <br/>
 
 ## 历史
@@ -148,11 +149,9 @@ int main(){
 <br/>
 
 ## 贡献者
-[公雷（发起者）](https://github.com/gonglei007), [Game Atom](https://github.com/gameatom)， [管仲才](https://github.com/guanzhongcai)
+[公雷（发起者）](https://github.com/gonglei007), [Game Atom](https://github.com/gameatom)， [管仲才](https://github.com/guanzhongcai) ...
 
-【虚席以待...】
-
-诚挚的邀请更多游戏行业重要参与者来一起完善资料库。
+【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
 <br/>
 
 ## 支持者
