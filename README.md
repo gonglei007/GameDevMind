@@ -35,10 +35,12 @@ int main(){
 <p>
 &emsp;&emsp;一个游戏研发组织或团队，在技术上所需要具备的几大能力：基础能力、研发能力、管理能力、商品化能力。这些能力不一定是需要每个人都具备，但由全体成员构成的这个组织，是需要的。
 </p>
+<br/>
 
 ----
 ## 总览
 ![图1、这是知识树的框架，展开的知识树可以点击下面的github链接查看。](https://github.com/gonglei007/GameDevMind/blob/main/exports/0.总览.png?raw=true)
+<br/>
 
 ----
 ## 目录
@@ -69,7 +71,7 @@ int main(){
     * [3.1.设计模式](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.设计模式.md)
     * [3.2.数据结构](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
     * [3.3.算法](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.算法.md)
-    
+<br/>    
 ### 研发能力
 <p>
 游戏是一种有艺术成分的商品，它是由数字内容和互动功能构建起来的。开发一款游戏产品，要有跟其它软件产品不同的一系列的技术、方法、流程。
@@ -90,7 +92,7 @@ int main(){
     * [4.4.业务层功能系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.业务层功能系统.md)
     * [4.5.技术中台](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
         * [4.5.1.游戏开发支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.1.游戏开发支持.md)
-
+<br/>
 ### 管理能力
 <p>
 管理中最具挑战的是尺度、分寸与随机应变。火候少一分，生了；火候多一分，焦了。追求是复杂的事情简单化；面对的也可能是简单的事情复杂化。
@@ -101,7 +103,7 @@ int main(){
     * [5.2.版本管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
     * [5.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
     * [5.4.团队与组织](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.4.团队与组织.md)
-
+<br/>
 ### 商品化能力
 <p>
 作为一个组织，不论你有什么样的技术、有什么样的能力，有一个最重要的目标是——赚钱。一款好玩的游戏做出来了不一定就能能赚钱，特别是在当下的市场环境下。还需要有一系列商品化能力，才能让产品盈利，让团队存活。
@@ -118,10 +120,12 @@ int main(){
 * [8.产品商业化](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.产品商业化.md)
     * [8.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
     * [8.2.帐号与支付](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.2.帐号与支付.md)
+<br/>
 
 ----
 ## 缩略预览
 ![图2、这个知识图谱还在持续的补充扩展中](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
+<br/>
 
 ----
 ## 交流
