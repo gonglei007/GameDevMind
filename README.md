@@ -4,6 +4,8 @@
   <p align="center">让我们一起来解决游戏研发中的问题</p>
 </p>
 
+*[中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)* | *[English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
+
 ```cpp
 #include <iostream>
 int main(){
@@ -12,7 +14,6 @@ int main(){
 }
 ```
 
-*[(English)](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
 <br/>
 <br/>
 <br/>
