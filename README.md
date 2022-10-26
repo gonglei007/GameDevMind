@@ -132,8 +132,8 @@ int main(){
 
 #### QQ群: 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi)
 <br/>
-
-[![Discussions repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/discussions)
+[![Github讨论区](https://github.com/gonglei007/GameDevMind/discussions)]
+<br/>
 
 ## 编辑与查看
 资料库使用XMind编辑内容（/xminds/目录）。<br/>
