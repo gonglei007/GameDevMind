@@ -63,6 +63,7 @@ int main(){
     * [1.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
     * [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
+        * [1.3.2.人工智能](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
         * [1.3.4.内存管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.4.内存管理.md)
     * [1.x.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
 * [2.编程语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.编程语言.md)
