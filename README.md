@@ -30,7 +30,7 @@ int main(){
 
 <div align="center">
     <table style="width:640px;">
-        <thead>
+        <thead style="font-weight: bold; font-style: italic;">
             <tr>
                 <td>&emsp;&emsp;✅ 资料里有什么&emsp;&emsp;</td>
                 <td>&emsp;&emsp;❌ 资料里没有什么&emsp;&emsp;</td>
