@@ -181,9 +181,12 @@ int main(){
 <br/>
 
 ## 联系我们
-[-微信扫码-]
+
+[-微信扫码-]<br/>
+
 <img src="https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
-<br/>
+
+<br/><br/>
 
 ## 缩略预览
 ![图2、这个知识图谱还在持续的补充扩展中](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
