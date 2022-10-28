@@ -44,6 +44,7 @@ int main(){
     * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.2.Server%20Technology.md)
     * [1.3.Common Base](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.Mathematics](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
+        * [1.3.2.AI](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
         * [1.3.4.Memory Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.4.内存管理.md)
     * [1.x.Toolbox of Developer](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
 * [2.Programming Language](https://github.com/gonglei007/GameDevMind/blob/main/md/2.编程语言.md)
