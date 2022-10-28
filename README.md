@@ -1,7 +1,7 @@
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <h2 align="center">游戏开发图谱（技术侧）</h2>
-  <p align="center">让我们一起来解决游戏研发中的问题</p>
+  <p align="center">让我们一起来解决游戏研发中的各种问题</p>
 </p>
 
 *[中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)* | *[English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
@@ -28,7 +28,7 @@ int main(){
 
 
 | ``` ✅资料里有什么 ``` | ``` ❌资料里没有什么 ``` |
-| --- | --- |
+| --------------- | --------------- |
 | *   需要什么？<br /> *   特色与价值？<br /> *   应用与经验<br /> |  *   完整的知识。<br /> *   系统的讲解。<br /> *   具体的实现。<br /> |
 
 
