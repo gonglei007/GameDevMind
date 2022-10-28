@@ -2,6 +2,9 @@
 .diff{
     width: 480px;
 }
+table {
+  width: 100%;
+}
 </style>
 
 <p align="center">
