@@ -27,24 +27,29 @@ int main(){
 <br/>
 </p>
 
-<div>
-    <table style="width:480px; align:center; display:table;">
-        <tr style="bold">
-            <td>✅ 资料里有什么</td>
-            <td>❌ 资料里没有什么</td>
-        </tr>
-        <tr>
-            <td> ● 需要什么？</td>
-            <td> ● 完整的知识。</td>
-        </tr>
-        <tr>
-            <td> ● 特色与价值？</td>
-            <td> ● 系统的讲解。</td>
-        </tr>
-        <tr>
-            <td> ● 应用与经验</td>
-            <td> ● 具体的实现。</td>
-        </tr>
+
+<div align="center">
+    <table style="width:640px;">
+        <thead>
+            <tr>
+                <td>&emsp;&emsp;✅ 资料里有什么&emsp;&emsp;</td>
+                <td>&emsp;&emsp;❌ 资料里没有什么&emsp;&emsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&emsp;&emsp; ● 需要什么？&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ● 完整的知识。&emsp;&emsp;</td>
+            </tr>
+            <tr>
+                <td>&emsp;&emsp; ● 特色与价值？&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ● 系统的讲解。&emsp;&emsp;</td>
+            </tr>
+            <tr>
+                <td>&emsp;&emsp; ● 应用与经验&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ● 具体的实现。&emsp;&emsp;</td>
+            </tr>
+        </tbody>
     </table>
 </div>
 
