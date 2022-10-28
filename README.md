@@ -1,8 +1,3 @@
-<style>
-.diff{
-    width: 480px;
-}
-</style>
 
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
@@ -32,31 +27,29 @@ int main(){
 <br/>
 </p>
 
-<div class="diff">
+ | ```  ✅ 资料里有什么 ``` | ``` ❌ 资料里没有什么 ``` |
+ | :------------------------------: | :------------------------------: |
+ | *  需要什么？      <br /> *   特色与价值？     <br /> * 应用与经验      <br /> |  *  完整的知识。<br /> *  系统的讲解。<br /> *   具体的实现。<br />  |
 
-| ```  ✅ 资料里有什么 ``` | ``` ❌ 资料里没有什么 ``` |
-| --------------- | --------------- |
-| *   需要什么？<br /> *   特色与价值？<br /> *   应用与经验<br /> |  *   完整的知识。<br /> *   系统的讲解。<br /> *   具体的实现。<br /> |
-
-<table width=640px style="align:center; display:table;">
-<tr style="bold">
-<td>✅ 资料里有什么</td>
-<td>❌ 资料里没有什么</td>
-</tr>
-<tr>
-<td> * 需要什么？</td>
-<td> * 完整的知识。</td>
-</tr>
-<tr>
-<td> * 特色与价值？</td>
-<td> * 系统的讲解。</td>
-</tr>
-<tr>
-<td> * 应用与经验</td>
-<td> * 具体的实现。</td>
-</tr>
-</table>
-
+<div>
+    <table width=360px style="align:center; display:table;">
+        <tr style="bold">
+            <td>✅ 资料里有什么</td>
+            <td>❌ 资料里没有什么</td>
+        </tr>
+        <tr>
+            <td> * 需要什么？</td>
+            <td> * 完整的知识。</td>
+        </tr>
+        <tr>
+            <td> * 特色与价值？</td>
+            <td> * 系统的讲解。</td>
+        </tr>
+        <tr>
+            <td> * 应用与经验</td>
+            <td> * 具体的实现。</td>
+        </tr>
+    </table>
 </div>
 
 <p>
