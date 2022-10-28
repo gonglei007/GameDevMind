@@ -2,7 +2,7 @@
 .diff{
     width: 480px;
 }
-table {
+.table {
   width: 100%;
 }
 </style>
