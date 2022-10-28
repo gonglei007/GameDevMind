@@ -29,7 +29,7 @@ int main(){
 
  | ```  ✅ 资料里有什么 ``` | ``` ❌ 资料里没有什么 ``` |
  | --------------- | --------------- |
- | *  &emsp;&emsp;&emsp;&emsp; 需要什么？&emsp;&emsp;&emsp;&emsp; <br /> *   特色与价值？<br /> *   应用与经验<br /> |  *  &emsp;&emsp;&emsp;&emsp; 完整的知识。&emsp;&emsp;&emsp;&emsp; <br /> *   系统的讲解。<br /> *   具体的实现。<br /> |
+ | &emsp;&emsp;&emsp;&emsp; *  需要什么？&emsp;&emsp;&emsp;&emsp; <br /> *   特色与价值？<br /> *   应用与经验<br /> | &emsp;&emsp;&emsp;&emsp;  *  完整的知识。&emsp;&emsp;&emsp;&emsp; <br /> *   系统的讲解。<br /> *   具体的实现。<br /> |
 
 <p>
 &emsp;&emsp;一个游戏研发组织或团队，在技术上所需要具备的几大能力：基础能力、研发能力、管理能力、商品化能力。这些能力不一定是需要每个人都具备，但由全体成员构成的这个组织，是需要的。
