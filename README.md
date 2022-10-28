@@ -27,27 +27,23 @@ int main(){
 <br/>
 </p>
 
- | ```  ✅ 资料里有什么 ``` | ``` ❌ 资料里没有什么 ``` |
- | :------------------------------: | :------------------------------: |
- | *  需要什么？      <br /> *   特色与价值？     <br /> * 应用与经验      <br /> |  *  完整的知识。<br /> *  系统的讲解。<br /> *   具体的实现。<br />  |
-
 <div>
-    <table width=360px style="align:center; display:table;">
+    <table style="width:480px; align:center; display:table;">
         <tr style="bold">
             <td>✅ 资料里有什么</td>
             <td>❌ 资料里没有什么</td>
         </tr>
         <tr>
-            <td> * 需要什么？</td>
-            <td> * 完整的知识。</td>
+            <td> ● 需要什么？</td>
+            <td> ● 完整的知识。</td>
         </tr>
         <tr>
-            <td> * 特色与价值？</td>
-            <td> * 系统的讲解。</td>
+            <td> ● 特色与价值？</td>
+            <td> ● 系统的讲解。</td>
         </tr>
         <tr>
-            <td> * 应用与经验</td>
-            <td> * 具体的实现。</td>
+            <td> ● 应用与经验</td>
+            <td> ● 具体的实现。</td>
         </tr>
     </table>
 </div>
