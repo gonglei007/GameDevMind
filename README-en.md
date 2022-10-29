@@ -83,6 +83,7 @@ int main(){
     * [6.1.Network Maintenance](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
     * [6.2.Data Storage](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
     * [6.3.Asset Management](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.3.资产管理.md)
+    * [6.4.Linux](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.4.Linux系统.md)
 * [7.Product Operation Support](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.产品运营支持.md)
     * [7.1.GM Console](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.1.GM后台.md)
     * [7.2.Data Statistics and Analysis](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.2.数据统计分析.md)
