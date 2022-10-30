@@ -3,10 +3,9 @@
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <h2 align="center">游戏开发图谱（技术侧）</h2>
   <p align="center">
+    一起来解决游戏研发中各种技术相关的问题
   </p>
 </p>
-
-> 一起来解决游戏研发中各种技术相关的问题
 
 *[中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)* | *[English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
 
