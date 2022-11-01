@@ -201,11 +201,10 @@ int main(){
 <br/>
 
 ## 贡献者
-[公雷（发起者）](https://github.com/gonglei007), 
-[Game Atom](https://github.com/gameatom)， 
-[管仲才](https://github.com/guanzhongcai),
-[王栋](https://github.com/wangdng),
-...
+
+
+| [公雷(发起者)](https://github.com/gonglei007),&emsp; [Game Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; ... |
+| :---: |
 
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
 <br/>
