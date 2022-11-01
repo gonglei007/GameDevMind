@@ -22,10 +22,13 @@ int main(){
 
 ## 介绍
 <p>
-&emsp;&emsp;算下来，中国的游戏行业已经走过了几十年的春秋，作为游戏开发者的我们，在其中也经历了很多有意思的和无聊的事情，但一直没有梳理出这个行业中技术领域所有事情的全貌。<br/>
+&emsp;&emsp;中国的游戏行业已走过几十个春秋，但时至今日，游戏开发者们每天还是要花大把时间重复的去做着别人做过的事情。<br/>
 </p>
 <p>
-&emsp;&emsp;最近，我们整理、创建了一套开源资料库——《网络游戏研发技术图谱》，目的是给所有游戏研发技术人员（从初入行者到技术管理者）一个快速手册，在处理相关技术工作或者想了解一个技术领域内容的时候，能够快速看到要考虑的问题和去检索的内容。
+&emsp;&emsp;我们整理了一套技术侧的《游戏开发图谱》，希望能帮助游戏开发者们在处理问题的时候，能快速地看到的要考虑到哪些技术和问题。
+<br/>
+<p>
+&emsp;&emsp;我们无法让所有做过的事情不再重复，但我们尝试共同分享，让更多游戏开发者在已知的事情上尽量节省时间。留出更多的精力投入到更有创造性的工作中去。
 <br/>
 </p>
 
@@ -34,33 +37,34 @@ int main(){
     <table style="width:640px;">
         <thead style="font-weight: bold; font-style: italic;">
             <tr>
-                <td>&emsp;&emsp;✅ 资料里有什么&emsp;&emsp;</td>
-                <td>&emsp;&emsp;❌ 资料里没有什么&emsp;&emsp;</td>
+                <td>&emsp;&emsp;✅ 资料里“有”什么？&emsp;&emsp;</td>
+                <td>&emsp;&emsp;❌ 资料里“没有”什么？&emsp;&emsp;</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>&emsp;&emsp; ● 需要什么？&emsp;&emsp;</td>
-                <td>&emsp;&emsp; ● 完整的知识。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 用的到的知识点。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; × 系统的知识讲解。&emsp;&emsp;</td>
             </tr>
             <tr>
-                <td>&emsp;&emsp; ● 特色与价值？&emsp;&emsp;</td>
-                <td>&emsp;&emsp; ● 系统的讲解。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 技术的应用和经验。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; × 具体的实现细节。&emsp;&emsp;</td>
             </tr>
             <tr>
-                <td>&emsp;&emsp; ● 应用与经验&emsp;&emsp;</td>
-                <td>&emsp;&emsp; ● 具体的实现。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 要考虑的要点或方法。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; × 完整的解决方案。&emsp;&emsp;</td>
             </tr>
         </tbody>
     </table>
 </div>
 
+## 总览
 <p>
-&emsp;&emsp;一个游戏研发组织或团队，在技术上所需要具备的几大能力：基础能力、研发能力、管理能力、商品化能力。这些能力不一定是需要每个人都具备，但由全体成员构成的这个组织，是需要的。
+&emsp;&emsp;游戏研运团队在技术上需要具备几大能力：基础能力、研发能力、管理能力、商品化能力。<br/>
+&emsp;&emsp;这些能力不是要每个成员都具备，但团队是需要这些能力来支撑研运游戏产品的。
 </p>
 <br/>
 
-## 总览
 ![图1、这是知识树的框架，展开的知识树可以点击下面的github链接查看。](https://github.com/gonglei007/GameDevMind/blob/main/exports/0.总览.png?raw=true)
 <br/>
 
