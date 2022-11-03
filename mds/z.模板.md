@@ -1,5 +1,7 @@
 <h2 align="center">图形与渲染</h2>
-<p align="center">介绍</p>
+<p>
+介绍
+</p>
 
 **关键词:**<br/>
 *关键词*

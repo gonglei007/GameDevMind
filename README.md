@@ -87,6 +87,8 @@ int main(){
         * [1.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.UI.md)
         * [1.1.4.声音](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.声音.md)
         * [1.1.5.动画与特效](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.5.动画与特效.md)
+        * [1.1.6.游戏引擎](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.6.游戏引擎.md)
+        * [1.1.7.平台开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.7.平台开发.md)
     * [1.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
     * [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
