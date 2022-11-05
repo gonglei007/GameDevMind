@@ -33,7 +33,7 @@ int main(){
         <tbody>
             <tr>
                 <td>&emsp;&emsp; ✓ Useful knowledge points. &emsp;&emsp;</td>
-                <td>&emsp;&emsp; × System knowledge explain. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × Systematic knowledge explain. &emsp;&emsp;</td>
             </tr>
             <tr>
                 <td>&emsp;&emsp; ✓ Technology application and experience. &emsp;&emsp;</td>
