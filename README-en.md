@@ -22,16 +22,35 @@ int main(){
 <br/>
 </p>
 
+<div align="center">
+    <table style="width:640px;">
+        <thead style="font-weight: bold; font-style: italic;">
+            <tr>
+                <td>&emsp;&emsp;✅ Has &emsp;&emsp;</td>
+                <td>&emsp;&emsp;❌ Has not &emsp;&emsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&emsp;&emsp; ✓ Useful knowledge points. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × System knowledge explain. &emsp;&emsp;</td>
+            </tr>
+            <tr>
+                <td>&emsp;&emsp; ✓ Technology application and experience. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × Specific implementation details. &emsp;&emsp;</td>
+            </tr>
+            <tr>
+                <td>&emsp;&emsp; ✓ Points or methods to consider. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × Complete solution. &emsp;&emsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-| ``` ✅Has ``` | ``` ❌Has not ``` |
-| --- | --- |
-| *   What is needed<br /> *   Features and Values<br /> *   Application and Experience<br /> |  *   Complete knowledge<br /> *   Systemic introduction。<br /> *   Detail of implementation<br /> |
 
-----
 ## Overview
 ![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/exports-en/0.Overview.png?raw=true)
 
-----
 ## Menu
 ### Basic Capability
 * [1.Development Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.Development%20Technology.md)
@@ -44,6 +63,8 @@ int main(){
         * [1.1.6.Game Engine](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.6.游戏引擎.md)
         * [1.1.7.Platform Development](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.7.平台开发.md)
     * [1.2.Server Technology](https://github.com/gonglei007/GameDevMind/blob/main/mds-en/1.2.Server%20Technology.md)
+        * [1.2.1.Network and Communication](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.1.网络与通信.md)
+        * [1.2.2.Database](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.2.数据库.md)
     * [1.3.Common Base](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.Mathematics](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
         * [1.3.2.AI](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
@@ -95,32 +116,27 @@ int main(){
     * [8.1.Game Safe](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
     * [8.2.Account and Pay](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.2.帐号与支付.md)
 
-----
 ## Preview
 ![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
 
-----
 ## Discussions
 
 [![Discussions repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/discussions)
 
-----
+## Contact us
+Email: gonglei007@hotmail.com
+
 ## Edit and View
-Use XMind to edit content of folder /xminds/.<br/>
-View quickly in folder /exports/.
+* Use XMind to edit content of folder /xminds/.<br/>
+* View quickly in folder /exports/.
 
-----
-## History
-2022-06-22
-The first version pushed to github.
-
-----
 ## Contributors
-[公雷（发起者）](https://github.com/gonglei007), [Game Atom](https://github.com/gameatom)， [管仲才](https://github.com/guanzhongcai)
+
+| [公雷(发起者)](https://github.com/gonglei007),&emsp; [Game Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; ... |
+| :---: |
 
 We sincerely invite more contributors.
 
-----
 ## Repo rosters
 ### Stargazers
 [![Stargazers repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/stargazers)
@@ -128,6 +144,8 @@ We sincerely invite more contributors.
 ### Forkers
 [![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
 
-----
-## Contact us
-Email: gonglei007@hotmail.com
+
+## History
+2022-06-22
+The first version pushed to github.
+

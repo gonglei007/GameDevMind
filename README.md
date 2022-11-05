@@ -37,8 +37,8 @@ int main(){
     <table style="width:640px;">
         <thead style="font-weight: bold; font-style: italic;">
             <tr>
-                <td>&emsp;&emsp;✅ 资料里“有”什么？&emsp;&emsp;</td>
-                <td>&emsp;&emsp;❌ 资料里“没有”什么？&emsp;&emsp;</td>
+                <td>&emsp;&emsp;✅ “有”什么？&emsp;&emsp;</td>
+                <td>&emsp;&emsp;❌ “没有”什么？&emsp;&emsp;</td>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +90,8 @@ int main(){
         * [1.1.6.游戏引擎](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.6.游戏引擎.md)
         * [1.1.7.平台开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.7.平台开发.md)
     * [1.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
+        * [1.2.1.网络与通信](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.1.网络与通信.md)
+        * [1.2.2.数据库](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.2.数据库.md)
     * [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
         * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
         * [1.3.2.人工智能](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
