@@ -44,15 +44,15 @@ int main(){
         <tbody>
             <tr>
                 <td>&emsp;&emsp; ✓ 用的到的知识点。&emsp;&emsp;</td>
-                <td>&emsp;&emsp; × 系统的知识讲解。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; × <strike>系统的知识讲解。</strike>&emsp;&emsp;</td>
             </tr>
             <tr>
                 <td>&emsp;&emsp; ✓ 技术的应用和经验。&emsp;&emsp;</td>
-                <td>&emsp;&emsp; × 具体的实现细节。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; × <strike>具体的实现细节。</strike>&emsp;&emsp;</td>
             </tr>
             <tr>
                 <td>&emsp;&emsp; ✓ 要考虑的要点或方法。&emsp;&emsp;</td>
-                <td>&emsp;&emsp; × 完整的解决方案。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; × <strike>完整的解决方案。</strike>&emsp;&emsp;</td>
             </tr>
         </tbody>
     </table>

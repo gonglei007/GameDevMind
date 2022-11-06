@@ -33,15 +33,15 @@ int main(){
         <tbody>
             <tr>
                 <td>&emsp;&emsp; ✓ Useful knowledge points. &emsp;&emsp;</td>
-                <td>&emsp;&emsp; × Systematic knowledge explain. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × <strike>Systematic knowledge explain.</strike> &emsp;&emsp;</td>
             </tr>
             <tr>
                 <td>&emsp;&emsp; ✓ Technology application and experience. &emsp;&emsp;</td>
-                <td>&emsp;&emsp; × Specific implementation details. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × <strike>Specific implementation details.</strike> &emsp;&emsp;</td>
             </tr>
             <tr>
                 <td>&emsp;&emsp; ✓ Points or methods to consider. &emsp;&emsp;</td>
-                <td>&emsp;&emsp; × Complete solution. &emsp;&emsp;</td>
+                <td>&emsp;&emsp; × <strike>Complete solution.</strike> &emsp;&emsp;</td>
             </tr>
         </tbody>
     </table>
