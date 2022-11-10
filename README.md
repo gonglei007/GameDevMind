@@ -60,8 +60,8 @@ int main(){
 
 ## 总览
 <p>
-&emsp;&emsp;游戏研运团队在技术上需要具备几大能力：基础能力、研发能力、管理能力、商品化能力。<br/>
-&emsp;&emsp;这些能力不是要每个成员都具备，但团队是需要这些能力来支撑研运游戏产品的。
+&emsp;&emsp;游戏研运团队在技术上需要具备几大能力：基础能力、技术能力、研发能力、管理能力、商品化能力。<br/>
+&emsp;&emsp;不是说每个成员都要具备这些能力，但整个团队是需要这些能力来支撑游戏产品研运并盈利的。
 </p>
 <br/>
 
@@ -70,46 +70,57 @@ int main(){
 
 ## 目录
 
-### 基础能力
+### 1.基础能力
 <p>
 
 ```cpp
-团队中的技术人员都需要的具备的基本功。
-这些基本功越强，整个产品的开发过程就会越稳健、高效。
+游戏产品也是一种软件产品，所有的软件研发，就需要有一些共通的基础能力。
+这些基础能力是软件开发的基本功，基本功越强，整个产品的开发过程就会越稳健、高效。
 ```
 
 </p>
 
-* [1.开发技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.开发技术.md)
-    * [1.1.客户端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.客户端技术.md)
-        * [1.1.1.图形与渲染](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.图形与渲染.md)
-        * [1.1.2.物理](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.2.物理.md)
-        * [1.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.UI.md)
-        * [1.1.4.声音](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.声音.md)
-        * [1.1.5.动画与特效](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.5.动画与特效.md)
-        * [1.1.6.游戏引擎](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.6.游戏引擎.md)
-        * [1.1.7.平台开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.7.平台开发.md)
-    * [1.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.服务端技术.md)
-        * [1.2.1.网络与通信](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.1.网络与通信.md)
-        * [1.2.2.数据库](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.2.数据库.md)
-    * [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
-        * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
-        * [1.3.2.人工智能](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
-        * [1.3.4.内存管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.4.内存管理.md)
-    * [1.x.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.x.开发者工具箱.md)
-* [2.编程语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.编程语言.md)
-    * [2.1.编程语言共通概念](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.编程语言共通概念.md)
-    * [2.2.C++语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.C++语言.md)
-    * [2.3.C#语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.3.C%23%E8%AF%AD%E8%A8%80.md)
-    * [2.4.JS语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.4.JS语言.md)
-* [3.程序设计](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.程序设计.md)
-    * [3.1.设计模式](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.设计模式.md)
-    * [3.2.数据结构](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.数据结构.md)
-    * [3.3.算法](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.算法.md)
+* [1.1.编程语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.编程语言.md)
+    * [1.1.1.编程语言共通概念](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.编程语言共通概念.md)
+    * [1.1.2.C++语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.2.C++语言.md)
+    * [1.1.3.C#语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.C%23%E8%AF%AD%E8%A8%80.md)
+    * [1.1.4.JS语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.JS语言.md)
+* [1.2.程序设计](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.程序设计.md)
+    * [1.2.1.设计模式](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.1.设计模式.md)
+    * [1.2.2.数据结构](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.2.数据结构.md)
+    * [1.2.3.算法](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.3.算法.md)
+* [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
+    * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
+    * [1.3.2.人工智能](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
+    * [1.3.3.内存管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.3.内存管理.md)
 <br/>
 
-### 研发能力
+### 2.技术能力
 <p>
+
+```cpp
+游戏软件有其特定的技术要求，要研发游戏产品，就可能会需要具备这些技术。
+```
+
+</p>
+
+* [2.1.客户端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.客户端技术.md)
+    * [2.1.1.图形与渲染](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.1.图形与渲染.md)
+    * [2.1.2.物理](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.2.物理.md)
+    * [2.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.3.UI.md)
+    * [2.1.4.声音](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.4.声音.md)
+    * [2.1.5.动画与特效](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.5.动画与特效.md)
+    * [2.1.6.游戏引擎](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.6.游戏引擎.md)
+    * [2.1.7.平台开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.7.平台开发.md)
+* [2.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.服务端技术.md)
+    * [2.2.1.网络与通信](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.1.网络与通信.md)
+    * [2.2.2.数据库](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.2.数据库.md)
+* [2.3.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.3.开发者工具箱.md)
+<br/>
+
+### 3.研发能力
+<p>
+
 
 ```cpp
 游戏是一种有艺术成分的商品，它是由数字内容和互动功能构建起来的。
@@ -118,25 +129,18 @@ int main(){
 
 </p>
 
-* [4.产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.产品研发.md)
-    * [4.1.客户端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.客户端产品研发.md)
-        * [4.1.1.客户端底层通用系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.客户端底层通用系统.md)
-        * [4.1.2.客户端3D场景开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.2.客户端3D场景开发.md)
-        * [4.1.3.客户端优化](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.3.客户端优化.md)
-    * [4.2.服务端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.服务端产品研发.md)
-        * [4.2.1.服务端架构](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.1.服务端架构.md)
-        * [4.2.2.网游网络同步](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.2.网游网络同步.md)
-        * [4.2.3.服务端优化](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.3.服务端优化.md)
-    * [4.3.业务层功能系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.业务层功能系统.md)
-    * [4.4.游戏生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.游戏生产线.md)
-        * [4.4.1.数字内容生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.1.数字内容生产线.md)
-        * [4.4.2.系统开发生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.2.系统开发生产线.md)
-        * [4.4.3.持续交付](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.4.3.持续交付.md)
-    * [4.5.技术中台](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.技术中台.md)
-        * [4.5.1.游戏开发支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.5.1.游戏开发支持.md)
+* [3.1.客户端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.客户端产品研发.md)
+    * [3.1.1.客户端底层通用系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.1.客户端底层通用系统.md)
+    * [3.1.2.客户端3D场景开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.2.客户端3D场景开发.md)
+    * [3.1.3.客户端优化](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.3.客户端优化.md)
+* [3.2.服务端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.服务端产品研发.md)
+    * [3.2.1.服务端架构](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.1.服务端架构.md)
+    * [3.2.2.网游网络同步](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.2.网游网络同步.md)
+    * [3.2.3.服务端优化](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.3.服务端优化.md)
+* [3.3.业务层功能系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.业务层功能系统.md)
 <br/>
 
-### 管理能力
+### 4.管理能力
 <p>
 
 ```cpp
@@ -147,14 +151,20 @@ int main(){
 
 </p>
 
-* [5.项目管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.项目管理.md)
-    * [5.1.研发过程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.研发过程管理.md)
-    * [5.2.版本管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.版本管理.md)
-    * [5.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.质量保证.md)
-    * [5.4.团队与组织](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.4.团队与组织.md)
+* [4.1.工程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.工程管理.md)
+    * [4.1.1.数字内容生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.数字内容生产线.md)
+    * [4.1.2.系统开发生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.2.系统开发生产线.md)
+    * [4.1.3.持续交付](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.3.持续交付.md)
+* [4.2.项目管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.项目管理.md)
+    * [4.2.1.研发过程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.1.研发过程管理.md)
+    * [4.2.2.版本管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.2.版本管理.md)
+    * [4.2.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.3.质量保证.md)
+    * [4.2.4.团队与组织](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.4.团队与组织.md)
+* [4.3.技术中台](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.技术中台.md)
+    * [4.3.1.游戏开发支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.1.游戏开发支持.md)
 <br/>
 
-### 商品化能力
+### 5.商品化能力
 <p>
 
 ```cpp
@@ -167,19 +177,19 @@ int main(){
 
 </p>
 
-* [6.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.运维技术.md)
-    * [6.1.网络维护](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.1.网络维护.md)
-    * [6.2.数据存储](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.2.数据存储.md)
-    * [6.3.资产管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.3.资产管理.md)
-    * [6.4.Linux系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/6.4.Linux系统.md)
-* [7.产品运营支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.产品运营支持.md)
-    * [7.1.GM后台](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.1.GM后台.md)
-    * [7.2.数据统计分析](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.2.数据统计分析.md)
-    * [7.3.产品热更新](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.3.产品热更新.md)
-    * [7.4.产品本地化](https://github.com/gonglei007/GameDevMind/blob/main/mds/7.4.产品本地化.md)
-* [8.产品商业化](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.产品商业化.md)
-    * [8.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.1.游戏安全.md)
-    * [8.2.帐号与支付](https://github.com/gonglei007/GameDevMind/blob/main/mds/8.2.帐号与支付.md)
+* [5.1.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.运维技术.md)
+    * [5.1.1.网络维护](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.1.网络维护.md)
+    * [5.1.2.数据存储](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.2.数据存储.md)
+    * [5.1.3.资产管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.3.资产管理.md)
+    * [5.1.4.Linux系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.4.Linux系统.md)
+* [5.2.产品运营支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.产品运营支持.md)
+    * [5.2.1.GM后台](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.1.GM后台.md)
+    * [5.2.2.数据统计分析](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.2.数据统计分析.md)
+    * [5.2.3.产品热更新](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.3.产品热更新.md)
+    * [5.2.4.产品本地化](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.4.产品本地化.md)
+* [5.3.产品商业化](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.产品商业化.md)
+    * [5.3.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.1.游戏安全.md)
+    * [5.3.2.帐号与支付](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.2.帐号与支付.md)
 <br/>
 
 ## 交流讨论
