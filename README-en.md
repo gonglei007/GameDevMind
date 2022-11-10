@@ -190,6 +190,6 @@ We sincerely invite more contributors.
 
 
 ## History
-2022-06-22
+[2022-06-22]<br/>
 The first version pushed to github.
 
