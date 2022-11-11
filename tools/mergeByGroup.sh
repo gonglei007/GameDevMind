@@ -26,8 +26,9 @@ montage \
 	-tile $ItemTitle	\
 	-border 1 	\
 	-shadow 	\
-	-background "#E32C2D" 	\
 	-geometry +20+40 	\
+	-background "#E32C2D" 	\
+	-title "(1)"   \
 	../overview/1.基础能力.png
 
 # 2
@@ -52,8 +53,9 @@ montage \
 	-tile $ItemTitle	\
 	-border 1 	\
 	-shadow 	\
-	-background "#FF6F00" 	\
 	-geometry +20+40 	\
+	-background "#FF6F00" 	\
+	-title "(2)"   \
 	../overview/2.技术能力.png
 
 # 3
@@ -75,8 +77,9 @@ montage \
 	-tile $ItemTitle	\
 	-border 1 	\
 	-shadow 	\
-	-background "#FFFB00" 	\
 	-geometry +20+40 	\
+	-background "#FFFB00" 	\
+	-title "(3)"   \
 	../overview/3.研发能力.png
 
 # 4
@@ -100,8 +103,9 @@ montage \
 	-tile $ItemTitle	\
 	-border 1 	\
 	-shadow 	\
-	-background "#15831C" 	\
 	-geometry +20+40 	\
+	-background "#15831C" 	\
+	-title "(4)"   \
 	../overview/4.管理能力.png
 
 # 5
@@ -127,6 +131,7 @@ montage \
 	-tile $ItemTitle	\
 	-border 1 	\
 	-shadow 	\
-	-background "#00526B" 	\
 	-geometry +20+40 	\
+	-background "#00526B" 	\
+	-title "(5)"   \
 	../overview/5.商品化能力.png
