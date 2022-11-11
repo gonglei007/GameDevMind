@@ -7,7 +7,7 @@
   </p>
 </p>
 
-*[中文](https://github.com/gonglei007/GameDevMind/blob/main/README.md)* | *[English](https://github.com/gonglei007/GameDevMind/blob/main/README-en.md)*
+*[中文](README.md)* | *[English](README-en.md)*
 
 ```cpp
 #include <iostream>
@@ -81,18 +81,18 @@ int main(){
 </p>
 
 * [1.1.编程语言](mds/1.1.编程语言.md)
-    * [1.1.1.编程语言共通概念](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.编程语言共通概念.md)
-    * [1.1.2.C++语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.2.C++语言.md)
-    * [1.1.3.C#语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.C%23%E8%AF%AD%E8%A8%80.md)
-    * [1.1.4.JS语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.4.JS语言.md)
-* [1.2.程序设计](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.程序设计.md)
-    * [1.2.1.设计模式](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.1.设计模式.md)
-    * [1.2.2.数据结构](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.2.数据结构.md)
-    * [1.2.3.算法](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.2.3.算法.md)
-* [1.3.通用基础](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.通用基础.md)
-    * [1.3.1.数学](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.1.数学.md)
-    * [1.3.2.人工智能](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.2.人工智能.md)
-    * [1.3.3.内存管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.3.3.内存管理.md)
+    * [1.1.1.编程语言共通概念](mds/1.1.1.编程语言共通概念.md)
+    * [1.1.2.C++语言](mds/1.1.2.C++语言.md)
+    * [1.1.3.C#语言](mds/1.1.3.C%23%E8%AF%AD%E8%A8%80.md)
+    * [1.1.4.JS语言](mds/1.1.4.JS语言.md)
+* [1.2.程序设计](mds/1.2.程序设计.md)
+    * [1.2.1.设计模式](mds/1.2.1.设计模式.md)
+    * [1.2.2.数据结构](mds/1.2.2.数据结构.md)
+    * [1.2.3.算法](mds/1.2.3.算法.md)
+* [1.3.通用基础](mds/1.3.通用基础.md)
+    * [1.3.1.数学](mds/1.3.1.数学.md)
+    * [1.3.2.人工智能](mds/1.3.2.人工智能.md)
+    * [1.3.3.内存管理](mds/1.3.3.内存管理.md)
 <br/>
 
 ### 2.技术能力
@@ -104,18 +104,18 @@ int main(){
 
 </p>
 
-* [2.1.客户端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.客户端技术.md)
-    * [2.1.1.图形与渲染](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.1.图形与渲染.md)
-    * [2.1.2.物理](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.2.物理.md)
-    * [2.1.3.UI](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.3.UI.md)
-    * [2.1.4.声音](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.4.声音.md)
-    * [2.1.5.动画与特效](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.5.动画与特效.md)
-    * [2.1.6.游戏引擎](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.6.游戏引擎.md)
-    * [2.1.7.平台开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.1.7.平台开发.md)
-* [2.2.服务端技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.服务端技术.md)
-    * [2.2.1.网络与通信](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.1.网络与通信.md)
-    * [2.2.2.数据库](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.2.2.数据库.md)
-* [2.3.开发者工具箱](https://github.com/gonglei007/GameDevMind/blob/main/mds/2.3.开发者工具箱.md)
+* [2.1.客户端技术](mds/2.1.客户端技术.md)
+    * [2.1.1.图形与渲染](mds/2.1.1.图形与渲染.md)
+    * [2.1.2.物理](mds/2.1.2.物理.md)
+    * [2.1.3.UI](mds/2.1.3.UI.md)
+    * [2.1.4.声音](mds/2.1.4.声音.md)
+    * [2.1.5.动画与特效](mds/2.1.5.动画与特效.md)
+    * [2.1.6.游戏引擎](mds/2.1.6.游戏引擎.md)
+    * [2.1.7.平台开发](mds/2.1.7.平台开发.md)
+* [2.2.服务端技术](mds/2.2.服务端技术.md)
+    * [2.2.1.网络与通信](mds/2.2.1.网络与通信.md)
+    * [2.2.2.数据库](mds/2.2.2.数据库.md)
+* [2.3.开发者工具箱](mds/2.3.开发者工具箱.md)
 <br/>
 
 ### 3.研发能力
@@ -129,15 +129,15 @@ int main(){
 
 </p>
 
-* [3.1.客户端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.客户端产品研发.md)
-    * [3.1.1.客户端底层通用系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.1.客户端底层通用系统.md)
-    * [3.1.2.客户端3D场景开发](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.2.客户端3D场景开发.md)
-    * [3.1.3.客户端优化](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.1.3.客户端优化.md)
-* [3.2.服务端产品研发](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.服务端产品研发.md)
-    * [3.2.1.服务端架构](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.1.服务端架构.md)
-    * [3.2.2.网游网络同步](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.2.网游网络同步.md)
-    * [3.2.3.服务端优化](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.2.3.服务端优化.md)
-* [3.3.业务层功能系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/3.3.业务层功能系统.md)
+* [3.1.客户端产品研发](mds/3.1.客户端产品研发.md)
+    * [3.1.1.客户端底层通用系统](mds/3.1.1.客户端底层通用系统.md)
+    * [3.1.2.客户端3D场景开发](mds/3.1.2.客户端3D场景开发.md)
+    * [3.1.3.客户端优化](mds/3.1.3.客户端优化.md)
+* [3.2.服务端产品研发](mds/3.2.服务端产品研发.md)
+    * [3.2.1.服务端架构](mds/3.2.1.服务端架构.md)
+    * [3.2.2.网游网络同步](mds/3.2.2.网游网络同步.md)
+    * [3.2.3.服务端优化](mds/3.2.3.服务端优化.md)
+* [3.3.业务层功能系统](mds/3.3.业务层功能系统.md)
 <br/>
 
 ### 4.管理能力
@@ -151,17 +151,17 @@ int main(){
 
 </p>
 
-* [4.1.工程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.工程管理.md)
-    * [4.1.1.数字内容生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.1.数字内容生产线.md)
-    * [4.1.2.系统开发生产线](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.2.系统开发生产线.md)
-    * [4.1.3.持续交付](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.1.3.持续交付.md)
-* [4.2.项目管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.项目管理.md)
-    * [4.2.1.研发过程管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.1.研发过程管理.md)
-    * [4.2.2.版本管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.2.版本管理.md)
-    * [4.2.3.质量保证](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.3.质量保证.md)
-    * [4.2.4.团队与组织](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.2.4.团队与组织.md)
-* [4.3.技术中台](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.技术中台.md)
-    * [4.3.1.游戏开发支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/4.3.1.游戏开发支持.md)
+* [4.1.工程管理](mds/4.1.工程管理.md)
+    * [4.1.1.数字内容生产线](mds/4.1.1.数字内容生产线.md)
+    * [4.1.2.系统开发生产线](mds/4.1.2.系统开发生产线.md)
+    * [4.1.3.持续交付](mds/4.1.3.持续交付.md)
+* [4.2.项目管理](mds/4.2.项目管理.md)
+    * [4.2.1.研发过程管理](mds/4.2.1.研发过程管理.md)
+    * [4.2.2.版本管理](mds/4.2.2.版本管理.md)
+    * [4.2.3.质量保证](mds/4.2.3.质量保证.md)
+    * [4.2.4.团队与组织](mds/4.2.4.团队与组织.md)
+* [4.3.技术中台](mds/4.3.技术中台.md)
+    * [4.3.1.游戏开发支持](mds/4.3.1.游戏开发支持.md)
 <br/>
 
 ### 5.商品化能力
@@ -177,19 +177,19 @@ int main(){
 
 </p>
 
-* [5.1.运维技术](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.运维技术.md)
-    * [5.1.1.网络维护](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.1.网络维护.md)
-    * [5.1.2.数据存储](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.2.数据存储.md)
-    * [5.1.3.资产管理](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.3.资产管理.md)
-    * [5.1.4.Linux系统](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.1.4.Linux系统.md)
-* [5.2.产品运营支持](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.产品运营支持.md)
-    * [5.2.1.GM后台](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.1.GM后台.md)
-    * [5.2.2.数据统计分析](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.2.数据统计分析.md)
-    * [5.2.3.产品热更新](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.3.产品热更新.md)
-    * [5.2.4.产品本地化](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.2.4.产品本地化.md)
-* [5.3.产品商业化](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.产品商业化.md)
-    * [5.3.1.游戏安全](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.1.游戏安全.md)
-    * [5.3.2.帐号与支付](https://github.com/gonglei007/GameDevMind/blob/main/mds/5.3.2.帐号与支付.md)
+* [5.1.运维技术](mds/5.1.运维技术.md)
+    * [5.1.1.网络维护](mds/5.1.1.网络维护.md)
+    * [5.1.2.数据存储](mds/5.1.2.数据存储.md)
+    * [5.1.3.资产管理](mds/5.1.3.资产管理.md)
+    * [5.1.4.Linux系统](mds/5.1.4.Linux系统.md)
+* [5.2.产品运营支持](mds/5.2.产品运营支持.md)
+    * [5.2.1.GM后台](mds/5.2.1.GM后台.md)
+    * [5.2.2.数据统计分析](mds/5.2.2.数据统计分析.md)
+    * [5.2.3.产品热更新](mds/5.2.3.产品热更新.md)
+    * [5.2.4.产品本地化](mds/5.2.4.产品本地化.md)
+* [5.3.产品商业化](mds/5.3.产品商业化.md)
+    * [5.3.1.游戏安全](mds/5.3.1.游戏安全.md)
+    * [5.3.2.帐号与支付](mds/5.3.2.帐号与支付.md)
 <br/>
 
 ## 交流讨论
@@ -207,7 +207,7 @@ int main(){
 
 [-微信扫码-]<br/>
 
-<img src="https://github.com/gonglei007/GameDevMind/blob/main/images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
+<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
 
 <br/><br/>
 
