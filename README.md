@@ -65,7 +65,7 @@ int main(){
 </p>
 <br/>
 
-![图1、这是知识树的框架，展开的知识树可以点击下面的github链接查看。](https://github.com/gonglei007/GameDevMind/blob/main/exports/0.总览.png?raw=true)
+![图1、这是知识树的框架，展开的知识树可以点击下面的github链接查看。](exports/0.总览.png)
 <br/>
 
 ## 目录
@@ -212,7 +212,7 @@ int main(){
 <br/><br/>
 
 ## 缩略预览
-![图2、这个知识图谱还在持续的补充扩展中](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
+![图2、这个知识图谱还在持续的补充扩展中](overview/overview.png)
 <br/>
 
 ## 编辑与查看
@@ -238,10 +238,12 @@ int main(){
 <br/>
 
 ## 历史
-*[2022-11-11]* <br/>
+<div>
+[2022-11-11]<br/>
 对所有资料进行了一次大福整理、重构。
-<br/>
-*[2022-06-22]* <br/>
+</div>
+<div>
+[2022-06-22]<br/>
 第一个版本的资料库提交到了github。
-<br/>
+</div>
 
