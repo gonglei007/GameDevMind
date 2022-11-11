@@ -49,7 +49,7 @@ int main(){
 
 
 ## Overview
-![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/exports-en/0.Overview.png?raw=true)
+![image loading...](exports-en/0.Overview.png)
 
 ## Menu
 ### 1.Basic Capability
@@ -168,7 +168,7 @@ int main(){
 Email: gonglei007@hotmail.com
 
 ## Preview
-![image loading...](https://github.com/gonglei007/GameDevMind/blob/main/overview/overview.png?raw=true)
+![image loading...](overview/overview.png)
 
 ## Edit and View
 * Use XMind to edit content of folder /xminds/.<br/>
