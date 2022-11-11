@@ -1,11 +1,30 @@
 #!/usr/bin/env bash
-montage $(ls ../exports/*.png | grep -v "0.") 	\
+#montage $(ls ../exports/*.png | grep -v "0.") 	\
+#	-auto-orient 	\
+#	-resize 200x *  \
+#	-mode Concatenate	\
+#	-tile 6x	\
+#	-border 1 	\
+#	-shadow 	\
+#	-background DarkSlateGray4 	\
+#	-geometry +20+40 	\
+#	../overview/overview.png
+
+# all-in-one
+echo "合成overview"
+montage \
+    ../overview/1.基础能力.png \
+    ../overview/2.技术能力.png \
+    ../overview/3.研发能力.png \
+    ../overview/4.管理能力.png \
+    ../overview/5.商品化能力.png \
+\
 	-auto-orient 	\
-	-resize 200x *  \
+	-resize 1280x *  \
 	-mode Concatenate	\
-	-tile 6x	\
+	-tile 1x	\
 	-border 1 	\
 	-shadow 	\
-	-background DarkSlateGray4 	\
-	-geometry +20+40 	\
+	-background black 	\
+	-geometry +10+10 	\
 	../overview/overview.png
