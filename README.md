@@ -80,7 +80,7 @@ int main(){
 
 </p>
 
-* [1.1.编程语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.编程语言.md)
+* [1.1.编程语言](mds/1.1.编程语言.md)
     * [1.1.1.编程语言共通概念](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.1.编程语言共通概念.md)
     * [1.1.2.C++语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.2.C++语言.md)
     * [1.1.3.C#语言](https://github.com/gonglei007/GameDevMind/blob/main/mds/1.1.3.C%23%E8%AF%AD%E8%A8%80.md)
