@@ -19,6 +19,7 @@ montage \
     ../exports/1.3.1.数学.png \
     ../exports/1.3.2.人工智能.png \
     ../exports/1.3.3.内存管理.png \
+    ../exports/1.3.4.计算机组成原理.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \
