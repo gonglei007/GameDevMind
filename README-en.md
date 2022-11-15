@@ -115,6 +115,7 @@ int main(){
     * [3.2.2.Multiplayer Game Synchronization](mds/3.2.2.网游网络同步.md)
     * [3.2.3.Server Optimization](mds/3.2.3.服务端优化.md)
 * [3.3.Game Functional System](mds/3.3.业务层功能系统.md)
+* [3.4.Production Tool Development](mds/3.4.生产工具研发.md)
 <br/>
 
 ### 4.Management Capability

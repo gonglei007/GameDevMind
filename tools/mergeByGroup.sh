@@ -71,6 +71,7 @@ montage \
     ../exports/3.2.2.网游网络同步.png \
     ../exports/3.2.3.服务端优化.png \
     ../exports/3.3.业务层功能系统.png \
+    ../exports/3.4.生产工具研发.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \
