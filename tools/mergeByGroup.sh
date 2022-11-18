@@ -41,7 +41,7 @@ montage \
     ../exports/2.1.3.UI.png \
     ../exports/2.1.4.声音.png \
     ../exports/2.1.5.动画与特效.png \
-    ../exports/2.1.6.游戏引擎.png \
+    ../exports/2.1.6.游戏引擎概念与应用.png \
     ../exports/2.1.7.平台开发.png \
     ../exports/2.2.服务端技术.png \
     ../exports/2.2.1.网络与通信.png \
@@ -72,6 +72,7 @@ montage \
     ../exports/3.2.3.服务端优化.png \
     ../exports/3.3.业务层功能系统.png \
     ../exports/3.4.生产工具研发.png \
+    ../exports/3.4.1.游戏引擎原理与开发.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \

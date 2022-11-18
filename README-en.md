@@ -90,7 +90,8 @@ int main(){
     * [2.1.3.UI](mds/2.1.3.UI.md)
     * [2.1.4.Sound](mds/2.1.4.声音.md)
     * [2.1.5.Animation and FX](mds/2.1.5.动画与特效.md)
-    * [2.1.6.Game Engine](mds/2.1.6.游戏引擎.md)
+    * [2.1.6.The Concept and Application of Game Engine](mds/2.1.6.游戏引擎概念与应用.md)
+    * [2.1.6.游戏引擎概念与应用](mds/2.1.6.游戏引擎概念与应用.md)
     * [2.1.7.Platform Development](mds/2.1.7.平台开发.md)
 * [2.2.Server Technology](mds-en/2.2.Server%20Technology.md)
     * [2.2.1.Network and Communication](mds/2.2.1.网络与通信.md)
@@ -116,6 +117,7 @@ int main(){
     * [3.2.3.Server Optimization](mds/3.2.3.服务端优化.md)
 * [3.3.Game Functional System](mds/3.3.业务层功能系统.md)
 * [3.4.Production Tool Development](mds/3.4.生产工具研发.md)
+    * [3.4.1.The Principle and Development of Game Engine](mds/3.4.1.游戏引擎原理与开发.md)
 <br/>
 
 ### 4.Management Capability
