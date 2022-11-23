@@ -93,10 +93,11 @@ montage \
     ../exports/4.1.2.系统开发生产线.png \
     ../exports/4.1.3.持续交付.png \
     ../exports/4.2.项目管理.png \
-    ../exports/4.2.1.研发过程管理.png \
+    ../exports/4.2.1.项目管理综合.png \
     ../exports/4.2.2.版本管理.png \
     ../exports/4.2.3.质量保证.png \
     ../exports/4.2.4.团队与组织.png \
+    ../exports/4.2.5.SCRUM.png \
     ../exports/4.3.技术中台.png \
     ../exports/4.3.1.游戏开发支持.png \
 \

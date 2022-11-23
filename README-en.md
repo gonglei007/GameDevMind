@@ -133,10 +133,11 @@ int main(){
     * [4.1.2.System Development Pipeline](mds/4.1.2.系统开发生产线.md)
     * [4.1.3.Continuous Delivery](mds/4.1.3.持续交付.md)
 * [4.2.Project Management](mds-en/4.2.Project%20Management.md)
-    * [4.2.1.Process Management](mds/4.2.1.研发过程管理.md)
+    * [4.2.1.Project Management Mix](mds/4.2.1.项目管理综合.md)
     * [4.2.2.Version Management](mds/4.2.2.版本管理.md)
     * [4.2.3.QA](mds/4.2.3.质量保证.md)
     * [4.2.4.Team and Organization](mds/4.2.4.团队与组织.md)
+    * [4.2.5.SCRUM](mds/4.2.5.SCRUM.md)
 * [4.3.Technical Center](mds/4.3.技术中台.md)
     * [4.3.1.Game Development Support](mds/4.3.1.游戏开发支持.md)
 <br/>
