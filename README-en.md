@@ -133,6 +133,7 @@ int main(){
     * [4.1.1.Digital Content Pipeline](mds/4.1.1.数字内容生产线.md)
     * [4.1.2.System Development Pipeline](mds/4.1.2.系统开发生产线.md)
     * [4.1.3.Continuous Delivery](mds/4.1.3.持续交付.md)
+    * [4.1.4.Development Workflow](mds/4.1.4.开发工作流.md)
 * [4.2.Project Management](mds-en/4.2.Project%20Management.md)
     * [4.2.1.Project Management Mix](mds/4.2.1.项目管理综合.md)
     * [4.2.2.Version Management](mds/4.2.2.版本管理.md)
