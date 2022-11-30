@@ -91,7 +91,6 @@ int main(){
     * [2.1.4.Sound](mds/2.1.4.声音.md)
     * [2.1.5.Animation and FX](mds/2.1.5.动画与特效.md)
     * [2.1.6.The Concept and Application of Game Engine](mds/2.1.6.游戏引擎概念与应用.md)
-    * [2.1.6.游戏引擎概念与应用](mds/2.1.6.游戏引擎概念与应用.md)
     * [2.1.7.Platform Development](mds/2.1.7.平台开发.md)
 * [2.2.Server Technology](mds-en/2.2.Server%20Technology.md)
     * [2.2.1.Network and Communication](mds/2.2.1.网络与通信.md)
@@ -197,6 +196,18 @@ We sincerely invite more contributors.
 
 
 ## History
+
+<div>
+
+[2022-11-11]<br/>
+* Do a lot of refactor to the materials.<br/>
+
+</div>
+
+<div>
+
 [2022-06-22]<br/>
-The first version pushed to github.
+* The first version pushed to github.
+
+</div>
 
