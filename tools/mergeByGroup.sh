@@ -102,7 +102,8 @@ montage \
     ../exports/4.2.4.团队与组织.png \
     ../exports/4.2.5.SCRUM.png \
     ../exports/4.3.技术中台.png \
-    ../exports/4.3.1.游戏开发支持.png \
+    ../exports/4.3.1.快速开发框架.png \
+    ../exports/4.3.2.技术支持.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \
