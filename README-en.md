@@ -119,6 +119,7 @@ int main(){
 * [3.3.Game Functional System](mds/3.3.业务层功能系统.md)
 * [3.4.Production Tool Development](mds/3.4.生产工具研发.md)
     * [3.4.1.The Principle and Development of Game Engine](mds/3.4.1.游戏引擎原理与开发.md)
+    * [3.4.2.Editor Development](mds/3.4.2.编辑器开发.md)
 <br/>
 
 ### 4.Management Capability
