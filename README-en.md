@@ -70,6 +70,7 @@ int main(){
     * [1.2.1.Design Patterns](mds/1.2.1.设计模式.md)
     * [1.2.2.Data Structure](mds/1.2.2.数据结构.md)
     * [1.2.3.Algorithm](mds/1.2.3.算法.md)
+    * [1.2.4.Code Refactoring](mds/1.2.4.代码重构.md)
 * [1.3.Common Base](mds/1.3.通用基础.md)
     * [1.3.1.Mathematics](mds/1.3.1.数学.md)
     * [1.3.2.AI](mds/1.3.2.人工智能.md)

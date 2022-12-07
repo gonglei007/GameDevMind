@@ -16,6 +16,7 @@ montage \
     ../exports/1.2.1.设计模式.png \
     ../exports/1.2.2.数据结构.png \
     ../exports/1.2.3.算法.png \
+    ../exports/1.2.4.代码重构.png \
     ../exports/1.3.通用基础.png \
     ../exports/1.3.1.数学.png \
     ../exports/1.3.2.人工智能.png \
