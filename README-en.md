@@ -178,7 +178,7 @@ int main(){
 Email: gonglei007@hotmail.com
 
 ## Preview
-![image loading...](overview/overview.png)
+![image loading...](overview/overview-h.png)
 
 ## Edit and View
 * Use XMind to edit content of folder /xminds/.<br/>

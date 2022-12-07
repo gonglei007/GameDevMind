@@ -222,7 +222,7 @@ int main(){
 <br/><br/>
 
 ## 缩略预览
-![图2、这个知识图谱还在持续的补充扩展中](overview/overview.png)
+![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
 <br/>
 
 ## 编辑与查看
