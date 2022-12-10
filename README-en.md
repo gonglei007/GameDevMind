@@ -118,6 +118,7 @@ int main(){
     * [3.2.1.Server Architecture](mds/3.2.1.服务端架构.md)
     * [3.2.2.Multiplayer Game Synchronization](mds/3.2.2.网游网络同步.md)
     * [3.2.3.Server Optimization](mds/3.2.3.服务端优化.md)
+    * [3.2.4.Server Basic Functions](mds/3.2.4.服务端基础功能.md)
 * [3.3.Game Functional System](mds/3.3.业务层功能系统.md)
 * [3.4.Production Tool Development](mds/3.4.生产工具研发.md)
     * [3.4.1.The Principle and Development of Game Engine](mds/3.4.1.游戏引擎原理与开发.md)

@@ -74,6 +74,7 @@ montage \
     ../exports/3.2.1.服务端架构.png \
     ../exports/3.2.2.网游网络同步.png \
     ../exports/3.2.3.服务端优化.png \
+    ../exports/3.2.4.服务端基础功能.png \
     ../exports/3.3.业务层功能系统.png \
     ../exports/3.4.生产工具研发.png \
     ../exports/3.4.1.游戏引擎原理与开发.png \
