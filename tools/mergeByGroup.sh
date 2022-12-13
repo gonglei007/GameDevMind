@@ -134,6 +134,7 @@ montage \
     ../exports/5.2.2.数据统计分析.png \
     ../exports/5.2.3.产品热更新.png \
     ../exports/5.2.4.产品本地化.png \
+    ../exports/5.2.5.开发配合.png \
     ../exports/5.3.产品商业化.png \
     ../exports/5.3.1.游戏安全.png \
     ../exports/5.3.2.帐号与支付.png \

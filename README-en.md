@@ -168,6 +168,7 @@ int main(){
     * [5.2.2.Data Statistics and Analysis](mds/5.2.2.数据统计分析.md)
     * [5.2.3.Product Hotfix](mds/5.2.3.产品热更新.md)
     * [5.2.4.Product Localization](mds/5.2.4.产品本地化.md)
+    * [5.2.5.Development Cooperation](mds/5.2.5.开发配合.md)
 * [5.3.Product Commercialization](mds/5.3.产品商业化.md)
     * [5.3.1.Game Safe](mds/5.3.1.游戏安全.md)
     * [5.3.2.Account and Pay](mds/5.3.2.帐号与支付.md)
