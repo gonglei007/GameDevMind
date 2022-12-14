@@ -129,6 +129,7 @@ montage \
     ../exports/5.1.2.数据存储.png \
     ../exports/5.1.3.资产管理.png \
     ../exports/5.1.4.Linux系统.png \
+    ../exports/5.1.5.中间件.png \
     ../exports/5.2.产品运营支持.png \
     ../exports/5.2.1.GM后台.png \
     ../exports/5.2.2.数据统计分析.png \
