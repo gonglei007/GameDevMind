@@ -48,6 +48,7 @@ montage \
     ../exports/2.2.服务端技术.png \
     ../exports/2.2.1.网络与通信.png \
     ../exports/2.2.2.数据库.png \
+    ../exports/2.2.3.服务端中间件.png \
     ../exports/2.3.开发者工具箱.png \
 \
 	-auto-orient 	\
@@ -129,7 +130,7 @@ montage \
     ../exports/5.1.2.数据存储.png \
     ../exports/5.1.3.资产管理.png \
     ../exports/5.1.4.Linux系统.png \
-    ../exports/5.1.5.中间件.png \
+    ../exports/5.1.5.中间件运维.png \
     ../exports/5.2.产品运营支持.png \
     ../exports/5.2.1.GM后台.png \
     ../exports/5.2.2.数据统计分析.png \

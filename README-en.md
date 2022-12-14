@@ -97,6 +97,7 @@ int main(){
 * [2.2.Server Technology](mds-en/2.2.Server%20Technology.md)
     * [2.2.1.Network and Communication](mds/2.2.1.网络与通信.md)
     * [2.2.2.Database](mds/2.2.2.数据库.md)
+    * [2.2.3.Server Middleware](mds/2.2.3.服务端中间件.md)
 * [2.3.Toolbox of Developer](mds/2.3.开发者工具箱.md)
 <br/>
 
@@ -163,7 +164,7 @@ int main(){
     * [5.1.2.Data Storage](mds/5.1.2.数据存储.md)
     * [5.1.3.Asset Management](mds/5.1.3.资产管理.md)
     * [5.1.4.Linux](mds/5.1.4.Linux系统.md)
-    * [5.1.5.Middleware](mds/5.1.5.中间件.md)
+    * [5.1.5.Middleware Operation](mds/5.1.5.中间件.md)
 * [5.2.Product Operation Support](mds/5.2.产品运营支持.md)
     * [5.2.1.GM Console](mds/5.2.1.GM后台.md)
     * [5.2.2.Data Statistics and Analysis](mds/5.2.2.数据统计分析.md)
