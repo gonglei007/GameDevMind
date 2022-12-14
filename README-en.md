@@ -74,8 +74,9 @@ int main(){
 * [1.3.Common Base](mds/1.3.通用基础.md)
     * [1.3.1.Mathematics](mds/1.3.1.数学.md)
     * [1.3.2.AI](mds/1.3.2.人工智能.md)
-    * [1.3.3.Memory Management](mds/1.3.3.内存管理.md)
+    * [1.3.3.Operating System](mds/1.3.3.操作系统.md)
     * [1.3.4.Principles of Computer Composition](mds/1.3.4.计算机组成原理.md)
+    * [1.3.5.Computer Networks](mds/1.3.5.计算机网络.md)
 <br/>
 
 ### 2.Technical Capability
