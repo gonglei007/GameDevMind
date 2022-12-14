@@ -189,6 +189,7 @@ Email: gonglei007@hotmail.com
 ## Edit and View
 * Use XMind to edit content of folder /xminds/.<br/>
 * View quickly in folder /exports/.
+* Markdown text content folder（/mds/）。<br/>
 
 ## Contributors
 

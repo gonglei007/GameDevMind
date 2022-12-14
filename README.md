@@ -233,7 +233,8 @@ int main(){
 
 ## 编辑与查看
 * 资料库使用XMind编辑内容（/xminds/目录）。<br/>
-* 也可以简单的查看导出图（/exports/目录）。<br/>
+* 也可以快速查看导出图（/exports/目录）。<br/>
+* markdown文本内容（/mds/目录）。<br/>
 
 ## 贡献者
 
