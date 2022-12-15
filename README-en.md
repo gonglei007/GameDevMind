@@ -166,6 +166,7 @@ int main(){
     * [5.1.3.Asset Management](mds/5.1.3.资产管理.md)
     * [5.1.4.Linux](mds/5.1.4.Linux系统.md)
     * [5.1.5.Middleware Operation](mds/5.1.5.中间件.md)
+    * [5.1.6.Network Security](mds/5.1.6.网络安全.md)
 * [5.2.Product Operation Support](mds/5.2.产品运营支持.md)
     * [5.2.1.GM Console](mds/5.2.1.GM后台.md)
     * [5.2.2.Data Statistics and Analysis](mds/5.2.2.数据统计分析.md)
@@ -173,7 +174,7 @@ int main(){
     * [5.2.4.Product Localization](mds/5.2.4.产品本地化.md)
     * [5.2.5.Development Cooperation](mds/5.2.5.开发配合.md)
 * [5.3.Product Commercialization](mds/5.3.产品商业化.md)
-    * [5.3.1.Game Safe](mds/5.3.1.游戏安全.md)
+    * [5.3.1.Game Security](mds/5.3.1.游戏安全.md)
     * [5.3.2.Account and Pay](mds/5.3.2.帐号与支付.md)
 <br/>
 
