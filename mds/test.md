@@ -62,3 +62,24 @@
             <td>作为一个组织，不论你有什么样的技术或能力，一个最重要的目标是——赚钱。在当下的市场环境下，一款好玩的游戏做出来了不一定就能够赚钱。还需要有一系列商品化能力，才能让产品运转和盈利，让团队持续存活。/* 这里只展示跟技术有关的那些事情 */</td>
         </tr>
 </table>
+
+<table border="0">
+    <thead>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="1.1.编程语言.md" target="_blank"><img src="../images/subjects/subject.001.jpeg" height="128"></img></a></td>
+            <td><img src="../images/subjects/subject.002.jpeg" height="128"></img></td>
+            <td><img src="../images/subjects/subject.003.jpeg" height="128"></img></td>
+            <td><img src="../images/subjects/subject.004.jpeg" height="128"></img></td>
+            <td><img src="../images/subjects/subject.005.jpeg" height="128"></img></td>
+        </tr>
+        <tr>
+            <td width="20%" align="center">基础能力</td>
+            <td width="20%" align="center">技术能力</td>
+            <td width="20%" align="center">研发能力</td>
+            <td width="20%" align="center">管理能力</td>
+            <td width="20%" align="center">商品化能力</td>
+        </tr>
+    </tbody>
+</table>
