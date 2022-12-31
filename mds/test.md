@@ -37,7 +37,7 @@
 
 <table border="none">
         <tr>
-            <td width="400"><a href="1.1.编程语言.md" target="_blank"><img src="../images/subjects/subject.001.jpeg" height="33%"></img></a></td>
+            <td width="256"><a href="1.1.编程语言.md" target="_blank"><img src="../images/subjects/subject.001.jpeg" height="33%"></img></a></td>
             <td valign="top"><b>【基础能力】</b><hr/> 游戏产品也是一种软件产品，所有的软件研发，就需要有一些共通的基础能力。这些基础能力是软件开发的基本功，基本功越强，整个产品的开发过程就会越稳健、高效。</td>
         </tr>
         <tr>
