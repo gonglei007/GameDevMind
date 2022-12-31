@@ -43,15 +43,15 @@ int main(){
         </thead>
         <tbody>
             <tr>
-                <td>&emsp;&emsp; ✓ 用的到的知识点。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 做什么用的？用在哪里？&emsp;&emsp;</td>
                 <td>&emsp;&emsp; × <strike>系统的知识讲解。</strike>&emsp;&emsp;</td>
             </tr>
             <tr>
-                <td>&emsp;&emsp; ✓ 技术的应用和经验。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 会遇到哪些问题？用什么去解决？&emsp;&emsp;</td>
                 <td>&emsp;&emsp; × <strike>具体的实现细节。</strike>&emsp;&emsp;</td>
             </tr>
             <tr>
-                <td>&emsp;&emsp; ✓ 要考虑的要点或方法。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 要考虑到的要点或方法。&emsp;&emsp;</td>
                 <td>&emsp;&emsp; × <strike>完整的解决方案。</strike>&emsp;&emsp;</td>
             </tr>
         </tbody>
