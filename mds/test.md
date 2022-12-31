@@ -1,26 +1,13 @@
 <h2 align="center">Test</h2>
 
-<style>
-td, th {
-   border: none!important;
-}
-</style>
-
 | 基础能力 | 技术能力 | 研发能力 | 管理能力  | 商品化能力 |
 |--- | --- | --- | --- | ---|
 | [![图片加载中...](../images/subjects/subject.001.jpeg)](1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.002.jpeg)](mds/1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.003.jpeg)](mds/1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.004.jpeg)](mds/1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.005.jpeg)](mds/1.1.编程语言.md) |
 | 游戏产品也是一种软件产品，所有的软件研发， 就需要有一些共通的基础能力。 这些基础能力是软件开发的基本功，基本功越强， 整个产品的开发过程就会越稳健、高效。 |游戏软件有其特定的技术要求，要研发游戏产品，就可能会需要具备这些技术。 | 游戏产品也是一种软件产品，所有的软件研发， 就需要有一些共通的基础能力。 这些基础能力是软件开发的基本功，基本功越强， 整个产品的开发过程就会越稳健、高效。 |游戏产品也是一种软件产品，所有的软件研发， 就需要有一些共通的基础能力。 这些基础能力是软件开发的基本功，基本功越强， 整个产品的开发过程就会越稳健、高效。  |游戏产品也是一种软件产品，所有的软件研发， 就需要有一些共通的基础能力。 这些基础能力是软件开发的基本功，基本功越强， 整个产品的开发过程就会越稳健、高效。 |
 
 
-<table border="0">
+<table border="none">
     <thead>
-        <tr>
-            <td width="20%" align="center">基础能力</td>
-            <td width="20%" align="center">技术能力</td>
-            <td width="20%" align="center">研发能力</td>
-            <td width="20%" align="center">管理能力</td>
-            <td width="20%" align="center">商品化能力</td>
-        </tr>
     </thead>
     <tbody>
         <tr>
@@ -29,6 +16,13 @@ td, th {
             <td><img src="../images/subjects/subject.003.jpeg" height="128"></img></td>
             <td><img src="../images/subjects/subject.004.jpeg" height="128"></img></td>
             <td><img src="../images/subjects/subject.005.jpeg" height="128"></img></td>
+        </tr>
+        <tr>
+            <td width="20%" align="center">基础能力</td>
+            <td width="20%" align="center">技术能力</td>
+            <td width="20%" align="center">研发能力</td>
+            <td width="20%" align="center">管理能力</td>
+            <td width="20%" align="center">商品化能力</td>
         </tr>
         <tr>
             <td>游戏产品也是一种软件产品，所有的软件研发，就需要有一些共通的基础能力。这些基础能力是软件开发的基本功，基本功越强，整个产品的开发过程就会越稳健、高效。</td>
@@ -41,7 +35,7 @@ td, th {
 </table>
 
 
-<table border="0">
+<table border="none">
         <tr>
             <td width="128" align="center">基础能力</td>
             <td width="400"><a href="1.1.编程语言.md" target="_blank"><img src="../images/subjects/subject.001.jpeg" height="33%"></img></a></td>
@@ -69,7 +63,7 @@ td, th {
         </tr>
 </table>
 
-<table border="0">
+<table border="none">
     <thead>
     </thead>
     <tbody>
@@ -81,11 +75,11 @@ td, th {
             <td><img src="../images/subjects/subject.005.jpeg" height="128"></img></td>
         </tr>
         <tr>
-            <td width="20%" align="center">基础能力</td>
-            <td width="20%" align="center">技术能力</td>
-            <td width="20%" align="center">研发能力</td>
-            <td width="20%" align="center">管理能力</td>
-            <td width="20%" align="center">商品化能力</td>
+            <td width="20%" align="center"><a href="1.基础能力.md" target="_blank">基础能力</a></td>
+            <td width="20%" align="center"><a href="2.技术能力.md" target="_blank">技术能力</a></td>
+            <td width="20%" align="center"><a href="3.研发能力.md" target="_blank">研发能力</a></td>
+            <td width="20%" align="center"><a href="4.管理能力.md" target="_blank">管理能力</a></td>
+            <td width="20%" align="center"><a href="5.商品化能力.md" target="_blank">商品化能力</a></td>
         </tr>
     </tbody>
 </table>
