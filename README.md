@@ -17,18 +17,19 @@ int main(){
 }
 ```
 
-<br/>
-<br/>
+[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
+[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
+[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
+![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
+[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
+
 
 ## 介绍
 <p>
-&emsp;&emsp;游戏行业已走过了半个世纪，但时至今日，游戏开发者们还是要花大把时间重复的去做着别人做过的事情。<br/>
-</p>
-<p>
-&emsp;&emsp;我们整理了一套技术侧的《游戏开发图谱》，希望能帮助游戏开发者们在处理问题的时候，能快速地找问题要考虑的要点、方向或方案。
+游戏行业已走过了半个世纪，但时至今日，游戏开发者们还是要花大把时间重复的去做着别人做过的事情。我们整理了一套技术侧的《游戏开发图谱》，希望能帮助游戏开发者们在处理问题的时候，能快速地找问题要考虑的要点、方向或方案。
 <br/>
 <p>
-&emsp;&emsp;我们无法让所有做过的事情不再重复，但我们愿意分享，使得更多游戏开发者在已知的事情上尽量节省时间。节省出更多精力投入到有创造性的工作中去。
+我们无法让所有做过的事情不再重复，但我们希望通过分享，使得更多游戏开发者在已知的事情上能尽量节省时间，让更多的精力投入到有创造性的工作中去。
 <br/>
 </p>
 
@@ -43,15 +44,15 @@ int main(){
         </thead>
         <tbody>
             <tr>
-                <td>&emsp;&emsp; ✓ 用的到的知识点。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 做什么用的？用在哪里？&emsp;&emsp;</td>
                 <td>&emsp;&emsp; × <strike>系统的知识讲解。</strike>&emsp;&emsp;</td>
             </tr>
             <tr>
-                <td>&emsp;&emsp; ✓ 技术的应用和经验。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 会遇到哪些问题？用什么去解决？&emsp;&emsp;</td>
                 <td>&emsp;&emsp; × <strike>具体的实现细节。</strike>&emsp;&emsp;</td>
             </tr>
             <tr>
-                <td>&emsp;&emsp; ✓ 要考虑的要点或方法。&emsp;&emsp;</td>
+                <td>&emsp;&emsp; ✓ 要考虑到的要点或方法。&emsp;&emsp;</td>
                 <td>&emsp;&emsp; × <strike>完整的解决方案。</strike>&emsp;&emsp;</td>
             </tr>
         </tbody>
