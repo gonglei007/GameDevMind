@@ -1,3 +1,9 @@
+[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
+[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
+[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
+![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
+[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
+
 
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
@@ -16,12 +22,6 @@ int main(){
     return 0;
 }
 ```
-
-[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
-[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
-[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
-![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
-[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
 
 
 ## 介绍
