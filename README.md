@@ -1,9 +1,3 @@
-[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
-[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
-[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
-![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
-[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
-
 
 <p align="center">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
@@ -25,6 +19,13 @@ int main(){
 
 
 ## 介绍
+
+[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
+[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
+[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
+![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
+[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
+
 <p>
 游戏行业已走过了半个世纪，但时至今日，游戏开发者们还是要花大把时间重复的去做着别人做过的事情。我们整理了一套技术侧的《游戏开发图谱》，希望能帮助游戏开发者们在处理问题的时候，能快速地找问题要考虑的要点、方向或方案。
 <br/>
