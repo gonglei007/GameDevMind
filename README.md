@@ -61,9 +61,13 @@ int main(){
 
 ## 总览
 <p>
-游戏研运团队在技术上需要具备几大能力：基础能力、技术能力、研发能力、管理能力、商品化能力。<br/>
+游戏研运团队在技术上需要具备几大能力：
   
-![](https://img.shields.io/static/v1?label=基础能力&message=<MESSAGE>&color=red)
+![](https://img.shields.io/static/v1?label=基础能力&message=&color=red)
+![](https://img.shields.io/static/v1?label=技术能力&message=&color=orange)
+![](https://img.shields.io/static/v1?label=研发能力&message=&color=yellow)
+![](https://img.shields.io/static/v1?label=管理能力&message=&color=green)
+![](https://img.shields.io/static/v1?label=商品化能力&message=&color=blue)
 
 不是说每个成员都要具备这些能力，但整个团队是需要这些能力来支撑游戏产品研运并盈利的。
 </p>
