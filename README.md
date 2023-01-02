@@ -69,7 +69,6 @@ int main(){
 ![](https://img.shields.io/static/v1?label=4&message=管理能力&color=green)
 ![](https://img.shields.io/static/v1?label=5&message=商品化能力&color=blue)
 
-不是说每个成员都要具备这些能力，但整个团队是需要这些能力来支撑游戏产品研运并盈利的。
 </p>
 <br/>
 
