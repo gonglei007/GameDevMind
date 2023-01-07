@@ -51,6 +51,11 @@ montage \
     ../exports/2.2.2.数据库.png \
     ../exports/2.2.3.服务端中间件.png \
     ../exports/2.3.开发者工具箱.png \
+    ../exports/2.3.1.通用工具.png \
+    ../exports/2.3.2.客户端开发工具.png \
+    ../exports/2.3.3.服务端开发工具.png \
+    ../exports/2.3.4.设计工具.png \
+    ../exports/2.3.5.日常工具.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \
