@@ -219,6 +219,10 @@ int main(){
     * [5.3.2.帐号与支付](mds/5.3.2.帐号与支付.md)
 <br/>
 
+## 缩略预览
+![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
+<br/>
+
 ## 交流讨论
 欢迎进群、进讨论区交流和分享游戏开发中遇到的问题或者解决方案。
 
@@ -230,23 +234,10 @@ int main(){
 
 <br/>
 
-## 联系我们
-
-[-微信扫码-]<br/>
-
-<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
-
-<br/><br/>
-
-## 缩略预览
-![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
-<br/>
-
 ## 编辑与查看
 * 资料库使用XMind编辑内容（/xminds/目录）。<br/>
 * 也可以快速查看导出图（/exports/目录）。<br/>
 * markdown文本内容（/mds/目录）。<br/>
-
 
 ## 支持者
 ### 贡献者
@@ -280,4 +271,12 @@ int main(){
 * 第一个版本的资料库提交到了github。<br/>
 
 </div>
+
+## 联系我们
+
+[-微信扫码-]<br/>
+
+<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
+
+<br/><br/>
 
