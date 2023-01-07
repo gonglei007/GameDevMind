@@ -34,6 +34,7 @@ int main(){
 <br/>
 </p>
 
+## 阅读说明
 
 <div align="center">
     <table style="width:640px;">
@@ -219,6 +220,10 @@ int main(){
     * [5.3.3.第三方服务](mds/5.3.3.第三方服务.md)
 <br/>
 
+## 缩略预览
+![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
+<br/>
+
 ## 交流讨论
 欢迎进群、进讨论区交流和分享游戏开发中遇到的问题或者解决方案。
 
@@ -230,25 +235,13 @@ int main(){
 
 <br/>
 
-## 联系我们
-
-[-微信扫码-]<br/>
-
-<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
-
-<br/><br/>
-
-## 缩略预览
-![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
-<br/>
-
 ## 编辑与查看
 * 资料库使用XMind编辑内容（/xminds/目录）。<br/>
 * 也可以快速查看导出图（/exports/目录）。<br/>
 * markdown文本内容（/mds/目录）。<br/>
 
-## 贡献者
-
+## 支持者
+### 贡献者
 
 | [公雷(发起者)](https://github.com/gonglei007),&emsp; [Game Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; ... |
 | :---: |
@@ -256,10 +249,10 @@ int main(){
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
 <br/>
 
-## 支持者
 ### Stargazers
 [![Stargazers repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/stargazers)
 <br/>
+
 ### Forkers
 [![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
 <br/>
@@ -279,4 +272,12 @@ int main(){
 * 第一个版本的资料库提交到了github。<br/>
 
 </div>
+
+## 联系我们
+
+[-微信扫码-]<br/>
+
+<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
+
+<br/><br/>
 
