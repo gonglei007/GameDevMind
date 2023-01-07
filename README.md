@@ -247,8 +247,9 @@ int main(){
 * 也可以快速查看导出图（/exports/目录）。<br/>
 * markdown文本内容（/mds/目录）。<br/>
 
-## 贡献者
 
+## 支持者
+### 贡献者
 
 | [公雷(发起者)](https://github.com/gonglei007),&emsp; [Game Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; ... |
 | :---: |
@@ -256,10 +257,10 @@ int main(){
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
 <br/>
 
-## 支持者
 ### Stargazers
 [![Stargazers repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/stargazers)
 <br/>
+
 ### Forkers
 [![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
 <br/>
