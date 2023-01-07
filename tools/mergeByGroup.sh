@@ -142,6 +142,7 @@ montage \
     ../exports/5.3.产品商业化.png \
     ../exports/5.3.1.游戏安全.png \
     ../exports/5.3.2.帐号与支付.png \
+    ../exports/5.3.3.第三方服务.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \

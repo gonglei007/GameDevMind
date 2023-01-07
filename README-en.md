@@ -176,6 +176,7 @@ int main(){
 * [5.3.Product Commercialization](mds/5.3.产品商业化.md)
     * [5.3.1.Game Security](mds/5.3.1.游戏安全.md)
     * [5.3.2.Account and Pay](mds/5.3.2.帐号与支付.md)
+    * [5.3.3.Third Party Service](mds/5.3.3.第三方服务.md)
 <br/>
 
 ## Discussions
