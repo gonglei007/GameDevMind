@@ -66,6 +66,7 @@ int main(){
     * [1.1.3.C# Language](mds/1.1.3.C%23%E8%AF%AD%E8%A8%80.md)
     * [1.1.4.JS Language](mds/1.1.4.JS语言.md)
     * [1.1.5.Programming Language Mix](mds/1.1.5.编程语言综合.md)
+    * [1.1.6.Memory Management](mds/1.1.6.内存管理.md)
 * [1.2.Programming Design](mds/1.2.程序设计.md)
     * [1.2.1.Design Patterns](mds/1.2.1.设计模式.md)
     * [1.2.2.Data Structure](mds/1.2.2.数据结构.md)
