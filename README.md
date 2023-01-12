@@ -12,7 +12,7 @@
 ```cpp
 #include <iostream>
 int main(){
-    std::cout << "Hello, Game Development World!" << std::endl;
+    std::cout << "我要做游戏！" << std::endl;
     return 0;
 }
 ```
