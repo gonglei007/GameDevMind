@@ -153,6 +153,7 @@ int main(){
     * [4.2.3.QA](mds/4.2.3.质量保证.md)
     * [4.2.4.Team and Organization](mds/4.2.4.团队与组织.md)
     * [4.2.5.SCRUM](mds/4.2.5.SCRUM.md)
+    * [4.2.6.Team Management](mds/4.2.6.团队管理.md)
 * [4.3.Technical Center](mds/4.3.技术中台.md)
     * [4.3.1.Quick Development Framework](mds/4.3.1.游戏开发支持.md)
     * [4.3.2.Technical Support](mds/4.3.1.游戏开发支持.md)
