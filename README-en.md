@@ -71,7 +71,6 @@ int main(){
     * [1.2.1.Design Patterns](mds/1.2.1.设计模式.md)
     * [1.2.2.Data Structure](mds/1.2.2.数据结构.md)
     * [1.2.3.Algorithm](mds/1.2.3.算法.md)
-    * [1.2.4.Code Refactoring](mds/1.2.4.代码重构.md)
 * [1.3.Common Base](mds/1.3.通用基础.md)
     * [1.3.1.Mathematics](mds/1.3.1.数学.md)
     * [1.3.2.AI](mds/1.3.2.人工智能.md)
@@ -146,7 +145,7 @@ int main(){
 * [4.1.Engineering Management](mds/4.1.生产线研发.md)
     * [4.1.1.Digital Content Pipeline](mds/4.1.1.数字内容生产线.md)
     * [4.1.2.System Development Pipeline](mds/4.1.2.系统开发生产线.md)
-    * [4.1.3.DevOps](mds/4.1.3.DevOps.md)
+    * [4.1.3.Code Quality Management](mds/4.1.3.代码质量管理.md)
     * [4.1.4.Development Workflow](mds/4.1.4.开发工作流.md)
 * [4.2.Project Management](mds-en/4.2.Project%20Management.md)
     * [4.2.1.Project Management Mix](mds/4.2.1.项目管理综合.md)
@@ -158,6 +157,7 @@ int main(){
 * [4.3.Technical Center](mds/4.3.技术中台.md)
     * [4.3.1.Quick Development Framework](mds/4.3.1.游戏开发支持.md)
     * [4.3.2.Technical Support](mds/4.3.1.游戏开发支持.md)
+    * [4.3.3.DevOps](mds/4.3.3.DevOps.md)
 <br/>
         
 ### 5.Commercialization Capability
