@@ -55,7 +55,7 @@
     </table>
 </div>
 
-可下载[pdf版](/releases/tag/v0.5.1)阅读。
+* 可[下载pdf版](../..//releases/tag/v0.5.1)阅读。
 
 ## 总览
 <p>
