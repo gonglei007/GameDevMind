@@ -55,6 +55,8 @@
     </table>
 </div>
 
+可下载[pdf版](/releases/tag/v0.5.1)阅读。
+
 ## 总览
 <p>
 游戏研运团队在技术上需要具备几大能力：
@@ -226,7 +228,7 @@
 ## 支持者
 ### 贡献者
 
-| [公雷](https://github.com/gonglei007),&emsp; [Game Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; ... |
+| [公雷](https://github.com/gonglei007),&emsp; [Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; ... |
 | :---: |
 
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
@@ -241,6 +243,13 @@
 <br/>
 
 ## 历史
+
+<div>
+
+[2023-01-16]<br/>
+* 制作发布pdf版本（测试版），更便于阅读。<br/>
+
+</div>
 
 <div>
 
