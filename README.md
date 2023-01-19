@@ -269,13 +269,13 @@
 
 ## 联系我们
 
-[-微信扫码-]<br/>
-
-<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
-
-[-邮箱-]<br/>
+[-Email-]<br/>
 
 <gonglei007@hotmail.com> <br>
+
+[-微信-]<br/>
+
+<img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
 
 <br/><br/>
 
