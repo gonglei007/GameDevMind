@@ -120,4 +120,4 @@ i=150;width=2560;height=2048; \
 	  -resize ${width}x${height}	\
       -gravity center	\
 	  -extent ${width}x${height}	\
-      ../output/《游戏开发技术：少点苦力，多点创意》.pdf
+      ../output/游戏开发技术-少些重复，多些创意.pdf
