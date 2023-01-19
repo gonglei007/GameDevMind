@@ -3,7 +3,7 @@
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <h2 align="center">游戏开发技术</h2>
   <p align="center">
-    少点苦力，多点创意
+    少些重复，多点创意
   </p>
 </p>
 
