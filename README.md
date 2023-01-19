@@ -273,5 +273,9 @@
 
 <img src="images/联系人-G.L.png?raw=true" alt="drawing" width="96"/>
 
+[-邮箱-]<br/>
+
+<gonglei007@hotmail.com> <br>
+
 <br/><br/>
 
