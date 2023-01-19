@@ -88,6 +88,7 @@ montage \
     ../exports/3.4.1.游戏引擎原理与开发.png \
     ../exports/3.4.2.编辑器开发.png \
     ../exports/3.4.3.工具开发与应用.png \
+    ../exports/3.4.4.游戏数据文件.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \
