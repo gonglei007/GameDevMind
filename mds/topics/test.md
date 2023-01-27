@@ -81,10 +81,10 @@
     <tbody>
         <tr>
             <td><a href="1.1.编程语言.md" target="_blank"><img src="../images/subjects/subject.001.jpeg" height="128"></img></a></td>
-            <td><img src="../images/subjects/subject.002.jpeg" height="128"></img></td>
-            <td><img src="../images/subjects/subject.003.jpeg" height="128"></img></td>
-            <td><img src="../images/subjects/subject.004.jpeg" height="128"></img></td>
-            <td><img src="../images/subjects/subject.005.jpeg" height="128"></img></td>
+            <td><img src="../../images/subjects/subject.002.jpeg" height="128"></img></td>
+            <td><img src="../../images/subjects/subject.003.jpeg" height="128"></img></td>
+            <td><img src="../../images/subjects/subject.004.jpeg" height="128"></img></td>
+            <td><img src="../../images/subjects/subject.005.jpeg" height="128"></img></td>
         </tr>
         <tr>
             <td width="20%" align="center"><a href="1.基础能力.md" target="_blank">基础能力</a></td>
