@@ -80,18 +80,18 @@
     </thead>
     <tbody>
         <tr>
-            <td><a href="#1.基础能力"><img src="./images/subjects/subject.001.jpeg" height="128"></img></a></td>
-            <td><a href="#2.技术能力"><img src="./images/subjects/subject.002.jpeg" height="128"></img></a></td>
-            <td><a href="#3.研发能力"><img src="./images/subjects/subject.003.jpeg" height="128"></img></a></td>
-            <td><a href="#4.管理能力"><img src="./images/subjects/subject.004.jpeg" height="128"></img></a></td>
-            <td><a href="#5.商品化能力"><img src="./images/subjects/subject.005.jpeg" height="128"></img></a></td>
+            <td><a href="#1基础能力"><img src="./images/subjects/subject.001.jpeg" height="128"></img></a></td>
+            <td><a href="#2技术能力"><img src="./images/subjects/subject.002.jpeg" height="128"></img></a></td>
+            <td><a href="#3研发能力"><img src="./images/subjects/subject.003.jpeg" height="128"></img></a></td>
+            <td><a href="#4管理能力"><img src="./images/subjects/subject.004.jpeg" height="128"></img></a></td>
+            <td><a href="#5商品化能力"><img src="./images/subjects/subject.005.jpeg" height="128"></img></a></td>
         </tr>
         <tr>
-            <td width="20%" align="center"><a href="#1.基础能力">1.基础能力</a></td>
-            <td width="20%" align="center"><a href="#2.技术能力">2.技术能力</a></td>
-            <td width="20%" align="center"><a href="#3.研发能力">3.研发能力</a></td>
-            <td width="20%" align="center"><a href="#4.管理能力">4.管理能力</a></td>
-            <td width="20%" align="center"><a href="#5.商品化能力">5.商品化能力</a></td>
+            <td width="20%" align="center"><a href="#1基础能力">1.基础能力</a></td>
+            <td width="20%" align="center"><a href="#2技术能力">2.技术能力</a></td>
+            <td width="20%" align="center"><a href="#3研发能力">3.研发能力</a></td>
+            <td width="20%" align="center"><a href="#4管理能力">4.管理能力</a></td>
+            <td width="20%" align="center"><a href="#5商品化能力">5.商品化能力</a></td>
         </tr>
     </tbody>
 </table>
