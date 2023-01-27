@@ -28,6 +28,9 @@
 
 ## 阅读说明
 
+* [在线阅读](README.md#正文) - 页面附带更多参考资料。
+* [下载pdf版](../..//releases/tag/v0.5.2) - 更便于本地阅读。
+
 <div align="center">
     <table style="width:640px;">
         <thead style="font-weight: bold; font-style: italic;">
@@ -52,9 +55,6 @@
         </tbody>
     </table>
 </div>
-
-* [在线阅读](README.md#正文) - 附带更多的参考资料。
-* [下载pdf版](../..//releases/tag/v0.5.1) - 更方便本地阅读。
 
 <!--
 ## 总览
