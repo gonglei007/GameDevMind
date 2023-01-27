@@ -70,11 +70,12 @@
 
 </p>
 <br/>
-
-![图1、这是知识树的框架，展开的知识树可以点击下面的github链接查看。](exports/0.总览.png)
+<!--
+![图1、这是知识树的框架，展开的知识树可以点击下面的github链接查看。](exports/0.总览.png) 
 <br/>
+-->
 
-## 目录
+## 正文
 <table border="none">
     <thead>
     </thead>
