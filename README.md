@@ -3,7 +3,7 @@
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <h2 align="center">游戏开发技术</h2>
   <p align="center">
-    少些重复，多点创意
+    少一些重复，多一点创意
   </p>
   <p align="center">
       <a href="https://github.com/gonglei007/GameDevMind/watchers" target="_blank"><img src="https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
