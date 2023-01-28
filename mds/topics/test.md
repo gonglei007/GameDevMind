@@ -1,9 +1,17 @@
 <h2 align="center">Test</h2>
 <p align="center">
     <a href="https://github.com/gonglei007/GameDevMind/watchers" target="_blank"><img src="https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+    <a href="https://github.com/gonglei007/GameDevMind/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+    <a href="https://github.com/gonglei007/GameDevMind/network/members" target="_blank"><img src="https://img.shields.io/github/forks/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+    <img src="https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg" style="display: inherit;"/>
+    <a href="https://github.com/gonglei007/GameDevMind/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
 </p>
 
 [![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
+[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
+[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
+![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
+[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
 
 | 基础能力 | 技术能力 | 研发能力 | 管理能力  | 商品化能力 |
 |--- | --- | --- | --- | ---|
