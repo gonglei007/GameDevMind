@@ -1,5 +1,8 @@
 <h2 align="center">Test</h2>
-
+<p align="center">
+[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
+</p>
+    
 | 基础能力 | 技术能力 | 研发能力 | 管理能力  | 商品化能力 |
 |--- | --- | --- | --- | ---|
 | [![图片加载中...](../images/subjects/subject.001.jpeg)](1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.002.jpeg)](mds/1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.003.jpeg)](mds/1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.004.jpeg)](mds/1.1.编程语言.md) | [![图片加载中...](../images/subjects/subject.005.jpeg)](mds/1.1.编程语言.md) |
