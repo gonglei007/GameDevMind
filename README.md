@@ -5,16 +5,17 @@
   <p align="center">
     少些重复，多点创意
   </p>
+  <p align="center">
+      <a href="https://github.com/gonglei007/GameDevMind/watchers" target="_blank"><img src="https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+      <a href="https://github.com/gonglei007/GameDevMind/stargazers" target="_blank"><img src="https://img.shields.io/github/stars/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+      <a href="https://github.com/gonglei007/GameDevMind/network/members" target="_blank"><img src="https://img.shields.io/github/forks/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+      <img src="https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg" style="display: inherit;"/>
+      <a href="https://github.com/gonglei007/GameDevMind/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg" style="display: inherit;"/></a>
+  </p>
 </p>
-
+<br/>
 
 *[中文](README.md)* | *[English](README-en.md)*
-
-[![](https://img.shields.io/github/watchers/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/watchers)
-[![](https://img.shields.io/github/stars/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/stargazers)
-[![](https://img.shields.io/github/forks/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/network/members)
-![](https://img.shields.io/github/repo-size/gonglei007/GameDevMind.svg)
-[![](https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg)](https://github.com/gonglei007/GameDevMind/graphs/contributors)
 
 > *❝我们的愿景❞* <br/><br/>我们希望能通过分享，让游戏开发者们在已知的事情上尽可能的节省时间，把省出来的时间和精力更多的投入到有创造性的工作中去，进而推动行业技术边界的拓宽。
 
