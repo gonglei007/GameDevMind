@@ -74,10 +74,11 @@
 ![](https://img.shields.io/static/v1?label=3&message=研发能力&color=yellow)
 ![](https://img.shields.io/static/v1?label=4&message=管理能力&color=green)
 ![](https://img.shields.io/static/v1?label=5&message=商品化能力&color=blue)
-
-游戏的研运团队在技术方面需要具备这几项能力：
   
 </p>
+
+<p align="center">游戏研运在技术方面需要具备的能力</p>
+
 <table border="none">
     <thead>
     </thead>
