@@ -1,7 +1,7 @@
 
 <p align="center">
   <img src="images/repository-open-graph.png">
-  <h1 align="center">游戏开发技术</h1>
+  <h1 align="center">游戏开发-技术图谱</h1>
 <!--
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <p align="center">
