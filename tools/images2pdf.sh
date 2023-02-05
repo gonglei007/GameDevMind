@@ -118,7 +118,7 @@ i=150;width=2560;height=2048; \
 	  -background black	\
       -density ${i}x${i} \
       -units PixelsPerInch \
-	  -resize ${width}x${height}	\
+	  -resize ${width}x *	\
       -gravity center	\
-	  -extent ${width}x${height}	\
+	  -extent ${width}x *	\
       ../output/游戏开发技术-少些重复，多些创意.pdf
