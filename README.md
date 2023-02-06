@@ -61,6 +61,7 @@
 
 * [在线阅读](README.md#正文) - 在线阅读，页面中附带了更多参考资料。
 * [下载pdf版（预览版）](../..//releases/tag/v0.6.0) - 在一些特定节点制作并发布pdf电子版，更便于本地阅读。
+* [项目历史](HISTORY.md) - 项目的主要节点。
 
 <!--
 ## 总览
@@ -279,29 +280,6 @@
 ### Forkers
 [![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
 <br/>
-
-## 历史
-
-<div>
-
-[2023-01-16]<br/>
-* 制作发布pdf版本（测试版），更便于阅读。<br/>
-
-</div>
-
-<div>
-
-[2022-11-11]<br/>
-* 对所有资料进行了一次大幅的整理、重构。<br/>
-
-</div>
-
-<div>
-
-[2022-06-22]<br/>
-* 第一个版本的资料库提交到了github。<br/>
-
-</div>
 
 ## 联系我们
 
