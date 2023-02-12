@@ -94,7 +94,7 @@ i=150;width=2560;height=2048; \
     ../exports/4.3.2.技术支持.png \
     ../exports/4.3.3.DevOps.png \
 \
-    ../exports/5.商品化能力.png \
+    ../exports/5.运营能力.png \
     ../exports/5.1.运维技术.png \
     ../exports/5.1.1.网络维护.png \
     ../exports/5.1.2.数据存储.png \

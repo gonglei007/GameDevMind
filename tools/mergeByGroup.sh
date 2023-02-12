@@ -163,4 +163,4 @@ montage \
 	-geometry +20+40 	\
 	-background "#00526B" 	\
 	-title "(5)"   \
-	../overview/5.商品化能力.png
+	../overview/5.运营能力.png

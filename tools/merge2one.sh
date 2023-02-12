@@ -17,7 +17,7 @@ montage \
     ../overview/2.技术能力.png \
     ../overview/3.研发能力.png \
     ../overview/4.管理能力.png \
-    ../overview/5.商品化能力.png \
+    ../overview/5.运营能力.png \
 \
 	-auto-orient 	\
 	-resize 1280x *  \
@@ -35,7 +35,7 @@ montage \
     ../overview/2.技术能力.png \
     ../overview/3.研发能力.png \
     ../overview/4.管理能力.png \
-    ../overview/5.商品化能力.png \
+    ../overview/5.运营能力.png \
 \
 	-auto-orient 	\
 	-resize 480x *  \

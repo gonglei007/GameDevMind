@@ -79,7 +79,7 @@
 ![](https://img.shields.io/static/v1?label=2&message=技术能力&color=orange)
 ![](https://img.shields.io/static/v1?label=3&message=研发能力&color=yellow)
 ![](https://img.shields.io/static/v1?label=4&message=管理能力&color=green)
-![](https://img.shields.io/static/v1?label=5&message=商品化能力&color=blue)
+![](https://img.shields.io/static/v1?label=5&message=运营能力&color=blue)
   
 </p>
 
@@ -94,14 +94,14 @@
             <td><a href="#2技术能力"><img src="./images/subjects/subject.002.jpeg" height="128"></img></a></td>
             <td><a href="#3研发能力"><img src="./images/subjects/subject.003.jpeg" height="128"></img></a></td>
             <td><a href="#4管理能力"><img src="./images/subjects/subject.004.jpeg" height="128"></img></a></td>
-            <td><a href="#5商品化能力"><img src="./images/subjects/subject.005.jpeg" height="128"></img></a></td>
+            <td><a href="#5运营能力"><img src="./images/subjects/subject.005.jpeg" height="128"></img></a></td>
         </tr>
         <tr>
             <td width="20%" align="center"><a href="#1基础能力">1.基础能力</a></td>
             <td width="20%" align="center"><a href="#2技术能力">2.技术能力</a></td>
             <td width="20%" align="center"><a href="#3研发能力">3.研发能力</a></td>
             <td width="20%" align="center"><a href="#4管理能力">4.管理能力</a></td>
-            <td width="20%" align="center"><a href="#5商品化能力">5.商品化能力</a></td>
+            <td width="20%" align="center"><a href="#5运营能力">5.运营能力</a></td>
         </tr>
     </tbody>
 </table>
@@ -216,10 +216,10 @@
     * [4.3.3.DevOps](mds/4.3.3.DevOps.md)
 <br/>
 
-### 5.商品化能力
+### 5.运营能力
 <p>
 
-> 作为一个组织，不论你有什么样的技术或能力，一个最重要的目标是——赚钱。在当下的市场环境下，一款好玩的游戏做出来了不一定就能够赚钱。还需要有一系列商品化能力，才能让产品运转和盈利，让团队持续存活。<br/>（这里只展示跟技术相关的那些）
+> 作为一个组织，不论你有什么样的技术或能力，一个最重要的目标是——赚钱。在当下的市场环境下，一款好玩的游戏做出来了不一定就能够赚钱。还需要有一系列运营能力，才能让产品运转和盈利，让团队持续存活。<br/>（这里只展示跟技术相关的那些）
 
 </p>
 
