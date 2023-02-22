@@ -64,10 +64,11 @@ i=150;width=2560;height=2048; \
     ../exports/3.1.5.渲染与特效.png \
     ../exports/3.1.6.UI系统.png \
     ../exports/3.2.服务端产品研发.png \
-    ../exports/3.2.1.服务端架构.png \
+    ../exports/3.2.1.服务端底层架构.png \
     ../exports/3.2.2.网游网络同步.png \
     ../exports/3.2.3.服务端优化.png \
     ../exports/3.2.4.服务端基础功能.png \
+    ../exports/3.2.5.服务端业务架构.png \
     ../exports/3.3.业务层功能系统.png \
     ../exports/3.3.1.摄像机控制.png \
     ../exports/3.4.生产工具研发.png \
