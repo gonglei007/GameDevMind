@@ -90,6 +90,9 @@ montage \
     ../exports/3.4.2.编辑器开发.png \
     ../exports/3.4.3.工具开发与应用.png \
     ../exports/3.4.4.游戏数据文件.png \
+    ../exports/3.5.游戏引擎原理与开发.png \
+    ../exports/3.5.1.引擎的基本功能系统.png \
+    ../exports/3.5.2.引擎的其它系统.png \
 \
 	-auto-orient 	\
 	-resize $ItemSize *  \
