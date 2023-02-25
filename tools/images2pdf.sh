@@ -71,6 +71,7 @@ i=150;width=2560;height=2048; \
     ../exports/3.2.5.服务端业务架构.png \
     ../exports/3.3.业务层功能系统.png \
     ../exports/3.3.1.摄像机控制.png \
+    ../exports/3.3.2.角色.png \
     ../exports/3.4.生产工具研发.png \
     ../exports/3.4.1.游戏引擎原理与开发.png \
     ../exports/3.4.2.编辑器开发.png \

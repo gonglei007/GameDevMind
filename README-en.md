@@ -129,6 +129,7 @@ int main(){
     * [3.2.5.Server Business Architecture](mds/3.2.5.服务端业务架构.md)
 * [3.3.Game Functional System](mds/3.3.业务层功能系统.md)
     * [3.3.1.Camera Control](mds/3.3.1.摄像机控制.md)
+    * [3.3.2.Character](mds/3.3.2.角色.md)
 * [3.4.Production Tool Development](mds/3.4.生产工具研发.md)
     * [3.4.2.Editor Development](mds/3.4.2.编辑器开发.md)
     * [3.4.3.Tool Development and Application](mds/3.4.3.工具开发与应用.md)
