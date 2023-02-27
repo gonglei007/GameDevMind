@@ -121,6 +121,8 @@ int main(){
     * [3.1.3.Client Optimization](mds/3.1.3.客户端优化.md)
     * [3.1.4.Client Network System](mds-en/3.1.4.Client%20Network%20System.md)
     * [3.1.5.Render and Effect](mds/3.1.5.效果与表现.md)
+    * [3.1.6.UI System](mds/3.1.6.UI系统.md)
+    * [3.1.7.Client Middle Ware](mds/3.1.7.客户端中间件.md)
 * [3.2.Server Development](mds/3.2.服务端产品研发.md)
     * [3.2.1.Server Base Architecture](mds/3.2.1.服务端底层架构.md)
     * [3.2.2.Multiplayer Game Synchronization](mds/3.2.2.网游网络同步.md)

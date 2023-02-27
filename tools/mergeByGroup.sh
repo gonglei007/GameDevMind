@@ -78,6 +78,7 @@ montage \
     ../exports/3.1.4.客户端网络系统.png \
     ../exports/3.1.5.渲染与特效.png \
     ../exports/3.1.6.UI系统.png \
+    ../exports/3.1.7.客户端中间件.png \
     ../exports/3.2.服务端产品研发.png \
     ../exports/3.2.1.服务端底层架构.png \
     ../exports/3.2.2.网游网络同步.png \
