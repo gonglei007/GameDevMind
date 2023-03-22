@@ -18,12 +18,13 @@ i=150;width=2560;height=2048; \
 \
     ../exports/1.基础能力.png \
     ../exports/1.1.编程语言.png \
-    ../exports/1.1.1.编程语言共通概念.png \
+    ../exports/1.1.1.编程语言基础概念.png \
     ../exports/1.1.2.C++语言.png \
     ../exports/1.1.3.C#语言.png \
     ../exports/1.1.4.JS语言.png \
     ../exports/1.1.5.编程语言综合.png \
     ../exports/1.1.6.内存管理.png \
+    ../exports/1.1.7.编程语言高阶概念.png \
     ../exports/1.2.程序设计.png \
     ../exports/1.2.1.设计模式.png \
     ../exports/1.2.2.数据结构.png \
