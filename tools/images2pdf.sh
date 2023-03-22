@@ -74,8 +74,8 @@ i=150;width=2560;height=2048; \
     ../exports/3.3.业务层功能系统.png \
     ../exports/3.3.1.摄像机控制.png \
     ../exports/3.3.2.角色.png \
-    ../exports/3.4.生产工具研发.png \
-    ../exports/3.4.1.游戏引擎原理与开发.png \
+    ../exports/3.4.游戏生产.png \
+    ../exports/3.4.1.AI助力游戏研运.png \
     ../exports/3.4.2.编辑器开发.png \
     ../exports/3.4.3.工具开发与应用.png \
     ../exports/3.4.4.游戏数据文件.png \
