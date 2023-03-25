@@ -33,6 +33,6 @@ montage \
 	-border 1 	\
 	-shadow 	\
 	-geometry +20+40 	\
-	-background "#00526B" 	\
+	-background "#4A148C" 	\
 	-title "(6)"   \
 	../overview/6.运营能力.png

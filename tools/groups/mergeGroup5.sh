@@ -28,6 +28,6 @@ montage \
 	-border 1 	\
 	-shadow 	\
 	-geometry +20+40 	\
-	-background "#15831C" 	\
+	-background "#00526B" 	\
 	-title "(5)"   \
 	../overview/5.管理能力.png
