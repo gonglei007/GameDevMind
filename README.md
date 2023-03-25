@@ -91,9 +91,9 @@
     </thead>
     <tbody>
         <tr>
-            <td><a href="#1基础能力"><img src="./images/subjects/subjects.001.jpeg" height="128"></img></a></td>
-            <td><a href="#2技术能力"><img src="./images/subjects/subjects.002.jpeg" height="128"></img></a></td>
-            <td><a href="#3研发能力"><img src="./images/subjects/subjects.003.jpeg" height="128"></img></a></td>
+            <td><a href="#1基础能力"><img src="./images/subjects/subjects.001.jpeg" height="192"></img></a></td>
+            <td><a href="#2技术能力"><img src="./images/subjects/subjects.002.jpeg" height="192"></img></a></td>
+            <td><a href="#3研发能力"><img src="./images/subjects/subjects.003.jpeg" height="192"></img></a></td>
         </tr>
         <tr>
             <td width="20%" align="center"><a href="#1基础能力">1.基础能力</a></td>
@@ -101,9 +101,9 @@
             <td width="20%" align="center"><a href="#3研发能力">3.研发能力</a></td>
         </tr>
         <tr>
-            <td><a href="#4生产能力"><img src="./images/subjects/subjects.004.jpeg" height="128"></img></a></td>
-            <td><a href="#5管理能力"><img src="./images/subjects/subjects.005.jpeg" height="128"></img></a></td>
-            <td><a href="#6运营能力"><img src="./images/subjects/subjects.006.jpeg" height="128"></img></a></td>
+            <td><a href="#4生产能力"><img src="./images/subjects/subjects.004.jpeg" height="192"></img></a></td>
+            <td><a href="#5管理能力"><img src="./images/subjects/subjects.005.jpeg" height="192"></img></a></td>
+            <td><a href="#6运营能力"><img src="./images/subjects/subjects.006.jpeg" height="192"></img></a></td>
         </tr>
         <tr>
             <td width="20%" align="center"><a href="#4生产能力">4.生产能力</a></td>
