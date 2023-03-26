@@ -71,55 +71,60 @@ i=150;width=2560;height=2048; \
     ../exports/3.2.3.服务端优化.png \
     ../exports/3.2.4.服务端基础功能.png \
     ../exports/3.2.5.服务端业务架构.png \
-    ../exports/3.3.业务层功能系统.png \
+    ../exports/3.3.业务层功能.png \
     ../exports/3.3.1.摄像机控制.png \
     ../exports/3.3.2.角色.png \
-    ../exports/3.4.游戏生产.png \
-    ../exports/3.4.1.AI助力游戏研运.png \
-    ../exports/3.4.2.编辑器开发.png \
-    ../exports/3.4.3.工具开发与应用.png \
-    ../exports/3.4.4.游戏数据文件.png \
-    ../exports/3.5.游戏引擎原理与开发.png \
-    ../exports/3.5.1.引擎的基本功能系统.png \
-    ../exports/3.5.2.引擎的其它系统.png \
+    ../exports/3.3.3.综合业务层功能.png \
 \
-    ../exports/4.管理能力.png \
-    ../exports/4.1.工程管理.png \
-    ../exports/4.1.1.数字内容生产线.png \
-    ../exports/4.1.2.系统开发生产线.png \
-    ../exports/4.1.3.代码质量管理.png \
-    ../exports/4.1.4.开发工作流.png \
-    ../exports/4.2.项目管理.png \
-    ../exports/4.2.1.项目里程.png \
-    ../exports/4.2.2.版本管理.png \
-    ../exports/4.2.3.质量保证.png \
-    ../exports/4.2.4.团队与组织.png \
-    ../exports/4.2.5.SCRUM.png \
-    ../exports/4.2.6.团队管理.png \
-    ../exports/4.2.7.项目管理综合.png \
+    ../exports/4.1.游戏生产.png \
+    ../exports/4.1.1.数字内容生产.png \
+    ../exports/4.1.2.AI助力游戏生产.png \
+    ../exports/4.1.3.引擎的基本功能系统.png \
+    ../exports/4.1.4.引擎的其它系统.png \
+    ../exports/4.2.工具开发.png \
+    ../exports/4.2.1.编辑器开发.png \
+    ../exports/4.2.2.工具开发与应用.png \
+    ../exports/4.2.3.游戏数据文件.png \
     ../exports/4.3.技术中台.png \
     ../exports/4.3.1.快速开发框架.png \
     ../exports/4.3.2.技术支持.png \
     ../exports/4.3.3.DevOps.png \
 \
-    ../exports/5.运营能力.png \
-    ../exports/5.1.运维技术.png \
-    ../exports/5.1.1.网络维护.png \
-    ../exports/5.1.2.数据存储.png \
-    ../exports/5.1.3.资产管理.png \
-    ../exports/5.1.4.Linux系统.png \
-    ../exports/5.1.5.中间件运维.png \
-    ../exports/5.1.6.网络安全.png \
-    ../exports/5.2.产品运营支持.png \
-    ../exports/5.2.1.GM后台.png \
-    ../exports/5.2.2.数据统计分析.png \
-    ../exports/5.2.3.产品热更新.png \
-    ../exports/5.2.4.产品本地化.png \
-    ../exports/5.2.5.开发配合.png \
-    ../exports/5.3.产品商业化.png \
-    ../exports/5.3.1.游戏安全.png \
-    ../exports/5.3.2.帐号与支付.png \
-    ../exports/5.3.3.第三方服务.png \
+    ../exports/5.管理能力.png \
+    ../exports/5.1.工作流.png \
+    ../exports/5.1.1.系统开发工作流.png \
+    ../exports/5.1.2.UI制作工作流.png \
+    ../exports/5.1.3.更多开发工作流.png \
+    ../exports/5.2.质量保障.png \
+    ../exports/5.2.1.代码质量管理.png \
+    ../exports/5.2.2.产品质量管理.png \
+    ../exports/5.3.项目管理.png \
+    ../exports/5.3.1.项目里程.png \
+    ../exports/5.3.2.版本管理.png \
+    ../exports/5.3.3.SCRUM.png \
+    ../exports/5.3.4.团队与组织.png \
+    ../exports/5.3.5.团队管理.png \
+    ../exports/5.3.6.项目管理综合.png \
+\
+    ../exports/6.运营能力.png \
+    ../exports/6.1.运维技术.png \
+    ../exports/6.1.1.网络维护.png \
+    ../exports/6.1.2.数据存储.png \
+    ../exports/6.1.3.资产管理.png \
+    ../exports/6.1.4.Linux系统.png \
+    ../exports/6.1.5.中间件运维.png \
+    ../exports/6.1.6.网络安全.png \
+    ../exports/6.2.产品运营支持.png \
+    ../exports/6.2.1.GM后台.png \
+    ../exports/6.2.2.数据统计分析.png \
+    ../exports/6.2.3.产品热更新.png \
+    ../exports/6.2.4.产品本地化.png \
+    ../exports/6.2.5.开发配合.png \
+    ../exports/6.2.6.AI助力游戏运营.png \
+    ../exports/6.3.产品商业化.png \
+    ../exports/6.3.1.游戏安全.png \
+    ../exports/6.3.2.帐号与支付.png \
+    ../exports/6.3.3.第三方服务.png \
 \
 	  -compress jpeg \
 	  -quality 100 \
