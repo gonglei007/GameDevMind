@@ -40,4 +40,4 @@ i=150;width=2560;height=2048; \
 	  -resize ${width}x *	\
       -gravity center	\
 	  -extent ${width}x *	\
-      ../output/pdf/游戏开发-管理能力.pdf
+      ../output/pdf/5.游戏开发-管理能力.pdf

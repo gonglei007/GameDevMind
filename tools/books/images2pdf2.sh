@@ -44,4 +44,4 @@ i=150;width=2560;height=2048; \
 	  -resize ${width}x *	\
       -gravity center	\
 	  -extent ${width}x *	\
-      ../output/pdf/游戏开发-技术能力.pdf
+      ../output/pdf/2.游戏开发-技术能力.pdf
