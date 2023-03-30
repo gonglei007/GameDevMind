@@ -82,7 +82,7 @@
 ![](https://img.shields.io/static/v1?label=3&message=研发能力&color=yellow)
 ![](https://img.shields.io/static/v1?label=4&message=生产能力&color=green)
 ![](https://img.shields.io/static/v1?label=5&message=管理能力&color=blue)
-![](https://img.shields.io/static/v1?label=5&message=运营能力&color=purple)
+![](https://img.shields.io/static/v1?label=6&message=运营能力&color=purple)
   
 </p>
 
