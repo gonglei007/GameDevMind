@@ -222,7 +222,8 @@
 ## 支持者
 ### 贡献者
 
-| [公雷](https://github.com/gonglei007),&emsp; [Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; [KK](https://github.com/manchurio),&emsp; [陈运雄](https://github.com/chenyunxiong),&emsp;[彭静](https://github.com/goddie),&emsp;[宋博](https://github.com/ax-jason),&emsp; [Hardy LYU](https://github.com/Colythme),&emsp;... |
+| [公雷](https://github.com/gonglei007),&emsp; [Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; [KK](https://github.com/manchurio),&emsp; <br/>
+[陈运雄](https://github.com/chenyunxiong),&emsp;[彭静](https://github.com/goddie),&emsp;[宋博](https://github.com/ax-jason),&emsp; [Hardy LYU](https://github.com/Colythme),&emsp;... |
 | :---: |
 
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
