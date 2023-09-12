@@ -18,9 +18,9 @@
 </p>
 <br/>
 
-<!--
-*[中文](README.md)* | *[English](README-en.md)*
--->
+[English](https://github.com/gonglei007/GameDevMind-EN)
+
+<br/>
 
 > *❝我们的愿景❞* <br/><br/>希望能通过我们的分享，让游戏开发者们在已知事情上节省时间，把省出来的时间投入到创造性的工作中，进而拓宽这个行业的技术边界。
 
