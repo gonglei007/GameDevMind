@@ -228,6 +228,10 @@
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
 <br/>
 
+### 支持组织
+[极乐淘游戏开发者俱乐部](https://club.gltop.com)
+
+<!--
 ### Stargazers
 [![Stargazers repo roster for @gonglei007/GameDevMind](https://reporoster.com/stars/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/stargazers)
 <br/>
@@ -235,9 +239,7 @@
 ### Forkers
 [![Forkers repo roster for @gonglei007/GameDevMind](https://reporoster.com/forks/gonglei007/GameDevMind)](https://github.com/gonglei007/GameDevMind/network/members)
 <br/>
-
-### 支持组织
-[极乐淘游戏开发者俱乐部](https://club.gltop.com)
+-->
 
 ## 联系我们
 
