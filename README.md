@@ -229,8 +229,7 @@
 <br/>
 
 ### 支持组织
-<img src="images/GLTOP_GDC_Logo.png?raw=true" alt="drawing"/><br/>
-[极乐淘游戏开发者俱乐部](https://club.gltop.com)
+<a href="https://club.gltop.com"><img src="./images/GLTOP_GDC_Logo.png" height="128"></img></a>
 
 <!--
 ### Stargazers
