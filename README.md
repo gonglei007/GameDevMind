@@ -196,10 +196,21 @@
 
 <br/>
 
-## 游戏研运资产样例-SLG手游（2D）
-![游戏研运资产样例-SLG手游（2D）](exports/游戏研运资产样例-SLG手游（2D）.png)
-<br/>
-
+### 游戏研运资产样例-SLG手游（2D）
+<table width="100%" border=1>
+    <tr>
+        <td width="256" height="192">
+            <a href="mds/游戏研运资产样例-SLG手游（2D）.md"><img src="./images/subjects/subjects.007.jpeg" height="192"></img></a>
+        </td>
+        <td>
+            <div align="top">
+                要开发并上线运营一款 SLG 手游（2D），需要准备好并积累下来的全套相关资产清单。可用于辅助评估项目内容、项目成本、项目工作量等，为游戏立项或投资提供参考。
+            </div>
+            <br/>
+            <div align="right"><a href="mds/游戏研运资产样例-SLG手游（2D）.md">[阅读详细内容...]</a></div>
+        </td>
+    </tr>
+</table>
 
 ## 缩略预览
 *[[ 图谱总览 ]](exports/0.总览.png)*
@@ -211,7 +222,7 @@
 
 |  |  |
 | --- | -------- |
-| QQ群: | 242500383 [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi) |
+| QQ群: | 242500383 <br/> [![GLTOP游戏研发与技术1群](https://pub.idqqimg.com/wpa/images/group.png)](https://qm.qq.com/cgi-bin/qm/qr?k=fy4Z65nE-5Jd1ay8FkJpDc9iPJyW3d38&jump_from=webapi) |
 |  |  |
 | 讨论区: | [https://github.com/gonglei007/GameDevMind/discussions](https://github.com/gonglei007/GameDevMind/discussions) |
 
