@@ -219,18 +219,20 @@
 
 ## 合作组织
 
-<table border=0 style="background:black;">
-    <tr>
-        <td style="padding: 0px;">
-            <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/FinClipBanner.jpg" height="128"></img></a>
-        </td>
-    </tr>
-    <tr>
-        <td align="center"  style="background:#0f3fff;padding: 0px;">
-            <a href="https://club.gltop.com" target="_blank"><img src="./images/partners/GLTOP_GDC_Logo.png" height="128"></img></a>
-        </td>
-    </tr>
-</table>
+<div align="center">
+    <table border=1 style="background:black;">
+        <tr>
+            <td align="center" style="padding: 0px;">
+                <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/FinClipBanner.jpg" height="128"></img></a>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="background:#0f3fff;padding: 0px;">
+                <a href="https://club.gltop.com" target="_blank"><img src="./images/partners/GLTOP_GDC_Logo.png" height="128"></img></a>
+            </td>
+        </tr>
+    </table>
+</div>
 
 ## 交流讨论
 欢迎进群、进讨论区交流和分享游戏开发中遇到的问题或者解决方案。
