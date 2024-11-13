@@ -217,6 +217,21 @@
 ![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
 <br/>
 
+## 合作组织
+
+<table border=0 style="background:black;">
+    <tr>
+        <td style="padding: 0px;">
+            <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind"><img src="./images/partners/FinClipBanner.jpg" height="128"></img></a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center"  style="background:#0f3fff;padding: 0px;">
+            <a href="https://club.gltop.com"><img src="./images/partners/GLTOP_GDC_Logo.png" height="128"></img></a>
+        </td>
+    </tr>
+</table>
+
 ## 交流讨论
 欢迎进群、进讨论区交流和分享游戏开发中遇到的问题或者解决方案。
 
@@ -226,7 +241,6 @@
 |  |  |
 | 讨论区: | [https://github.com/gonglei007/GameDevMind/discussions](https://github.com/gonglei007/GameDevMind/discussions) |
 
-<br/>
 
 <!--
 ## 编辑与查看
@@ -235,17 +249,13 @@
 * markdown文本内容（/mds/目录）。<br/>
 -->
 
-## 支持者
-### 贡献者
+## 贡献者
 
-| [公雷](https://github.com/gonglei007),&emsp; [Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; [KK](https://github.com/manchurio),&emsp; <br> [陈运雄](https://github.com/chenyunxiong),&emsp;[彭静](https://github.com/goddie),&emsp;[宋博](https://github.com/ax-jason),&emsp; [Hardy LYU](https://github.com/Colythme),&emsp;... |
+| [公雷](https://github.com/gonglei007),&emsp; [Atom](https://github.com/gameatom),&emsp; [管仲才](https://github.com/guanzhongcai),&emsp; [王栋](https://github.com/wangdng),&emsp; [KK](https://github.com/manchurio),&emsp; [陈运雄](https://github.com/chenyunxiong),&emsp;[彭静](https://github.com/goddie),&emsp;[宋博](https://github.com/ax-jason),&emsp; [Hardy LYU](https://github.com/Colythme),&emsp;... |
 | :---: |
 
 【虚席以待...】 诚挚的邀请更多参与者来一起完善资料库。
 <br/>
-
-### 支持组织
-<a href="https://club.gltop.com"><img src="./images/GLTOP_GDC_Logo.png" height="128"></img></a>
 
 <!--
 ### Stargazers
