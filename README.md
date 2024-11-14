@@ -223,7 +223,7 @@
     <table border=1 style="background:black;">
         <tr>
             <td align="center" style="padding: 0px;">
-                <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/FinClipBanner.jpg" height="128"></img></a>
+                <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/FinClipBanner2.jpg" height="128"></img></a>
             </td>
         </tr>
         <tr>
