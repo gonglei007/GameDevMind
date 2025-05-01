@@ -64,8 +64,8 @@
 * [项目历史](HISTORY.md) - 项目的主要节点。
 
 ## 最近的提交
-<!-- COMMIT-START -->
-
+## 最近提交
+- 添加update-readme.yml ([e2d83c4](https://github.com/gonglei007/GameDevMind/commit/e2d83c450c6015985de3416e4e114d4a730098f3))
 <!--
 ## 总览
 <br/>
