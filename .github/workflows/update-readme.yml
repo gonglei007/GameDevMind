@@ -1,0 +1,30 @@
+name: Update README with latest commits
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时执行一次
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch latest commits
+        run: |
+          echo "## 最近提交" > recent-commits.md
+          git log -5 --pretty=format:"- %s ([%h](https://github.com/${{ github.repository }}/commit/%H))" >> recent-commits.md
+
+      - name: Update README
+        run: |
+          awk '/<!-- COMMIT-START -->/{system("cat recent-commits.md"); next}1' README.md > README.tmp
+          mv README.tmp README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update recent commits in README" || echo "No changes"
+          git push
