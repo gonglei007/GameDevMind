@@ -60,16 +60,20 @@
 
 <br/>
 
+<!--
 ## 阅读说明
 
 * [在线阅读](README.md#正文) - 在线阅读，页面中附带了更多参考资料。
+-->
 <!-- * [下载pdf版（预览版）](../../releases) - 在一些特定节点制作并发布pdf电子版，更便于本地阅读。-->
+<!--
 * [项目历史](HISTORY.md) - 项目的主要节点。
 
 
 ## 最近提交
 - 更新README ([96560a9](https://github.com/gonglei007/GameDevMind/commit/96560a90c7adf45404c223539d47fe2a2444501c))## 最近提交
 - 添加update-readme.yml ([e2d83c4](https://github.com/gonglei007/GameDevMind/commit/e2d83c450c6015985de3416e4e114d4a730098f3))
+-->
 <!--
 ## 总览
 <br/>
