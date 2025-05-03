@@ -1,8 +1,8 @@
 
 <p align="center">
-  <img src="images/repository-open-graph.png">
   <h1 align="center">游戏开发-技术图谱</h1>
 <!--
+  <img src="images/repository-open-graph.png">
   <img src="images/GLTOP_logo_circle_512x512.png" height="128">
   <p align="center">
     少一些重复，多一点创意
