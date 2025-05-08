@@ -231,19 +231,19 @@
 ## 合作组织
 
 <div align="center">
-    <table border=1 style="background:black;">
+    <table border=1 style="background:#f6f8fa;">
         <tr height="128">
-            <td align="center" style="background:#0f3fff;padding: 5px;margin: 20px;">
+            <td align="center" style="background:#ffffff;padding: 5px;margin: 20px;">
                 <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/Vika_Logo.svg" height="72"></img></a>
             </td>
         </tr>
         <tr>
-            <td align="center" style="background:#0f3fff;padding: 0px;">
+            <td align="center" style="background:#ffffff;padding: 0px;">
                 <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/FinClipBanner2.jpg" height="128"></img></a>
             </td>
         </tr>
         <tr>
-            <td align="center" style="background:#0f3fff;padding: 0px;">
+            <td align="center" style="background:#000000;padding: 0px;">
                 <a href="https://club.gltop.com" target="_blank"><img src="./images/partners/GLTOP_GDC_Logo.png" height="128"></img></a>
             </td>
         </tr>
