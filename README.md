@@ -232,9 +232,9 @@
 
 <div align="center">
     <table border=1 style="background:black;">
-        <tr>
+        <tr height="128">
             <td align="center" style="background:#0f3fff;padding: 5px;margin: 20px;">
-                <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/Vika_Logo.svg" height="128"></img></a>
+                <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/Vika_Logo.svg" height="72"></img></a>
             </td>
         </tr>
         <tr>
