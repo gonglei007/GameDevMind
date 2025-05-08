@@ -232,19 +232,19 @@
 
 <div align="center">
     <table border=1 style="background:#f6f8fa;">
-        <tr height="128">
-            <td align="center" style="background:#ffffff;padding: 5px;margin: 20px;">
-                <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/Vika_Logo.svg" height="72"></img></a>
+        <tr>
+            <td align="center" style="background:#ffffff;padding: 0px;">
+                <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.001.png" height="128"></img></a>
             </td>
         </tr>
         <tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
-                <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/FinClipBanner2.jpg" height="128"></img></a>
+                <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.002.png" height="128"></img></a>
             </td>
         </tr>
         <tr>
-            <td align="center" style="background:#000000;padding: 0px;">
-                <a href="https://club.gltop.com" target="_blank"><img src="./images/partners/GLTOP_GDC_Logo.png" height="128"></img></a>
+            <td align="center" style="background:#ffffff;padding: 0px;">
+                <a href="https://club.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.003.png" height="128"></img></a>
             </td>
         </tr>
     </table>
