@@ -99,10 +99,10 @@
 
 ----
 
-### 1.基础能力
 <table width="100%" border=1>
     <tr>
         <td width="256" height="192">
+        <a href="mds/1.基础能力/1.基础能力.md">1.基础能力</a>
             <a href="mds/1.基础能力/1.基础能力.md"><img src="./images/subjects/subjects.001.jpeg" height="192"></img></a>
         </td>
         <td>
@@ -113,14 +113,9 @@
             <div align="right"><a href="mds/1.基础能力/1.基础能力.md">[阅读详细内容...]</a></div>
         </td>
     </tr>
-</table>
-
-<br/>
-
-### 2.技术能力
-<table width="100%" border=1>
     <tr>
         <td width="256" height="192">
+            <a href="mds/2.技术能力/2.技术能力.md">2.技术能力</a>
             <a href="mds/2.技术能力/2.技术能力.md"><img src="./images/subjects/subjects.002.jpeg" height="192"></img></a>
         </td>
         <td>
@@ -131,14 +126,9 @@
             <div align="right"><a href="mds/2.技术能力/2.技术能力.md">[阅读详细内容...]</a></div>
         </td>
     </tr>
-</table>
-
-<br/>
-
-### 3.研发能力
-<table width="100%" border=1>
     <tr>
         <td width="256" height="192">
+            <a href="mds/3.研发能力/3.研发能力.md">3.研发能力</a>
             <a href="mds/3.研发能力/3.研发能力.md"><img src="./images/subjects/subjects.003.jpeg" height="192"></img></a>
         </td>
         <td>
@@ -149,14 +139,9 @@
             <div align="right"><a href="mds/3.研发能力/3.研发能力.md">[阅读详细内容...]</a></div>
         </td>
     </tr>
-</table>
-
-<br/>
-
-### 4.生产能力
-<table width="100%" border=1>
     <tr>
         <td width="256" height="192">
+            <a href="mds/4.生产能力/4.生产能力.md">4.生产能力</a>
             <a href="mds/4.生产能力/4.生产能力.md"><img src="./images/subjects/subjects.004.jpeg" height="192"></img></a>
         </td>
         <td>
@@ -167,14 +152,9 @@
             <div align="right"><a href="mds/4.生产能力/4.生产能力.md">[阅读详细内容...]</a></div>
         </td>
     </tr>
-</table>
-
-<br/>
-
-### 5.管理能力
-<table width="100%" border=1>
     <tr>
         <td width="256" height="192">
+            <a href="mds/5.管理能力/5.管理能力.md">5.管理能力</a>
             <a href="mds/5.管理能力/5.管理能力.md"><img src="./images/subjects/subjects.005.jpeg" height="192"></img></a>
         </td>
         <td>
@@ -185,14 +165,9 @@
             <div align="right"><a href="mds/5.管理能力/5.管理能力.md">[阅读详细内容...]</a></div>
         </td>
     </tr>
-</table>
-
-<br/>
-
-### 6.运营能力
-<table width="100%" border=1>
     <tr>
         <td width="256" height="192">
+            <a href="mds/6.运营能力/6.运营能力.md">6.运营能力</a>
             <a href="mds/6.运营能力/6.运营能力.md"><img src="./images/subjects/subjects.006.jpeg" height="192"></img></a>
         </td>
         <td>
@@ -205,9 +180,7 @@
     </tr>
 </table>
 
-<br/>
-
-### 游戏研运资产样例-SLG手游（2D）
+## 游戏研运资产样例-SLG手游（2D）
 <table width="100%" border=1>
     <tr>
         <td width="256" height="192">
@@ -244,7 +217,7 @@
         </tr>
         <tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
-                <a href="https://club.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.003.png" height="128"></img></a>
+                <a href="https://club.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.004.png" height="128"></img></a>
             </td>
         </tr>
     </table>
