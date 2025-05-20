@@ -244,7 +244,7 @@
         </tr>
         <tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
-                <a href="https://club.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.003.png" height="128"></img></a>
+                <a href="https://club.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.004.png" height="128"></img></a>
             </td>
         </tr>
     </table>
