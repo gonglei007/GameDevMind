@@ -214,7 +214,7 @@
 ![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
 <br/>
 
-## 合作组织
+## 特别鸣谢
 
 <div align="center">
     <table border=1 style="background:#f6f8fa;">
