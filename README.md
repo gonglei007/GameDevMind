@@ -223,11 +223,11 @@
                 <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.001.png" height="128"></img></a>
             </td>
         </tr>
-        <tr>
+        <!--tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
                 <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.002.png" height="128"></img></a>
             </td>
-        </tr>
+    </tr-->
         <tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
                 <a href="https://www.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.004.png" height="128"></img></a>
