@@ -214,7 +214,7 @@
 ![图2、这个知识图谱还在持续的补充扩展中](overview/overview-h.png)
 <br/>
 
-## 合作组织
+## 特别鸣谢
 
 <div align="center">
     <table border=1 style="background:#f6f8fa;">
@@ -223,11 +223,11 @@
                 <a href="https://vika.cn?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.001.png" height="128"></img></a>
             </td>
         </tr>
-        <tr>
+        <!--tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
                 <a href="https://www.finclip.com/landing/miniappgame?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.002.png" height="128"></img></a>
             </td>
-        </tr>
+    </tr-->
         <tr>
             <td align="center" style="background:#ffffff;padding: 0px;">
                 <a href="https://www.gltop.com?from=gamedevmind" target="_blank"><img src="./images/partners/GameDevMind_Baner/GameDevMind_Baner.004.png" height="128"></img></a>
