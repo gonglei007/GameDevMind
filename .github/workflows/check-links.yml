@@ -1,0 +1,68 @@
+name: Check Links
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    name: Check Markdown Links
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install markdown-link-check
+        run: |
+          npm install -g markdown-link-check
+
+      - name: Check internal links
+        run: |
+          echo "检查 Markdown 文件中的链接..."
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            echo "检查文件: $file"
+            markdown-link-check "$file" --config .markdown-link-check.json 2>&1 || true
+          done
+        continue-on-error: true
+
+      - name: Check image links
+        run: |
+          echo "检查图片链接..."
+          failed=0
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            # 提取所有图片链接
+            grep -oP '!\[.*?\]\([^)]+\)' "$file" | sed 's/.*(\(.*\))/\1/' | while read img; do
+              # 移除查询参数
+              img_path=$(echo "$img" | sed 's/?.*$//')
+              # 如果是相对路径，构建完整路径
+              if [[ "$img_path" =~ ^\.\./ ]] || [[ "$img_path" =~ ^\./ ]] || [[ ! "$img_path" =~ ^http ]]; then
+                img_dir=$(dirname "$file")
+                full_path=$(cd "$img_dir" && realpath "$img_path" 2>/dev/null || echo "")
+                if [ ! -f "$full_path" ] && [ ! -z "$full_path" ]; then
+                  echo "❌ 图片不存在: $file -> $img_path"
+                  failed=1
+                fi
+              fi
+            done
+          done
+          if [ $failed -eq 1 ]; then
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: Summary
+        run: |
+          echo "## 链接检查完成" >> $GITHUB_STEP_SUMMARY
+          echo "已检查所有 Markdown 文件中的链接" >> $GITHUB_STEP_SUMMARY
+

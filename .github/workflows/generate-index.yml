@@ -1,0 +1,175 @@
+name: Generate Index
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'mds/**'
+      - '.github/workflows/generate-index.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-index:
+    name: Generate Documentation Index
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Generate index
+        run: |
+          echo "生成文档索引..."
+          
+          # 创建索引文件头部
+          cat > INDEX_NEW.md << 'EOF'
+          # GameDevMind 文档索引
+          
+          > 快速导航到所有文档
+          
+          > **注意**: 此文件由 GitHub Actions 自动生成，请勿手动编辑
+          
+          ## 📚 按能力模块分类
+          EOF
+          
+          # 扫描主要能力模块目录 (1-6)
+          for i in 1 2 3 4 5 6; do
+            if [ -d "mds/$i."* ]; then
+              module_dir=$(find mds -maxdepth 1 -type d -name "$i.*" | head -1)
+              if [ -n "$module_dir" ]; then
+                module_name=$(basename "$module_dir")
+                module_title=$(echo "$module_name" | sed 's/^[0-9]*\.//')
+                
+                # 添加模块标题
+                echo "" >> INDEX_NEW.md
+                echo "### $i. $module_title" >> INDEX_NEW.md
+                echo "" >> INDEX_NEW.md
+                
+                # 添加主模块文件
+                if [ -f "$module_dir/$module_name.md" ]; then
+                  echo "- [$module_title]($module_dir/$module_name.md)" >> INDEX_NEW.md
+                  echo "" >> INDEX_NEW.md
+                fi
+                
+                # 添加子目录和文件
+                find "$module_dir" -mindepth 1 -maxdepth 1 -type d | sort | while read subdir; do
+                  subdir_name=$(basename "$subdir")
+                  if [ -f "$subdir/$subdir_name.md" ]; then
+                    subdir_title=$(echo "$subdir_name" | sed 's/^[0-9]*\.//')
+                    echo "  - [$subdir_title]($subdir/$subdir_name.md)" >> INDEX_NEW.md
+                    
+                    # 添加子目录下的文件
+                    find "$subdir" -mindepth 1 -maxdepth 1 -type f -name "*.md" ! -name "$subdir_name.md" | sort | while read file; do
+                      file_name=$(basename "$file" .md)
+                      file_title=$(echo "$file_name" | sed 's/^[0-9]*\.//')
+                      echo "    - [$file_title]($file)" >> INDEX_NEW.md
+                    done
+                  fi
+                done
+                
+                # 添加模块目录下的直接文件
+                find "$module_dir" -maxdepth 1 -type f -name "*.md" ! -name "$module_name.md" | sort | while read file; do
+                  file_name=$(basename "$file" .md)
+                  file_title=$(echo "$file_name" | sed 's/^[0-9]*\.//')
+                  echo "  - [$file_title]($file)" >> INDEX_NEW.md
+                done
+              fi
+            fi
+          done
+          
+          # 添加专题内容
+          echo "" >> INDEX_NEW.md
+          echo "## 📖 专题内容" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          
+          if [ -d "mds/一站式手游创业" ]; then
+            echo "### 一站式手游创业" >> INDEX_NEW.md
+            echo "" >> INDEX_NEW.md
+            find mds/一站式手游创业 -name "*.md" -type f | sort | while read file; do
+              file_name=$(basename "$file" .md)
+              echo "- [$file_name]($file)" >> INDEX_NEW.md
+            done
+            echo "" >> INDEX_NEW.md
+          fi
+          
+          # 添加其他专题
+          echo "### 其他专题" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          find mds -maxdepth 1 -name "*.md" -type f ! -name "README.md" | sort | while read file; do
+            file_name=$(basename "$file" .md)
+            echo "- [$file_name]($file)" >> INDEX_NEW.md
+          done
+          
+          # 添加 topics
+          if [ -d "mds/topics" ]; then
+            echo "" >> INDEX_NEW.md
+            echo "### Topics" >> INDEX_NEW.md
+            echo "" >> INDEX_NEW.md
+            find mds/topics -name "*.md" -type f | sort | while read file; do
+              file_name=$(basename "$file" .md)
+              echo "- [$file_name]($file)" >> INDEX_NEW.md
+            done
+          fi
+          
+          # 添加统计信息
+          echo "" >> INDEX_NEW.md
+          echo "## 📊 统计信息" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          doc_count=$(find mds -name "*.md" -type f | wc -l)
+          echo "- **总文档数**: $doc_count" >> INDEX_NEW.md
+          echo "- **最后更新**: $(date '+%Y-%m-%d %H:%M:%S')" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          
+          # 添加使用建议
+          echo "## 💡 使用建议" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          echo "1. **新手入门**: 从\"基础能力\"模块开始" >> INDEX_NEW.md
+          echo "2. **技术学习**: 按\"技术能力\"→\"研发能力\"→\"生产能力\"顺序" >> INDEX_NEW.md
+          echo "3. **项目管理**: 重点关注\"管理能力\"和\"运营能力\"" >> INDEX_NEW.md
+          echo "4. **创业参考**: 查看\"一站式手游创业\"专题" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          echo "---" >> INDEX_NEW.md
+          echo "" >> INDEX_NEW.md
+          echo "*此索引由 GitHub Actions 自动生成*" >> INDEX_NEW.md
+
+      - name: Compare and update index
+        run: |
+          if [ -f "INDEX.md" ]; then
+            if ! diff -q INDEX.md INDEX_NEW.md > /dev/null; then
+              echo "索引文件有更新，正在提交..."
+              mv INDEX_NEW.md INDEX.md
+              
+              git config --global user.name "github-actions[bot]"
+              git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add INDEX.md
+              git commit -m "docs: 自动更新文档索引 [skip ci]" || echo "No changes to commit"
+              git push
+            else
+              echo "索引文件无变化"
+              rm INDEX_NEW.md
+            fi
+          else
+            echo "创建新的索引文件..."
+            mv INDEX_NEW.md INDEX.md
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add INDEX.md
+            git commit -m "docs: 自动生成文档索引 [skip ci]"
+            git push
+          fi
+
+      - name: Summary
+        run: |
+          echo "## 索引生成完成" >> $GITHUB_STEP_SUMMARY
+          echo "已自动生成/更新文档索引" >> $GITHUB_STEP_SUMMARY
+

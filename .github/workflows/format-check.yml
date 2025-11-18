@@ -1,0 +1,92 @@
+name: Format Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  check-format:
+    name: Check Markdown Format
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check for HTML tags in Markdown
+        run: |
+          echo "检查 Markdown 文件中的 HTML 标签..."
+          failed=0
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            # 检查常见的 HTML 标签
+            if grep -E '<(h[1-6]|p|div|span|table|tr|td|th|ul|ol|li|a|img|br|hr)[^>]*>' "$file" > /dev/null; then
+              echo "⚠️  文件包含 HTML 标签: $file"
+              grep -n '<(h[1-6]|p|div|span|table|tr|td|th|ul|ol|li|a|img|br|hr)[^>]*>' "$file" | head -5
+              failed=1
+            fi
+          done
+          if [ $failed -eq 1 ]; then
+            echo "发现 HTML 标签，建议使用纯 Markdown 语法"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: Check image path format
+        run: |
+          echo "检查图片路径格式..."
+          failed=0
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            # 检查是否使用了 ?raw=true 参数
+            if grep -E '!\[.*?\]\([^)]+\?raw=true[^)]*\)' "$file" > /dev/null; then
+              echo "⚠️  文件包含 ?raw=true 参数: $file"
+              grep -n '!\[.*?\]\([^)]+\?raw=true[^)]*\)' "$file" | head -5
+              failed=1
+            fi
+          done
+          if [ $failed -eq 1 ]; then
+            echo "发现 ?raw=true 参数，建议移除"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: Check file encoding
+        run: |
+          echo "检查文件编码..."
+          failed=0
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            encoding=$(file -bi "$file" | sed -e 's/.*charset=\(.*\)/\1/')
+            if [ "$encoding" != "utf-8" ] && [ "$encoding" != "us-ascii" ]; then
+              echo "⚠️  文件编码不是 UTF-8: $file ($encoding)"
+              failed=1
+            fi
+          done
+          if [ $failed -eq 1 ]; then
+            echo "发现非 UTF-8 编码文件"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: Check trailing whitespace
+        run: |
+          echo "检查行尾空格..."
+          failed=0
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read file; do
+            if grep -l '[[:space:]]$' "$file" > /dev/null; then
+              echo "⚠️  文件包含行尾空格: $file"
+              failed=1
+            fi
+          done
+          if [ $failed -eq 1 ]; then
+            echo "发现行尾空格，建议移除"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: Summary
+        run: |
+          echo "## 格式检查完成" >> $GITHUB_STEP_SUMMARY
+          echo "已检查所有 Markdown 文件的格式" >> $GITHUB_STEP_SUMMARY
+
