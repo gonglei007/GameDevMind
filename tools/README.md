@@ -75,6 +75,37 @@
 # ... 以此类推
 ```
 
+### XMind 转换脚本
+
+#### `xmind2md.sh` (macOS/Linux) 和 `xmind2md.ps1` (Windows)
+将 `xminds` 目录下的所有 XMind 文件批量导出为同名的 Markdown 文件到 `mds` 目录。
+
+**环境要求**：
+- Python 3.7 或更高版本
+- （推荐）xmindparser 库：`pip install xmindparser`
+
+**用法**：
+
+**macOS/Linux**：
+```bash
+./xmind2md.sh
+```
+
+**Windows**：
+```powershell
+.\xmind2md.ps1
+```
+
+**功能**：
+- 自动遍历 `xminds` 目录下的所有 `.xmind` 文件
+- 保持目录结构，将导出的 `.md` 文件放到对应的 `mds` 目录
+- 自动安装 xmindparser 库（如果未安装）
+- 显示转换进度和统计信息
+
+**注意事项**：
+- 如果未安装 xmindparser，脚本会尝试使用基本的 XML 解析器，但效果可能不如 xmindparser
+- 建议先安装 xmindparser：`pip install xmindparser`
+
 ### 测试脚本
 
 #### `test.sh`
@@ -92,21 +123,23 @@
 - Bash shell
 - 基本的 Unix 工具（`find`, `cat`, `sed` 等）
 - （可选）PDF 生成工具（如 `pandoc`、`wkhtmltopdf`）
+- **XMind 转换脚本**：Python 3.7+，推荐安装 xmindparser 库
 
 ### Windows
 
-**注意**：当前脚本为 Shell 脚本，Windows 用户需要使用以下方式之一：
+**注意**：当前大部分脚本为 Shell 脚本，Windows 用户需要使用以下方式之一：
 
 1. **Git Bash**（推荐）
    - 安装 Git for Windows
-   - 使用 Git Bash 运行脚本
+   - 使用 Git Bash 运行 `.sh` 脚本
 
 2. **WSL**（Windows Subsystem for Linux）
    - 安装 WSL
    - 在 WSL 环境中运行脚本
 
-3. **PowerShell 版本**（计划中）
-   - 未来将提供 PowerShell 版本的脚本
+3. **PowerShell 脚本**
+   - `xmind2md.ps1` 可以直接在 PowerShell 中运行
+   - 需要 Python 3.7+ 环境
 
 ## 📖 使用方法
 
@@ -154,6 +187,16 @@
 ./createPDFs.sh
 ```
 
+### 示例：XMind 转 Markdown
+
+```bash
+# macOS/Linux
+./xmind2md.sh
+
+# Windows (PowerShell)
+.\xmind2md.ps1
+```
+
 ## ⚠️ 注意事项
 
 1. **路径问题**
@@ -166,6 +209,7 @@
 
 3. **依赖工具**
    - PDF 生成需要安装相应工具（如 `pandoc`）
+   - XMind 转换需要 Python 3.7+，推荐安装 xmindparser：`pip install xmindparser`
    - 检查脚本中的依赖要求
 
 4. **输出位置**
@@ -199,13 +243,22 @@
 - 检查输入文件是否存在
 - 查看错误信息
 
+### Q: XMind 转换失败
+
+**A**: 
+- 检查是否安装了 Python 3.7+
+- 检查 Python 是否在 PATH 中
+- 尝试手动安装 xmindparser：`pip install xmindparser`
+- 检查 xminds 目录是否存在
+- 查看错误信息
+
 ## 🔮 未来计划
 
-- [ ] 添加 PowerShell 版本的脚本
+- [x] 添加 PowerShell 版本的脚本（XMind 转换）
 - [ ] 添加 Node.js 版本的脚本（跨平台）
 - [ ] 添加配置文件支持
 - [ ] 添加更详细的错误处理
-- [ ] 添加进度显示
+- [x] 添加进度显示（XMind 转换）
 - [ ] 添加单元测试
 
 ## 📚 相关资源
