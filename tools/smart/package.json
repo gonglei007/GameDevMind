@@ -2,15 +2,15 @@
   "name": "gamedevmind-tools",
   "version": "1.0.0",
   "description": "GameDevMind 工具脚本",
-  "main": "cursor-agent-batch.js",
+  "main": "smart-agent-batch.js",
   "scripts": {
-    "cursor-agent": "node cursor-agent-batch.js",
-    "cursor-agent:help": "node cursor-agent-batch.js --help"
+    "smart-agent": "node smart-agent-batch.js",
+    "smart-agent:help": "node smart-agent-batch.js --help"
   },
   "keywords": [
     "gamedev",
     "tools",
-    "cursor",
+    "smart",
     "api"
   ],
   "author": "",

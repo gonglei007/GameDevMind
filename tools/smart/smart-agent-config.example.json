@@ -1,6 +1,6 @@
 {
   "apiKey": "",
-  "apiUrl": "https://api.cursor.sh/v1/chat/completions",
+  "apiUrl": "https://api.smart.sh/v1/chat/completions",
   "model": "gpt-4",
   "temperature": 0.7,
   "maxTokens": 2000,

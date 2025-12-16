@@ -1,8 +1,9 @@
-# Cursor API 脚本相关
-cursor-agent-output/
-output/
-*.log
-report-*.json
+# Smart API 脚本相关
+smart/smart-agent-output/
+smart/output/
+smart/*.log
+smart/report-*.json
+smart/smart-agent-config.json
 
 # Node.js
 node_modules/

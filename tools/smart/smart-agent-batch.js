@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Cursor API 批量执行 Agent 脚本
- * 通过 Cursor API 批量执行 agent，提示词中可以引用文件
+ * Smart API 批量执行 Agent 脚本
+ * 通过 Smart API 批量执行 agent，提示词中可以引用文件
  */
 
 const fs = require('fs');
@@ -11,9 +11,9 @@ const http = require('http');
 
 // 配置
 const CONFIG = {
-  // Cursor API 配置
-  apiUrl: process.env.CURSOR_API_URL || 'https://api.cursor.sh/v1/chat/completions',
-  apiKey: process.env.CURSOR_API_KEY || '',
+  // Smart API 配置
+  apiUrl: process.env.SMART_API_URL || 'https://api.smart.sh/v1/chat/completions',
+  apiKey: process.env.SMART_API_KEY || '',
   
   // 请求配置
   timeout: 60000, // 60秒超时
@@ -21,9 +21,9 @@ const CONFIG = {
   retryDelay: 1000, // 重试延迟（毫秒）
   
   // 文件路径
-  configFile: path.join(__dirname, 'cursor-agent-config.json'),
-  exampleConfigFile: path.join(__dirname, 'cursor-agent-config.example.json'),
-  outputDir: path.join(__dirname, 'cursor-agent-output'),
+  configFile: path.join(__dirname, 'smart-agent-config.json'),
+  exampleConfigFile: path.join(__dirname, 'smart-agent-config.example.json'),
+  outputDir: path.join(__dirname, 'smart-agent-output'),
 };
 
 // 颜色输出
@@ -74,7 +74,7 @@ function loadConfig() {
 function createExampleConfig() {
   const exampleConfig = {
     "apiKey": "",
-    "apiUrl": "https://api.cursor.sh/v1/chat/completions",
+    "apiUrl": "https://api.smart.sh/v1/chat/completions",
     "model": "gpt-4",
     "temperature": 0.7,
     "maxTokens": 2000,
@@ -144,9 +144,9 @@ function buildPromptWithFiles(basePrompt, files) {
 }
 
 /**
- * 调用 Cursor API
+ * 调用 Smart API
  */
-async function callCursorAPI(config, prompt, retryCount = 0) {
+async function callSmartAPI(config, prompt, retryCount = 0) {
   return new Promise((resolve, reject) => {
     const requestData = JSON.stringify({
       model: config.model || 'gpt-4',
@@ -196,7 +196,7 @@ async function callCursorAPI(config, prompt, retryCount = 0) {
           if (retryCount < CONFIG.maxRetries) {
             log(`请求失败 (${res.statusCode})，${CONFIG.retryDelay}ms 后重试 (${retryCount + 1}/${CONFIG.maxRetries})...`, 'yellow');
             setTimeout(() => {
-              callCursorAPI(config, prompt, retryCount + 1)
+              callSmartAPI(config, prompt, retryCount + 1)
                 .then(resolve)
                 .catch(reject);
             }, CONFIG.retryDelay);
@@ -212,7 +212,7 @@ async function callCursorAPI(config, prompt, retryCount = 0) {
       if (retryCount < CONFIG.maxRetries) {
         log(`请求错误: ${error.message}，${CONFIG.retryDelay}ms 后重试 (${retryCount + 1}/${CONFIG.maxRetries})...`, 'yellow');
         setTimeout(() => {
-          callCursorAPI(config, prompt, retryCount + 1)
+          callSmartAPI(config, prompt, retryCount + 1)
             .then(resolve)
             .catch(reject);
         }, CONFIG.retryDelay);
@@ -226,7 +226,7 @@ async function callCursorAPI(config, prompt, retryCount = 0) {
       if (retryCount < CONFIG.maxRetries) {
         log(`请求超时，${CONFIG.retryDelay}ms 后重试 (${retryCount + 1}/${CONFIG.maxRetries})...`, 'yellow');
         setTimeout(() => {
-          callCursorAPI(config, prompt, retryCount + 1)
+          callSmartAPI(config, prompt, retryCount + 1)
             .then(resolve)
             .catch(reject);
         }, CONFIG.retryDelay);
@@ -255,8 +255,8 @@ async function processTask(config, task, index, total) {
   
   try {
     // 调用 API
-    log('正在调用 Cursor API...', 'yellow');
-    const response = await callCursorAPI(config, prompt);
+    log('正在调用 Smart API...', 'yellow');
+    const response = await callSmartAPI(config, prompt);
     
     // 提取响应内容
     let content = '';
@@ -301,24 +301,24 @@ async function processTask(config, task, index, total) {
  * 主函数
  */
 async function main() {
-  log('=== Cursor API 批量执行 Agent ===', 'cyan');
+  log('=== Smart API 批量执行 Agent ===', 'cyan');
   
   // 加载配置
   const config = loadConfig();
   
   // 合并环境变量中的配置（环境变量优先级更高）
-  if (process.env.CURSOR_API_KEY) {
-    config.apiKey = process.env.CURSOR_API_KEY;
+  if (process.env.SMART_API_KEY) {
+    config.apiKey = process.env.SMART_API_KEY;
   }
-  if (process.env.CURSOR_API_URL) {
-    config.apiUrl = process.env.CURSOR_API_URL;
+  if (process.env.SMART_API_URL) {
+    config.apiUrl = process.env.SMART_API_URL;
   }
   
   // 检查 API Key
   if (!config.apiKey) {
     log('错误: 未设置 API Key', 'red');
-    log('请设置 CURSOR_API_KEY 环境变量或编辑配置文件', 'yellow');
-    log('  export CURSOR_API_KEY="your-api-key-here"', 'cyan');
+    log('请设置 SMART_API_KEY 环境变量或编辑配置文件', 'yellow');
+    log('  export SMART_API_KEY="your-api-key-here"', 'cyan');
     process.exit(1);
   }
   
@@ -381,5 +381,5 @@ if (require.main === module) {
   });
 }
 
-module.exports = { processTask, callCursorAPI, buildPromptWithFiles };
+module.exports = { processTask, callSmartAPI, buildPromptWithFiles };
 
