@@ -69,15 +69,46 @@ function loadConfig() {
 }
 
 /**
+ * 从 git 获取仓库 URL
+ */
+function getRepositoryFromGit() {
+  try {
+    const { execSync } = require('child_process');
+    const projectRoot = path.resolve(__dirname, '../..');
+    const remoteUrl = execSync('git config --get remote.origin.url', { 
+      cwd: projectRoot,
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'ignore']
+    }).trim();
+    
+    // 转换 SSH URL 为 HTTPS URL
+    if (remoteUrl.startsWith('git@')) {
+      const match = remoteUrl.match(/git@([^:]+):(.+)\.git/);
+      if (match) {
+        return `https://${match[1]}/${match[2]}`;
+      }
+    } else if (remoteUrl.startsWith('http')) {
+      // 移除 .git 后缀（如果有）
+      return remoteUrl.replace(/\.git$/, '');
+    }
+    
+    return remoteUrl;
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
  * 创建示例配置文件
  */
 function createExampleConfig() {
   const exampleConfig = {
     "apiKey": "",
-    "apiUrl": "https://api.smart.sh/v1/chat/completions",
-    "model": "gpt-4",
-    "temperature": 0.7,
-    "maxTokens": 2000,
+    "apiUrl": "https://api.cursor.com/v0/agents",
+    "model": "auto",
+    "repository": "https://github.com/your-org/your-repo",
+    "ref": "main",
+    "maxWaitTime": 300000,
     "delayBetweenTasks": 2000,
     "tasks": [
       {
@@ -95,7 +126,7 @@ function createExampleConfig() {
   
   fs.writeFileSync(CONFIG.exampleConfigFile, JSON.stringify(exampleConfig, null, 2), 'utf-8');
   log(`已创建示例配置文件: ${CONFIG.exampleConfigFile}`, 'green');
-  log('请复制示例配置文件并设置 API Key:', 'yellow');
+  log('请复制示例配置文件并设置 API Key 和 repository:', 'yellow');
   log(`  cp ${path.basename(CONFIG.exampleConfigFile)} ${path.basename(CONFIG.configFile)}`, 'cyan');
 }
 
@@ -145,23 +176,33 @@ function buildPromptWithFiles(basePrompt, files) {
 }
 
 /**
- * 调用 Smart API
+ * 调用 Smart API (Cursor Cloud Agent API)
  */
 async function callSmartAPI(config, prompt, retryCount = 0) {
   return new Promise((resolve, reject) => {
+    // Cursor Cloud Agent API 需要 prompt 和 source 字段
+    if (!config.repository) {
+      reject(new Error('配置文件中缺少必需的 repository 字段。请设置 GitHub 仓库 URL。'));
+      return;
+    }
+
     const requestData = JSON.stringify({
-      model: config.model || 'gpt-4',
-      messages: [
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: config.temperature || 0.7,
-      max_tokens: config.maxTokens || 2000,
+      prompt: {
+        text: prompt
+      },
+      source: {
+        repository: config.repository,
+        ref: config.ref || 'main'
+      },
+      ...(config.model && config.model !== 'auto' ? { model: config.model } : {})
     });
     
     const url = new URL(config.apiUrl || CONFIG.apiUrl);
+    const apiKey = config.apiKey || CONFIG.apiKey;
+    
+    // Cursor API 使用 Basic Authentication
+    const auth = Buffer.from(`${apiKey}:`).toString('base64');
+    
     const options = {
       hostname: url.hostname,
       port: url.port || (url.protocol === 'https:' ? 443 : 80),
@@ -170,7 +211,7 @@ async function callSmartAPI(config, prompt, retryCount = 0) {
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(requestData),
-        'Authorization': `Bearer ${config.apiKey || CONFIG.apiKey}`,
+        'Authorization': `Basic ${auth}`,
       },
       timeout: CONFIG.timeout,
     };
@@ -242,6 +283,124 @@ async function callSmartAPI(config, prompt, retryCount = 0) {
 }
 
 /**
+ * 轮询 Agent 状态
+ */
+async function pollAgentStatus(config, agentId, maxWaitTime = 300000) {
+  const startTime = Date.now();
+  const pollInterval = 5000; // 5秒轮询一次
+  
+  return new Promise((resolve, reject) => {
+    const checkStatus = async () => {
+      try {
+        const url = new URL(config.apiUrl || CONFIG.apiUrl);
+        const apiKey = config.apiKey || CONFIG.apiKey;
+        const auth = Buffer.from(`${apiKey}:`).toString('base64');
+        
+        const options = {
+          hostname: url.hostname,
+          port: url.port || (url.protocol === 'https:' ? 443 : 80),
+          path: `${url.pathname}/${agentId}`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Basic ${auth}`,
+          },
+          timeout: CONFIG.timeout,
+        };
+        
+        const client = url.protocol === 'https:' ? https : http;
+        
+        const req = client.request(options, (res) => {
+          let data = '';
+          res.on('data', (chunk) => { data += chunk; });
+          res.on('end', () => {
+            if (res.statusCode >= 200 && res.statusCode < 300) {
+              try {
+                const response = JSON.parse(data);
+                const status = response.status;
+                
+                if (status === 'FINISHED' || status === 'FAILED' || status === 'STOPPED') {
+                  resolve(response);
+                } else if (Date.now() - startTime > maxWaitTime) {
+                  reject(new Error(`Agent 超时: 等待时间超过 ${maxWaitTime / 1000} 秒`));
+                } else {
+                  log(`Agent 状态: ${status}, 继续等待...`, 'yellow');
+                  setTimeout(checkStatus, pollInterval);
+                }
+              } catch (error) {
+                reject(new Error(`解析状态响应失败: ${error.message}`));
+              }
+            } else {
+              reject(new Error(`获取 Agent 状态失败: ${res.statusCode} - ${data}`));
+            }
+          });
+        });
+        
+        req.on('error', reject);
+        req.on('timeout', () => {
+          req.destroy();
+          reject(new Error('获取 Agent 状态超时'));
+        });
+        
+        req.end();
+      } catch (error) {
+        reject(error);
+      }
+    };
+    
+    checkStatus();
+  });
+}
+
+/**
+ * 获取 Agent 对话内容
+ */
+async function getAgentConversation(config, agentId) {
+  return new Promise((resolve, reject) => {
+    const url = new URL(config.apiUrl || CONFIG.apiUrl);
+    const apiKey = config.apiKey || CONFIG.apiKey;
+    const auth = Buffer.from(`${apiKey}:`).toString('base64');
+    
+    const options = {
+      hostname: url.hostname,
+      port: url.port || (url.protocol === 'https:' ? 443 : 80),
+      path: `${url.pathname}/${agentId}/conversation`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Basic ${auth}`,
+      },
+      timeout: CONFIG.timeout,
+    };
+    
+    const client = url.protocol === 'https:' ? https : http;
+    
+    const req = client.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          try {
+            const response = JSON.parse(data);
+            resolve(response);
+          } catch (error) {
+            reject(new Error(`解析对话响应失败: ${error.message}`));
+          }
+        } else {
+          reject(new Error(`获取对话失败: ${res.statusCode} - ${data}`));
+        }
+      });
+    });
+    
+    req.on('error', reject);
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error('获取对话超时'));
+    });
+    
+    req.end();
+  });
+}
+
+/**
  * 处理单个任务
  */
 async function processTask(config, task, index, total) {
@@ -255,16 +414,48 @@ async function processTask(config, task, index, total) {
   }
   
   try {
-    // 调用 API
-    log('正在调用 Smart API...', 'yellow');
-    const response = await callSmartAPI(config, prompt);
+    // 调用 API 启动 Agent
+    log('正在启动 Cursor Cloud Agent...', 'yellow');
+    const launchResponse = await callSmartAPI(config, prompt);
     
-    // 提取响应内容
+    if (!launchResponse.id) {
+      throw new Error('启动 Agent 失败: 响应中缺少 agent ID');
+    }
+    
+    const agentId = launchResponse.id;
+    log(`Agent 已启动，ID: ${agentId}`, 'green');
+    log(`Agent 状态: ${launchResponse.status}`, 'blue');
+    log(`查看 Agent: ${launchResponse.target?.url || 'N/A'}`, 'blue');
+    
+    // 轮询 Agent 状态直到完成
+    log('等待 Agent 完成...', 'yellow');
+    const statusResponse = await pollAgentStatus(config, agentId, config.maxWaitTime || 300000);
+    
+    if (statusResponse.status === 'FAILED') {
+      throw new Error(`Agent 执行失败: ${statusResponse.summary || '未知错误'}`);
+    }
+    
+    if (statusResponse.status === 'STOPPED') {
+      throw new Error('Agent 已被停止');
+    }
+    
+    log(`Agent 已完成，状态: ${statusResponse.status}`, 'green');
+    
+    // 获取对话内容
+    log('获取 Agent 对话内容...', 'yellow');
+    const conversationResponse = await getAgentConversation(config, agentId);
+    
+    // 提取响应内容 - 从对话消息中提取助手回复
     let content = '';
-    if (response.choices && response.choices.length > 0) {
-      content = response.choices[0].message?.content || '';
+    if (conversationResponse.messages && conversationResponse.messages.length > 0) {
+      // 提取所有助手消息
+      const assistantMessages = conversationResponse.messages
+        .filter(msg => msg.type === 'assistant_message')
+        .map(msg => msg.text)
+        .join('\n\n');
+      content = assistantMessages || statusResponse.summary || '';
     } else {
-      content = JSON.stringify(response, null, 2);
+      content = statusResponse.summary || JSON.stringify(statusResponse, null, 2);
     }
     
     // 保存结果
@@ -316,12 +507,33 @@ async function main() {
   if (process.env.SMART_API_URL) {
     config.apiUrl = process.env.SMART_API_URL;
   }
+  if (process.env.SMART_REPOSITORY) {
+    config.repository = process.env.SMART_REPOSITORY;
+  }
+  
+  // 如果没有配置 repository，尝试从 git 获取
+  if (!config.repository) {
+    const gitRepo = getRepositoryFromGit();
+    if (gitRepo) {
+      config.repository = gitRepo;
+      log(`从 git 检测到仓库: ${gitRepo}`, 'green');
+    }
+  }
   
   // 检查 API Key
   if (!config.apiKey) {
     log('错误: 未设置 API Key', 'red');
     log('请设置 SMART_API_KEY 环境变量或编辑配置文件', 'yellow');
     log('  export SMART_API_KEY="your-api-key-here"', 'cyan');
+    process.exit(1);
+  }
+  
+  // 检查 repository
+  if (!config.repository) {
+    log('错误: 未设置 repository', 'red');
+    log('请设置 SMART_REPOSITORY 环境变量或编辑配置文件', 'yellow');
+    log('  export SMART_REPOSITORY="https://github.com/your-org/your-repo"', 'cyan');
+    log('或者确保项目已初始化 git 并配置了 remote.origin.url', 'yellow');
     process.exit(1);
   }
   
