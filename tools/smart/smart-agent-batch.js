@@ -12,7 +12,7 @@ const http = require('http');
 // 配置
 const CONFIG = {
   // Smart API 配置
-  apiUrl: process.env.SMART_API_URL || 'https://api.smart.sh/v1/chat/completions',
+  apiUrl: process.env.SMART_API_URL || 'https://api.cursor.com/v0/agents',
   apiKey: process.env.SMART_API_KEY || '',
   
   // 请求配置
@@ -234,16 +234,92 @@ async function callSmartAPI(config, prompt, retryCount = 0) {
             reject(new Error(`解析响应失败: ${error.message}`));
           }
         } else {
+          // 解析错误响应
+          let errorMessage = `API 请求失败: ${res.statusCode}`;
+          try {
+            const errorData = JSON.parse(data);
+            // 尝试从多个可能的字段获取错误信息
+            const errorText = errorData.error || errorData.message || errorData.detail || errorData.description || '';
+            if (errorText) {
+              errorMessage = errorText;
+              // 特殊处理常见错误
+              if (res.statusCode === 403 && errorText.includes('Storage mode')) {
+                errorMessage = `存储模式未启用。请在 Cursor 设置中启用存储模式以使用 Agent API。\n` +
+                  `访问: https://cursor.com/settings 启用存储模式。\n` +
+                  `原始错误: ${errorText}`;
+              } else if (res.statusCode === 403 && errorText.includes('Usage-based pricing')) {
+                errorMessage = `需要启用基于使用量的定价。\n` +
+                  `Background Agent 需要至少 $2 的余额。\n` +
+                  `请在 Cursor 控制台中启用基于使用量的定价并设置消费限额：\n` +
+                  `访问: https://www.cursor.com/dashboard?tab=settings\n` +
+                  `原始错误: ${errorText}`;
+              } else if (res.statusCode === 401) {
+                errorMessage = `认证失败。请检查 API Key 是否正确。\n` +
+                  `原始错误: ${errorText}`;
+              } else if (res.statusCode === 400) {
+                // 检查是否是定价相关错误
+                if (errorText.includes('Usage-based pricing')) {
+                  errorMessage = `需要启用基于使用量的定价。\n` +
+                    `Background Agent 需要至少 $2 的余额。\n` +
+                    `请在 Cursor 控制台中启用基于使用量的定价并设置消费限额：\n` +
+                    `访问: https://www.cursor.com/dashboard?tab=settings\n` +
+                    `原始错误: ${errorText}`;
+                } else {
+                  errorMessage = `请求参数错误: ${errorText}`;
+                  if (errorData.details) {
+                    errorMessage += `\n详细信息: ${JSON.stringify(errorData.details, null, 2)}`;
+                  }
+                }
+              } else if (res.statusCode >= 500) {
+                // 服务器错误
+                errorMessage = `服务器错误 (${res.statusCode}): ${errorText || '未知错误'}`;
+                if (errorData.details) {
+                  errorMessage += `\n详细信息: ${JSON.stringify(errorData.details, null, 2)}`;
+                }
+                // 如果还有其他消息字段，也显示出来
+                const additionalMessages = [];
+                if (errorData.message && errorData.message !== errorText) {
+                  additionalMessages.push(errorData.message);
+                }
+                if (errorData.detail && errorData.detail !== errorText) {
+                  additionalMessages.push(errorData.detail);
+                }
+                if (additionalMessages.length > 0) {
+                  errorMessage += `\n额外信息: ${additionalMessages.join('; ')}`;
+                }
+              }
+            } else {
+              errorMessage += ` - ${data}`;
+            }
+          } catch (e) {
+            errorMessage += ` - ${data}`;
+          }
+          
+          // 对于 403、401 和定价相关错误，不重试
+          if (res.statusCode === 403 || res.statusCode === 401 || 
+              (res.statusCode === 400 && errorMessage.includes('Usage-based pricing'))) {
+            reject(new Error(errorMessage));
+            return;
+          }
+          
           // 如果失败且还有重试次数，进行重试
           if (retryCount < CONFIG.maxRetries) {
             log(`请求失败 (${res.statusCode})，${CONFIG.retryDelay}ms 后重试 (${retryCount + 1}/${CONFIG.maxRetries})...`, 'yellow');
+            if (res.statusCode >= 500) {
+              log(`服务器错误，可能是临时问题，正在重试...`, 'yellow');
+            }
             setTimeout(() => {
               callSmartAPI(config, prompt, retryCount + 1)
                 .then(resolve)
                 .catch(reject);
             }, CONFIG.retryDelay);
           } else {
-            reject(new Error(`API 请求失败: ${res.statusCode} - ${data}`));
+            // 最终失败时提供更详细的错误信息
+            if (res.statusCode >= 500) {
+              errorMessage += `\n\n提示: 这是服务器端错误，可能是 Cursor 服务暂时不可用。\n` +
+                `建议: 稍后重试，或检查 https://status.cursor.com 了解服务状态。`;
+            }
+            reject(new Error(errorMessage));
           }
         }
       });
@@ -330,7 +406,19 @@ async function pollAgentStatus(config, agentId, maxWaitTime = 300000) {
                 reject(new Error(`解析状态响应失败: ${error.message}`));
               }
             } else {
-              reject(new Error(`获取 Agent 状态失败: ${res.statusCode} - ${data}`));
+              // 解析错误响应
+              let errorMessage = `获取 Agent 状态失败: ${res.statusCode}`;
+              try {
+                const errorData = JSON.parse(data);
+                if (errorData.error) {
+                  errorMessage = errorData.error;
+                } else {
+                  errorMessage += ` - ${data}`;
+                }
+              } catch (e) {
+                errorMessage += ` - ${data}`;
+              }
+              reject(new Error(errorMessage));
             }
           });
         });
@@ -385,7 +473,19 @@ async function getAgentConversation(config, agentId) {
             reject(new Error(`解析对话响应失败: ${error.message}`));
           }
         } else {
-          reject(new Error(`获取对话失败: ${res.statusCode} - ${data}`));
+          // 解析错误响应
+          let errorMessage = `获取对话失败: ${res.statusCode}`;
+          try {
+            const errorData = JSON.parse(data);
+            if (errorData.error) {
+              errorMessage = errorData.error;
+            } else {
+              errorMessage += ` - ${data}`;
+            }
+          } catch (e) {
+            errorMessage += ` - ${data}`;
+          }
+          reject(new Error(errorMessage));
         }
       });
     });
