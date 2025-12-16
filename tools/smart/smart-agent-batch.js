@@ -103,11 +103,12 @@ function createExampleConfig() {
  * 读取文件内容
  */
 function readFileContent(filePath) {
-  const projectRoot = path.resolve(__dirname, '..');
+  // 从 tools/smart/ 目录向上两级到项目根目录
+  const projectRoot = path.resolve(__dirname, '../..');
   const fullPath = path.resolve(projectRoot, filePath);
   
   if (!fs.existsSync(fullPath)) {
-    log(`文件不存在: ${filePath}`, 'yellow');
+    log(`文件不存在: ${filePath} (完整路径: ${fullPath})`, 'yellow');
     return null;
   }
   
@@ -268,7 +269,9 @@ async function processTask(config, task, index, total) {
     
     // 保存结果
     if (task.outputFile) {
-      const outputPath = path.resolve(__dirname, '..', task.outputFile);
+      // 从 tools/smart/ 目录向上两级到项目根目录
+      const projectRoot = path.resolve(__dirname, '../..');
+      const outputPath = path.resolve(projectRoot, task.outputFile);
       const outputDir = path.dirname(outputPath);
       
       // 确保输出目录存在
