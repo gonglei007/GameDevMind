@@ -1,0 +1,21 @@
+{
+  "apiKey": "",
+  "apiUrl": "https://api.cursor.sh/v1/chat/completions",
+  "model": "gpt-4",
+  "temperature": 0.7,
+  "maxTokens": 2000,
+  "delayBetweenTasks": 2000,
+  "tasks": [
+    {
+      "id": "task-1",
+      "prompt": "基于 @INTRODUCTION.md 的定位、目标和 @xminds/1.基础能力/1.1.1.编程语言基础概念.md 的内容，来更新丰富 @mds/1.基础能力/1.1.1.编程语言基础概念.md 文件的内容。",
+      "files": [
+        "INTRODUCTION.md",
+        "xminds/1.基础能力/1.1.1.编程语言基础概念.md",
+        "mds/1.基础能力/1.1.1.编程语言基础概念.md"
+      ],
+      "outputFile": "output/task-1-result.md"
+    }
+  ]
+}
+
