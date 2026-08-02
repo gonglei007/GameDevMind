@@ -206,13 +206,13 @@
 
 | 示例 | 知识点 | 亮点 |
 |------|--------|------|
-| [内存池](code/1.基础能力/1.1.2.C++语言/memory_pool/) | C++ 内存管理 | malloc vs 池化 10 万次性能对比 |
-| [智能指针陷阱](code/1.基础能力/1.1.2.C++语言/smart_pointer/) | unique_ptr / shared_ptr / weak_ptr | 循环引用泄漏 vs 修复对比日志 |
-| [命令模式](code/1.基础能力/1.2.1.设计模式/command/) | 设计模式 | 游戏输入录制 / 撤销 / 回放 |
-| [对象池](code/1.基础能力/1.2.1.设计模式/object_pool/) | 设计模式 | 子弹系统 new/delete vs 对象池 |
-| [四叉树](code/1.基础能力/1.2.2.数据结构/quadtree/) | 数据结构 | 碰撞检测 O(n²) vs 空间分区 |
-| [帧同步 vs 状态同步](code/2.技术能力/2.2.1.网络与通信/network_sync/) | 网络同步 | Lockstep vs State Sync 本地模拟 |
-| [六边形网格 + A*](code/3.研发能力/3.1.2.客户端3D场景开发/hex_grid/) | 地图/寻路 | Cube 坐标 + ASCII 可视化 |
+| [内存池](code/gamedevmind/1.基础能力/1.1.2.C++语言/memory_pool/) | C++ 内存管理 | malloc vs 池化 10 万次性能对比 |
+| [智能指针陷阱](code/gamedevmind/1.基础能力/1.1.2.C++语言/smart_pointer/) | unique_ptr / shared_ptr / weak_ptr | 循环引用泄漏 vs 修复对比日志 |
+| [命令模式](code/gamedevmind/1.基础能力/1.2.1.设计模式/command/) | 设计模式 | 游戏输入录制 / 撤销 / 回放 |
+| [对象池](code/gamedevmind/1.基础能力/1.2.1.设计模式/object_pool/) | 设计模式 | 子弹系统 new/delete vs 对象池 |
+| [四叉树](code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/) | 数据结构 | 碰撞检测 O(n²) vs 空间分区 |
+| [帧同步 vs 状态同步](code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/) | 网络同步 | Lockstep vs State Sync 本地模拟 |
+| [六边形网格 + A*](code/gamedevmind/3.研发能力/3.1.2.客户端3D场景开发/hex_grid/) | 地图/寻路 | Cube 坐标 + ASCII 可视化 |
 
 [📂 查看全部代码示例 →](code/README.md)
 

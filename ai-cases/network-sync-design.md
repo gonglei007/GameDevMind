@@ -67,7 +67,7 @@ AI 给了 tick loop + `map[playerID]Input` + `BroadcastSnapshot(aoiEntities)` �
 - 输入缓冲 2 帧抗 jitter
 - snapshot 序列号 + 客户端插值
 
-并参考仓库 [network_sync 代码示例](../code/2.技术能力/2.2.1.网络与通信/network_sync/)。
+并参考仓库 [network_sync 代码示例](../code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/)。
 
 ---
 
@@ -97,5 +97,5 @@ AI 给了 tick loop + `map[playerID]Input` + `BroadcastSnapshot(aoiEntities)` �
 
 | 类型 | 链接 |
 |------|------|
-| 📎 配套代码 | [network_sync 对比 demo](../code/2.技术能力/2.2.1.网络与通信/network_sync/) |
+| 📎 配套代码 | [network_sync 对比 demo](../code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/) |
 | 🏥 相关案例 | [MOBA 回弹事故](../cases/network-reconciliation.md) |

@@ -100,5 +100,5 @@ LoadAsset: persistent://hotupdate/_bak/ui_shop.ab  (v1.1.9 残留)
 
 | 类型 | 链接 |
 |------|------|
-| 📎 配套代码 | [hotupdate_client 最小流程](../code/6.运营能力/6.2.3.产品热更新/hotupdate_client/) |
+| 📎 配套代码 | [hotupdate_client 最小流程](../code/gamedevmind/6.运营能力/6.2.3.产品热更新/hotupdate_client/) |
 | 🤖 AI 对话 | — |

@@ -2,7 +2,7 @@
 
 演示网游热更新的核心链路：**manifest 对比 → 差异下载 → MD5 校验 → 原子替换**。
 
-对应文档：[产品热更新](../../../mds/6.运营能力/6.2.3.产品热更新.md)
+对应文档：[产品热更新](../../../../mds/6.运营能力/6.2.3.产品热更新.md)
 
 ## 快速运行
 
@@ -28,5 +28,5 @@ python hotupdate_client.py
 
 ## 延伸
 
-- 案例：[热更后旧资源残留](../../../cases/hotupdate-stale-assets.md)
-- 案例：[大版本强更与兼容](../../../cases/major-version-force-update.md)
+- 案例：[热更后旧资源残留](../../../../cases/hotupdate-stale-assets.md)
+- 案例：[大版本强更与兼容](../../../../cases/major-version-force-update.md)

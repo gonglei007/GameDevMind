@@ -56,5 +56,5 @@ SLG 手游发 **2.0 大版本**：新包重构了登录协议（增加 `client_p
 
 | 类型 | 链接 |
 |------|------|
-| 📎 配套代码 | [hotupdate_client](../code/6.运营能力/6.2.3.产品热更新/hotupdate_client/) |
+| 📎 配套代码 | [hotupdate_client](../code/gamedevmind/6.运营能力/6.2.3.产品热更新/hotupdate_client/) |
 | 🏥 相关案例 | [热更旧资源残留](hotupdate-stale-assets.md) |

@@ -306,7 +306,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address -fno-omit
 |--------|------|----------|
 | C++ 语言 — 智能指针 | [C++语言](../mds/1.基础能力/1.1.2.C++语言.md) | shared_ptr / weak_ptr / unique_ptr 的使用场景与陷阱 |
 | 内存管理 | [内存管理](../mds/1.基础能力/1.1.6.内存管理.md) | 循环引用检测、内存泄漏排查方法论 |
-| 配套代码示例 | [智能指针陷阱](../code/1.基础能力/1.1.2.C++语言/smart_pointer/) | 循环引用的最小可复现示例与修复方案 |
+| 配套代码示例 | [智能指针陷阱](../code/gamedevmind/1.基础能力/1.1.2.C++语言/smart_pointer/) | 循环引用的最小可复现示例与修复方案 |
 
 ---
 

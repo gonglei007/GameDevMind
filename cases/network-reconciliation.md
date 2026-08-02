@@ -248,4 +248,4 @@ if (Vector3.Distance(currentPos, serverPos) < correctionThreshold) {
 
 - [网游网络同步](../mds/3.研发能力/3.2.2.网游网络同步.md)
 - [网络与通信](../mds/2.技术能力/2.2.1.网络与通信.md)
-- 配套代码：[帧同步 vs 状态同步](../code/2.技术能力/2.2.1.网络与通信/network_sync/)
+- 配套代码：[帧同步 vs 状态同步](../code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/)

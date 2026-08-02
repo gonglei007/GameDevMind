@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd "/Users/mac/Works/hermes_workspace/GameDevMind/code/2.技术能力/2.2.1.网络与通信/network_sync"
+cd "/Users/mac/Works/hermes_workspace/GameDevMind/code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync"
 
 echo "=== 编译 lockstep.cpp ==="
 g++ -std=c++17 -Wall -Wextra -O2 lockstep.cpp -o lockstep

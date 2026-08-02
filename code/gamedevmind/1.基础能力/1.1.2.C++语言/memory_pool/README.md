@@ -143,7 +143,7 @@ size_t cap   = pool.Capacity();      // 池总容量 (编译期常量)
 
 ```bash
 # 进入项目目录
-cd code/1.基础能力/1.1.2.C++语言/memory_pool
+cd code/gamedevmind/1.基础能力/1.1.2.C++语言/memory_pool
 
 # ====== Release 模式（性能测试） ======
 cmake -B build_release -DCMAKE_BUILD_TYPE=Release
