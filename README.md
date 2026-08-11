@@ -36,7 +36,7 @@
 
 <div align="center">
 
-| 📊 118 篇文档 | 💻 2 套代码集合 | 🏥 8 个实战案例 | 🤖 5 个 AI 对话 |
+| 📊 121 篇文档 | 💻 2 套代码集合 | 🏥 8 个实战案例 | 🤖 5 个 AI 对话 |
 |:---:|:---:|:---:|:---:|
 | [开始阅读 →](mds/阅读说明.md) | [运行代码 →](code/README.md) | [看案例 →](cases/README.md) | [看对话 →](ai-cases/README.md) |
 
@@ -87,7 +87,7 @@
 
 ## 🧭 三条推荐路径
 
-> 118 篇文档如何读？按你的阶段选一条路径，配合 [交互式导航](https://gonglei007.github.io/GameDevMind/nav/) 一键筛选。
+> 121 篇文档如何读？按你的阶段选一条路径，配合 [交互式导航](https://gonglei007.github.io/GameDevMind/nav/) 一键筛选。
 
 | 路径 | 适合谁 | 入口 |
 |------|--------|------|
@@ -100,6 +100,14 @@
 ## 📚 正文
 
 > 游戏研运在技术方面需要具备的能力
+
+六大能力按照游戏产品的价值链组织，而不是简单按岗位或技术栈平铺：
+
+```text
+基础知识 → 游戏专项技术 → 游戏产品研发 → 工业化生产 → 管理协作 → 上线运营与盈利
+```
+
+具体判定标准见 [知识结构分层规范](docs/知识结构分层规范.md)。每篇正文只有一个主归属，跨层关系通过专题路径、标签和关联链接表达。
 
 <p>
 
@@ -122,8 +130,7 @@
             <a href="mds/1.基础能力/1.基础能力.md"><img src="./images/subjects/subjects.001.jpeg" height="160" alt="基础能力"></img></a>
         </td>
         <td style="padding: 14px 16px; vertical-align: top;">
-            <p>作为一种软件产品，游戏的开发离不开扎实的基础能力。这些能力不仅是通用软件工程的核心技能，也是保障开发效率与项目质量的基石。</p>
-            <p><strong>基础能力越扎实，整个开发流程就越稳定、高效。</strong></p>
+            <p>与游戏行业相关、但不限于游戏行业的编程、数学、计算机系统和软件工程基础。</p>
             <div align="right"><a href="mds/1.基础能力/1.基础能力.md">阅读详细内容 →</a></div>
         </td>
     </tr>
@@ -134,7 +141,7 @@
             <a href="mds/2.技术能力/2.技术能力.md"><img src="./images/subjects/subjects.002.jpeg" height="160" alt="技术能力"></img></a>
         </td>
         <td style="padding: 14px 16px; vertical-align: top;">
-            <p>游戏产品在开发中有其特定的技术需求。要研发一款游戏产品，需要具备从渲染、物理、网络到音频的一系列专项技术能力。</p>
+            <p>可跨游戏项目复用的图形、物理、UI、音频、引擎、网络和数据专项技术。</p>
             <div align="right"><a href="mds/2.技术能力/2.技术能力.md">阅读详细内容 →</a></div>
         </td>
     </tr>
@@ -145,7 +152,7 @@
             <a href="mds/3.研发能力/3.研发能力.md"><img src="./images/subjects/subjects.003.jpeg" height="160" alt="研发能力"></img></a>
         </td>
         <td style="padding: 14px 16px; vertical-align: top;">
-            <p>游戏是一种有艺术成分的商品，由数字内容和互动功能构建。开发一款游戏产品，需要有区别于其它软件产品的一系列技术、方法、工具和流程。</p>
+            <p>面向游戏产品本身的客户端、服务端、玩法、业务系统和运行时架构。</p>
             <div align="right"><a href="mds/3.研发能力/3.研发能力.md">阅读详细内容 →</a></div>
         </td>
     </tr>
@@ -156,7 +163,7 @@
             <a href="mds/4.生产能力/4.生产能力.md"><img src="./images/subjects/subjects.004.jpeg" height="160" alt="生产能力"></img></a>
         </td>
         <td style="padding: 14px 16px; vertical-align: top;">
-            <p>随着游戏行业的发展，研发规模越来越大。除了内容本身，如何高效地生产也变得至关重要——这需要各种工具和方法来持续提升生产效率。</p>
+            <p>围绕内容、数据、工具、自动化、技术中台和交付流水线建立游戏工业化生产能力。</p>
             <div align="right"><a href="mds/4.生产能力/4.生产能力.md">阅读详细内容 →</a></div>
         </td>
     </tr>
@@ -167,7 +174,7 @@
             <a href="mds/5.管理能力/5.管理能力.md"><img src="./images/subjects/subjects.005.jpeg" height="160" alt="管理能力"></img></a>
         </td>
         <td style="padding: 14px 16px; vertical-align: top;">
-            <p>管理中最具挑战的是尺度、分寸与随机应变。追求的是让复杂的事情简单化，同时也要有能力应对简单的事情复杂化的场景。</p>
+            <p>围绕角色、流程、目标、质量、版本、项目、团队和风险的生产管理能力。</p>
             <div align="right"><a href="mds/5.管理能力/5.管理能力.md">阅读详细内容 →</a></div>
         </td>
     </tr>
@@ -178,7 +185,7 @@
             <a href="mds/6.运营能力/6.运营能力.md"><img src="./images/subjects/subjects.006.jpeg" height="160" alt="运营能力"></img></a>
         </td>
         <td style="padding: 14px 16px; vertical-align: top;">
-            <p>作为一个组织，不论拥有什么样的技术或能力，核心目标之一是——持续盈利。一款好玩的游戏做出来了不一定就能赚钱，因此具备运营能力也是不可或缺的。（此处仅涵盖与技术相关的部分）</p>
+            <p>产品上线后的运维、LiveOps、数据分析、用户服务、商业化、安全、合规和持续盈利能力。</p>
             <div align="right"><a href="mds/6.运营能力/6.运营能力.md">阅读详细内容 →</a></div>
         </td>
     </tr>
