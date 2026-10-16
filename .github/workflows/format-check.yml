@@ -133,3 +133,53 @@ jobs:
           ASAN_OPTIONS: detect_leaks=1
           UBSAN_OPTIONS: halt_on_error=1
         run: timeout 20s /tmp/server-lock-order
+
+  sqlite-database-regression:
+    name: Check SQLite Database Example (${{ matrix.os }})
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify migrations, version conflicts, rewards and ranking
+        run: >-
+          python -m unittest discover
+          -s code/artile-sample-code/02-technical/06-database
+          -p 'test_*.py' -v
+
+  mysql-database-contract:
+    name: Check MySQL Transaction Contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: fixture-only
+          MYSQL_DATABASE: database_regression
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pfixture-only"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    defaults:
+      run:
+        working-directory: 'code/gamedevmind/2.技术能力/2.2.2.数据库/transaction_contract'
+    env:
+      DATABASE_CONTRACT_MYSQL_DSN: 'root:fixture-only@tcp(127.0.0.1:3306)/database_regression?timeout=2s&readTimeout=2s&writeTimeout=2s'
+      REQUIRE_DATABASE_INTEGRATION: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.2'
+          cache: false
+      - name: Verify locked modules
+        run: go mod verify
+      - name: Verify atomic effects, request identity and real InnoDB read views
+        run: go test -race -v -count=1 -timeout=90s ./...

@@ -49,6 +49,8 @@ python tools/check/generate_catalog.py --check
 
 ## CI 门禁
 
+[数据库示例](../../code/gamedevmind/2.技术能力/2.2.2.数据库/README.md) 的 SQLite 回归在 Windows/Linux 执行；MySQL 事务契约以独立 InnoDB 和 Go race 验证。缺少真实服务配置时，CI 必须失败；备份恢复、复制与容量不在该正确性门禁中。
+
 [服务端优化回归](../../code/gamedevmind/3.研发能力/3.2.3.服务端优化/README.md) 包含 Go 快照并发/真实 MySQL-Redis 集成，以及 C++17 锁序夹具。Go race 检查与依赖集成在独立 CI 服务中运行，C++ 启用 ASan/UBSan 和 timeout；失败阻断，但不代表产品容量、故障切换或长期无死锁。
 
 - [check-links.yml](../../.github/workflows/check-links.yml)：内部链接与锚点。

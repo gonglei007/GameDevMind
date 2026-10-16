@@ -14,6 +14,8 @@
 
 服务端优化增加 **Check Server Leaderboard Snapshot**（Go race + 独立 MySQL 8.0/Redis 7.4）和 **Check Server Lock Order**（C++17 + ASan/UBSan + 外部超时）。真实依赖配置缺失、竞态、快照/锁序回归均阻断；不使用生产数据，不把正确性测试当作容量或长期稳定性报告。命令与边界见 [服务端优化示例](../../code/gamedevmind/3.研发能力/3.2.3.服务端优化/README.md)。
 
+数据库增加 **Check SQLite Database Example**（Windows/Linux 的迁移、CAS、奖励和排行榜）及 **Check MySQL Transaction Contracts**（真实 InnoDB 的原子效果、幂等身份、回滚和 RC/RR 读视图，含 Go race）。MySQL 必须配置独立服务，缺失不允许跳过；SQLite 不替代其他引擎。运行范围见 [数据库示例](../../code/gamedevmind/2.技术能力/2.2.2.数据库/README.md)，不包含生产容量和备份恢复验收。
+
 ## 更新索引与导航
 
 正文标题、标签、文件列表和阅读路径是内容来源。修改后在本地运行：

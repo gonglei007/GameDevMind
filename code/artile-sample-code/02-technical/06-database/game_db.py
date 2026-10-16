@@ -1,102 +1,87 @@
 #!/usr/bin/env python3
-"""
-游戏数据库演示 — SQLite 玩家存档 + 排行榜 TOP10
+"""SQLite 存档与确定性排行榜教学示例；默认仅用内存，不删除任何数据库文件。
 
-纯标准库实现，模拟游戏持久化层核心：
-1. 玩家存档 — 创建/读取/更新玩家数据（等级、金币、经验）
-2. 排行榜 — TOP10 查询，支持按分数/等级排序
-3. 数据迁移 — 版本化 schema 升级
-
-运行：python game_db.py
+运行 python game_db.py。文件存档由调用者显式传入路径；这不是 MySQL 隔离级别模拟器。
 """
 
-import sqlite3
-import json
-import time
-import random
-import os
+from contextlib import contextmanager
 from dataclasses import dataclass, field
-from typing import Optional, List
+import json
+import random
+import sqlite3
+import time
+from typing import Optional
+
+DB_PATH = ":memory:"
 
 
-# ══════════════════════════════════════════════
-# 数据库管理
-# ══════════════════════════════════════════════
-
-DB_PATH = os.path.join(os.path.dirname(__file__), "game_data.db")
+class ConcurrentUpdateError(RuntimeError):
+    """存档版本过期；调用方需重新读并重新验证业务操作。"""
 
 
 class GameDatabase:
-    """游戏数据库封装"""
-
-    def __init__(self, db_path: str = DB_PATH):
-        self.conn = sqlite3.connect(db_path)
+    def __init__(self, db_path: str = DB_PATH, timeout: float = 5.0):
+        self.conn = sqlite3.connect(db_path, isolation_level=None, timeout=timeout)
         self.conn.row_factory = sqlite3.Row
-        self.conn.execute("PRAGMA journal_mode=WAL")  # 并发友好
-        self.conn.execute("PRAGMA foreign_keys=ON")
-        self._migrate()
+        try:
+            self.conn.execute("PRAGMA journal_mode=WAL")
+            self.conn.execute("PRAGMA foreign_keys=ON")
+            self._migrate()
+        except BaseException:
+            self.conn.close()
+            raise
+
+    @contextmanager
+    def transaction(self):
+        # One connection belongs to one thread. Independent writers use independent connections.
+        self.conn.execute("BEGIN IMMEDIATE")
+        try:
+            yield
+            self.conn.commit()
+        except BaseException:
+            self.conn.rollback()
+            raise
+
+    def close(self):
+        self.conn.close()
 
     def _migrate(self):
-        """Schema 版本化迁移"""
-        self.conn.execute("""
-            CREATE TABLE IF NOT EXISTS _meta (
-                key TEXT PRIMARY KEY,
-                value TEXT NOT NULL
-            )
-        """)
-
-        cur = self.conn.execute("SELECT value FROM _meta WHERE key='schema_version'")
-        row = cur.fetchone()
-        current_version = int(row["value"]) if row else 0
-
+        # Individual execute calls stay in our explicit transaction. executescript can commit first.
         migrations = [
-            # v1: 初始 schema
-            """
-            CREATE TABLE IF NOT EXISTS players (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT UNIQUE NOT NULL,
-                level INTEGER DEFAULT 1,
-                exp INTEGER DEFAULT 0,
-                gold INTEGER DEFAULT 0,
-                last_login REAL DEFAULT 0,
-                created_at REAL NOT NULL,
-                extra_data TEXT DEFAULT '{}'
-            )
-            """,
-            # v2: 添加排行榜成就表
-            """
-            CREATE TABLE IF NOT EXISTS leaderboard (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                player_id INTEGER NOT NULL,
-                score INTEGER NOT NULL,
-                category TEXT DEFAULT 'default',
+            ("""CREATE TABLE players (
+                id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL,
+                level INTEGER DEFAULT 1, exp INTEGER DEFAULT 0, gold INTEGER DEFAULT 0,
+                last_login REAL DEFAULT 0, created_at REAL NOT NULL,
+                extra_data TEXT DEFAULT '{}')""",),
+            ("""CREATE TABLE leaderboard (
+                id INTEGER PRIMARY KEY AUTOINCREMENT, player_id INTEGER NOT NULL,
+                score INTEGER NOT NULL, category TEXT NOT NULL DEFAULT 'default',
                 updated_at REAL NOT NULL,
-                FOREIGN KEY (player_id) REFERENCES players(id)
-            )
-            CREATE INDEX IF NOT EXISTS idx_leaderboard_score
-                ON leaderboard(category, score DESC)
-            """,
+                FOREIGN KEY (player_id) REFERENCES players(id))""",
+             """CREATE INDEX idx_leaderboard_score
+                ON leaderboard(category, score DESC, player_id ASC)"""),
+            ("ALTER TABLE players ADD COLUMN version INTEGER NOT NULL DEFAULT 0",
+             """CREATE UNIQUE INDEX idx_leaderboard_player_category
+                ON leaderboard(player_id, category)"""),
         ]
+        with self.transaction():
+            self.conn.execute("CREATE TABLE IF NOT EXISTS _meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
+            row = self.conn.execute("SELECT value FROM _meta WHERE key='schema_version'").fetchone()
+            current = int(row["value"]) if row else 0
+            if current < 0 or current > len(migrations):
+                raise RuntimeError("Unsupported schema version; no automatic downgrade")
+            for version, statements in enumerate(migrations, 1):
+                if version <= current:
+                    continue
+                for statement in statements:
+                    self.conn.execute(statement)
+                self.conn.execute("""INSERT INTO _meta(key,value) VALUES('schema_version',?)
+                    ON CONFLICT(key) DO UPDATE SET value=excluded.value""", (str(version),))
+        # Existing duplicate leaderboard rows make v3 fail and roll back; no silent data deletion.
 
-        for v, sql in enumerate(migrations, start=1):
-            if v > current_version:
-                print(f"  🗄️  迁移 v{v} ...")
-                self.conn.executescript(sql)
-                self.conn.execute(
-                    "INSERT OR REPLACE INTO _meta(key, value) VALUES('schema_version', ?)",
-                    (str(v),),
-                )
-                self.conn.commit()
-                current_version = v
-
-
-# ══════════════════════════════════════════════
-# 1. 玩家存档 (CRUD)
-# ══════════════════════════════════════════════
 
 @dataclass
 class PlayerSave:
-    """玩家存档数据"""
     id: int = 0
     name: str = ""
     level: int = 1
@@ -104,271 +89,130 @@ class PlayerSave:
     gold: int = 0
     last_login: float = 0.0
     extra_data: dict = field(default_factory=dict)
+    version: int = 0
+
+
+def positive_limit(value):
+    if type(value) is not int or not 1 <= value <= 1000:
+        raise ValueError("limit must be an integer in [1,1000]")
+    return value
 
 
 class PlayerRepository:
-    """玩家数据仓库"""
-
     def __init__(self, db: GameDatabase):
         self.db = db
 
+    @staticmethod
+    def _decode(row):
+        if row is None:
+            return None
+        return PlayerSave(id=row["id"], name=row["name"], level=row["level"], exp=row["exp"],
+                          gold=row["gold"], last_login=row["last_login"],
+                          extra_data=json.loads(row["extra_data"]), version=row["version"])
+
     def create_player(self, name: str) -> PlayerSave:
-        """创建新玩家"""
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("player name is required")
         now = time.time()
-        cur = self.db.conn.execute(
-            """INSERT INTO players (name, level, exp, gold, last_login, created_at, extra_data)
-               VALUES (?, 1, 0, 100, ?, ?, '{}')""",
-            (name, now, now),
-        )
-        self.db.conn.commit()
-        return self.get_player(cur.lastrowid)
+        with self.db.transaction():
+            cursor = self.db.conn.execute("""INSERT INTO players
+                (name,level,exp,gold,last_login,created_at,extra_data)
+                VALUES (?,1,0,100,?,?,'{}')""", (name, now, now))
+            player_id = cursor.lastrowid
+        return self.get_player(player_id)
 
     def get_player(self, player_id: int) -> Optional[PlayerSave]:
-        """读取存档"""
-        cur = self.db.conn.execute(
-            "SELECT * FROM players WHERE id=?", (player_id,)
-        )
-        row = cur.fetchone()
-        if row is None:
-            return None
-        return PlayerSave(
-            id=row["id"],
-            name=row["name"],
-            level=row["level"],
-            exp=row["exp"],
-            gold=row["gold"],
-            last_login=row["last_login"],
-            extra_data=json.loads(row["extra_data"]),
-        )
+        return self._decode(self.db.conn.execute("SELECT * FROM players WHERE id=?", (player_id,)).fetchone())
 
     def find_by_name(self, name: str) -> Optional[PlayerSave]:
-        """按名字查找"""
-        cur = self.db.conn.execute(
-            "SELECT * FROM players WHERE name=?", (name,)
-        )
-        row = cur.fetchone()
-        if row is None:
-            return None
-        return self.get_player(row["id"])
+        return self._decode(self.db.conn.execute("SELECT * FROM players WHERE name=?", (name,)).fetchone())
+
+    def _write(self, player, now):
+        if player.level < 1 or player.exp < 0 or player.gold < 0:
+            raise ValueError("invalid player state")
+        cursor = self.db.conn.execute("""UPDATE players SET level=?,exp=?,gold=?,last_login=?,
+            extra_data=?,version=version+1 WHERE id=? AND version=?""",
+            (player.level, player.exp, player.gold, now, json.dumps(player.extra_data), player.id, player.version))
+        if cursor.rowcount != 1:
+            raise ConcurrentUpdateError("player missing or version stale")
 
     def update_player(self, player: PlayerSave):
-        """更新存档"""
-        self.db.conn.execute(
-            """UPDATE players SET level=?, exp=?, gold=?,
-               last_login=?, extra_data=? WHERE id=?""",
-            (
-                player.level,
-                player.exp,
-                player.gold,
-                time.time(),
-                json.dumps(player.extra_data),
-                player.id,
-            ),
-        )
-        self.db.conn.commit()
+        now = time.time()
+        with self.db.transaction():
+            self._write(player, now)
+        player.version += 1
+        player.last_login = now
 
     def add_exp(self, player_id: int, amount: int) -> Optional[PlayerSave]:
-        """增加经验值并自动升级"""
-        p = self.get_player(player_id)
-        if p is None:
-            return None
-        p.exp += amount
-        # 自动升级：每 100 经验升一级
-        new_level = 1 + p.exp // 100
-        if new_level > p.level:
-            p.level = new_level
-            p.gold += 50 * (new_level - p.level)  # 升级奖励
-        self.update_player(p)
-        return p
+        if type(amount) is not int or amount < 0:
+            raise ValueError("experience amount must be a nonnegative integer")
+        now = time.time()
+        with self.db.transaction():
+            player = self.get_player(player_id)
+            if player is None:
+                return None
+            old_level = player.level
+            player.exp += amount
+            player.level = max(old_level, 1 + player.exp // 100)
+            player.gold += 50 * (player.level - old_level)
+            self._write(player, now)
+        player.version += 1
+        player.last_login = now
+        return player
 
-    def list_all(self, limit: int = 20) -> List[PlayerSave]:
-        """列出所有玩家"""
-        cur = self.db.conn.execute(
-            "SELECT * FROM players ORDER BY level DESC, exp DESC LIMIT ?",
-            (limit,),
-        )
-        return [self.get_player(r["id"]) for r in cur.fetchall()]
+    def list_all(self, limit: int = 20) -> list[PlayerSave]:
+        rows = self.db.conn.execute("SELECT * FROM players ORDER BY level DESC,exp DESC,id ASC LIMIT ?",
+                                    (positive_limit(limit),)).fetchall()
+        return [self._decode(row) for row in rows]  # One query; no N+1 reads.
 
-
-# ══════════════════════════════════════════════
-# 2. 排行榜 TOP10
-# ══════════════════════════════════════════════
 
 class LeaderboardService:
-    """排行榜服务"""
-
     def __init__(self, db: GameDatabase, player_repo: PlayerRepository):
         self.db = db
         self.players = player_repo
 
     def submit_score(self, player_id: int, score: int, category: str = "default"):
-        """提交分数到排行榜"""
-        now = time.time()
-        # 先查是否已有记录
-        cur = self.db.conn.execute(
-            """SELECT id, score FROM leaderboard
-               WHERE player_id=? AND category=?""",
-            (player_id, category),
-        )
-        row = cur.fetchone()
-
-        if row is None:
-            # 新记录
-            self.db.conn.execute(
-                """INSERT INTO leaderboard (player_id, score, category, updated_at)
-                   VALUES (?, ?, ?, ?)""",
-                (player_id, score, category, now),
-            )
-        elif score > row["score"]:
-            # 仅当新分数更高时更新
-            self.db.conn.execute(
-                "UPDATE leaderboard SET score=?, updated_at=? WHERE id=?",
-                (score, now, row["id"]),
-            )
-        self.db.conn.commit()
+        if type(score) is not int or score < 0 or not isinstance(category, str) or not category:
+            raise ValueError("nonnegative integer score and nonempty category required")
+        with self.db.transaction():
+            self.db.conn.execute("""INSERT INTO leaderboard(player_id,score,category,updated_at)
+                VALUES (?,?,?,?) ON CONFLICT(player_id,category) DO UPDATE
+                SET score=excluded.score,updated_at=excluded.updated_at
+                WHERE excluded.score > leaderboard.score""", (player_id, score, category, time.time()))
 
     def get_top(self, n: int = 10, category: str = "default") -> list:
-        """获取 TOP N 排行榜"""
-        cur = self.db.conn.execute(
-            """SELECT p.name, p.level, lb.score, lb.updated_at
-               FROM leaderboard lb
-               JOIN players p ON p.id = lb.player_id
-               WHERE lb.category = ?
-               ORDER BY lb.score DESC
-               LIMIT ?""",
-            (category, n),
-        )
-        return [
-            {
-                "rank": i + 1,
-                "name": r["name"],
-                "level": r["level"],
-                "score": r["score"],
-                "time": r["updated_at"],
-            }
-            for i, r in enumerate(cur.fetchall())
-        ]
+        rows = self.db.conn.execute("""SELECT p.id,p.name,p.level,lb.score,lb.updated_at
+            FROM leaderboard lb JOIN players p ON p.id=lb.player_id WHERE lb.category=?
+            ORDER BY lb.score DESC,lb.player_id ASC LIMIT ?""", (category, positive_limit(n))).fetchall()
+        return [{"rank": i + 1, "player_id": row["id"], "name": row["name"], "level": row["level"],
+                 "score": row["score"], "time": row["updated_at"]} for i, row in enumerate(rows)]
 
     def get_player_rank(self, player_id: int, category: str = "default") -> Optional[int]:
-        """查询玩家当前排名"""
-        cur = self.db.conn.execute(
-            "SELECT score FROM leaderboard WHERE player_id=? AND category=?",
-            (player_id, category),
-        )
-        row = cur.fetchone()
-        if row is None:
-            return None
-
-        cur2 = self.db.conn.execute(
-            "SELECT COUNT(*) FROM leaderboard WHERE score > ? AND category=?",
-            (row["score"], category),
-        )
-        return cur2.fetchone()[0] + 1
-
-
-# ══════════════════════════════════════════════
-# 演示
-# ══════════════════════════════════════════════
-
-PLAYER_NAMES = ["Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack", "Kate", "Leo"]
-
-
-def demo_save_load():
-    """演示存档读写"""
-    print("═══ 1. 玩家存档演示 ═══")
-
-    db = GameDatabase()
-    repo = PlayerRepository(db)
-
-    # 创建多个玩家
-    players = {}
-    for name in PLAYER_NAMES[:6]:
-        existing = repo.find_by_name(name)
-        if existing:
-            players[name] = existing
-        else:
-            players[name] = repo.create_player(name)
-            print(f"  ✅ 创建玩家: {name}")
-
-    # 给玩家增加经验
-    print("\n  🎮 模拟游戏 ...")
-    for name in ["Alice", "Bob", "Charlie"]:
-        exp = random.randint(30, 200)
-        p = repo.add_exp(players[name].id, exp)
-        print(f"  {name}: +{exp} EXP → Lv.{p.level} ({p.exp} EXP) 💰{p.gold}G")
-
-    # 更新 Alice 的自定义数据
-    alice = repo.find_by_name("Alice")
-    alice.extra_data = {"unlocked_skins": ["dragon", "phoenix"], "achievements": 5}
-    repo.update_player(alice)
-    print(f"  {alice.name} 额外数据: {alice.extra_data}")
-
-    print()
-    return db, repo
-
-
-def demo_leaderboard(db: GameDatabase, repo: PlayerRepository):
-    """演示排行榜"""
-    print("═══ 2. 排行榜 TOP10 演示 ═══")
-
-    lb = LeaderboardService(db, repo)
-
-    # 模拟分数提交
-    all_players = repo.list_all()
-    print(f"  共 {len(all_players)} 名玩家\n")
-
-    for p in all_players:
-        score = random.randint(100, 10000)
-        # 高分玩家多提交几次
-        for _ in range(random.randint(1, 3)):
-            lb.submit_score(p.id, score + random.randint(-200, 200))
-
-    # TOP10
-    top = lb.get_top(10)
-    print("  🏆 排行榜 TOP10:")
-    print(f"  {'排名':<6}{'名称':<12}{'等级':<6}{'分数':<10}")
-    print(f"  {'─' * 34}")
-    for entry in top:
-        print(f"  #{entry['rank']:<5}{entry['name']:<12}Lv.{entry['level']:<4}{entry['score']:<10}")
-
-    # 某个玩家的排名
-    if all_players:
-        p = all_players[0]
-        rank = lb.get_player_rank(p.id)
-        print(f"\n  🔍 {p.name} 当前排名: #{rank}")
-
-    print()
-
-
-def demo_schema_version():
-    """展示 schema 版本"""
-    print("═══ 3. Schema 版本 ═══")
-    db = GameDatabase()
-    cur = db.conn.execute("SELECT * FROM _meta")
-    for row in cur.fetchall():
-        print(f"  {row['key']}: {row['value']}")
-    print()
+        row = self.db.conn.execute("""SELECT 1+(SELECT COUNT(*) FROM leaderboard other
+            WHERE other.category=lb.category AND (other.score>lb.score OR
+                (other.score=lb.score AND other.player_id<lb.player_id))) AS ranking
+            FROM leaderboard lb WHERE lb.player_id=? AND lb.category=?""", (player_id, category)).fetchone()
+        return row["ranking"] if row else None
 
 
 def main():
-    print("=" * 60)
-    print("  游戏数据库演示 — SQLite 存档 + 排行榜")
-    print("=" * 60)
-    print()
-
-    db, repo = demo_save_load()
-    demo_leaderboard(db, repo)
-    demo_schema_version()
-
-    # 清理
-    db.conn.close()
-    if os.path.exists(DB_PATH):
-        os.remove(DB_PATH)
-
-    print("=" * 60)
-    print("  演示完成！")
-    print("  核心：SQLite CRUD → 自动升级 → 排行榜 TOP10")
-    print("=" * 60)
+    print("SQLite 存档与排行榜演示（仅内存，不读取或删除 game_data.db）")
+    db = GameDatabase()
+    try:
+        repo = PlayerRepository(db)
+        board = LeaderboardService(db, repo)
+        rng = random.Random(42)
+        for name in ["Alice", "Bob", "Charlie", "Diana"]:
+            player = repo.create_player(name)
+            player = repo.add_exp(player.id, rng.randint(100, 300))
+            board.submit_score(player.id, rng.randint(100, 1000))
+            print(f"{player.name}: level={player.level}, exp={player.exp}, gold={player.gold}")
+        for row in board.get_top():
+            print(f"#{row['rank']} {row['name']}: {row['score']}")
+        version = db.conn.execute("SELECT value FROM _meta WHERE key='schema_version'").fetchone()[0]
+        print(f"schema_version={version}")
+    finally:
+        db.close()
 
 
 if __name__ == "__main__":
