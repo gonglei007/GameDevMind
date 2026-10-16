@@ -208,6 +208,7 @@ int main() {
     std::cout << "  关键: 两个客户端接收相同输入 → 独立计算 → 结果必然一致\n";
     std::cout << "═══════════════════════════════════════════════════════════\n";
     
+    bool all_frames_consistent = (client_a.state == client_b.state);
     for (int f = 0; f < TOTAL_FRAMES; ++f) {
         auto& fi = input_sequence[f];
         
@@ -259,6 +260,7 @@ int main() {
         
         // 一致性检查
         bool consistent = (client_a.state == client_b.state);
+        all_frames_consistent = all_frames_consistent && consistent;
         std::cout << "  ─────────────────────────────────────────────────\n";
         std::cout << "  状态哈希 A: 0x" << std::hex << client_a.state.hash()
                   << "  B: 0x" << client_b.state.hash() << std::dec << "\n";
@@ -270,7 +272,7 @@ int main() {
     std::cout << "  最终验证\n";
     std::cout << "═══════════════════════════════════════════════════════════\n\n";
     
-    bool final_consistent = (client_a.state == client_b.state);
+    bool final_consistent = all_frames_consistent && (client_a.state == client_b.state);
     std::cout << "  客户端 A 最终状态:\n";
     std::cout << "    P0 位置: (" << client_a.state.px[0] << "," << client_a.state.py[0] << ")\n";
     std::cout << "    P1 位置: (" << client_a.state.px[1] << "," << client_a.state.py[1] << ")\n";
@@ -293,10 +295,10 @@ int main() {
     
     std::cout << "▸ 帧同步关键要点:\n";
     std::cout << "  1. 输入驱动:   所有客户端收集相同输入后统一执行\n";
-    std::cout << "  2. 确定性逻辑: 相同输入+初始状态=相同输出 (无随机/系统时间)\n";
+    std::cout << "  2. 确定性逻辑: 相同输入、初始状态与模拟规则须可复现\n";
     std::cout << "  3. 固定帧率:   所有客户端以相同帧率推进 (Turn-lock)\n";
-    std::cout << "  4. 无需服务器: 客户端自行计算，服务器仅转发输入\n";
-    std::cout << "  5. 适用场景:   RTS、MOBA (大量单位，带宽有限)\n";
+    std::cout << "  4. 本例服务器: 只广播输入；实际项目也可复算或验证逻辑\n";
+    std::cout << "  5. 选型依据:   确定性、输入等待与资源预算，不按类型硬套\n";
     
     return final_consistent ? 0 : 1;
 }

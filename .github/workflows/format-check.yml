@@ -44,3 +44,21 @@ jobs:
           ASAN_OPTIONS: detect_leaks=1
           UBSAN_OPTIONS: halt_on_error=1
         run: /tmp/guild-cycle-regression
+
+  network-sync-regression:
+    name: Check Network Synchronization Examples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure networking examples with sanitizers
+        run: >-
+          cmake -S 'code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync'
+          -B /tmp/network-sync-build -DCMAKE_BUILD_TYPE=Debug
+          '-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer'
+      - name: Build networking examples
+        run: cmake --build /tmp/network-sync-build
+      - name: Verify lockstep consistency and prediction reconciliation
+        env:
+          ASAN_OPTIONS: detect_leaks=1
+          UBSAN_OPTIONS: halt_on_error=1
+        run: ctest --test-dir /tmp/network-sync-build --output-on-failure

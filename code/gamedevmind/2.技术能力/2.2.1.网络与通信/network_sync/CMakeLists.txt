@@ -7,7 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 编译选项
-add_compile_options(-Wall -Wextra -O2)
+if(MSVC)
+    add_compile_options(/W4 /utf-8)
+else()
+    add_compile_options(-Wall -Wextra)
+endif()
 
 # ============================================================
 # 帧同步演示 (Lockstep)
@@ -20,6 +24,10 @@ target_compile_features(lockstep PRIVATE cxx_std_17)
 # ============================================================
 add_executable(state_sync state_sync.cpp)
 target_compile_features(state_sync PRIVATE cxx_std_17)
+
+enable_testing()
+add_test(NAME lockstep_consistency COMMAND lockstep)
+add_test(NAME state_sync_reconciliation COMMAND state_sync)
 
 # ============================================================
 # 安装 (可选)

@@ -5,7 +5,7 @@
 所有检查均在 main 的 Push、Pull Request 和手动触发时执行，只需 `contents: read` 权限。
 
 - [check-links.yml](check-links.yml)：离线验证发布内容的内部文件、图片链接与标题锚点。外链网络可达性不在此门禁范围内。
-- [format-check.yml](format-check.yml)：检查器单元测试、正文必填字段、图片引用；另以 C++17 和 sanitizers 执行循环引用案例回归。
+- [format-check.yml](format-check.yml)：检查器单元测试、正文必填字段、图片引用；另以 C++17 和 sanitizers 执行循环引用案例回归，以及网络同步示例的逐帧一致性、输入确认与预测校正检查。
 - [generate-index.yml](generate-index.yml)：验证两个导航页共用的数据、模块目录、文档索引、关键词索引与统计是否和正文一致。
 
 内部链接、缺图和生成漂移均使检查失败；大图片与未引用资源只报告。若要强制阻止合并，在仓库分支保护中将检查配置为必需。
