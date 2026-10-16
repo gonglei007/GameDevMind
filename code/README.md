@@ -4,7 +4,7 @@
 
 | 集合 | 说明 | 入口 |
 |------|------|------|
-| [gamedevmind/](gamedevmind/) | 《游戏开发技术图谱》配套示例（C++ / C# / 少量 Python） | [README](gamedevmind/README.md) |
+| [gamedevmind/](gamedevmind/) | 《游戏开发技术图谱》配套示例（C++ / C# / Go / Python） | [README](gamedevmind/README.md) |
 | [artile-sample-code/](artile-sample-code/) | 知乎专栏 / 书籍文章引用样例（主要为 Python 标准库） | [README](artile-sample-code/README.md) |
 
 ## 快速跳转

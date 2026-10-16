@@ -143,7 +143,7 @@ flowchart LR
 |---|---|---|
 | [用 Claude 设计内存池](ai-cases/cpp-memory-pool.md) | C++ 服务器内存池 | 从初版迭代到 ARM 对齐修正 |
 | [用 Cursor 优化 Draw Call](ai-cases/unity-drawcall-optimization.md) | Unity 性能优化 | 纠正 Static/MPB 建议，改为只读审计与回归 |
-| [用 ChatGPT 设计缓存方案](ai-cases/go-leaderboard-cache.md) | Go 排行榜查询 | 查询耗时从 5 秒降至 8 毫秒 |
+| [用 ChatGPT 设计缓存方案](ai-cases/go-leaderboard-cache.md) | Go 排行榜查询 | 纠正双写、TTL 与分页；完整快照和依赖回归 |
 
 [查看全部 5 个 AI 对话](ai-cases/README.md) · [.cursorrules 游戏开发模板](.cursorrules.example) · [CLAUDE.md 项目记忆模板](CLAUDE.md.example)
 

@@ -25,8 +25,11 @@ code/gamedevmind/
 ├── 3.研发能力/
 │   ├── 3.1.2.客户端3D场景开发/
 │   │   └── hex_grid/           ← 六边形网格 + A* 寻路
-│   └── 3.1.3.客户端优化/
-│       └── render_audit/       ← 只读渲染引用审计（.NET / Unity Editor）
+│   ├── 3.1.3.客户端优化/
+│   │   └── render_audit/       ← 只读渲染引用审计（.NET / Unity Editor）
+│   └── 3.2.3.服务端优化/
+│       ├── leaderboard_snapshot/ ← 展示快照与真实 MySQL/Redis 回归（Go）
+│       └── lock_order/         ← ABBA 条件与修复不变量（C++17）
 ├── 4.生产能力/
 │   └── 4.2.3.游戏数据文件/
 │       └── excel_to_json/      ← Excel 策划表 → JSON
@@ -37,7 +40,7 @@ code/gamedevmind/
 
 ## 🚀 快速开始
 
-每个示例目录包含独立的 `CMakeLists.txt`、`dotnet` 项目或 Python 脚本：
+每个示例目录包含独立的 CMake、dotnet、Go 模块或 Python 脚本：
 
 ```bash
 # C++ 示例
@@ -64,6 +67,8 @@ cd code/gamedevmind/6.运营能力/6.2.3.产品热更新/hotupdate_client && pyt
 | [network_sync](2.技术能力/2.2.1.网络与通信/network_sync/) | [网络与通信](../../mds/2.技术能力/2.2.1.网络与通信.md) | 帧同步、状态同步、插值与预测 |
 | [hex_grid](3.研发能力/3.1.2.客户端3D场景开发/hex_grid/) | [客户端3D场景开发](../../mds/3.研发能力/3.1.2.客户端3D场景开发.md) | 六边形坐标、A*寻路、地形生成 |
 | [render_audit](3.研发能力/3.1.3.客户端优化/render_audit/) | [客户端优化](../../mds/3.研发能力/3.1.3.客户端优化.md) | 材质引用身份、只读清点、候选边界与回归 |
+| [leaderboard_snapshot](3.研发能力/3.2.3.服务端优化/leaderboard_snapshot/) | [服务端优化](../../mds/3.研发能力/3.2.3.服务端优化.md) | 完整快照、源截止时间、同分分页与依赖回归 |
+| [lock_order](3.研发能力/3.2.3.服务端优化/lock_order/) | [服务端优化](../../mds/3.研发能力/3.2.3.服务端优化.md) | ABBA 条件、统一锁序、scoped_lock 与成员不变量 |
 | [excel_to_json](4.生产能力/4.2.3.游戏数据文件/excel_to_json/) | [游戏数据文件](../../mds/4.生产能力/4.2.3.游戏数据文件.md) | 策划表导出、类型校验、CI 集成 |
 | [hotupdate_client](6.运营能力/6.2.3.产品热更新/hotupdate_client/) | [产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md) | manifest、增量下载、MD5 校验 |
 

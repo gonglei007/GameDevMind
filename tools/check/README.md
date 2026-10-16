@@ -49,6 +49,8 @@ python tools/check/generate_catalog.py --check
 
 ## CI 门禁
 
+[服务端优化回归](../../code/gamedevmind/3.研发能力/3.2.3.服务端优化/README.md) 包含 Go 快照并发/真实 MySQL-Redis 集成，以及 C++17 锁序夹具。Go race 检查与依赖集成在独立 CI 服务中运行，C++ 启用 ASan/UBSan 和 timeout；失败阻断，但不代表产品容量、故障切换或长期无死锁。
+
 - [check-links.yml](../../.github/workflows/check-links.yml)：内部链接与锚点。
 - [format-check.yml](../../.github/workflows/format-check.yml)：检查器回归、文档与图片、案例回归。
 - [generate-index.yml](../../.github/workflows/generate-index.yml)：生成一致性。
