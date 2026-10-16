@@ -1,185 +1,93 @@
 # 用 Cursor 优化 Unity 开放世界 Draw Call
 
-> **一句话总结：** Unity 项目 Draw Call 3000+、帧率 22fps，Cursor 帮我从「方向建议」到「批量修复脚本」，但最终发现问题根因是靠我自己的领域经验——AI 是超级实习生，架构师还是我自己。
+> 这是一份 AI 建议复核记录：从“看计数列方案”转为“明确假设、只读审计、逐项验证”。AI 生成脚本同样需要检查渲染路径、场景修改范围和边界条件。
 
----
+**复核说明（2026-10-16）：** 仓库没有旧稿所述 Profiler 截图、原始完整会话、Unity 工程或真机记录；下文保留的是旧稿的提示词与输出摘录，不能证明对话逐字完整，也不能证明提速数字。旧稿“API 准确、边界合理”的评价已撤回。历史输出用于说明错误，不应复制执行。
 
 ## 背景
 
-我们在做一款**开放世界 RPG 手游**，Unity 2022 LTS + URP，目标机 iPhone 8。
-
-核心野外场景：2km × 2km 的地形，1500+ 棵树，800+ 块石头，200+ 栋建筑。QA 报告传送到野外后帧率从 60 fps 暴跌到 22 fps，手机 5 分钟烫手。
-
-我打开 Unity Profiler，贴脸开大：
-
-```
-Draw Call（不含UI）: 3200+
-Batches Saved by Batching: ~200
-SetPass Call: 180+
-Triangles: 4.2M
-FPS: 22
-```
-
-GPU wait 占了帧时间的 40%。明确是渲染瓶颈。
-
----
+旧稿描述 Unity 2022 LTS + URP 开放世界手游，在 iPhone 8 上出现 Draw Call 3200+、22 FPS 和 WaitForPresent 占比 40%。这些是未复核的历史输入。Wait 占比本身不能确定 GPU 算力瓶颈，先补帧限制、CPU/渲染线程/GPU 时间线、构建配置和固定路线。[Unity Profiler 标记](https://docs.unity3d.com/2022.3/Documentation/Manual/profiler-markers.html)
 
 ## 对话记录
 
 ### 第一轮：贴 Profiler，Cursor 给方向
 
-> **我：**
-> ```
-> （贴了 Profiler 截图）
+旧稿用户提示词摘录：
+
 > 这个 Unity 场景 Draw Call 3200+，帧率只有 22fps。
 > GPU WaitForPresent 占 40%。帮我分析原因并给出优化方案。
-> ```
->
-> **Cursor（摘要）：**
->
-> Cursor 分析得很专业：
-> 1. **Batches Saved by Batching 只有 ~200**，说明动态批处理和静态批处理几乎没生效
-> 2. **SetPass Call 180+**，说明材质种类太多（每次切换材质就是一个 SetPass）
-> 3. 建议方向：
->    - 合并相同 Shader 的材质 → 创建材质图集（Texture Atlas）
->    - 检查 Static Batching 是否启用
->    - 植被用 GPU Instancing
->    - LOD Group 减少远处三角面
->
-> 方向都对，但我试了材质合并后，Draw Call 只降到 2800——还差得远。
 
-**我的感受：** Cursor 像一个有经验的 Unity 开发者，知道所有标准优化手段。但它只是「列举可能原因」，没有深入分析「为什么你的场景合批率这么低」。
+旧输出建议合并同 Shader 材质、检查 Static、植被实例化和 LOD，并把 Batches Saved 较少解释为合批失效。
 
----
+**人工复核：不接受直接结论。** 同 Shader 不代表材质等价；Saved by Batching 不能覆盖 SRP Batcher 的 CPU 状态优化；Wait 可能涉及垂直同步。先补齐测量条件，再决定哪个阶段值得优化，不能由单张计数截图推导根因。
 
-### 第二轮：追问根因，Cursor 发现关键遗漏
+### 第二轮：追问 Static 标记
 
-> **我：**
-> ```
-> 我合并了材质，Draw Call 只从 3200 降到 2800。
+旧稿用户提示词摘录：
+
 > 为什么静态物体没有合批？场景里 200 栋建筑理论上都是静态的，
 > Batches Saved 却只有 ~200。
-> ```
 
-> **Cursor（摘要）：**
->
-> Cursor 让我检查一个我完全忽略的东西——**Static 标记**：
->
-> ```
-> 请在 Hierarchy 中选中一栋建筑，查看 Inspector 右上角的 Static 复选框。
-> 如果只勾选了部分子选项（比如只勾了 Navigation Static），
-> Unity 不会把它纳入 Static Batching。
-> 你需要确认 Batching Static 单独被勾选。
-> ```
->
-> 我检查后倒吸一口凉气：**200 栋建筑里，有 160 栋的 Static 标记不完整。**
-> 美术同学在建模时只勾了 `Navigation Static` 和 `Occluder Static`，关键的 `Batching Static` 是空的。
->
-> 批量修正 160 个 GameObject 是个体力活。我让 Cursor 写脚本。
+旧输出要求检查 `Batching Static`，旧稿随后声称有 160 栋标记不完整。
 
-**我的感受：** 这才是 AI 协作的关键时刻——不是 AI 自己发现了问题，而是**我的追问指向了正确方向**，AI 在那个方向上做了深度诊断。如果我不知道「合批需要 Static 标记」，就不会问这个问题。
+**人工复核：作为待验证假设保留。** 仓库没有对象清单或抓帧证明该数量；静态变换、管线兼容性、几何内存和实际渲染路径仍需核实。检查标记只是排查步骤，不能因此认定静态批处理是唯一或最佳路线。
 
----
+### 第三轮：批量修复脚本的错误
 
-### 第三轮：批量修复脚本，Cursor 的真正强项
+旧稿请求同时设置 `BatchingStatic` 和 MPB，以便 GPU Instancing。以下保留旧脚本中的核心原样片段，**仅作反例，不可作为修复方案**：
 
-> **我：**
-> ```
-> 帮我写一个 Unity Editor 脚本，遍历场景中所有带有 MeshRenderer 的 GameObject，
-> 如果它属于 "Building" 或 "Prop" Layer，自动设置：
-> 1. StaticEditorFlags.BatchingStatic = true
-> 2. 同时把 MaterialPropertyBlock 应用到所有使用相同材质的对象上，
->    让它们在 GPU Instancing 时能合并（但保持不同颜色/参数）
-> 3. 输出处理了多少个对象
-> ```
+```csharp
+var flags = GameObjectUtility.GetStaticEditorFlags(r.gameObject);
+flags |= StaticEditorFlags.BatchingStatic;
+GameObjectUtility.SetStaticEditorFlags(r.gameObject, flags);
 
-> **Cursor（摘要）：**
->
-> Cursor 生成一个完整 Editor 窗口脚本（约 80 行）：
->
-> ```csharp
-> [MenuItem("Tools/Batch Fix Static Batching")]
-> public static void FixStaticBatching()
-> {
->     int fixedCount = 0;
->     var renderers = FindObjectsOfType<MeshRenderer>();
->     
->     foreach (var r in renderers)
->     {
->         if (r.gameObject.layer == LayerMask.NameToLayer("Building") ||
->             r.gameObject.layer == LayerMask.NameToLayer("Prop"))
->         {
->             var flags = GameObjectUtility.GetStaticEditorFlags(r.gameObject);
->             flags |= StaticEditorFlags.BatchingStatic;
->             GameObjectUtility.SetStaticEditorFlags(r.gameObject, flags);
->             
->             // 设置 MaterialPropertyBlock 用于 GPU Instancing
->             var mpb = new MaterialPropertyBlock();
->             r.GetPropertyBlock(mpb);
->             r.SetPropertyBlock(mpb);
->             
->             fixedCount++;
->         }
->     }
->     Debug.Log($"Fixed {fixedCount} GameObjects for batching.");
-> }
-> ```
->
-> 还贴心地加了进度条（`EditorUtility.DisplayProgressBar`），因为 800+ 个对象处理需要几秒钟。
+// 设置 MaterialPropertyBlock 用于 GPU Instancing
+var mpb = new MaterialPropertyBlock();
+r.GetPropertyBlock(mpb);
+r.SetPropertyBlock(mpb);
+```
 
-**我的感受：** 这就是 AI 的甜点区——**重复性的工具脚本**。逻辑清晰、API 调用准确、边界条件处理合理。我自己写大概要 20 分钟查文档，AI 30 秒就生成好了。
+拒绝原因：
 
----
+- Static Batching、SRP Batcher 和 GPU Instancing 是需选择和验证的路线。Unity 2022.3 中 SRP Batcher 优先，MPB 还会使 Renderer 退出 SRP Batcher；不能把两类改动当统一提速操作。
+- 读回再原样写 MPB 没有定义任何实例属性，不能使任意 Shader 变成支持实例化。旧输出未检查 Mesh、材质槽、Shader 或对象生命周期。
+- 旧脚本没有 Undo、场景持久化/Prefab override 设计，也没有预览与回滚报告。进度条不解决这些正确性问题。
 
-## 最终成果
+原理依据 [SRP Batcher](https://docs.unity3d.com/2022.3/Documentation/Manual/SRPBatcher.html) 与 [GPU Instancing](https://docs.unity3d.com/2022.3/Documentation/Manual/GPUInstancing.html)。
 
-执行批量修复后，再加上之前的手动优化的累积效果：
+## 修正后的协作流程
 
-| 指标 | 优化前 | 优化后 | 改善 |
-|------|--------|--------|------|
-| Draw Call | 3,200 | 480 | **-85%** |
-| SetPass Call | 180 | 42 | **-77%** |
-| Batches Saved | ~200 | 1,850 | **+825%** |
-| Triangles | 4.2M | 1.6M | **-62%** |
-| GPU Wait | 40% | 12% | **-70%** |
-| 帧率 | 22 fps | 58 fps | ✅ |
+新的提示词：
 
-最终方案组合拳：
-1. ✅ Static 标记批量修复（Cursor 脚本）— 贡献最大的单步优化
-2. ✅ 材质图集合并 — 减少 SetPass
-3. ✅ GPU Instancing 植被 — 树木和灌木
-4. ✅ LOD Group — 远处用低模
-5. ✅ Occlusion Culling 烘焙 — 建筑遮挡
+> Unity 2022.3 + URP。请先列出缺失的测量条件，再生成只读审计工具。
+> 读取已加载普通场景的 MeshRenderer，包括未激活对象，但分别标明其状态。
+> 依据实际 Mesh/Material 引用统计单子网格共享候选；MPB、空槽、缺 Mesh 等单独报告。
+> 不使用 Renderer.material，不替换 sharedMaterials，不改 Static 或 MPB。
+> 不声称候选必然合批。给出不改场景的集成回归和真机 A/B 验证步骤。
 
----
+实际替代实现：[render_audit](../code/gamedevmind/3.研发能力/3.1.3.客户端优化/render_audit/)。独立核心可以在 .NET CI 中运行；Unity Editor 适配器读取场景，集成回归检查真实对象引用、属性块、Static 标志与场景 dirty 状态。该工具只生成诊断信息，不做资源修复或性能测量。
+
+若后续需要批量修改，先提供明确对象清单、允许改变的属性、视觉对照、Undo/持久化与回滚方案，再实现，不能把“审计”悄悄扩大为“全场修复”。
+
+## 最终成果与证据边界
+
+| 项目 | 可以确认的交付 | 尚不能确认 |
+|------|------|------|
+| 知识纠错 | 撤回 Wait、合批计数及 MPB/Static 的错误解释 | 该产品真实瓶颈与各步骤收益 |
+| 代码 | 替换为只读审计，附核心与 Editor 回归入口 | 所有 Shader/管线的兼容性或真实实例化路径 |
+| 性能 | 提供 [案例复测表](../cases/drawcall-optimization.md#效果与验证) | 历史 3200 → 480、22 → 58 FPS 及温度提升 |
+
+旧稿效果表中的 GPU Wait/Batches Saved 后值与配套案例不同，且缺少统一采样口径，因此不继续当作验证结果传播。仓库测试通过只证明列明的代码行为；产品性能仍需目标设备、固定路线、同画质多轮 A/B 与原始记录。
 
 ## 关键收获
 
-### 1. AI 擅长「执行」，但「诊断」需要人的领域知识
-
-Cursor 第一轮给了标准优化 checklist，方向都对但不够精准。只有当我说出「为什么静态物体没合批」时，它才沿着这个方向深挖到 Static 标记问题。
-
-**如果我不具备「合批需要 Static 标记」这个领域知识，我根本不会问出这个问题。**
-
-### 2. AI 的超级能力：工具脚本
-
-Editor 脚本、批处理工具、数据迁移脚本——这类「逻辑清晰 + API 明确 + 可验证」的代码，AI 几乎是零成本生成。人工写 20 分钟，AI 写 30 秒，还带进度条。
-
-### 3. 把 AI 当「超级实习生」
-
-Cursor 像极了一个聪明但缺乏经验的实习生：
-- 你说「优化性能」，它给你 checklist
-- 你说「查为什么 XX 没生效」，它能追踪到根因
-- 你说「写个脚本批量处理」，它写得又快又好
-
-但**架构决策、方向判断、优先级排序**，最终还是我来。
-
----
+1. 诊断需要能证伪的假设和原始记录，不能把 AI 给出的可能性写成已定位根因。
+2. 工具代码要核实副作用和 API 语义；先只读列清单，再决定是否实施修改。
+3. 代码正确性、渲染路径和真机收益分别验证；没有测到的结果明确标为待验证。
 
 ## 图谱知识点映射
 
-- [3.1.3 客户端优化](../mds/3.研发能力/3.1.3.客户端优化.md) — Draw Call、GPU Instancing、Static Batching
-- [3.1.2 客户端3D场景开发](../mds/3.研发能力/3.1.2.客户端3D场景开发.md) — 场景管理、LOD
-- [1.1.3 C#语言](../mds/1.基础能力/1.1.3.C%23语言.md) — Editor 脚本、反射
-
-> 🏥 相关实战案例：[开放世界卡顿 — Draw Call 3000+ 到 480 的优化实战](../cases/drawcall-optimization.md)
+- [客户端优化](../mds/3.研发能力/3.1.3.客户端优化.md) — 预算、取舍与验收
+- [客户端3D场景开发](../mds/3.研发能力/3.1.2.客户端3D场景开发.md) — 可见性与 LOD
+- [C#语言](../mds/1.基础能力/1.1.3.C%23语言.md) — 工具边界和回归
+- [Draw Call 诊断案例](../cases/drawcall-optimization.md) — 材质、UI 纠错与待执行复测

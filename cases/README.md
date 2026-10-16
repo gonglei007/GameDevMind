@@ -10,7 +10,7 @@
 |---|------|------|------|----------|
 | 1 | [SLG手游内存泄漏](memory-leak-slg.md) | 线上玩家挂机2小时后崩溃 | shared_ptr 循环引用 | 1.1.2 C++语言·智能指针 |
 | 2 | [MOBA角色回弹](network-reconciliation.md) | 玩家移动时角色频繁回弹 | 客户端预测与服务器校正冲突 | 3.2.2 网游网络同步 |
-| 3 | [开放世界卡顿](drawcall-optimization.md) | 野外场景 Draw Call 3000+，帧率骤降 | 未合批 + 缺少 LOD + 过度绘制 | 3.1.3 客户端优化 |
+| 3 | [开放世界卡顿](drawcall-optimization.md) | Draw Call 高、野外卡顿的诊断练习 | 材质、合批与 UI 假设复核；产品根因待验证 | 3.1.3 客户端优化 |
 | 4 | [服务器死锁](server-deadlock.md) | 不定期卡死，进程无响应 | 逻辑线程与网络线程锁顺序不一致 | 1.3.3 操作系统·多线程 |
 | 5 | [排行榜查询超时](leaderboard-optimization.md) | 全服排行榜查询 5s+ 超时 | 无索引全表扫描 + 无缓存 | 2.2.2 数据库 |
 | 6 | [热更旧资源残留](hotupdate-stale-assets.md) | 商店 UI 按钮重叠、点击错乱 | manifest 回滚 + AB 缓存未失效 | 6.2.3 产品热更新 |

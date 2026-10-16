@@ -131,7 +131,7 @@ flowchart LR
 |---|---|---|
 | [SLG 手游内存泄漏](cases/memory-leak-slg.md) | 挂机 2 小时后 OOM 崩溃 | `shared_ptr` 循环引用 |
 | [MOBA 角色回弹](cases/network-reconciliation.md) | 海外玩家角色频繁回弹 | 客户端预测与服务器校正冲突 |
-| [开放世界卡顿](cases/drawcall-optimization.md) | Draw Call 3000+，帧率 22 FPS | 材质未复用、无 LOD、无合批 |
+| [开放世界卡顿](cases/drawcall-optimization.md) | Draw Call 高、野外卡顿的诊断练习 | 核对材质、合批与 UI 假设；产品根因待复测 |
 
 [查看全部 8 个案例](cases/README.md)
 
@@ -142,7 +142,7 @@ flowchart LR
 | 对话 | 场景 | 关键结果 |
 |---|---|---|
 | [用 Claude 设计内存池](ai-cases/cpp-memory-pool.md) | C++ 服务器内存池 | 从初版迭代到 ARM 对齐修正 |
-| [用 Cursor 优化 Draw Call](ai-cases/unity-drawcall-optimization.md) | Unity 性能优化 | Draw Call 从 3200 降至 480 |
+| [用 Cursor 优化 Draw Call](ai-cases/unity-drawcall-optimization.md) | Unity 性能优化 | 纠正 Static/MPB 建议，改为只读审计与回归 |
 | [用 ChatGPT 设计缓存方案](ai-cases/go-leaderboard-cache.md) | Go 排行榜查询 | 查询耗时从 5 秒降至 8 毫秒 |
 
 [查看全部 5 个 AI 对话](ai-cases/README.md) · [.cursorrules 游戏开发模板](.cursorrules.example) · [CLAUDE.md 项目记忆模板](CLAUDE.md.example)

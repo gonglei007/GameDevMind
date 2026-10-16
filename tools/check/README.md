@@ -45,6 +45,8 @@ python tools/check/generate_catalog.py --check
 
 [网络同步示例](../../code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/README.md) 还会逐帧比较确定性状态，验证输入确认、过期快照与停止输入后的预测收敛；CI 同样通过 CTest 和 sanitizers 运行。示例通过不代表真实弱网与容量指标已达标。
 
+[客户端只读渲染审计](../../code/gamedevmind/3.研发能力/3.1.3.客户端优化/render_audit/README.md) 的 .NET 10 核心回归已纳入 CI，验证引用身份、候选过滤、排序和快照隔离。Unity 2022.3 编译与场景只读集成回归在本地独立项目执行；这些正确性检查不代表 URP 真机提速已达标。
+
 ## CI 门禁
 
 - [check-links.yml](../../.github/workflows/check-links.yml)：内部链接与锚点。
