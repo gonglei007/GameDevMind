@@ -4,11 +4,11 @@
 
 ## 📋 目录
 
-- [行为准则](#行为准则)
-- [如何贡献](#如何贡献)
-- [文档编写规范](#文档编写规范)
-- [提交规范](#提交规范)
-- [Pull Request 流程](#pull-request-流程)
+- [行为准则](#-行为准则)
+- [如何贡献](#-如何贡献)
+- [文档编写规范](#-文档编写规范)
+- [提交规范](#-提交规范)
+- [Pull Request 流程](#-pull-request-流程)
 
 ## 📜 行为准则
 
@@ -303,6 +303,7 @@ Closes #123
 ### 必需工具
 
 - Git
+- Python 3.11 或更新版本（内容生成与检查）
 - Markdown 编辑器（推荐 VS Code）
 - （可选）Node.js（用于运行工具脚本）
 
@@ -312,8 +313,12 @@ Closes #123
 2. 安装检查依赖：`pip install -r tools/check/requirements.txt`
 3. 运行文档检查：
    ```bash
+   python tools/check/generate_catalog.py
+   python -m unittest discover -s tools/check -p 'test_*.py' -v
    python tools/check/check_docs.py
+   python tools/check/check_links.py
    python tools/check/check_images.py
+   python tools/check/generate_catalog.py --check
    ```
 4. 预览更改效果
 

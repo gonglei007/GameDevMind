@@ -2,6 +2,8 @@
 
 > _"内存稳如老狗，一到线上就翻车"——这是每个后端开发都逃不掉的噩梦。_
 
+> **验证范围：** 本文的根因以文末链接的最小复现程序为准。仓库未附原始线上日志、heap profile 和监控记录，文中的现场叙述与数值不能作为已独立复核的线上证据或性能基准。
+
 ## 背景
 
 那是 2025 年初的某个周三凌晨 2:14，我被运维的电话吵醒。
@@ -40,14 +42,14 @@ HEAPPROFILE=/tmp/heap-profile ./game_server
 
 ```
 Total: 2.1 GB
-  1.2 GB (57.1%): std::_Sp_counted_base<>::_M_add_ref_copy
-  0.6 GB (28.6%): std::__shared_count<>::__shared_count
+  1.2 GB (57.1%): Player 对象及相关分配（示意）
+  0.6 GB (28.6%): Guild 对象及成员容器（示意）
   ...
 ```
 
 **shared_ptr 控制块的数量异常高**——正常情况下全服在线玩家 8 万左右，shared_ptr 控制块应该与活跃对象数量大致对应。但 dump 显示有超过 **30 万个** `shared_ptr<Player>` 控制块和近 **15 万个** `shared_ptr<Guild>` 控制块，而且数量还在持续增长。
 
-这说明对象没有被正确析构，引用计数永远降不到零。
+这些现象提示对象可能仍被持有，但不能仅凭分配栈确认循环引用。复制 `shared_ptr` 通常不会创建新的控制块；需要结合对象存活计数、持有关系和复现程序继续验证。3.2GB 时发生 OOM 也应结合进程限制、容器限制与内核日志确认，不能只由物理机总内存推断。
 
 ## 排查过程
 
@@ -62,13 +64,13 @@ PlayerPool:  alloc=92341  free=92198  in_use=143  池容量=2000
 GuildPool:   alloc=15423  free=15390  in_use=33   池容量=500
 ```
 
-池子正常得很。`in_use` 数量合理，池容量没有异常增长。此路不通。
+这些计数只能排除被该内存池追踪的分配路径；还要检查 `make_shared` 等绕过内存池的路径，不能据此排除 Player/Guild 的所有分配。
 
 ### 第二步：怀疑 new/delete 不配对
 
 接着怀疑是某处代码直接 `new` 了对象但忘记 `delete`，绕过了内存池的追踪。
 
-重载了全局 `operator new` 和 `operator delete`，在每次分配/释放时打印地址和调用栈到环形缓冲区。跑了一个小时，对比未释放的地址和已释放的地址——全部能对上。没有裸指针泄漏。
+检查裸指针分配路径的 `new`/`delete` 配对，并按分配来源分组。智能指针管理的对象也可能长期不释放，因此“没有发现裸指针漏删”并不等于“没有内存泄漏”；不能声称所有分配都已配对释放后，再用同一批分配解释泄漏。
 
 ### 第三步：线上 dump heap，锁定凶手
 
@@ -80,7 +82,7 @@ std::shared_ptr<Player>::shared_ptr  ← 大量分配
        └── Player::JoinGuild()
 ```
 
-再看 Player 析构函数的符号——**根本不在火焰图上**，意味着 Player 析构函数从来没被调用过。
+分配 profile 中没有 Player 析构符号，并不能证明析构从未发生。应通过构造/析构计数与 `weak_ptr::expired()` 检查对象在会话移除后的存活状态，再追踪是谁仍持有强引用。
 
 这让我瞬间想到了一种可能：**循环引用**。
 
@@ -106,7 +108,7 @@ class Guild {
 };
 ```
 
-**这就是经典的 shared_ptr 循环引用。** Player 持有 Guild 的 shared_ptr（引用计数+1），Guild 持有 Player 的 shared_ptr（引用计数再+1）。当玩家离开公会时，两个对象的引用计数都至少为 1（对方持有），永远无法降到 0，析构函数永远不会被调用。
+**这里存在 shared_ptr 循环引用。** Player 和 Guild 互相持有强引用。触发条件是：玩家断线时只从会话表移除，没有调用 `LeaveGuild()`，并且没有其他清理路径解除这两条引用。此时即使外部强引用都被释放，两个对象仍会相互保活。主动退会并正确清理成员的路径应作为不泄漏的对照组。
 
 ## 根因分析
 
@@ -137,7 +139,7 @@ class Guild {
 
 ### 关键代码（简化后的伪代码）
 
-**问题代码：**
+**建立关系与主动退会的代码（简化）：**
 
 ```cpp
 // player.h
@@ -151,7 +153,7 @@ public:
     void LeaveGuild() {
         if (guild_) {
             guild_->RemoveMember(GetId());
-            guild_.reset();  // BUG: 这里 reset 了，但 Guild 那边的 shared_ptr 还在！
+            guild_.reset();  // 主动退会：解除 Player → Guild
         }
     }
 
@@ -167,7 +169,7 @@ public:
     }
 
     void RemoveMember(uint64_t player_id) {
-        // BUG: 这里的 erase 只删除了元素，但 shared_ptr 的引用计数问题已经形成
+        // 删除匹配成员时释放其 shared_ptr，解除 Guild → Player
         members_.erase(
             std::remove_if(members_.begin(), members_.end(),
                 [player_id](const auto& p) { return p->GetId() == player_id; }),
@@ -180,7 +182,18 @@ private:
 };
 ```
 
-`LeaveGuild()` 虽然调用了 `guild_.reset()`，但 `Guild::members_` 中的 `shared_ptr<Player>` 还在，Player 的引用计数没有归零。而 Player 不析构，它持有的 `guild_` 也不会释放，于是 Guild 的引用计数也无法归零。完美闭环，精准泄漏。
+只要成员匹配并成功移除，以上 `LeaveGuild()` 会打断循环：`erase` 释放容器持有的强引用，`reset` 释放 Player 持有的强引用。循环引用不会使 `erase` 或 `reset` 失效。
+
+**真正遗漏清理的是断线路径（伪代码）：**
+
+```cpp
+void OnDisconnect(uint64_t player_id) {
+    sessions_.erase(player_id);  // 只释放会话表的外部强引用
+    // 未调用 Player::LeaveGuild()；Guild 与 Player 仍互相持有 shared_ptr
+}
+```
+
+因此复现必须覆盖“加入公会后直接断线”，不能用“主动退会后断线”替代。仅把退会清理放进 Player 析构函数也无法解决问题，因为循环本身会阻止析构发生。
 
 ## 解决方案
 
@@ -234,7 +247,22 @@ private:
 
 `weak_ptr` 不增加引用计数，打破了循环。当玩家断开连接、Player 对象的外部引用全部释放后，引用计数归零，Player 正常析构。析构时释放 `guild_`，Guild 的引用计数也相应减少。
 
-`lock()` 的开销微乎其微——它只是一个原子操作检查控制块中的 `use_count`，相比服务器其他逻辑可以忽略不计。
+`lock()` 会尝试获取一个临时的共享所有者，失败时返回空指针。它的并发和性能成本应在目标负载下测量，不能简单等同于一次 `use_count` 读取。
+
+### 最小复现与回归验证
+
+完整可运行代码见 [guild_cycle_regression.cpp](../code/gamedevmind/1.基础能力/1.1.2.C++语言/smart_pointer/guild_cycle_regression.cpp)。程序检查三条路径：
+
+1. 双向强引用＋正常主动退会：外部引用释放后，两个对象均析构。
+2. 双向强引用＋未清理的断线：外部引用释放后，两个对象仍存活；验证后主动拆环，避免测试自身留下泄漏。
+3. 公会改用 `weak_ptr` 观察玩家＋未清理的断线：玩家可以析构，释放全部外部引用后公会也析构。
+
+```bash
+c++ -std=c++17 -Wall -Wextra -Werror guild_cycle_regression.cpp -o guild_cycle_regression
+./guild_cycle_regression
+```
+
+以上命令在配套代码目录执行。任一对象生命周期不符合预期，程序返回非零退出码；CI 同时使用 AddressSanitizer/UndefinedBehaviorSanitizer 检查这份复现。
 
 ## 效果
 

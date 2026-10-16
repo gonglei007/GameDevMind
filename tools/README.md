@@ -27,8 +27,13 @@ tools/
 │   └── package.json
 ├── check/             # 文档与图片质量检查
 │   ├── check_docs.py
+│   ├── check_links.py
 │   ├── check_images.py
+│   ├── generate_catalog.py
+│   ├── content_catalog.py
 │   ├── generate_keywords.py
+│   ├── lib_links.py
+│   ├── test_content_checks.py
 │   └── README.md
 ├── config.yaml        # 工具统一配置
 ├── test.sh            # 测试脚本

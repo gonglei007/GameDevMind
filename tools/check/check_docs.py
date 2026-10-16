@@ -15,8 +15,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib_config import ROOT, load_config
+from lib_links import links_in, local_target
 
-IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
 KW_RE = re.compile(r"\*\*关键词:\*\*", re.IGNORECASE)
 TAG_RE = re.compile(r"\*\*标签:\*\*", re.IGNORECASE)
 RAW_TRUE_RE = re.compile(r"\?raw=true")
@@ -36,13 +36,8 @@ def is_leaf_doc(path: Path, cfg: dict) -> bool:
 
 
 def resolve_path(md_file: Path, target: str) -> Path | None:
-    target = target.strip().split()[0]
-    if target.startswith(("http://", "https://", "mailto:")):
-        return None
-    target = target.split("?")[0].split("#")[0]
-    if target.startswith("/"):
-        return ROOT / target.lstrip("/")
-    return (md_file.parent / target).resolve()
+    result = local_target(md_file, target)
+    return result[0] if result else None
 
 
 def iter_markdown_files(mds_dir: Path) -> list[Path]:
@@ -66,10 +61,12 @@ def check_file(path: Path, cfg: dict) -> tuple[list[str], list[str]]:
         if check_cfg.get("require_tags") and not TAG_RE.search(text):
             errors.append(f"{rel}: missing **标签:**")
 
-    for match in IMAGE_RE.finditer(text):
-        resolved = resolve_path(path, match.group(1))
+    for link in links_in(text):
+        if not link.image:
+            continue
+        resolved = resolve_path(path, link.target)
         if resolved is not None and not resolved.is_file():
-            warnings.append(f"{rel}: missing image → {match.group(1)}")
+            errors.append(f"{rel}:{link.line}: missing image → {link.target}")
 
     if check_cfg.get("warn_raw_true") and RAW_TRUE_RE.search(text):
         warnings.append(f"{rel}: contains ?raw=true (prefer plain relative paths)")

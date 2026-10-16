@@ -19,7 +19,7 @@
 |---|------|---------|----------|----------|
 | 1 | [用 Claude 设计游戏服务器内存池](cpp-memory-pool.md) | Claude | C++ / 内存管理 | [1.1.6 内存管理](../mds/1.基础能力/1.1.6.内存管理.md) |
 | 2 | [用 Cursor 优化 Unity 开放世界 Draw Call](unity-drawcall-optimization.md) | Cursor | Unity / 客户端优化 | [3.1.3 客户端优化](../mds/3.研发能力/3.1.3.客户端优化.md) |
-| 3 | [用 ChatGPT 设计排行榜缓存方案](go-leaderboard-cache.md) | ChatGPT | Go / 数据库 | [2.2.2 数据库](../mds/2.2.2.数据库.md) |
+| 3 | [用 ChatGPT 设计排行榜缓存方案](go-leaderboard-cache.md) | ChatGPT | Go / 数据库 | [2.2.2 数据库](../mds/2.技术能力/2.2.2.数据库.md) |
 | 4 | [用 Cursor 设计 GM 后台 RBAC](gm-rbac-design.md) | Cursor | Go / 运营后台 | [6.2.1 GM后台](../mds/6.运营能力/6.2.1.GM后台.md) |
 | 5 | [用 ChatGPT 选型网游网络同步](network-sync-design.md) | ChatGPT | 网络 / 架构 | [3.2.2 网游网络同步](../mds/3.研发能力/3.2.2.网游网络同步.md) |
 

@@ -289,6 +289,7 @@ body {
   <a class="back" href="index.html">← 返回导航</a>
   <div class="tabs" id="tabs"></div>
   <div class="legend">
+    <span id="content-stats"></span>
     <span>🖱️ 拖拽平移</span>
     <span>🔍 滚轮缩放</span>
     <span>🖱️ 单击展开</span>
@@ -313,153 +314,29 @@ body {
   <button class="ctrl-btn reset" id="btn-reset" title="重置视图">⟳</button>
 </div>
 
+<script src="content-data.js"></script>
 <script>
 // ============================================================
-//  DATA — from nav/index.html DOCS array
+//  DATA — shared generated inventory from content-data.js
 // ============================================================
-const DOCS = [
-  // 1.基础能力
-  {t:'基础能力',p:'mds/1.基础能力/1.基础能力.md',c:1,l:0,r:''},
-  {t:'编程语言',p:'mds/1.基础能力/1.1.编程语言.md',c:1,l:0,r:''},
-  {t:'编程语言基础概念',p:'mds/1.基础能力/1.1.1.编程语言基础概念.md',c:1,l:1,r:'客户端,服务端'},
-  {t:'C++语言',p:'mds/1.基础能力/1.1.2.C++语言.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'C#语言',p:'mds/1.基础能力/1.1.3.C#语言.md',c:1,l:1,r:'客户端'},
-  {t:'JS语言',p:'mds/1.基础能力/1.1.4.JS语言.md',c:1,l:1,r:'客户端'},
-  {t:'编程语言综合',p:'mds/1.基础能力/1.1.5.编程语言综合.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'内存管理',p:'mds/1.基础能力/1.1.6.内存管理.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'编程语言高阶概念',p:'mds/1.基础能力/1.1.7.编程语言高阶概念.md',c:1,l:3,r:'客户端,服务端'},
-  {t:'程序设计',p:'mds/1.基础能力/1.2.程序设计.md',c:1,l:0,r:''},
-  {t:'设计模式',p:'mds/1.基础能力/1.2.1.设计模式.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'数据结构',p:'mds/1.基础能力/1.2.2.数据结构.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'算法',p:'mds/1.基础能力/1.2.3.算法.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'代码重构',p:'mds/1.基础能力/1.2.4.代码重构.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'通用基础',p:'mds/1.基础能力/1.3.通用基础.md',c:1,l:0,r:''},
-  {t:'数学',p:'mds/1.基础能力/1.3.1.数学.md',c:1,l:1,r:'客户端,服务端'},
-  {t:'人工智能基础',p:'mds/1.基础能力/1.3.2.人工智能.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'操作系统',p:'mds/1.基础能力/1.3.3.操作系统.md',c:1,l:2,r:'服务端'},
-  {t:'计算机组成原理',p:'mds/1.基础能力/1.3.4.计算机组成原理.md',c:1,l:2,r:'客户端,服务端'},
-  {t:'计算机网络',p:'mds/1.基础能力/1.3.5.计算机网络.md',c:1,l:2,r:'服务端'},
-  // 2.技术能力
-  {t:'技术能力',p:'mds/2.技术能力/2.技术能力.md',c:2,l:0,r:''},
-  {t:'客户端技术',p:'mds/2.技术能力/2.1.客户端技术.md',c:2,l:0,r:''},
-  {t:'图形与渲染',p:'mds/2.技术能力/2.1.1.图形与渲染.md',c:2,l:2,r:'客户端'},
-  {t:'物理',p:'mds/2.技术能力/2.1.2.物理.md',c:2,l:2,r:'客户端'},
-  {t:'UI',p:'mds/2.技术能力/2.1.3.UI.md',c:2,l:2,r:'客户端'},
-  {t:'声音',p:'mds/2.技术能力/2.1.4.声音.md',c:2,l:2,r:'客户端'},
-  {t:'动画与特效',p:'mds/2.技术能力/2.1.5.动画与特效.md',c:2,l:2,r:'客户端'},
-  {t:'游戏引擎概念与应用',p:'mds/2.技术能力/2.1.6.游戏引擎概念与应用.md',c:2,l:2,r:'客户端'},
-  {t:'平台开发',p:'mds/2.技术能力/2.1.7.平台开发.md',c:2,l:2,r:'客户端'},
-  {t:'游戏引擎功能系统',p:'mds/4.生产能力/4.1.3.引擎的基本功能系统.md',c:2,l:2,r:'客户端'},
-  {t:'游戏引擎支撑与扩展系统',p:'mds/4.生产能力/4.1.4.引擎的其它系统.md',c:2,l:2,r:'客户端'},
-  {t:'服务端技术',p:'mds/2.技术能力/2.2.服务端技术.md',c:2,l:0,r:''},
-  {t:'网络与通信',p:'mds/2.技术能力/2.2.1.网络与通信.md',c:2,l:2,r:'服务端'},
-  {t:'数据库',p:'mds/2.技术能力/2.2.2.数据库.md',c:2,l:2,r:'服务端'},
-  {t:'服务端中间件',p:'mds/2.技术能力/2.2.3.服务端中间件.md',c:2,l:3,r:'服务端'},
-  {t:'开发者工具箱',p:'mds/2.技术能力/2.3.开发者工具箱.md',c:2,l:0,r:''},
-  {t:'通用工具',p:'mds/2.技术能力/2.3.1.通用工具.md',c:2,l:1,r:'客户端,服务端'},
-  {t:'客户端开发工具',p:'mds/2.技术能力/2.3.2.客户端开发工具.md',c:2,l:1,r:'客户端'},
-  {t:'服务端开发工具',p:'mds/2.技术能力/2.3.3.服务端开发工具.md',c:2,l:1,r:'服务端'},
-  {t:'设计工具',p:'mds/2.技术能力/2.3.4.设计工具.md',c:2,l:1,r:'客户端,服务端'},
-  {t:'日常工具',p:'mds/2.技术能力/2.3.5.日常工具.md',c:2,l:1,r:'客户端,服务端'},
-  // 3.研发能力
-  {t:'研发能力',p:'mds/3.研发能力/3.研发能力.md',c:3,l:0,r:''},
-  {t:'客户端产品研发',p:'mds/3.研发能力/3.1.客户端产品研发.md',c:3,l:0,r:''},
-  {t:'客户端底层通用系统',p:'mds/3.研发能力/3.1.1.客户端底层通用系统.md',c:3,l:2,r:'客户端'},
-  {t:'客户端3D场景开发',p:'mds/3.研发能力/3.1.2.客户端3D场景开发.md',c:3,l:3,r:'客户端'},
-  {t:'客户端优化',p:'mds/3.研发能力/3.1.3.客户端优化.md',c:3,l:3,r:'客户端'},
-  {t:'客户端网络系统',p:'mds/3.研发能力/3.1.4.客户端网络系统.md',c:3,l:2,r:'客户端'},
-  {t:'渲染与特效',p:'mds/3.研发能力/3.1.5.渲染与特效.md',c:3,l:3,r:'客户端'},
-  {t:'UI系统',p:'mds/3.研发能力/3.1.6.UI系统.md',c:3,l:2,r:'客户端'},
-  {t:'客户端中间件',p:'mds/3.研发能力/3.1.7.客户端中间件.md',c:3,l:3,r:'客户端'},
-  {t:'服务端产品研发',p:'mds/3.研发能力/3.2.服务端产品研发.md',c:3,l:0,r:''},
-  {t:'服务端底层架构',p:'mds/3.研发能力/3.2.1.服务端底层架构.md',c:3,l:3,r:'服务端'},
-  {t:'网游网络同步',p:'mds/3.研发能力/3.2.2.网游网络同步.md',c:3,l:3,r:'服务端'},
-  {t:'服务端优化',p:'mds/3.研发能力/3.2.3.服务端优化.md',c:3,l:3,r:'服务端'},
-  {t:'服务端基础功能',p:'mds/3.研发能力/3.2.4.服务端基础功能.md',c:3,l:2,r:'服务端'},
-  {t:'服务端业务架构',p:'mds/3.研发能力/3.2.5.服务端业务架构.md',c:3,l:3,r:'服务端'},
-  {t:'游戏系统与玩法研发',p:'mds/3.研发能力/3.3.业务层功能.md',c:3,l:0,r:''},
-  {t:'摄像机控制',p:'mds/3.研发能力/3.3.1.摄像机控制.md',c:3,l:2,r:'客户端'},
-  {t:'角色',p:'mds/3.研发能力/3.3.2.角色.md',c:3,l:2,r:'客户端,服务端'},
-  {t:'综合游戏系统',p:'mds/3.研发能力/3.3.3.综合业务层功能.md',c:3,l:3,r:'客户端,服务端'},
-  {t:'游戏 AI 系统',p:'mds/3.研发能力/3.3.4.游戏AI系统.md',c:3,l:2,r:'客户端,服务端'},
-  {t:'用户与帐号系统',p:'mds/3.研发能力/3.3.5.用户与帐号系统.md',c:3,l:2,r:'客户端,服务端'},
-  // 4.生产能力
-  {t:'生产能力',p:'mds/4.生产能力/4.生产能力.md',c:4,l:0,r:''},
-  {t:'内容生产',p:'mds/4.生产能力/4.1.游戏生产.md',c:4,l:0,r:''},
-  {t:'数字内容生产',p:'mds/4.生产能力/4.1.1.数字内容生产.md',c:4,l:2,r:'客户端'},
-  {t:'AI助力游戏生产',p:'mds/4.生产能力/4.1.2.AI助力游戏生产.md',c:4,l:2,r:'客户端,服务端'},
-  {t:'工具开发',p:'mds/4.生产能力/4.2.工具开发.md',c:4,l:0,r:''},
-  {t:'编辑器开发',p:'mds/4.生产能力/4.2.1.编辑器开发.md',c:4,l:3,r:'客户端'},
-  {t:'工具开发与应用',p:'mds/4.生产能力/4.2.2.工具开发与应用.md',c:4,l:2,r:'客户端,服务端'},
-  {t:'游戏数据文件',p:'mds/4.生产能力/4.2.3.游戏数据文件.md',c:4,l:2,r:'客户端,服务端'},
-  {t:'技术中台',p:'mds/4.生产能力/4.3.技术中台.md',c:4,l:0,r:''},
-  {t:'快速开发框架',p:'mds/4.生产能力/4.3.1.快速开发框架.md',c:4,l:2,r:'客户端,服务端'},
-  {t:'技术支持',p:'mds/4.生产能力/4.3.2.技术支持.md',c:4,l:2,r:'客户端,服务端'},
-  {t:'DevOps',p:'mds/4.生产能力/4.3.3.DevOps.md',c:4,l:2,r:'服务端'},
-  // 5.管理能力
-  {t:'管理能力',p:'mds/5.管理能力/5.管理能力.md',c:5,l:0,r:''},
-  {t:'研发与内容流程管理',p:'mds/5.管理能力/5.1.工作流.md',c:5,l:0,r:''},
-  {t:'系统开发工作流',p:'mds/5.管理能力/5.1.1.系统开发工作流.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'UI制作工作流',p:'mds/5.管理能力/5.1.2.UI制作工作流.md',c:5,l:2,r:'客户端'},
-  {t:'更多开发工作流',p:'mds/5.管理能力/5.1.3.更多开发工作流.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'质量保障',p:'mds/5.管理能力/5.2.质量保障.md',c:5,l:0,r:''},
-  {t:'代码质量管理',p:'mds/5.管理能力/5.2.1.代码质量管理.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'产品质量管理',p:'mds/5.管理能力/5.2.2.产品质量管理.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'项目管理',p:'mds/5.管理能力/5.3.项目管理.md',c:5,l:0,r:''},
-  {t:'项目里程',p:'mds/5.管理能力/5.3.1.项目里程.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'版本管理',p:'mds/5.管理能力/5.3.2.版本管理.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'SCRUM',p:'mds/5.管理能力/5.3.3.SCRUM.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'团队与组织',p:'mds/5.管理能力/5.3.4.团队与组织.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'团队管理',p:'mds/5.管理能力/5.3.5.团队管理.md',c:5,l:2,r:'客户端,服务端'},
-  {t:'项目管理综合',p:'mds/5.管理能力/5.3.6.项目管理综合.md',c:5,l:2,r:'客户端,服务端'},
-  // 6.运营能力
-  {t:'运营能力',p:'mds/6.运营能力/6.运营能力.md',c:6,l:0,r:''},
-  {t:'运维技术',p:'mds/6.运营能力/6.1.运维技术.md',c:6,l:0,r:''},
-  {t:'网络维护',p:'mds/6.运营能力/6.1.1.网络维护.md',c:6,l:2,r:'服务端'},
-  {t:'数据存储',p:'mds/6.运营能力/6.1.2.数据存储.md',c:6,l:2,r:'服务端'},
-  {t:'资产管理',p:'mds/6.运营能力/6.1.3.资产管理.md',c:6,l:2,r:'服务端'},
-  {t:'Linux系统',p:'mds/6.运营能力/6.1.4.Linux系统.md',c:6,l:2,r:'服务端'},
-  {t:'中间件运维',p:'mds/6.运营能力/6.1.5.中间件运维.md',c:6,l:3,r:'服务端'},
-  {t:'网络安全',p:'mds/6.运营能力/6.1.6.网络安全.md',c:6,l:3,r:'服务端'},
-  {t:'产品运营支持',p:'mds/6.运营能力/6.2.产品运营支持.md',c:6,l:0,r:''},
-  {t:'GM后台',p:'mds/6.运营能力/6.2.1.GM后台.md',c:6,l:2,r:'服务端'},
-  {t:'数据统计分析',p:'mds/6.运营能力/6.2.2.数据统计分析.md',c:6,l:2,r:'服务端'},
-  {t:'产品热更新',p:'mds/6.运营能力/6.2.3.产品热更新.md',c:6,l:2,r:'客户端,服务端'},
-  {t:'产品本地化',p:'mds/6.运营能力/6.2.4.产品本地化.md',c:6,l:2,r:'客户端,服务端'},
-  {t:'开发配合',p:'mds/6.运营能力/6.2.5.开发配合.md',c:6,l:2,r:'客户端,服务端'},
-  {t:'AI助力游戏运营',p:'mds/6.运营能力/6.2.6.AI助力游戏运营.md',c:6,l:2,r:'客户端,服务端'},
-  {t:'LiveOps',p:'mds/6.运营能力/6.2.7.LiveOps.md',c:6,l:3,r:'客户端,服务端'},
-  {t:'商业化与产品分发',p:'mds/6.运营能力/6.3.产品商业化.md',c:6,l:0,r:''},
-  {t:'游戏安全',p:'mds/6.运营能力/6.3.1.游戏安全.md',c:6,l:3,r:'服务端'},
-  {t:'支付与变现',p:'mds/6.运营能力/6.3.2.帐号与支付.md',c:6,l:2,r:'服务端'},
-  {t:'第三方服务',p:'mds/6.运营能力/6.3.3.第三方服务.md',c:6,l:2,r:'服务端'},
-  {t:'产品合规',p:'mds/6.运营能力/6.3.4.产品合规.md',c:6,l:2,r:'客户端,服务端'},
-  {t:'产品安全与合规',p:'mds/6.运营能力/6.4.产品安全与合规.md',c:6,l:0,r:''},
-];
+
 
 const MODULE_NAMES = ['基础能力','技术能力','研发能力','生产能力','管理能力','运营能力'];
 const MODULE_COLORS = ['#f85149','#d2991d','#e3b341','#3fb950','#58a6ff','#bc8cff'];
 const LEVEL_LABELS = ['','初级','中级','高级'];
+document.getElementById('content-stats').textContent = `${CONTENT_STATS.core} 篇核心文档 · 全库 ${CONTENT_STATS.documents} 篇`;
 
 // ============================================================
 //  TREE CONSTRUCTION
 // ============================================================
-function parseDepth(path) {
-  const filename = path.split('/').pop().replace('.md','');
-  const parts = filename.split('.');
-  let d = 0;
-  for (const p of parts) { if (/^\d+$/.test(p)) d++; else break; }
-  return d - 1; // 0=root, 1=category, 2=leaf
-}
-
 let allRoots = []; // array of root nodes
 
 function buildTree() {
   const roots = [];
-  const stack = [];
+  const nodes = new Map();
   for (const doc of DOCS) {
-    const depth = parseDepth(doc.p);
-    if (depth < 0) continue;
+    const parent = nodes.get(doc.parent);
+    if (doc.parent && !parent) throw new Error(`Missing parent: ${doc.parent}`);
     const node = {
       name: doc.t,
       path: doc.p,
@@ -467,21 +344,13 @@ function buildTree() {
       module: doc.c - 1,
       children: [],
       collapsed: false,
-      depth: depth,
+      depth: parent ? parent.depth + 1 : 0,
       x: 0, y: 0,
       _width: 1,
     };
-    while (stack.length > depth) stack.pop();
-    if (depth === 0) {
-      roots.push(node);
-      stack.length = 0;
-      stack.push(node);
-    } else {
-      if (stack.length > 0) {
-        stack[stack.length - 1].children.push(node);
-      }
-      stack.push(node);
-    }
+    if (parent) parent.children.push(node);
+    else roots.push(node);
+    nodes.set(doc.p, node);
   }
   allRoots = roots;
   return roots;
@@ -636,7 +505,7 @@ function renderAll() {
     if (n.level > 0 && n.depth > 0) {
       badgeHtml = `<span class="badge l${n.level}">${LEVEL_LABELS[n.level]}</span>`;
     }
-    div.innerHTML = badgeHtml + n.name;
+    div.innerHTML = badgeHtml + contentText(n.name);
 
     // Events
     div.addEventListener('click', (e) => onNodeClick(n, e));
@@ -677,12 +546,12 @@ function onNodeClick(node, e) {
 function onNodeDblClick(node, e) {
   e.stopPropagation();
   e.preventDefault();
-  window.open('../' + node.path, '_blank');
+  window.open(contentHref(node.path), '_blank', 'noopener');
 }
 
 function onNodeHover(node, el, e) {
   const rect = el.getBoundingClientRect();
-  tooltip.innerHTML = `<strong>${node.name}</strong><div class="tt-path">${node.path}</div>`;
+  tooltip.innerHTML = `<strong>${contentText(node.name)}</strong><div class="tt-path">${contentText(node.path)}</div>`;
   tooltip.style.left = (rect.right + 8) + 'px';
   tooltip.style.top = rect.top + 'px';
   tooltip.classList.add('show');

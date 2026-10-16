@@ -1,6 +1,6 @@
 # C++ 智能指针陷阱与最佳实践
 
-> 对应图谱章节：[1.1.2 C++语言 → 智能指针](../../../../mds/1.基础能力/1.1.2.C++语言.md#智能指针)
+> 对应图谱章节：[1.1.2 C++语言 → 智能指针](../../../../../mds/1.基础能力/1.1.2.C++语言.md#智能指针)
 
 ## 快速开始
 
@@ -160,9 +160,18 @@ f(make_shared<T>(), make_shared<T>());
 
 ## 文件结构
 
+另附 [guild_cycle_regression.cpp](guild_cycle_regression.cpp)，对应 [SLG 循环引用案例](../../../../../cases/memory-leak-slg.md)。它验证正常退会、未清理断线的循环引用、改用弱引用后的对象释放。测试在观察到循环后主动清理，不遗留故意泄漏。
+
+```bash
+cmake -S . -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
+
 ```
 smart_pointer/
 ├── smart_pointer_demo.cpp   # 全部5个场景的单文件演示
+├── guild_cycle_regression.cpp # 生命周期回归（CI 启用内存检查）
 ├── CMakeLists.txt            # CMake 构建配置
 └── README.md                 # 本文件
 ```

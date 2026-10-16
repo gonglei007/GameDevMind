@@ -9,28 +9,28 @@
 from __future__ import annotations
 
 import argparse
-import re
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib_config import ROOT, load_config
+from lib_links import content_files, links_in, local_target
 
-IMAGE_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
 IMG_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
 
 
-def collect_references(mds_root: Path) -> dict[Path, set[Path]]:
-    """Map resolved image path → set of md files referencing it."""
+def collect_references(files: list[Path], root: Path = ROOT) -> dict[Path, set[Path]]:
+    """Include Markdown images, HTML attributes and ordinary links to images."""
     refs: dict[Path, set[Path]] = {}
-    for md in mds_root.rglob("*.md"):
-        text = md.read_text(encoding="utf-8", errors="ignore")
-        for m in IMAGE_RE.finditer(text):
-            raw = m.group(1).strip().split()[0].split("?")[0].split("#")[0]
-            if raw.startswith(("http://", "https://")):
+    for source in files:
+        text = source.read_text(encoding="utf-8-sig")
+        for link in links_in(text):
+            result = local_target(source, link.target, root)
+            if result is None:
                 continue
-            p = (md.parent / raw).resolve() if not raw.startswith("/") else (ROOT / raw.lstrip("/"))
-            refs.setdefault(p, set()).add(md)
+            dest, _ = result
+            if link.image or dest.suffix.lower() in IMG_EXT:
+                refs.setdefault(dest, set()).add(source)
     return refs
 
 
@@ -66,28 +66,9 @@ def main() -> int:
 
     cfg = load_config()
     scan_dirs = [ROOT / d for d in cfg["images"]["scan_dirs"]]
-    mds_root = ROOT / cfg["repo"]["mds_dir"]
     large_kb = cfg["images"].get("large_file_kb", 500)
 
-    refs = collect_references(mds_root)
-    # Also scan README, cases, etc.
-    for extra in ["README.md", "cases", "ai-cases", "code"]:
-        p = ROOT / extra
-        if p.is_file():
-            text = p.read_text(encoding="utf-8", errors="ignore")
-            for m in IMAGE_RE.finditer(text):
-                raw = m.group(1).strip().split()[0].split("?")[0]
-                if not raw.startswith("http"):
-                    rp = (p.parent / raw).resolve()
-                    refs.setdefault(rp, set()).add(p)
-        elif p.is_dir():
-            for md in p.rglob("*.md"):
-                text = md.read_text(encoding="utf-8", errors="ignore")
-                for m in IMAGE_RE.finditer(text):
-                    raw = m.group(1).strip().split()[0].split("?")[0]
-                    if not raw.startswith("http"):
-                        rp = (md.parent / raw).resolve()
-                        refs.setdefault(rp, set()).add(md)
+    refs = collect_references(content_files())
 
     on_disk = collect_image_files(scan_dirs)
     referenced = set(refs.keys())

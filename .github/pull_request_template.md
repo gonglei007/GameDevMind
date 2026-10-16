@@ -13,7 +13,9 @@
 - [ ] 代码/文档符合项目规范
 - [ ] 所有链接有效且可访问
 - [ ] 图片路径正确且图片存在
-- [ ] 文档格式统一（使用 Markdown，不使用 HTML）
+- [ ] 文档格式符合贡献指南（Markdown 可混用规定的 HTML 标签）
+- [ ] 内部链接、图片与锚点检查通过
+- [ ] 运行统一生成命令并通过 `python tools/check/generate_catalog.py --check`
 - [ ] 已更新相关文档（如需要）
 - [ ] Commit Message 符合规范
 - [ ] 已进行本地测试

@@ -7,31 +7,40 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check-format:
     name: Check Markdown Format
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install check dependencies
         run: pip install -r tools/check/requirements.txt
-
+      - name: Run checker regression tests
+        run: python -m unittest discover -s tools/check -p 'test_*.py' -v
       - name: Run document quality check
         run: python tools/check/check_docs.py
-
       - name: Audit image references
         run: python tools/check/check_images.py
-        continue-on-error: true
 
-      - name: Summary
-        run: |
-          echo "## 格式与文档检查完成" >> $GITHUB_STEP_SUMMARY
-          echo "已运行 check_docs.py 与 check_images.py" >> $GITHUB_STEP_SUMMARY
+  case-regression:
+    name: Check Guild Ownership Case
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build lifecycle regression with sanitizers
+        run: >-
+          c++ -std=c++17 -Wall -Wextra -Werror
+          -fsanitize=address,undefined -fno-omit-frame-pointer -g
+          'code/gamedevmind/1.基础能力/1.1.2.C++语言/smart_pointer/guild_cycle_regression.cpp'
+          -o /tmp/guild-cycle-regression
+      - name: Verify leave, disconnect and weak ownership
+        env:
+          ASAN_OPTIONS: detect_leaks=1
+          UBSAN_OPTIONS: halt_on_error=1
+        run: /tmp/guild-cycle-regression

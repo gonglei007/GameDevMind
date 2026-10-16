@@ -9,6 +9,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # 可执行目标
 add_executable(smart_pointer_demo smart_pointer_demo.cpp)
 
+enable_testing()
+add_executable(guild_cycle_regression guild_cycle_regression.cpp)
+add_test(NAME guild_cycle_regression COMMAND guild_cycle_regression)
+
 # 可选：开启更多警告
 if(MSVC)
     target_compile_options(smart_pointer_demo PRIVATE /W4)
