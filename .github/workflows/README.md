@@ -18,6 +18,8 @@
 
 ## 更新索引与导航
 
+网络与通信增加 **Check Network Protocol and Sockets**（Windows/Linux，Python 标准库）。协议类型、长度分帧、部分写入/背压、时间心跳和输入确认模型，以及真实本机 TCP/UDP 回环均为阻断断言。临时端口与超时避免固定端口冲突和无限等待；不包含公网弱网、TLS、RPC、消息队列、容量或引擎物理验收。命令见 [协议示例](../../code/artile-sample-code/02-technical/05-networking/) 和 [Socket 示例](../../code/artile-sample-code/01-foundation/06-os-network/)。
+
 正文标题、标签、文件列表和阅读路径是内容来源。修改后在本地运行：
 
 ```bash

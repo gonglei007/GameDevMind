@@ -1,310 +1,358 @@
 #!/usr/bin/env python3
+"""有界协议教学：带类型序列化、TCP 帧、写缓冲、心跳与输入确认。
+
+纯标准库。运行 python net_demo.py；真实 Socket 回环见 socket_demo.py。
 """
-网络通信演示 — 消息序列化(JSON/binary对比) + 心跳包 + 状态同步
-
-纯标准库实现，模拟游戏网络层核心机制：
-1. 消息序列化 — JSON 文本格式 vs 二进制紧凑格式对比
-2. 心跳机制 — 每2秒发送心跳包，超时3次判定断线
-3. 状态同步 — 客户端预测 + 服务端权威校正
-
-运行：python net_demo.py
-"""
-
+from collections import deque
+from dataclasses import dataclass
 import json
+import math
 import struct
 import time
-import random
-from collections import deque
-from dataclasses import dataclass, field
-from typing import Optional, Tuple
+
+MAX_FRAME = 65536
 
 
-# ══════════════════════════════════════════════
-# 1. 消息序列化对比 (JSON vs Binary)
-# ══════════════════════════════════════════════
+class ProtocolError(ValueError):
+    pass
+
+
+class ResyncRequired(ProtocolError):
+    pass
+
+
+def _utf8(value):
+    try:
+        return value.encode('utf-8')
+    except UnicodeError as error:
+        raise ProtocolError("invalid Unicode string") from error
+
+
+def _validate_message(msg_type, data):
+    if type(msg_type) is not int or not 0 <= msg_type <= 255 or type(data) is not dict or len(data) > 64:
+        raise ProtocolError("invalid message envelope")
+    for key, value in data.items():
+        if not isinstance(key, str) or not 1 <= len(_utf8(key)) <= 255:
+            raise ProtocolError("invalid key")
+        if type(value) is int and -(1 << 63) <= value < (1 << 63):
+            continue
+        if type(value) is float and math.isfinite(value):
+            continue
+        if type(value) is str and len(_utf8(value)) <= 4096:
+            continue
+        raise ProtocolError("unsupported or out-of-range value")
+
+
+def _unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ProtocolError("duplicate JSON key")
+        result[key] = value
+    return result
+
 
 class MessageSerializer:
-    """对比两种序列化方式的开销"""
+    """Fixed teaching format: GN/version=1, type:u8, count:u16, tagged values.
+
+    Key: u8 byte length + UTF-8; values: 1=int64, 2=float64, 3=u16 length + UTF-8.
+    Not a replacement for a versioned production schema/Protobuf.
+    """
+    @staticmethod
+    def to_json(msg_type, data):
+        _validate_message(msg_type, data)
+        raw = json.dumps({'t': msg_type, 'd': data}, ensure_ascii=False, allow_nan=False,
+                         separators=(',', ':')).encode('utf-8')
+        if len(raw) > MAX_FRAME:
+            raise ProtocolError("message too large")
+        return raw
 
     @staticmethod
-    def to_json(msg_type: int, data: dict) -> bytes:
-        """JSON 格式：可读性好，但体积大"""
-        payload = json.dumps({"t": msg_type, "d": data}, separators=(",", ":"))
-        return payload.encode("utf-8")
+    def from_json(raw):
+        if not 0 < len(raw) <= MAX_FRAME:
+            raise ProtocolError("invalid JSON length")
+        try:
+            obj = json.loads(raw.decode('utf-8'), object_pairs_hook=_unique_object)
+            if type(obj) is not dict or set(obj) != {'t', 'd'}:
+                raise ProtocolError("invalid JSON envelope")
+            _validate_message(obj['t'], obj['d'])
+            return obj['t'], obj['d']
+        except (UnicodeError, json.JSONDecodeError, RecursionError) as error:
+            raise ProtocolError("invalid JSON") from error
 
     @staticmethod
-    def from_json(raw: bytes) -> Tuple[int, dict]:
-        obj = json.loads(raw.decode("utf-8"))
-        return obj["t"], obj["d"]
-
-    @staticmethod
-    def to_binary(msg_type: int, data: dict) -> bytes:
-        """二进制格式：紧凑但不可读。格式：[msg_type:1B][key_count:2B][for each: key_len:1B,key,val]"""
-        buf = bytearray()
-        buf.append(msg_type & 0xFF)                    # 消息类型 1B
-        buf.extend(struct.pack(">H", len(data)))       # 键数量 2B (big-endian)
-        for k, v in data.items():
-            kb = k.encode("utf-8")
-            buf.append(len(kb) & 0xFF)                 # key长度 1B
-            buf.extend(kb)                             # key字节
-            if isinstance(v, float):
-                buf.extend(struct.pack(">f", v))       # float 4B
-            elif isinstance(v, int):
-                buf.extend(struct.pack(">i", v))       # int 4B
-            elif isinstance(v, str):
-                vb = v.encode("utf-8")
-                buf.append(len(vb) & 0xFF)
-                buf.extend(vb)
+    def to_binary(msg_type, data):
+        _validate_message(msg_type, data)
+        buf = bytearray(b'GN\x01' + struct.pack('!BH', msg_type, len(data)))
+        for key, value in data.items():
+            encoded = key.encode('utf-8')
+            buf.extend(bytes([len(encoded)]) + encoded)
+            if type(value) is int:
+                buf.extend(b'\x01' + struct.pack('!q', value))
+            elif type(value) is float:
+                buf.extend(b'\x02' + struct.pack('!d', value))
+            else:
+                encoded = value.encode('utf-8')
+                buf.extend(b'\x03' + struct.pack('!H', len(encoded)) + encoded)
+        if len(buf) > MAX_FRAME:
+            raise ProtocolError("message too large")
         return bytes(buf)
 
     @staticmethod
-    def from_binary(raw: bytes) -> Tuple[int, dict]:
+    def from_binary(raw):
+        if not 6 <= len(raw) <= MAX_FRAME or raw[:3] != b'GN\x01':
+            raise ProtocolError("invalid binary envelope/version")
+        offset = 3
+
+        def take(size):
+            nonlocal offset
+            if offset + size > len(raw):
+                raise ProtocolError("truncated binary value")
+            result = raw[offset:offset + size]
+            offset += size
+            return result
+
+        msg_type, count = struct.unpack('!BH', take(3))
+        if count > 64:
+            raise ProtocolError("too many fields")
+        result = {}
+        try:
+            for _ in range(count):
+                key = take(take(1)[0]).decode('utf-8')
+                if not key or key in result:
+                    raise ProtocolError("empty or duplicate key")
+                tag = take(1)[0]
+                if tag == 1:
+                    value = struct.unpack('!q', take(8))[0]
+                elif tag == 2:
+                    value = struct.unpack('!d', take(8))[0]
+                elif tag == 3:
+                    size = struct.unpack('!H', take(2))[0]
+                    if size > 4096:
+                        raise ProtocolError("string too long")
+                    value = take(size).decode('utf-8')
+                else:
+                    raise ProtocolError("unknown value tag")
+                result[key] = value
+        except UnicodeError as error:
+            raise ProtocolError("invalid UTF-8") from error
+        if offset != len(raw):
+            raise ProtocolError("trailing bytes")
+        _validate_message(msg_type, result)
+        return msg_type, result
+
+
+def encode_frame(payload):
+    if not 1 <= len(payload) <= MAX_FRAME:
+        raise ProtocolError("invalid frame length")
+    return struct.pack('!I', len(payload)) + payload
+
+
+class FrameDecoder:
+    """Incremental u32 length framing; recv chunks are capped separately from frames."""
+    def __init__(self):
+        self.buffer = bytearray()
+        self.expected = None
+        self.closed = False
+
+    def feed(self, chunk):
+        if self.closed:
+            raise ProtocolError("decoder closed")
+        if len(chunk) > MAX_FRAME + 4:
+            self.closed = True
+            raise ProtocolError("read chunk exceeds budget")
+        frames = []
         offset = 0
-        msg_type = raw[offset]; offset += 1
-        key_count = struct.unpack(">H", raw[offset:offset+2])[0]; offset += 2
-        data = {}
-        for _ in range(key_count):
-            key_len = raw[offset]; offset += 1
-            key = raw[offset:offset+key_len].decode("utf-8"); offset += key_len
-            # 简单推断：尝试解析为 float
-            try:
-                val = struct.unpack(">f", raw[offset:offset+4])[0]; offset += 4
-            except struct.error:
-                val_len = raw[offset]; offset += 1
-                val = raw[offset:offset+val_len].decode("utf-8"); offset += val_len
-            data[key] = val
-        return msg_type, data
+        while offset < len(chunk):
+            target = 4 if self.expected is None else self.expected
+            count = min(target - len(self.buffer), len(chunk) - offset)
+            self.buffer.extend(chunk[offset:offset + count])
+            offset += count
+            if len(self.buffer) < target:
+                continue
+            if self.expected is None:
+                self.expected = struct.unpack('!I', self.buffer)[0]
+                self.buffer.clear()
+                if not 1 <= self.expected <= MAX_FRAME:
+                    self.closed = True
+                    raise ProtocolError("advertised frame length exceeds policy")
+            else:
+                frames.append(bytes(self.buffer))
+                self.buffer.clear()
+                self.expected = None
+        return frames
+
+    def finish(self):
+        self.closed = True
+        if self.buffer or self.expected is not None:
+            raise ProtocolError("EOF inside a frame")
 
 
-def demo_serialization():
-    """演示序列化对比"""
-    test_data = {"x": 1.5, "y": 2.3, "hp": 100, "name": "player1"}
+class SendBuffer:
+    """Bounded nonblocking write queue. flush_once preserves unsent bytes on partial writes."""
+    def __init__(self, budget=2 * (MAX_FRAME + 4)):
+        self.budget, self.queued = budget, 0
+        self.parts = deque()
 
-    json_bytes = MessageSerializer.to_json(1, test_data)
-    bin_bytes = MessageSerializer.to_binary(1, test_data)
+    def enqueue(self, payload):
+        frame = encode_frame(payload)
+        if self.queued + len(frame) > self.budget:
+            raise BufferError("slow reader: outbound budget exceeded")
+        self.parts.append(frame)
+        self.queued += len(frame)
 
-    print("═══ 序列化对比 ═══")
-    print(f"  JSON:   {len(json_bytes):>4} bytes → {json_bytes!r}")
-    print(f"  Binary: {len(bin_bytes):>4} bytes → {bin_bytes.hex()}")
-    print(f"  节省:   {(1 - len(bin_bytes)/len(json_bytes)) * 100:.0f}%")
+    def flush_once(self, send):
+        if not self.parts:
+            return
+        head = self.parts[0]
+        try:
+            written = send(head)
+        except BlockingIOError:
+            return
+        if written == 0:
+            raise EOFError("peer closed while writing")
+        if not 0 < written <= len(head):
+            raise RuntimeError("invalid send result")
+        self.queued -= written
+        self.parts.popleft()
+        if written < len(head):
+            self.parts.appendleft(head[written:])
 
-    # 反序列化验证
-    jt, jd = MessageSerializer.from_json(json_bytes)
-    bt, bd = MessageSerializer.from_binary(bin_bytes)
-    print(f"  JSON 还原:   type={jt}, data={jd}")
-    print(f"  Binary 还原: type={bt}, data={bd}")
-    print()
 
-
-# ══════════════════════════════════════════════
-# 2. 心跳机制
-# ══════════════════════════════════════════════
-
-@dataclass
 class HeartbeatManager:
-    """心跳管理：2秒间隔，3次超时断线"""
-    interval: float = 2.0           # 心跳间隔(秒)
-    timeout_limit: int = 3          # 连续超时上限
-    last_send: float = 0.0          # 上次发送时间
-    last_recv: float = 0.0          # 上次收到心跳
-    missed_count: int = 0           # 连续未收到次数
-    connected: bool = True
+    """Elapsed-time watchdog with one outstanding, session-scoped probe; no polling counter."""
+    def __init__(self, generation='demo-session', interval=2.0, timeout=6.0, start=None):
+        if not 0 < interval < timeout or not math.isfinite(timeout):
+            raise ValueError("invalid heartbeat budget")
+        start = time.monotonic() if start is None else start
+        if not math.isfinite(start):
+            raise ValueError("invalid clock origin")
+        self.generation, self.interval, self.timeout = generation, interval, timeout
+        self.last_send = self.last_progress = self.last_now = start
+        self.connected, self.pending, self.sequence = True, None, 0
 
-    def should_send_heartbeat(self, now: float) -> bool:
-        """是否到时间发送心跳"""
-        return self.connected and (now - self.last_send) >= self.interval
+    def check_timeout(self, now):
+        if not math.isfinite(now) or now < self.last_now:
+            raise ValueError("use a monotonic clock")
+        self.last_now = now
+        expired = self.connected and now - self.last_progress >= self.timeout
+        if expired:
+            self.connected = False
+        return expired
 
-    def send_heartbeat(self, now: float):
-        """发送心跳"""
+    def send_heartbeat(self, now):
+        self.check_timeout(now)
+        if not self.connected or now - self.last_send < self.interval:
+            return None
         self.last_send = now
+        if self.pending is None:
+            self.sequence += 1
+            self.pending = (self.generation, self.sequence)
+        return self.pending
 
-    def receive_heartbeat(self, now: float):
-        """收到心跳回应"""
-        self.last_recv = now
-        self.missed_count = 0
-
-    def check_timeout(self, now: float) -> bool:
-        """检测是否超时断线"""
-        if not self.connected:
+    def receive_heartbeat(self, token, now):
+        self.check_timeout(now)
+        if not self.connected or self.pending is None or token != self.pending:
             return False
-        if (now - self.last_recv) > self.interval * self.timeout_limit:
-            self.missed_count += 1
-            if self.missed_count >= self.timeout_limit:
-                self.connected = False
-                return True
-        return False
-
-    def status(self) -> str:
-        if not self.connected:
-            return "❌ 断线"
-        return "🟢 在线"
+        self.last_progress, self.pending = now, None
+        return True
 
 
-def demo_heartbeat():
-    """演示心跳机制"""
-    print("═══ 心跳机制演示 (2秒间隔, 3次超时断线) ═══")
-
-    hb = HeartbeatManager()
-    sim_start = time.time()
-
-    # 模拟 10 秒运行，第 5-8 秒模拟网络中断
-    for sec in range(11):
-        now = sim_start + sec
-
-        if hb.should_send_heartbeat(now):
-            hb.send_heartbeat(now)
-            action = "📤 发送心跳"
-        else:
-            action = "   —"
-
-        # 模拟：5-8 秒不回应（网络中断）
-        if not (5 <= sec <= 8):
-            hb.receive_heartbeat(now)
-            ack = "📥 收到回应"
-        else:
-            ack = "⚠️  无回应(模拟丢包)"
-
-        disconnected = hb.check_timeout(now)
-
-        print(f"  t={sec:2d}s | {action:14s} | {ack:20s} | {hb.status()}")
-
-        if disconnected:
-            print(f"  ═══ 第 {sec} 秒：连接断开！连续 {hb.timeout_limit} 次未收到心跳 ═══")
-            break
-
-    print()
+@dataclass(frozen=True)
+class Input:
+    seq: int
+    dt: float
+    dx: float
+    dy: float
 
 
-# ══════════════════════════════════════════════
-# 3. 状态同步
-# ══════════════════════════════════════════════
-
-@dataclass
-class PlayerState:
-    """玩家状态"""
-    player_id: str
-    x: float = 0.0
-    y: float = 0.0
-    vx: float = 0.0
-    vy: float = 0.0
-    seq: int = 0       # 序列号，用于去重和确认
+@dataclass(frozen=True)
+class Snapshot:
+    sequence: int
+    acknowledged_input: int
+    x: float
+    y: float
 
 
 class StateSyncDemo:
-    """演示客户端预测 + 服务端权威校正"""
+    """Local toy model: reliable ordered input prefix, no actual sockets or physics."""
+    def __init__(self, pending_limit=32):
+        self.next_input, self.server_ack = 1, 0
+        self.snapshot_sequence, self.last_snapshot, self.last_ack = 0, 0, 0
+        self.client_position = self.server_position = (0.0, 0.0)
+        self.pending_inputs, self.pending_limit = deque(), pending_limit
 
-    def __init__(self):
-        self.server_state = PlayerState("p1", 0.0, 0.0)
-        self.client_state = PlayerState("p1", 0.0, 0.0)
-        self.pending_inputs: deque = deque()  # 未确认的输入队列
-        self.sync_log: list = []
+    @staticmethod
+    def _advance(position, command):
+        if not (math.isfinite(command.dt) and 0 < command.dt <= 0.25 and
+                all(math.isfinite(v) and abs(v) <= 1 for v in (command.dx, command.dy))):
+            raise ProtocolError("invalid simulation input")
+        return position[0] + command.dx * command.dt, position[1] + command.dy * command.dt
 
-    def client_tick(self, dt: float, input_dx: float, input_dy: float) -> PlayerState:
-        """客户端帧：本地预测移动"""
-        self.client_state.vx = input_dx
-        self.client_state.vy = input_dy
-        self.client_state.x += input_dx * dt
-        self.client_state.y += input_dy * dt
-        self.client_state.seq += 1
+    def client_tick(self, dt, input_dx, input_dy):
+        if len(self.pending_inputs) >= self.pending_limit:
+            raise ResyncRequired("pending budget exhausted; do not silently discard inputs")
+        command = Input(self.next_input, dt, input_dx, input_dy)
+        position = self._advance(self.client_position, command)
+        self.pending_inputs.append(command)
+        self.next_input += 1
+        self.client_position = position
+        return command
 
-        # 记录未确认输入
-        self.pending_inputs.append((self.client_state.seq, input_dx, input_dy))
-        # 限制队列长度
-        if len(self.pending_inputs) > 10:
-            self.pending_inputs.popleft()
+    def server_receive_input(self, command):
+        if type(command.seq) is not int or command.seq < 1:
+            raise ProtocolError("invalid input sequence")
+        if command.seq <= self.server_ack:
+            return False
+        if command.seq != self.server_ack + 1:
+            raise ResyncRequired("input gap requires recovery")
+        self.server_position = self._advance(self.server_position, command)
+        self.server_ack = command.seq
+        return True
 
-        return self.client_state
+    def server_snapshot(self):
+        self.snapshot_sequence += 1
+        return Snapshot(self.snapshot_sequence, self.server_ack, *self.server_position)
 
-    def server_tick(self, dt: float):
-        """服务端帧：权威物理计算"""
-        # 服务端用自己保存的速度（来自最近收到的输入）
-        self.server_state.x += self.server_state.vx * dt
-        self.server_state.y += self.server_state.vy * dt
+    def reconcile(self, snapshot):
+        if (type(snapshot.sequence) is not int or snapshot.sequence < 1 or
+                type(snapshot.acknowledged_input) is not int or snapshot.acknowledged_input < 0):
+            raise ProtocolError("invalid snapshot sequence")
+        if snapshot.sequence <= self.last_snapshot or snapshot.acknowledged_input < self.last_ack:
+            return False
+        if not self.last_ack <= snapshot.acknowledged_input < self.next_input or not all(
+                math.isfinite(v) for v in (snapshot.x, snapshot.y)):
+            raise ProtocolError("invalid authority acknowledgement/state")
+        remaining = deque(c for c in self.pending_inputs if c.seq > snapshot.acknowledged_input)
+        rebuilt = (snapshot.x, snapshot.y)
+        for command in remaining:
+            rebuilt = self._advance(rebuilt, command)
+        self.pending_inputs = remaining
+        self.client_position = rebuilt
+        self.last_snapshot, self.last_ack = snapshot.sequence, snapshot.acknowledged_input
+        return True
 
-    def server_receive_input(self, seq: int, dx: float, dy: float):
-        """服务端收到玩家输入"""
-        self.server_state.vx = dx
-        self.server_state.vy = dy
-        self.server_state.seq = seq
-
-    def reconcile(self):
-        """客户端收到服务端状态后做校正：重新应用未确认的输入"""
-        corrected = PlayerState(
-            player_id=self.client_state.player_id,
-            x=self.server_state.x,
-            y=self.server_state.y,
-            vx=self.server_state.vx,
-            vy=self.server_state.vy,
-            seq=self.server_state.seq,
-        )
-        # 重新应用所有未确认的输入
-        for seq, dx, dy in self.pending_inputs:
-            if seq > self.server_state.seq:
-                corrected.x += dx * 0.1  # 假设 dt=0.1
-                corrected.y += dy * 0.1
-
-        old = (self.client_state.x, self.client_state.y)
-        self.client_state = corrected
-        new = (self.client_state.x, self.client_state.y)
-        drift = ((new[0] - old[0]) ** 2 + (new[1] - old[1]) ** 2) ** 0.5
-        return drift
-
-
-def demo_state_sync():
-    """演示状态同步"""
-    print("═══ 状态同步演示 (客户端预测 + 服务端校正) ═══")
-
-    sync = StateSyncDemo()
-    inputs = [(1.0, 0.0), (1.0, 0.5), (0.0, -1.0), (-0.5, 0.0)]
-    dt = 0.1
-
-    for i, (dx, dy) in enumerate(inputs):
-        # 客户端预测
-        client = sync.client_tick(dt, dx, dy)
-        print(f"\n  Tick {i + 1}: 输入=({dx},{dy})")
-        print(f"    客户端预测: pos=({client.x:.2f}, {client.y:.2f}) seq={client.seq}")
-
-        # 模拟网络延迟：服务端稍后才处理
-        jitter = random.uniform(0, 0.05)
-        # 服务端权威计算
-        sync.server_receive_input(client.seq - 1 if client.seq > 1 else 0, dx, dy)
-        sync.server_tick(dt + jitter)
-        print(f"    服务端权威: pos=({sync.server_state.x:.2f}, {sync.server_state.y:.2f}) seq={sync.server_state.seq}")
-
-        # 校正
-        drift = sync.reconcile()
-        print(f"    校正后:     pos=({sync.client_state.x:.2f}, {sync.client_state.y:.2f}) 漂移={drift:.3f}")
-
-    print(f"\n  最终 客户端: ({sync.client_state.x:.2f}, {sync.client_state.y:.2f})")
-    print(f"  最终 服务端: ({sync.server_state.x:.2f}, {sync.server_state.y:.2f})")
-    print()
-
-
-# ══════════════════════════════════════════════
-# 主入口
-# ══════════════════════════════════════════════
 
 def main():
-    print("=" * 60)
-    print("  游戏网络通信演示")
-    print("  消息序列化 | 心跳机制 | 状态同步")
-    print("=" * 60)
-    print()
+    data = {'x': 1.5, 'hp': 100, 'name': '玩家'}
+    for encode, decode in [(MessageSerializer.to_json, MessageSerializer.from_json),
+                           (MessageSerializer.to_binary, MessageSerializer.from_binary)]:
+        raw = encode(1, data)
+        assert decode(raw) == (1, data)
+        print(f'{encode.__name__}: {len(raw)} bytes, round trip OK (not a benchmark)')
+    hb = HeartbeatManager(start=0)
+    token = hb.send_heartbeat(2)
+    assert hb.receive_heartbeat(token, 3)
+    assert hb.check_timeout(9)
+    print('heartbeat: elapsed deadline reached; a new connection needs a new session')
+    sync = StateSyncDemo()
+    commands = [sync.client_tick(dt, dx, dy) for dt, dx, dy in [(0.1, 1, 0), (0.2, 0, 1), (0.05, 0, 0)]]
+    for command in commands:
+        sync.server_receive_input(command)
+        sync.reconcile(sync.server_snapshot())
+    assert sync.client_position == sync.server_position and not sync.pending_inputs
+    print('reconciliation: acknowledged prefix drained; final positions match')
 
-    # 1. 序列化对比
-    demo_serialization()
 
-    # 2. 心跳机制
-    demo_heartbeat()
-
-    # 3. 状态同步
-    demo_state_sync()
-
-    print("=" * 60)
-    print("  演示完成！")
-    print("  核心：JSON vs Binary 序列化 → 心跳保活 → 客户端预测+服务端校正")
-    print("=" * 60)
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

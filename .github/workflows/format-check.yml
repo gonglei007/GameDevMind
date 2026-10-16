@@ -63,6 +63,29 @@ jobs:
           UBSAN_OPTIONS: halt_on_error=1
         run: ctest --test-dir /tmp/network-sync-build --output-on-failure
 
+  network-protocol-regression:
+    name: Check Network Protocol and Sockets (${{ matrix.os }})
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify codec, framing, write budget, heartbeat and input acknowledgements
+        run: >-
+          python -m unittest discover
+          -s code/artile-sample-code/02-technical/05-networking
+          -p 'test_*.py' -v
+      - name: Verify real TCP and UDP loopback and malformed datagrams
+        run: >-
+          python -m unittest discover
+          -s code/artile-sample-code/01-foundation/06-os-network
+          -p 'test_*.py' -v
+
   client-render-audit:
     name: Check Client Render Audit
     runs-on: ubuntu-latest

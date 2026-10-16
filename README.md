@@ -130,7 +130,7 @@ flowchart LR
 | 案例 | 现场症状 | 最终根因 |
 |---|---|---|
 | [SLG 手游内存泄漏](cases/memory-leak-slg.md) | 挂机 2 小时后 OOM 崩溃 | `shared_ptr` 循环引用 |
-| [MOBA 角色回弹](cases/network-reconciliation.md) | 海外玩家角色频繁回弹 | 客户端预测与服务器校正冲突 |
+| [MOBA 角色回弹复核](cases/network-reconciliation.md) | 移动预测与旧权威状态时点错配 | 输入确认、原 dt 重放与显示分离；历史效果未复核 |
 | [开放世界卡顿](cases/drawcall-optimization.md) | Draw Call 高、野外卡顿的诊断练习 | 核对材质、合批与 UI 假设；产品根因待复测 |
 
 [查看全部 8 个案例](cases/README.md)
