@@ -29,6 +29,8 @@ code/gamedevmind/
 │   │   └── hex_grid/           ← 六边形网格 + A* 寻路
 │   ├── 3.1.3.客户端优化/
 │   │   └── render_audit/       ← 只读渲染引用审计（.NET / Unity Editor）
+│   ├── 3.1.4.客户端网络系统/
+│   │   └── client_network/     ← 代次、请求与有界生命周期模型（Python）
 │   └── 3.2.3.服务端优化/
 │       ├── leaderboard_snapshot/ ← 展示快照与真实 MySQL/Redis 回归（Go）
 │       └── lock_order/         ← ABBA 条件与修复不变量（C++17）
@@ -70,6 +72,7 @@ cd code/gamedevmind/6.运营能力/6.2.3.产品热更新/hotupdate_client && pyt
 | [transaction_contract](2.技术能力/2.2.2.数据库/transaction_contract/) | [数据库](../../mds/2.技术能力/2.2.2.数据库.md) | 真实 InnoDB 原子效果、幂等请求、RC/RR 读视图 |
 | [hex_grid](3.研发能力/3.1.2.客户端3D场景开发/hex_grid/) | [客户端3D场景开发](../../mds/3.研发能力/3.1.2.客户端3D场景开发.md) | 六边形坐标、A*寻路、地形生成 |
 | [render_audit](3.研发能力/3.1.3.客户端优化/render_audit/) | [客户端优化](../../mds/3.研发能力/3.1.3.客户端优化.md) | 材质引用身份、只读清点、候选边界与回归 |
+| [client_network](3.研发能力/3.1.4.客户端网络系统/client_network/) | [客户端网络系统](../../mds/3.研发能力/3.1.4.客户端网络系统.md) | 认证/恢复、旧代次隔离、取消/超时、有限重试与线程邮箱 |
 | [leaderboard_snapshot](3.研发能力/3.2.3.服务端优化/leaderboard_snapshot/) | [服务端优化](../../mds/3.研发能力/3.2.3.服务端优化.md) | 完整快照、源截止时间、同分分页与依赖回归 |
 | [lock_order](3.研发能力/3.2.3.服务端优化/lock_order/) | [服务端优化](../../mds/3.研发能力/3.2.3.服务端优化.md) | ABBA 条件、统一锁序、scoped_lock 与成员不变量 |
 | [excel_to_json](4.生产能力/4.2.3.游戏数据文件/excel_to_json/) | [游戏数据文件](../../mds/4.生产能力/4.2.3.游戏数据文件.md) | 策划表导出、类型校验、CI 集成 |

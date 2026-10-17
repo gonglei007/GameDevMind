@@ -120,6 +120,7 @@ flowchart LR
 | [内存池](code/gamedevmind/1.基础能力/1.1.2.C++语言/memory_pool/) | 高频内存分配带来的开销 | `malloc` 与池化 10 万次性能对比 |
 | [四叉树](code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/) | 大量对象碰撞检测成本过高 | O(n²) 遍历与空间分区的差异 |
 | [帧同步 vs 状态同步](code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/) | 多人游戏如何同步状态 | Lockstep 与 State Sync 本地模拟 |
+| [客户端网络生命周期](code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/) | 旧连接回调、取消与重连恢复 | 代次隔离、一次终态、有限重试和有界线程邮箱模型 |
 
 [查看两类代码集合及全部示例](code/README.md)
 

@@ -16,9 +16,11 @@
 
 数据库增加 **Check SQLite Database Example**（Windows/Linux 的迁移、CAS、奖励和排行榜）及 **Check MySQL Transaction Contracts**（真实 InnoDB 的原子效果、幂等身份、回滚和 RC/RR 读视图，含 Go race）。MySQL 必须配置独立服务，缺失不允许跳过；SQLite 不替代其他引擎。运行范围见 [数据库示例](../../code/gamedevmind/2.技术能力/2.2.2.数据库/README.md)，不包含生产容量和备份恢复验收。
 
-## 更新索引与导航
+客户端网络系统增加 **Check Client Network Lifecycle**（Windows/Linux，Python 标准库）：阻断验证认证/恢复门禁、旧代次、一次终态、取消/超时/关闭、重试预算与真实工作线程邮箱；同时验证持续服务器的延迟通道、输入排空和远端插值模型。命令与边界见 [生命周期模型](../../code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/) 和 [延迟同步模型](../../code/artile-sample-code/03-rd/03-sync/)。这些不是 Unity、DNS/TLS、切网、强更完整流程或业务幂等验收。
 
 网络与通信增加 **Check Network Protocol and Sockets**（Windows/Linux，Python 标准库）。协议类型、长度分帧、部分写入/背压、时间心跳和输入确认模型，以及真实本机 TCP/UDP 回环均为阻断断言。临时端口与超时避免固定端口冲突和无限等待；不包含公网弱网、TLS、RPC、消息队列、容量或引擎物理验收。命令见 [协议示例](../../code/artile-sample-code/02-technical/05-networking/) 和 [Socket 示例](../../code/artile-sample-code/01-foundation/06-os-network/)。
+
+## 更新索引与导航
 
 正文标题、标签、文件列表和阅读路径是内容来源。修改后在本地运行：
 
