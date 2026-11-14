@@ -28,6 +28,10 @@
 
 ## AI 研发与应用
 
+<p align="center">
+  <a href="docs/AI/README.md"><img src="./images/subjects/isometric-v2/07-ai-development.png" width="320" alt="AI 游戏开发：人工决策、AI 执行与验证"></a>
+</p>
+
 围绕游戏研发中的实际任务，集中查阅 AI 协作方法与可复用资料。
 
 **重点资料 ·《AI游戏开发》**：六篇持续积累的实践手册，帮助把人工决策、AI 执行和实际验证衔接起来，适合随项目推进反复查阅。
@@ -67,13 +71,13 @@ flowchart LR
 <table width="100%">
   <tr>
     <td width="50%" valign="top" align="center">
-      <a href="mds/1.基础能力/1.基础能力.md"><img src="./images/subjects/subjects.001.jpeg" height="150" alt="基础能力"></a><br>
+      <a href="mds/1.基础能力/1.基础能力.md"><img src="./images/subjects/isometric-v2/01-foundations.png" height="150" alt="基础能力"></a><br>
       <strong><a href="mds/1.基础能力/1.基础能力.md">1. 基础能力</a></strong><br>
       <sub>语言 · 算法 · 数据结构 · 操作系统 · 软件工程</sub><br><br>
       与游戏行业相关、但不限于游戏行业的编程、数学、计算机系统和软件工程基础。
     </td>
     <td width="50%" valign="top" align="center">
-      <a href="mds/2.技术能力/2.技术能力.md"><img src="./images/subjects/subjects.002.jpeg" height="150" alt="技术能力"></a><br>
+      <a href="mds/2.技术能力/2.技术能力.md"><img src="./images/subjects/isometric-v2/02-technical.png" height="150" alt="技术能力"></a><br>
       <strong><a href="mds/2.技术能力/2.技术能力.md">2. 技术能力</a></strong><br>
       <sub>渲染 · 物理 · 网络 · 音频 · 客户端与服务端</sub><br><br>
       可跨游戏项目复用的图形、物理、UI、音频、引擎、网络和数据专项技术。
@@ -81,13 +85,13 @@ flowchart LR
   </tr>
   <tr>
     <td width="50%" valign="top" align="center">
-      <a href="mds/3.研发能力/3.研发能力.md"><img src="./images/subjects/subjects.003.jpeg" height="150" alt="研发能力"></a><br>
+      <a href="mds/3.研发能力/3.研发能力.md"><img src="./images/subjects/isometric-v2/03-development.png" height="150" alt="研发能力"></a><br>
       <strong><a href="mds/3.研发能力/3.研发能力.md">3. 研发能力</a></strong><br>
       <sub>架构 · 场景 · 玩法系统 · 工具链 · 调试与优化</sub><br><br>
       面向游戏产品本身的客户端、服务端、玩法、业务系统和运行时架构。
     </td>
     <td width="50%" valign="top" align="center">
-      <a href="mds/4.生产能力/4.生产能力.md"><img src="./images/subjects/subjects.004.jpeg" height="150" alt="生产能力"></a><br>
+      <a href="mds/4.生产能力/4.生产能力.md"><img src="./images/subjects/isometric-v2/04-production.png" height="150" alt="生产能力"></a><br>
       <strong><a href="mds/4.生产能力/4.生产能力.md">4. 生产能力</a></strong><br>
       <sub>资源管线 · 自动化构建 · 质量保障 · 性能治理</sub><br><br>
       围绕内容、数据、工具、自动化、技术中台和交付流水线建立工业化生产能力。
@@ -95,13 +99,13 @@ flowchart LR
   </tr>
   <tr>
     <td width="50%" valign="top" align="center">
-      <a href="mds/5.管理能力/5.管理能力.md"><img src="./images/subjects/subjects.005.jpeg" height="150" alt="管理能力"></a><br>
+      <a href="mds/5.管理能力/5.管理能力.md"><img src="./images/subjects/isometric-v2/05-management.png" height="150" alt="管理能力"></a><br>
       <strong><a href="mds/5.管理能力/5.管理能力.md">5. 管理能力</a></strong><br>
       <sub>技术规划 · 团队协作 · 项目风险 · 研发效能</sub><br><br>
       围绕角色、流程、目标、质量、版本、项目、团队和风险建立生产管理能力。
     </td>
     <td width="50%" valign="top" align="center">
-      <a href="mds/6.运营能力/6.运营能力.md"><img src="./images/subjects/subjects.006.jpeg" height="150" alt="运营能力"></a><br>
+      <a href="mds/6.运营能力/6.运营能力.md"><img src="./images/subjects/isometric-v2/06-operations.png" height="150" alt="运营能力"></a><br>
       <strong><a href="mds/6.运营能力/6.运营能力.md">6. 运营能力</a></strong><br>
       <sub>发布 · 监控 · 热更新 · 安全 · 数据与商业化</sub><br><br>
       覆盖上线后的运维、LiveOps、数据分析、用户服务、商业化、安全、合规和持续盈利。
