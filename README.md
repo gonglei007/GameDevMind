@@ -2,7 +2,7 @@
 
 # 游戏开发 · 技术图谱
 
-面向游戏程序员和技术负责人的系统化知识库：覆盖基础技术、游戏研发、规模化生产、团队管理与上线运营，并提供可运行代码、真实故障案例和 AI 协作记录。
+面向游戏程序员和技术负责人的系统化知识库：覆盖基础技术、游戏研发、规模化生产、团队管理与上线运营，并提供可运行代码、真实故障案例和 AI 研发实践资料。
 
 <p>
   <a href="https://github.com/gonglei007/GameDevMind/stargazers"><img src="https://img.shields.io/github/stars/gonglei007/GameDevMind.svg" alt="GitHub Stars"></a>
@@ -10,19 +10,31 @@
   <a href="https://github.com/gonglei007/GameDevMind/graphs/contributors"><img src="https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg" alt="Contributors"></a>
 </p>
 
-[开始阅读](mds/阅读说明.md) · [文档索引](INDEX.md) · [交互式导航](https://gonglei007.github.io/GameDevMind/nav/) · [知识全景](https://gonglei007.github.io/GameDevMind/nav/panorama.html) · [English](https://github.com/gonglei007/GameDevMind-EN)
+[开始阅读](mds/阅读说明.md) · **[AI 研发与应用](docs/AI/README.md)** · [文档索引](INDEX.md) · [交互式导航](https://gonglei007.github.io/GameDevMind/nav/) · [知识全景](https://gonglei007.github.io/GameDevMind/nav/panorama.html) · [English](https://github.com/gonglei007/GameDevMind-EN)
 
 </div>
 
 > 希望帮你在前人走过的路上节省时间，更快抓住关键问题、找到解决方向，把精力投入到真正有创造力的事情上。
 
 <!-- BEGIN GENERATED:content-stats -->
-| 📚 124 篇文档 | 💻 2 类代码示例 | 🏥 8 个实战案例 | 🤖 5 个 AI 对话 |
+| 📚 124 篇文档 | 💻 2 类代码示例 | 🏥 8 个实战案例 | 🤖 5 个 AI 协作记录 |
 |:---:|:---:|:---:|:---:|
-| [浏览文档](INDEX.md) | [运行代码](code/README.md) | [查看案例](cases/README.md) | [查看对话](ai-cases/README.md) |
+| [浏览文档](INDEX.md) | [运行代码](code/README.md) | [查看案例](cases/README.md) | [AI 研发与应用](docs/AI/README.md) |
 
 文档统计覆盖 `mds/` 全部 Markdown：112 篇核心文档（含目录页）＋ 12 篇专题与说明。
 <!-- END GENERATED:content-stats -->
+
+<a id="精选-ai-协作记录"></a>
+
+## AI 研发与应用
+
+将 AI 参与游戏研发的方法、协作复核、工程模板与应用知识汇集到一个资料中心，支持从明确需求、实现功能到验证和交付的实际工作。
+
+**[进入 AI 研发与应用资料中心](docs/AI/README.md)**
+
+- **重点资料 ·《AI游戏开发》**：六篇持续积累的实践手册，覆盖人工决策、架构与模块边界、原型迭代、测试试玩、提示词及经验复盘。
+- **协作记录与建议复核**：从 Prompt、历史输出摘录和人工纠错中理解如何补充约束、审查建议并记录验证边界。
+- **工程模板与应用专题**：集中查阅 AI Coding 指南、项目规则与记忆模板，以及人工智能基础、游戏 AI、内容生产和运营相关资料。
 
 ## 从这里开始
 
@@ -35,8 +47,6 @@
 | **C · 上线运营线** | 主程、技术负责人、CTO、准备上线的团队 | 生产效率、项目治理、发布运维和技术运营能力 | [准备上线](mds/topics/推荐阅读路径.md#路径-c上线运营线) |
 
 还不确定从哪里开始？查看 [阅读说明](mds/阅读说明.md)、[关键词索引](KEYWORDS.md) 或 [常见问题](mds/topics/常见问题.md)。
-
-个人实践积累：[AI 游戏开发专题](docs/AI游戏开发/README.md)，按六个主要部分阅读系列文档，持续记录 AI 协作、架构、原型、资源制作与验证经验。
 
 ## 六大核心能力域
 
@@ -138,18 +148,6 @@ flowchart LR
 
 [查看全部 8 个案例](cases/README.md)
 
-### 精选 AI 协作记录
-
-保留 Prompt、AI 输出、人工判断、修正过程和最终成果，展示 AI 如何真正参与研发。
-
-| 对话 | 场景 | 关键结果 |
-|---|---|---|
-| [用 Claude 设计内存池](ai-cases/cpp-memory-pool.md) | C++ 服务器内存池 | 从初版迭代到 ARM 对齐修正 |
-| [用 Cursor 优化 Draw Call](ai-cases/unity-drawcall-optimization.md) | Unity 性能优化 | 纠正 Static/MPB 建议，改为只读审计与回归 |
-| [用 ChatGPT 设计缓存方案](ai-cases/go-leaderboard-cache.md) | Go 排行榜查询 | 纠正双写、TTL 与分页；完整快照和依赖回归 |
-
-[查看全部 5 个 AI 对话](ai-cases/README.md) · [.cursorrules 游戏开发模板](.cursorrules.example) · [CLAUDE.md 项目记忆模板](CLAUDE.md.example)
-
 ## 延伸专题
 
 | 专题 | 适合什么场景 | 入口 |
@@ -188,7 +186,7 @@ flowchart LR
 | 交互式全景图 | 已上线 |
 | 配套代码示例 | 已上线 |
 | 实战案例库 | 已上线 |
-| AI 实战对话 | 已上线 |
+| AI 研发与应用资料中心 | 已上线 |
 | 社区贡献体系 | 已上线 |
 
 </details>

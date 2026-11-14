@@ -63,13 +63,12 @@ def outputs(root: Path = ROOT) -> dict[Path, str]:
 
     source = root / "README.md"
     text = source.read_text(encoding="utf-8-sig")
-    body = (f"| 📚 {stats['documents']} 篇文档 | 💻 {stats['codeCollections']} 类代码示例 | 🏥 {stats['cases']} 个实战案例 | 🤖 {stats['aiCases']} 个 AI 对话 |\n"
+    body = (f"| 📚 {stats['documents']} 篇文档 | 💻 {stats['codeCollections']} 类代码示例 | 🏥 {stats['cases']} 个实战案例 | 🤖 {stats['aiCases']} 个 AI 协作记录 |\n"
             "|:---:|:---:|:---:|:---:|\n"
-            "| [浏览文档](INDEX.md) | [运行代码](code/README.md) | [查看案例](cases/README.md) | [查看对话](ai-cases/README.md) |\n\n"
+            "| [浏览文档](INDEX.md) | [运行代码](code/README.md) | [查看案例](cases/README.md) | [AI 研发与应用](docs/AI/README.md) |\n\n"
             f"文档统计覆盖 `mds/` 全部 Markdown：{stats['core']} 篇核心文档（含目录页）＋ {stats['supplementary']} 篇专题与说明。")
     text = replace_block(text, "content-stats", body)
     text = re.sub(r"查看全部 \d+ 个案例", f"查看全部 {stats['cases']} 个案例", text)
-    text = re.sub(r"查看全部 \d+ 个 AI 对话", f"查看全部 {stats['aiCases']} 个 AI 对话", text)
     result[source] = text
     source = root / "mds/topics/推荐阅读路径.md"
     text = source.read_text(encoding="utf-8-sig")
