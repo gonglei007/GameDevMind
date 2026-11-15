@@ -315,6 +315,7 @@ body {
 </div>
 
 <script src="content-data.js"></script>
+<script src="node-activation.js"></script>
 <script>
 // ============================================================
 //  DATA — shared generated inventory from content-data.js
@@ -445,6 +446,7 @@ const tooltip = document.getElementById('tooltip');
 let nodeEls = new Map(); // node -> DOM element
 
 function renderAll() {
+  nodeActivation.cancel();
   // Clear
   for (const el of nodeEls.values()) el.remove();
   nodeEls.clear();
@@ -529,24 +531,28 @@ let scale = 0.75;
 let tx = 0, ty = 0;
 let activeModule = -1; // -1 = all
 
+const nodeActivation = createNodeActivation(node => {
+  node.collapsed = !node.collapsed;
+  layoutAll();
+  renderAll();
+  updateTransform();
+}, node => {
+  window.open(contentHref(node.path), '_blank', 'noopener');
+});
+
 function updateTransform() {
   canvas.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
 }
 
 function onNodeClick(node, e) {
   e.stopPropagation();
-  if (node.children.length === 0) return; // leaf, do nothing on single click
-
-  node.collapsed = !node.collapsed;
-  layoutAll();
-  renderAll();
-  updateTransform();
+  nodeActivation.click(node);
 }
 
 function onNodeDblClick(node, e) {
   e.stopPropagation();
   e.preventDefault();
-  window.open(contentHref(node.path), '_blank', 'noopener');
+  nodeActivation.doubleClick(node);
 }
 
 function onNodeHover(node, el, e) {

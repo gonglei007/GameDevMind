@@ -12,6 +12,8 @@
 
 正文格式任务另以 Node.js 22 内置测试检查导航 URL：GitHub Pages 的文档和代码入口必须进入 GitHub 的 blob/tree 视图，离线与本地相对路径保持可用，并验证特殊文件名编码。页面展开、图片加载与真实跳转仍通过浏览器实测，不由此 URL 回归替代。
 
+同一任务以可控计时核对全景图的单击/双击互斥与取消，防止父节点先折叠重绘、再丢失双击跳转。浏览器另实测真实父节点双击和单击折叠/展开。
+
 客户端审计 CI 只运行不依赖 Unity 的核心；实际 Unity 2022.3 编译与只读场景回归在本地 Editor 中运行，命令见 [render_audit](../../code/gamedevmind/3.研发能力/3.1.3.客户端优化/render_audit/README.md)。两者都不能代替目标机 URP 性能验收。
 
 服务端优化增加 **Check Server Leaderboard Snapshot**（Go race + 独立 MySQL 8.0/Redis 7.4）和 **Check Server Lock Order**（C++17 + ASan/UBSan + 外部超时）。真实依赖配置缺失、竞态、快照/锁序回归均阻断；不使用生产数据，不把正确性测试当作容量或长期稳定性报告。命令与边界见 [服务端优化示例](../../code/gamedevmind/3.研发能力/3.2.3.服务端优化/README.md)。

@@ -27,6 +27,7 @@ python tools/check/check_links.py
 python tools/check/check_images.py
 python tools/check/generate_catalog.py --check
 node --test tools/check/test_navigation_urls.cjs
+node --test tools/check/test_navigation_interactions.cjs
 ```
 
 - `check_docs.py`：UTF-8、叶子文档必填字段；缺图返回非零；展示格式问题仍为告警。
@@ -34,6 +35,7 @@ node --test tools/check/test_navigation_urls.cjs
 - `check_images.py`：检查 Markdown 图片、HTML 图片及指向图片的普通链接；缺失图片阻断，未引用和大文件只报告，不自动删除或压缩。
 - `generate_catalog.py --check`：只读验证生成结果；缺失或过期时返回非零，并提示重新生成。
 - `test_navigation_urls.cjs`：使用 Node.js 22 内置测试模块，验证 GitHub Pages 上正文进入 GitHub 排版视图、代码目录进入 tree 视图，以及离线/本地导航的相对路径和 `C#` 等特殊文件名。在线阅读不依赖 Pages 直接渲染 `.md` 文件。
+- `test_navigation_interactions.cjs`：以可控计时验证全景节点单击延迟折叠、双击取消折叠并只打开一次，以及视图重绘时取消待处理点击；避免第一次点击重建 DOM 后吞掉双击。
 - 外部 URL 不在离线门禁范围内，需另行验证网络可达性。
 - `template/` 是创作模板，`tmp/`、`.cursor/` 是工作资料，不作为发布内容扫描。
 
