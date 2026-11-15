@@ -63,10 +63,10 @@ def outputs(root: Path = ROOT) -> dict[Path, str]:
 
     source = root / "README.md"
     text = source.read_text(encoding="utf-8-sig")
-    body = (f"| 📚 {stats['documents']} 篇文档 | 💻 {stats['codeCollections']} 类代码示例 | 🏥 {stats['cases']} 个实战案例 | 🤖 AI 研发与应用 |\n"
-            "|:---:|:---:|:---:|:---:|\n"
-            f"| [浏览文档](INDEX.md) | [运行代码](code/README.md) | [查看案例](cases/README.md) | [进入资料中心](docs/AI/README.md)<br/>含 {stats['aiCases']} 个协作记录 |\n\n"
-            f"文档统计覆盖 `mds/` 全部 Markdown：{stats['core']} 篇核心文档（含目录页）＋ {stats['supplementary']} 篇专题与说明。")
+    body = (f"**📚 {stats['documents']} 篇文档** · **💻 {stats['codeCollections']} 类代码示例** · "
+            f"**🏥 {stats['cases']} 个案例与诊断练习** · "
+            f"**🤖 [AI 研发与应用](docs/AI/README.md)**（{stats['aiCases']} 个协作记录）\n\n"
+            "文档数按 `mds/` 统计，详见 [统计口径](INDEX.md#统计口径)。")
     text = replace_block(text, "content-stats", body)
     text = re.sub(r"查看全部 \d+ 个案例", f"查看全部 {stats['cases']} 个案例", text)
     result[source] = text
