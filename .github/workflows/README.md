@@ -50,4 +50,4 @@ python tools/check/generate_catalog.py --check
 
 ## 其他维护流程
 
-[update-readme.yml](update-readme.yml) 保留历史最近提交流程，不属于 PR 门禁；若要实际写入 main，应先改为创建 PR，不为机器人添加绕过。正文统计由统一内容生成工具负责。
+[update-readme.yml](update-readme.yml) 每小时或手动检查 README 的可选最近提交区块，有变化时创建或复用固定更新 PR，不直推 main；无标记或无差异时不创建 PR。通过显式 `workflow_dispatch` 调度四个现有 CI 工作流，仍需通过 17 项必需检查后普通合并。只在该任务授予 contents、pull-requests、actions 写权限，不为机器人添加分支保护绕过。完整行为与本地验证见 [README 最近提交维护](../../tools/check/README.md#readme-最近提交维护)。正文统计由统一内容生成工具负责。
