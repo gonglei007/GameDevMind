@@ -88,6 +88,13 @@
 
 [交互式知识全景](https://gonglei007.github.io/GameDevMind/nav/panorama.html) · [高清图谱总览](exports/0.总览.png) · [知识分层说明](docs/知识结构分层规范.md)
 
+<details>
+<summary><strong>展开知识全景预览</strong></summary>
+
+[![游戏开发技术图谱全景预览](overview/overview-h.png)](https://gonglei007.github.io/GameDevMind/nav/panorama.html)
+
+</details>
+
 ## 可立即使用的资源
 
 <a id="精选代码示例"></a>
@@ -99,6 +106,17 @@
 | 代码 | [客户端网络生命周期](code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/) | 旧回调隔离、取消与重连恢复 |
 | 案例 | [SLG 循环引用](cases/memory-leak-slg.md) | 强弱引用与对象生命周期 |
 | 案例 | [MOBA 角色回弹复核](cases/network-reconciliation.md) | 输入确认、重放与显示校正 |
+
+<details>
+<summary><strong>更多示例与案例</strong></summary>
+
+- [四叉树](code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/)：空间分区与碰撞候选查询。
+- [帧同步 vs 状态同步](code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/)：Lockstep 与预测校正的本地模型。
+- [开放世界卡顿复核](cases/drawcall-optimization.md)：材质、合批与 UI 假设的诊断练习。
+
+完整目录：[全部代码示例](code/README.md) · [全部案例与诊断练习](cases/README.md)。
+
+</details>
 
 <a id="延伸专题"></a>
 
@@ -117,7 +135,7 @@
 | 技术咨询与培训 | [顶游社](https://www.gltop.com?from=gamedevmind) · [gonglei@gltop.com](mailto:gonglei@gltop.com) |
 
 <details>
-<summary><strong>项目资料、贡献者与鸣谢</strong></summary>
+<summary><strong>微信联系、项目资料、贡献者与鸣谢</strong></summary>
 
 感谢所有贡献内容、代码和建议的开发者：
 
