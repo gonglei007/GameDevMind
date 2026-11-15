@@ -22,6 +22,8 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; min-height:100vh; }
+:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+a, button, input { scroll-margin-block:140px 24px; }
 .header { background:var(--surface); border-bottom:1px solid var(--border); padding:20px 24px; position:sticky; top:0; z-index:100; }
 .header h1 { font-size:1.4rem; display:flex; align-items:center; gap:8px; }
 .header h1 span { color:var(--accent); }
@@ -29,7 +31,7 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .container { max-width:1200px; margin:0 auto; padding:20px 24px; }
 .controls { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px; align-items:center; }
 .search-box { flex:1; min-width:200px; position:relative; }
-.search-box input { width:100%; padding:10px 16px 10px 38px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); color:var(--text); font-size:.9rem; outline:none; transition:border-color .2s; }
+.search-box input { width:100%; padding:10px 16px 10px 38px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); color:var(--text); font-size:.9rem; transition:border-color .2s; }
 .search-box input:focus { border-color:var(--accent); }
 .search-box::before { content:'🔍'; position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:.8rem; }
 .filters { display:flex; gap:8px; flex-wrap:wrap; }
@@ -118,7 +120,7 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
     </div>
   </div>
   <div class="category-tabs" id="tabs"></div>
-  <div class="stats" id="stats"></div>
+  <div class="stats" id="stats" role="status" aria-live="polite"></div>
   <div class="doc-list" id="list"></div>
   <div class="paths-section">
     <h2>📖 推荐学习路径</h2>
@@ -156,11 +158,12 @@ function selectPath(id){
 }
 
 function render(){
+  const focusKey=document.activeElement?.dataset?.focusKey;
   // Tabs
-  let tabsHtml=`<button type="button" class="cat-tab ${activeCat===0?'active':''}" aria-pressed="${activeCat===0}" onclick="activeCat=0;render()">全部<span class="count">${DOCS.length}</span></button>`;
+  let tabsHtml=`<button type="button" data-focus-key="category-0" class="cat-tab ${activeCat===0?'active':''}" aria-pressed="${activeCat===0}" onclick="activeCat=0;render()">全部<span class="count">${DOCS.length}</span></button>`;
   for(let i=0;i<CATS.length;i++){
     const cnt=DOCS.filter(d=>d.c===i+1).length;
-    tabsHtml+=`<button type="button" class="cat-tab ${i+1===activeCat?'active':''}" aria-pressed="${i+1===activeCat}" onclick="activeCat=${i+1};render()">${CATS[i]}<span class="count">${cnt}</span></button>`;
+    tabsHtml+=`<button type="button" data-focus-key="category-${i+1}" class="cat-tab ${i+1===activeCat?'active':''}" aria-pressed="${i+1===activeCat}" onclick="activeCat=${i+1};render()">${CATS[i]}<span class="count">${cnt}</span></button>`;
   }
   document.getElementById('tabs').innerHTML=tabsHtml;
 
@@ -207,7 +210,7 @@ function render(){
   document.getElementById('paths').innerHTML=`
     <p class="path-guide">完整清单见 <a href="${contentHref('mds/topics/推荐阅读路径.md')}">推荐阅读路径.md</a>（含必读/选读标记与配套资源）</p>
     ${LEARNING_PATHS.map(p=>`
-    <button type="button" class="path-card ${activePath===p.id?'active':''}" aria-pressed="${activePath===p.id}" onclick="selectPath('${p.id}')">
+    <button type="button" data-focus-key="path-${p.id}" class="path-card ${activePath===p.id?'active':''}" aria-pressed="${activePath===p.id}" onclick="selectPath('${p.id}')">
       <span class="path-title">${p.title}</span>
       <span class="path-desc">${p.desc} · ${p.paths.size} 篇核心文档</span>
       <span class="path-flow">
@@ -227,6 +230,7 @@ function render(){
       </span>
     </button>`).join('')}
   `;
+  if(focusKey) document.querySelector(`[data-focus-key="${focusKey}"]`)?.focus();
 }
 
 render();

@@ -22,6 +22,8 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.node:focus-visible { outline-color:#fff; z-index:11; }
 
 body {
   background: var(--bg);
@@ -109,7 +111,7 @@ body {
 .canvas-wrap {
   flex: 1;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   cursor: grab;
   touch-action: none;
   min-height: 0;
@@ -277,6 +279,7 @@ body {
 .node-actions strong { display:block; margin-bottom:6px; overflow-wrap:anywhere; }
 .node-actions a, .node-actions button { display:inline-flex; align-items:center; min-height:44px; padding:6px 10px; color:var(--accent); background:var(--bg); border:1px solid var(--border); border-radius:6px; font:inherit; font-size:.8rem; text-decoration:none; cursor:pointer; }
 .touch-hint { display:none; color:var(--muted); font-size:.72rem; }
+.keyboard-hint { color:var(--muted); font-size:.72rem; width:100%; }
 @media (hover:none) { .tooltip { display:none; } }
 
 /* ── Responsive ── */
@@ -309,6 +312,14 @@ body {
     <span>🖱️ 单击展开</span>
     <span>🖱️🖱️ 双击跳转</span>
   </div>
+  <p class="keyboard-hint" id="keyboard-hint">键盘：Tab 切换控件；节点 ↑/↓、Home/End 移动，←/→ 折叠展开，Enter/空格切换；Tab 可到“打开文档”；+/- 缩放，0/R 重置。</p>
+</div>
+
+<!-- Canvas -->
+<div class="canvas-wrap" id="wrap">
+  <div class="canvas" id="canvas" role="group" aria-label="知识节点" aria-describedby="keyboard-hint">
+    <svg class="edges-svg" id="edges"></svg>
+  </div>
 </div>
 
 <div class="node-actions" id="node-actions" hidden>
@@ -317,18 +328,11 @@ body {
   <button type="button" id="selected-toggle" hidden>折叠节点</button>
 </div>
 
-<!-- Canvas -->
-<div class="canvas-wrap" id="wrap">
-  <div class="canvas" id="canvas">
-    <svg class="edges-svg" id="edges"></svg>
-  </div>
-</div>
-
 <!-- Tooltip -->
 <div class="tooltip" id="tooltip"></div>
 
 <!-- Zoom Controls -->
-<div class="controls">
+<div class="controls" id="view-controls">
   <button class="ctrl-btn" id="btn-zoom-in" title="放大" aria-label="放大">+</button>
   <button class="ctrl-btn" id="btn-zoom-out" title="缩小" aria-label="缩小">−</button>
   <button class="ctrl-btn reset" id="btn-reset" title="重置视图" aria-label="重置视图">⟳</button>
@@ -467,6 +471,7 @@ let nodeEls = new Map(); // node -> DOM element
 
 function renderAll() {
   nodeActivation.cancel();
+  const focusedNode = [...nodeEls].find(([,el]) => el === document.activeElement)?.[0];
   // Clear
   for (const el of nodeEls.values()) el.remove();
   nodeEls.clear();
@@ -523,6 +528,7 @@ function renderAll() {
     div.dataset.name = n.name;
     div.dataset.module = n.module;
     div.dataset.depth = n.depth;
+    div.tabIndex = -1;
 
     // Badge for difficulty level
     let badgeHtml = '';
@@ -533,6 +539,15 @@ function renderAll() {
 
     // Events
     div.addEventListener('click', (e) => onNodeClick(n, e));
+    div.addEventListener('focus', () => {
+      focusedNodePath = n.path;
+      selectedNode = n;
+      updateNodeTabStops();
+      updateNodeActions();
+      if (div.matches(':focus-visible') && scale < 0.8) { scale = 0.8; updateTransform(); }
+      keepNodeInView(n, div);
+    });
+    div.addEventListener('keydown', (e) => onNodeKeyDown(n, e));
     div.addEventListener('dblclick', (e) => onNodeDblClick(n, e));
     div.addEventListener('mouseenter', (e) => onNodeHover(n, div, e));
     div.addEventListener('mouseleave', () => { tooltip.classList.remove('show'); });
@@ -546,6 +561,7 @@ function renderAll() {
   canvas.style.height = (maxY - minY + pad * 2) + 'px';
   applyModuleVisibility(activeModule);
   updateNodeActions();
+  if (focusedNode) focusNode(focusedNode);
 }
 
 // ============================================================
@@ -556,13 +572,9 @@ let tx = 0, ty = 0;
 let activeModule = -1; // -1 = all
 let selectedNode = null;
 let suppressNodeClick = false;
+let focusedNodePath = '';
 
-const nodeActivation = createNodeActivation(node => {
-  node.collapsed = !node.collapsed;
-  layoutAll();
-  renderAll();
-  fitToScreen();
-}, node => {
+const nodeActivation = createNodeActivation(toggleNode, node => {
   window.open(contentHref(node.path), '_blank', 'noopener');
 });
 
@@ -572,10 +584,75 @@ function updateTransform() {
 
 function onNodeClick(node, e) {
   e.stopPropagation();
+  if (e.detail === 0) {
+    nodeActivation.cancel();
+    selectedNode = node;
+    if (node.children.length) toggleNode(node);
+    else updateNodeActions();
+    return;
+  }
   if (suppressNodeClick) return;
   selectedNode = node;
   updateNodeActions();
   nodeActivation.click(node);
+}
+
+function toggleNode(node) {
+  nodeActivation.cancel();
+  node.collapsed = !node.collapsed;
+  layoutAll();
+  renderAll();
+  fitToScreen();
+}
+
+function updateNodeTabStops() {
+  const visible = [...nodeEls].filter(([,el]) => el.style.display !== 'none');
+  const current = visible.find(([n]) => n.path === focusedNodePath) || visible[0];
+  for (const [node, el] of nodeEls) el.tabIndex = current?.[0] === node ? 0 : -1;
+}
+
+function focusNode(node) {
+  const el = nodeEls.get(node);
+  if (!el || el.style.display === 'none') return;
+  el.focus({preventScroll:true});
+}
+
+function keepNodeInView(node, el) {
+  if (!el.matches(':focus-visible')) return;
+  const rect = wrap.getBoundingClientRect();
+  const box = el.getBoundingClientRect();
+  // Keep a readable focused node above the action panel, including after zoom.
+  const bottom = Math.min(rect.bottom, document.getElementById('node-actions').getBoundingClientRect().top - 12,
+    document.getElementById('view-controls').getBoundingClientRect().top - 12);
+  const dx = box.left < rect.left + 12 ? rect.left + 12 - box.left : box.right > rect.right - 12 ? rect.right - 12 - box.right : 0;
+  const dy = box.top < rect.top + 12 ? rect.top + 12 - box.top : box.bottom > bottom ? bottom - box.bottom : 0;
+  tx += dx; ty += dy;
+  updateTransform();
+}
+
+function onNodeKeyDown(node, e) {
+  if (e.altKey || e.ctrlKey || e.metaKey || e.isComposing) return;
+  const visible = [...nodeEls].filter(([,el]) => el.style.display !== 'none').map(([n]) => n);
+  const index = visible.indexOf(node);
+  let target;
+  switch (e.key) {
+    case 'ArrowDown': target = visible[Math.min(index + 1, visible.length - 1)]; break;
+    case 'ArrowUp': target = visible[Math.max(index - 1, 0)]; break;
+    case 'Home': target = visible[0]; break;
+    case 'End': target = visible[visible.length - 1]; break;
+    case 'ArrowRight':
+      if (node.children.length && node.collapsed) toggleNode(node);
+      else target = node.children[0];
+      break;
+    case 'ArrowLeft':
+      if (node.children.length && !node.collapsed) toggleNode(node);
+      else target = visible.find(n => n.children.includes(node));
+      break;
+    default: return;
+  }
+  e.preventDefault();
+  e.stopPropagation();
+  if (target) focusNode(target);
 }
 
 function onNodeDblClick(node, e) {
@@ -598,11 +675,7 @@ function updateNodeActions() {
 
 document.getElementById('selected-toggle').addEventListener('click', () => {
   if (!selectedNode) return;
-  nodeActivation.cancel();
-  selectedNode.collapsed = !selectedNode.collapsed;
-  layoutAll();
-  renderAll();
-  fitToScreen();
+  toggleNode(selectedNode);
 });
 
 function onNodeHover(node, el, e) {
@@ -735,6 +808,8 @@ function zoomBy(factor) {
   ty = cy - (cy - ty) * (next / scale);
   scale = next;
   updateTransform();
+  const focused = [...nodeEls].find(([,el]) => el === document.activeElement);
+  if (focused) keepNodeInView(...focused);
 }
 document.getElementById('btn-zoom-in').addEventListener('click', () => {
   zoomBy(1.2);
@@ -810,7 +885,7 @@ function applyModuleVisibility(mod) {
       edge.style.display = 'none';
     }
   }
-
+  updateNodeTabStops();
 }
 
 // ============================================================
@@ -837,12 +912,17 @@ function fitToScreen() {
   if (activeModule !== -1 && (wrapRect.width <= 768 || wrapRect.height < 400)) {
     scale = Math.max(Math.min(1, wrapRect.width / 390), scale);
   }
+  const focused = [...nodeEls].find(([,el]) => el === document.activeElement);
+  if (focused?.[1].matches(':focus-visible')) scale = Math.max(0.8, scale);
   tx = (wrapRect.width - cw * scale) / 2 - (minX - padX) * scale;
   ty = (wrapRect.height - ch * scale) / 2 - (minY - padY) * scale;
   updateTransform();
+  if (focused) keepNodeInView(...focused);
 }
 
 function resetView() {
+  const actionsHadFocus = document.getElementById('node-actions').contains(document.activeElement);
+  const previousSelection = selectedNode;
   activeModule = -1;
   selectedNode = null;
   tooltip.classList.remove('show');
@@ -853,6 +933,7 @@ function resetView() {
   for (const root of allRoots) collapseAll(root, false);
   layoutAll();
   renderAll();
+  if (actionsHadFocus) focusNode(previousSelection || allRoots[0]);
   fitToScreen();
   // Show all nodes
   for (const [node, el] of nodeEls) el.style.display = '';
@@ -869,11 +950,12 @@ function collapseAll(node, state) {
 //  KEYBOARD SHORTCUTS
 // ============================================================
 window.addEventListener('keydown', (e) => {
+  if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || e.isComposing ||
+      e.target.isContentEditable || e.target.closest('input, textarea, select, [role="textbox"]')) return;
   switch (e.key) {
-    case '0': resetView(); break;
-    case '+': case '=': zoomBy(1.2); break;
-    case '-': zoomBy(1 / 1.2); break;
-    case 'r': case 'R': resetView(); break;
+    case '0': case 'r': case 'R': e.preventDefault(); resetView(); break;
+    case '+': case '=': e.preventDefault(); zoomBy(1.2); break;
+    case '-': e.preventDefault(); zoomBy(1 / 1.2); break;
   }
 });
 
