@@ -74,3 +74,24 @@ node --test tools/check/test_navigation_controls.cjs
 - [browser-regression.yml](../../.github/workflows/browser-regression.yml)：真实浏览器交互与 GitHub README 展示。
 
 上述失败均返回非零，不使用忽略错误继续通过的配置。main 已启用 17 项必需检查与管理员约束，内容更新必须通过 PR；完整清单、正反向验证和维护流程见 [CI 门禁与 main 分支维护](../../.github/CI_MAINTENANCE.md)。
+
+## README 最近提交维护
+
+[update_readme_pr.py](update_readme_pr.py) 供 [update-readme.yml](../../.github/workflows/update-readme.yml) 每小时及手动执行，默认本地仅预览，工作流通过 `--apply` 写入固定的 `codex/auto-readme-updates` 分支。
+
+```bash
+python tools/check/update_readme_pr.py
+python -m unittest discover -s tools/check -p test_readme_pr.py -v
+```
+
+- 仅维护 README 中一对 `<!-- COMMIT-START -->` / `<!-- COMMIT-END -->` 标记之间的区块。当前首页没有这对标记，因此正常执行会报告无变化，不重新添加首页区块，也不创建 PR。若将来需要启用此区块，应先通过普通 PR 加入成对标记；单边、重复或反向标记直接报错。
+- 从最新 `origin/main` 读取 README 和最后五条有效非合并提交，不使用本地工作区内容；忽略本自动化和旧版机器人生成的最近提交更新，避免合并更新 PR 后无限产生自我更新。生成无时间戳，转义提交标题，保留区块外文本与换行。
+- main 内容无变化时不提交、不创建新 PR，也不主动关闭现有 PR。有变化时只使用固定更新分支，已有开放 PR 则复用；同一目标内容和 head 不重复创建提交、PR 或 CI 调度。
+- main 更新后重新以最新 main 的树生成内容，旧更新 head 和最新 main 都作为父提交；仅快进更新固定分支，不强推、不丢弃分支历史。若发现该分支有其他文件或生成区块外的人工修改，报错并保留现场；准备更新时 main 已变化也报错，下一轮从最新 main 重试。
+- 工作流并发组固定且不取消正在运行的任务。失败不会被当作“无变化”；API 部分失败后可复用已写入的 head/PR，只补调度该 head 缺失的工作流，已失败的 CI 不会每小时自动反复重跑。
+
+机器人 PR 仍遵守 main 的 17 项必需检查。[GitHub 的工作流触发规则](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow)规定，`GITHUB_TOKEN` 产生的 PR 运行可能需要人工批准，不能假设会自动无人值守完成；`workflow_dispatch` 是可直接触发运行的例外。因此脚本主动向更新分支调度 `check-links.yml`、`format-check.yml`、`generate-index.yml`、`browser-regression.yml`，产生当前 head 对应的全部检查，不伪造成功状态，也不自动审批或合并 PR。
+
+仅更新任务具有 `contents: write`、`pull-requests: write`、`actions: write`，checkout 不持久化凭据，不需要另存 PAT 或管理员令牌。仓库 Actions 设置需允许 GitHub Actions 创建 PR；权限不足时会明确失败，不降级为直推或绕过。
+
+[test_readme_pr.py](test_readme_pr.py) 已随现有 `Check Markdown Format` 必需任务执行，覆盖无变化、标记异常、标题转义/换行、真实 Git 日志去除机器人反馈、创建与复用 PR、main 前进、拒绝人工修改、CI 部分调度恢复和工作流权限契约。GitHub 写操作由 API 边界夹具验证；当前无标记路径另可在合并后手动执行工作流，核对真实无变化退出。
