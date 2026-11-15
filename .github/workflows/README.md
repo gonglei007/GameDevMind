@@ -1,5 +1,7 @@
 # GitHub Actions 工作流说明
 
+main 的实际保护配置、17 项必需检查、正反向验收证据和 PR 更新流程统一见 [CI 门禁与 main 分支维护](../CI_MAINTENANCE.md)。
+
 ## 必须通过的检查
 
 所有检查均在 main 的 Push、Pull Request 和手动触发时执行，只需 `contents: read` 权限。
@@ -9,7 +11,7 @@
 - [generate-index.yml](generate-index.yml)：验证两个导航页共用的数据、模块目录、文档索引、关键词索引与统计是否和正文一致。
 - [browser-regression.yml](browser-regression.yml)：以锁定版本的 Playwright/Chromium 执行当前 checkout 的导航、全景、手机触屏、键盘回归，并检查提交 SHA 对应的 GitHub README 展示；main push 另查公共首页。
 
-内部链接、缺图和生成漂移均使检查失败；大图片与未引用资源只报告。若要强制阻止合并，在仓库分支保护中将检查配置为必需。
+内部链接、缺图和生成漂移均使检查失败；大图片与未引用资源只报告。上述四个工作流的 17 项 PR 检查已设为 main 的必需检查，管理员同样受约束；更新 main 必须走 PR。
 
 正文格式任务另以 Node.js 22 内置测试检查导航 URL：GitHub Pages 的文档和代码入口必须进入 GitHub 的 blob/tree 视图，离线与本地相对路径保持可用，并验证特殊文件名编码。页面展开、图片加载与真实跳转仍通过浏览器实测，不由此 URL 回归替代。
 
@@ -48,4 +50,4 @@ python tools/check/generate_catalog.py --check
 
 ## 其他维护流程
 
-[update-readme.yml](update-readme.yml) 保留原有最近提交流程；正文统计由统一内容生成工具负责。
+[update-readme.yml](update-readme.yml) 保留历史最近提交流程，不属于 PR 门禁；若要实际写入 main，应先改为创建 PR，不为机器人添加绕过。正文统计由统一内容生成工具负责。

@@ -73,4 +73,4 @@ node --test tools/check/test_navigation_controls.cjs
 - [generate-index.yml](../../.github/workflows/generate-index.yml)：生成一致性。
 - [browser-regression.yml](../../.github/workflows/browser-regression.yml)：真实浏览器交互与 GitHub README 展示。
 
-上述失败均返回非零，不使用忽略错误继续通过的配置。要禁止失败 PR 合并，还需仓库分支保护将这些检查配置为必需状态检查。
+上述失败均返回非零，不使用忽略错误继续通过的配置。main 已启用 17 项必需检查与管理员约束，内容更新必须通过 PR；完整清单、正反向验证和维护流程见 [CI 门禁与 main 分支维护](../../.github/CI_MAINTENANCE.md)。

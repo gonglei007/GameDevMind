@@ -44,4 +44,4 @@ README 默认以本地 `git rev-parse HEAD` 构造 GitHub `/blob/<SHA>/README.md
 
 配置不自动重试或忽略失败。网络/浏览器安装失败与断言失败都返回非零。现有 Node 状态/坐标计算与 Python 内容门禁继续保留；浏览器回归补足实际布局、原生按键、触摸命中及 GitHub 展示验证。触屏模拟不等于 iOS Safari/安卓真机验收；当前固定测试 Chromium。
 
-工作流见 [browser-regression.yml](../../../.github/workflows/browser-regression.yml)。如需强制阻止失败 PR 合并，还应将两个新检查配置为分支保护的必需状态检查。
+工作流见 [browser-regression.yml](../../../.github/workflows/browser-regression.yml)。两个浏览器检查均已设为 main 的必需检查；完整保护配置、17 项清单、正反向验收和 PR 更新流程见 [CI 门禁与 main 分支维护](../../../.github/CI_MAINTENANCE.md)。
