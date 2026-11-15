@@ -27,7 +27,7 @@
 | 你想做什么 | 推荐入口 |
 |---|---|
 | **系统学习** | [新人入门](mds/topics/推荐阅读路径.md#路径-a新人入门线) · [研发实战](mds/topics/推荐阅读路径.md#路径-b研发实战线) · [上线运营](mds/topics/推荐阅读路径.md#路径-c上线运营线) |
-| **查找具体问题** | [文档索引](INDEX.md) · [关键词索引](KEYWORDS.md) · [交互式导航](https://gonglei007.github.io/GameDevMind/nav/) |
+| **查找具体问题** | 按领域浏览：[文档索引](INDEX.md) · 按术语定位：[关键词索引](KEYWORDS.md) · 搜索与筛选：[交互式导航](https://gonglei007.github.io/GameDevMind/nav/) |
 | **动手验证方案** | [代码示例](code/README.md) · [案例与诊断练习](cases/README.md) |
 | **用 AI 推进研发** | [AI 研发与应用资料中心](docs/AI/README.md) |
 
