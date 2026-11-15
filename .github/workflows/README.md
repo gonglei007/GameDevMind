@@ -7,6 +7,7 @@
 - [check-links.yml](check-links.yml)：离线验证发布内容的内部文件、图片链接与标题锚点。外链网络可达性不在此门禁范围内。
 - [format-check.yml](format-check.yml)：检查器单元测试、正文必填字段、图片引用；另以 C++17 和 sanitizers 执行循环引用案例与网络同步回归，使用 .NET 10 执行客户端只读渲染审计的引用身份、候选过滤和快照回归。
 - [generate-index.yml](generate-index.yml)：验证两个导航页共用的数据、模块目录、文档索引、关键词索引与统计是否和正文一致。
+- [browser-regression.yml](browser-regression.yml)：以锁定版本的 Playwright/Chromium 执行当前 checkout 的导航、全景、手机触屏、键盘回归，并检查提交 SHA 对应的 GitHub README 展示；main push 另查公共首页。
 
 内部链接、缺图和生成漂移均使检查失败；大图片与未引用资源只报告。若要强制阻止合并，在仓库分支保护中将检查配置为必需。
 
@@ -17,6 +18,10 @@
 导航控件回归还执行页面实际脚本，核对搜索空格、组合筛选、六模块折叠后保留筛选、触屏拖动防误触、双指缩放锚点、单指续拖及缩放中心。此门禁用最小 DOM 适配器检查状态与坐标计算；手机布局、触摸命中和文档按钮仍以 Playwright 触屏浏览器验证。
 
 同一回归覆盖分类/学习路径重绘后的焦点保留、节点键盘激活与方向键/Home/End 移动，以及快捷键对组合键、编辑目标、输入法和已处理事件的隔离。真实 Tab/Shift+Tab 顺序、Enter/空格、焦点环及窄屏遮挡由 Playwright 浏览器验证。
+
+浏览器工作流有 **Check Navigation Browser Regression** 和 **Check GitHub README Browser Regression** 两个独立检查，失败均阻断任务，不依赖 Pages 发布顺序。导航对当前 checkout 启动本地只读服务；README 访问实际 GitHub 的不可变 SHA 页面，PR 不误测旧 main。配图加载、折叠、重点入口、三种手机视口、原生触摸手势、焦点与快捷键都执行断言。第三方徽章只保留入口与加载诊断；仓库配图加载是硬断言。
+
+两个检查无条件保留非取消任务已生成的报告产物，包括失败截图、trace 和视频，保留 7 天；网络故障不会被降级成通过。本地命令、范围和 Chromium/触屏模拟的边界见 [浏览器回归说明](../../tools/check/browser/README.md)。
 
 客户端审计 CI 只运行不依赖 Unity 的核心；实际 Unity 2022.3 编译与只读场景回归在本地 Editor 中运行，命令见 [render_audit](../../code/gamedevmind/3.研发能力/3.1.3.客户端优化/render_audit/README.md)。两者都不能代替目标机 URP 性能验收。
 

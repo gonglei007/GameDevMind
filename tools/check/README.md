@@ -39,6 +39,7 @@ node --test tools/check/test_navigation_controls.cjs
 - `test_navigation_interactions.cjs`：以可控计时验证全景节点单击延迟折叠、双击取消折叠并只打开一次，以及视图重绘时取消待处理点击；避免第一次点击重建 DOM 后吞掉双击。
 - `test_navigation_controls.cjs`：执行导航页实际脚本，验证搜索去除首尾空格、组合筛选、六个模块折叠后保留筛选、切换模块取消待处理点击，以及触屏拖动防误触、移动双指缩放锚点、单指续拖和居中缩放。使用最小 DOM 适配器验证状态与计算，不代替真实浏览器的布局和触屏实测。
 - 同一控件回归还验证分类/学习路径重绘后保留焦点、节点键盘激活不受触屏误触标记影响、方向键和 Home/End 遍历当前模块，以及快捷键忽略 Ctrl/Meta/Alt、输入框、可编辑内容、输入法组合和已处理的事件。实际 Tab 顺序、Enter/空格的浏览器默认行为、焦点环、滚动后可见性和键盘打开文档由 Playwright 另行验证。
+- [浏览器回归](browser/README.md)：Playwright Test 自动运行 README 的 GitHub 展示，以及当前 checkout 的搜索筛选、全景、手机触屏和键盘操作；失败保留截图、trace、视频与报告，已纳入 CI。
 - 外部 URL 不在离线门禁范围内，需另行验证网络可达性。
 - `template/` 是创作模板，`tmp/`、`.cursor/` 是工作资料，不作为发布内容扫描。
 
@@ -70,5 +71,6 @@ node --test tools/check/test_navigation_controls.cjs
 - [check-links.yml](../../.github/workflows/check-links.yml)：内部链接与锚点。
 - [format-check.yml](../../.github/workflows/format-check.yml)：检查器回归、文档与图片、案例回归。
 - [generate-index.yml](../../.github/workflows/generate-index.yml)：生成一致性。
+- [browser-regression.yml](../../.github/workflows/browser-regression.yml)：真实浏览器交互与 GitHub README 展示。
 
 上述失败均返回非零，不使用忽略错误继续通过的配置。要禁止失败 PR 合并，还需仓库分支保护将这些检查配置为必需状态检查。

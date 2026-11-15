@@ -1,0 +1,14 @@
+{
+  "name": "gamedevmind-browser-regression",
+  "private": true,
+  "version": "1.0.0",
+  "description": "README and navigation browser regression gates",
+  "scripts": {
+    "test": "playwright test",
+    "test:local": "playwright test --project=desktop --project=mobile",
+    "test:readme": "playwright test --project=github-readme",
+    "report": "playwright show-report ../../../output/playwright-regression/report"
+  },
+  "engines": {"node": ">=22"},
+  "devDependencies": {"@playwright/test": "1.65.1"}
+}
