@@ -35,7 +35,7 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .filters { display:flex; gap:8px; flex-wrap:wrap; }
 .filter-group { display:flex; gap:4px; align-items:center; }
 .filter-group .label { color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; }
-.chip { padding:6px 14px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--muted); font-size:.8rem; cursor:pointer; transition:all .2s; white-space:nowrap; user-select:none; }
+.chip { padding:6px 14px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--muted); font:inherit; font-size:.8rem; cursor:pointer; transition:all .2s; white-space:nowrap; user-select:none; }
 .chip:hover { border-color:var(--accent); color:var(--text); }
 .chip.active { background:var(--accent); color:#fff; border-color:var(--accent); }
 .category-tabs { display:flex; gap:4px; margin-bottom:20px; overflow-x:auto; padding-bottom:4px; }
@@ -66,10 +66,11 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .empty { text-align:center; padding:48px; color:var(--muted); }
 .paths-section { margin-top:32px; }
 .paths-section h2 { font-size:1.1rem; margin-bottom:16px; color:var(--text); }
-.path-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; margin-bottom:12px; cursor:pointer; transition:border-color .2s,box-shadow .2s; }
+.path-card { display:block; width:100%; text-align:left; color:inherit; font:inherit; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; margin-bottom:12px; cursor:pointer; transition:border-color .2s,box-shadow .2s; }
 .path-card:hover { border-color:var(--accent); }
 .path-card.active { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
-.path-card h3 { font-size:.9rem; color:var(--accent); margin-bottom:8px; }
+.path-card .path-title { display:block; font-size:.9rem; font-weight:600; color:var(--accent); margin-bottom:8px; }
+.path-card .path-desc, .path-card .path-flow { display:flex; flex-wrap:wrap; }
 .path-card .path-desc { font-size:.78rem; color:var(--muted); margin-bottom:10px; }
 .path-guide { font-size:.82rem; margin-bottom:16px; }
 .path-guide a { color:var(--accent); }
@@ -79,9 +80,16 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .code-link { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:12px; background:rgba(88,166,255,.1); color:var(--accent); font-size:.72rem; text-decoration:none; }
 .code-link:hover { background:rgba(88,166,255,.2); }
 @media (max-width:768px) {
+  .doc-card { flex-wrap:wrap; }
   .doc-card .tags { display:none; }
+  .doc-card .tags:has(.code-link) { display:flex; width:100%; padding-left:46px; }
+  .doc-card .tag { display:none; }
+  .doc-card .tags:empty { display:none; }
+  .code-link, .chip, .cat-tab { min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
   .controls { flex-direction:column; }
   .search-box { width:100%; }
+  .filters { width:100%; }
+  .filter-group { flex-wrap:wrap; }
 }
 </style>
 </head>
@@ -98,14 +106,14 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
     <div class="filters">
       <div class="filter-group">
         <span class="label">等级</span>
-        <span class="chip" onclick="toggleFilter('level','初级',this)">初级</span>
-        <span class="chip" onclick="toggleFilter('level','中级',this)">中级</span>
-        <span class="chip" onclick="toggleFilter('level','高级',this)">高级</span>
+        <button type="button" class="chip" aria-pressed="false" onclick="toggleFilter('level','初级',this)">初级</button>
+        <button type="button" class="chip" aria-pressed="false" onclick="toggleFilter('level','中级',this)">中级</button>
+        <button type="button" class="chip" aria-pressed="false" onclick="toggleFilter('level','高级',this)">高级</button>
       </div>
       <div class="filter-group">
         <span class="label">角色</span>
-        <span class="chip" onclick="toggleFilter('role','客户端',this)">客户端</span>
-        <span class="chip" onclick="toggleFilter('role','服务端',this)">服务端</span>
+        <button type="button" class="chip" aria-pressed="false" onclick="toggleFilter('role','客户端',this)">客户端</button>
+        <button type="button" class="chip" aria-pressed="false" onclick="toggleFilter('role','服务端',this)">服务端</button>
       </div>
     </div>
   </div>
@@ -137,6 +145,7 @@ function toggleFilter(type,val,el){
   const s=type==='level'?activeLevels:activeRoles;
   s.has(val)?s.delete(val):s.add(val);
   el.classList.toggle('active',s.has(val));
+  el.setAttribute('aria-pressed', String(s.has(val)));
   render();
 }
 
@@ -148,15 +157,15 @@ function selectPath(id){
 
 function render(){
   // Tabs
-  let tabsHtml=`<span class="cat-tab ${activeCat===0?'active':''}" onclick="activeCat=0;render()">全部<span class="count">${DOCS.length}</span></span>`;
+  let tabsHtml=`<button type="button" class="cat-tab ${activeCat===0?'active':''}" aria-pressed="${activeCat===0}" onclick="activeCat=0;render()">全部<span class="count">${DOCS.length}</span></button>`;
   for(let i=0;i<CATS.length;i++){
     const cnt=DOCS.filter(d=>d.c===i+1).length;
-    tabsHtml+=`<span class="cat-tab ${i+1===activeCat?'active':''}" onclick="activeCat=${i+1};render()">${CATS[i]}<span class="count">${cnt}</span></span>`;
+    tabsHtml+=`<button type="button" class="cat-tab ${i+1===activeCat?'active':''}" aria-pressed="${i+1===activeCat}" onclick="activeCat=${i+1};render()">${CATS[i]}<span class="count">${cnt}</span></button>`;
   }
   document.getElementById('tabs').innerHTML=tabsHtml;
 
   // Filter
-  search=document.getElementById('search').value.toLowerCase();
+  search=document.getElementById('search').value.trim().toLowerCase();
   let filtered=DOCS.filter(d=>{
     if(activePath){
       const pathSet=LEARNING_PATHS.find(p=>p.id===activePath).paths;
@@ -198,10 +207,10 @@ function render(){
   document.getElementById('paths').innerHTML=`
     <p class="path-guide">完整清单见 <a href="${contentHref('mds/topics/推荐阅读路径.md')}">推荐阅读路径.md</a>（含必读/选读标记与配套资源）</p>
     ${LEARNING_PATHS.map(p=>`
-    <div class="path-card ${activePath===p.id?'active':''}" onclick="selectPath('${p.id}')">
-      <h3>${p.title}</h3>
-      <div class="path-desc">${p.desc} · ${p.paths.size} 篇核心文档</div>
-      <div class="path-flow">
+    <button type="button" class="path-card ${activePath===p.id?'active':''}" aria-pressed="${activePath===p.id}" onclick="selectPath('${p.id}')">
+      <span class="path-title">${p.title}</span>
+      <span class="path-desc">${p.desc} · ${p.paths.size} 篇核心文档</span>
+      <span class="path-flow">
         ${p.id==='a'?`
         <span class="path-step c1">编程基础</span><span class="path-arrow">→</span>
         <span class="path-step c2">引擎/UI</span><span class="path-arrow">→</span>
@@ -215,8 +224,8 @@ function render(){
         <span class="path-step c6">上线必查</span><span class="path-arrow">→</span>
         <span class="path-step c6">运维底座</span><span class="path-arrow">→</span>
         <span class="path-step c6">运营支撑</span>`:''}
-      </div>
-    </div>`).join('')}
+      </span>
+    </button>`).join('')}
   `;
 }
 

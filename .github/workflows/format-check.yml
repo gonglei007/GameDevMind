@@ -26,8 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify navigation URLs and single/double-click behavior
-        run: node --test tools/check/test_navigation_urls.cjs tools/check/test_navigation_interactions.cjs
+      - name: Verify navigation URLs, filters and pointer interactions
+        run: node --test tools/check/test_navigation_urls.cjs tools/check/test_navigation_interactions.cjs tools/check/test_navigation_controls.cjs
       - name: Run document quality check
         run: python tools/check/check_docs.py
       - name: Audit image references

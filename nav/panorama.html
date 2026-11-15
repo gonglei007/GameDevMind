@@ -29,6 +29,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow: hidden;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   user-select: none;
@@ -110,6 +111,8 @@ body {
   position: relative;
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
+  min-height: 0;
 }
 .canvas-wrap:active { cursor: grabbing; }
 .canvas-wrap.grabbing { cursor: grabbing; }
@@ -268,13 +271,23 @@ body {
 }
 .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
 .ctrl-btn.reset { font-size: 0.75rem; }
+.node-actions { position:absolute; left:14px; bottom:16px; max-width:calc(100% - 84px); padding:10px; background:var(--surface); border:1px solid var(--border); border-radius:8px; z-index:50; }
+.node-actions[hidden] { display:none; }
+.node-actions [hidden] { display:none; }
+.node-actions strong { display:block; margin-bottom:6px; overflow-wrap:anywhere; }
+.node-actions a, .node-actions button { display:inline-flex; align-items:center; min-height:44px; padding:6px 10px; color:var(--accent); background:var(--bg); border:1px solid var(--border); border-radius:6px; font:inherit; font-size:.8rem; text-decoration:none; cursor:pointer; }
+.touch-hint { display:none; color:var(--muted); font-size:.72rem; }
+@media (hover:none) { .tooltip { display:none; } }
 
 /* ── Responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 768px), (pointer: coarse) {
   .header { padding: 10px 14px; gap: 10px; }
   .header h1 { font-size: 1rem; }
-  .tab { padding: 5px 10px; font-size: 0.7rem; }
+  .tabs { flex-wrap:nowrap; overflow-x:auto; width:100%; }
+  .tab { padding: 5px 10px; font-size: 0.7rem; min-height:44px; flex-shrink:0; }
   .legend { display: none; }
+  .touch-hint { display:block; }
+  .ctrl-btn { width:44px; height:44px; }
   .node.d0 { font-size: 0.85rem; padding: 8px 16px; min-width: 100px; }
   .node.d1 { font-size: 0.72rem; padding: 5px 12px; }
   .node.d2 { font-size: 0.68rem; padding: 4px 10px; }
@@ -288,6 +301,7 @@ body {
   <h1>🗺️ GameDevMind <span>知识全景图</span></h1>
   <a class="back" href="index.html">← 返回导航</a>
   <div class="tabs" id="tabs"></div>
+  <p class="touch-hint">选择模块后查看；拖动平移，双指缩放，点选节点后可打开文档。</p>
   <div class="legend">
     <span id="content-stats"></span>
     <span>🖱️ 拖拽平移</span>
@@ -295,6 +309,12 @@ body {
     <span>🖱️ 单击展开</span>
     <span>🖱️🖱️ 双击跳转</span>
   </div>
+</div>
+
+<div class="node-actions" id="node-actions" hidden>
+  <strong id="selected-name"></strong>
+  <a id="selected-link" target="_blank" rel="noopener">打开文档 ↗</a>
+  <button type="button" id="selected-toggle" hidden>折叠节点</button>
 </div>
 
 <!-- Canvas -->
@@ -309,9 +329,9 @@ body {
 
 <!-- Zoom Controls -->
 <div class="controls">
-  <button class="ctrl-btn" id="btn-zoom-in" title="放大">+</button>
-  <button class="ctrl-btn" id="btn-zoom-out" title="缩小">−</button>
-  <button class="ctrl-btn reset" id="btn-reset" title="重置视图">⟳</button>
+  <button class="ctrl-btn" id="btn-zoom-in" title="放大" aria-label="放大">+</button>
+  <button class="ctrl-btn" id="btn-zoom-out" title="缩小" aria-label="缩小">−</button>
+  <button class="ctrl-btn reset" id="btn-reset" title="重置视图" aria-label="重置视图">⟳</button>
 </div>
 
 <script src="content-data.js"></script>
@@ -489,11 +509,13 @@ function renderAll() {
 
   // Draw nodes
   for (const n of allNodes) {
-    const div = document.createElement('div');
+    const div = document.createElement('button');
+    div.type = 'button';
     div.className = `node d${n.depth} m${n.module}`;
-    if (n.depth === 1 && n.children.length > 0) {
+    if (n.children.length > 0) {
       div.classList.add('has-children');
       if (n.collapsed) div.classList.add('collapsed');
+      div.setAttribute('aria-expanded', String(!n.collapsed));
     }
     div.style.left = n.x + 'px';
     div.style.top = n.y + 'px';
@@ -522,6 +544,8 @@ function renderAll() {
   // Update canvas size
   canvas.style.width = (maxX - minX + pad * 2) + 'px';
   canvas.style.height = (maxY - minY + pad * 2) + 'px';
+  applyModuleVisibility(activeModule);
+  updateNodeActions();
 }
 
 // ============================================================
@@ -530,12 +554,14 @@ function renderAll() {
 let scale = 0.75;
 let tx = 0, ty = 0;
 let activeModule = -1; // -1 = all
+let selectedNode = null;
+let suppressNodeClick = false;
 
 const nodeActivation = createNodeActivation(node => {
   node.collapsed = !node.collapsed;
   layoutAll();
   renderAll();
-  updateTransform();
+  fitToScreen();
 }, node => {
   window.open(contentHref(node.path), '_blank', 'noopener');
 });
@@ -546,14 +572,38 @@ function updateTransform() {
 
 function onNodeClick(node, e) {
   e.stopPropagation();
+  if (suppressNodeClick) return;
+  selectedNode = node;
+  updateNodeActions();
   nodeActivation.click(node);
 }
 
 function onNodeDblClick(node, e) {
   e.stopPropagation();
   e.preventDefault();
+  if (suppressNodeClick) return;
   nodeActivation.doubleClick(node);
 }
+
+function updateNodeActions() {
+  document.getElementById('node-actions').hidden = !selectedNode;
+  if (!selectedNode) return;
+  document.getElementById('selected-name').textContent = selectedNode.name;
+  document.getElementById('selected-link').href = contentHref(selectedNode.path);
+  const toggle = document.getElementById('selected-toggle');
+  toggle.hidden = selectedNode.children.length === 0;
+  toggle.textContent = selectedNode.collapsed ? '展开节点' : '折叠节点';
+  toggle.setAttribute('aria-expanded', String(!selectedNode.collapsed));
+}
+
+document.getElementById('selected-toggle').addEventListener('click', () => {
+  if (!selectedNode) return;
+  nodeActivation.cancel();
+  selectedNode.collapsed = !selectedNode.collapsed;
+  layoutAll();
+  renderAll();
+  fitToScreen();
+});
 
 function onNodeHover(node, el, e) {
   const rect = el.getBoundingClientRect();
@@ -569,6 +619,8 @@ let dragStartX = 0, dragStartY = 0;
 let dragTx = 0, dragTy = 0;
 
 wrap.addEventListener('mousedown', (e) => {
+  // Compatibility mouse events after a touch must not clear drag suppression.
+  if (!e.sourceCapabilities?.firesTouchEvents) suppressNodeClick = false;
   if (e.target.closest('.node')) return; // let node handle it
   isDragging = true;
   wrap.classList.add('grabbing');
@@ -613,6 +665,8 @@ let touchStartTx = 0, touchStartTy = 0;
 let touchMidX = 0, touchMidY = 0;
 
 wrap.addEventListener('touchstart', (e) => {
+  nodeActivation.cancel();
+  suppressNodeClick = false;
   if (e.touches.length === 1) {
     isDragging = true;
     dragStartX = e.touches[0].clientX;
@@ -620,6 +674,7 @@ wrap.addEventListener('touchstart', (e) => {
     dragTx = tx;
     dragTy = ty;
   } else if (e.touches.length === 2) {
+    suppressNodeClick = true;
     isDragging = false;
     const dx = e.touches[0].clientX - e.touches[1].clientX;
     const dy = e.touches[0].clientY - e.touches[1].clientY;
@@ -633,7 +688,9 @@ wrap.addEventListener('touchstart', (e) => {
 }, { passive: false });
 
 wrap.addEventListener('touchmove', (e) => {
+  e.preventDefault();
   if (e.touches.length === 1 && isDragging) {
+    if (Math.hypot(e.touches[0].clientX - dragStartX, e.touches[0].clientY - dragStartY) > 8) suppressNodeClick = true;
     tx = dragTx + (e.touches[0].clientX - dragStartX);
     ty = dragTy + (e.touches[0].clientY - dragStartY);
     updateTransform();
@@ -647,23 +704,43 @@ wrap.addEventListener('touchmove', (e) => {
     const rect = wrap.getBoundingClientRect();
     const cx = midX - rect.left;
     const cy = midY - rect.top;
-    tx = cx - (cx - touchStartTx) * (newScale / touchStartScale);
-    ty = cy - (cy - touchStartTy) * (newScale / touchStartScale);
+    tx = cx - (touchMidX - rect.left - touchStartTx) * (newScale / touchStartScale);
+    ty = cy - (touchMidY - rect.top - touchStartTy) * (newScale / touchStartScale);
     scale = newScale;
     updateTransform();
   }
 }, { passive: false });
 
-wrap.addEventListener('touchend', () => { isDragging = false; });
+wrap.addEventListener('touchend', (e) => {
+  isDragging = e.touches.length === 1;
+  if (isDragging) {
+    dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
+    dragTx = tx;
+    dragTy = ty;
+  }
+});
+wrap.addEventListener('touchcancel', () => {
+  isDragging = false;
+  suppressNodeClick = true;
+  nodeActivation.cancel();
+});
 
 // ── Button Controls ──
-document.getElementById('btn-zoom-in').addEventListener('click', () => {
-  scale = Math.min(3, scale * 1.2);
+function zoomBy(factor) {
+  const rect = wrap.getBoundingClientRect();
+  const cx = rect.width / 2, cy = rect.height / 2;
+  const next = Math.max(0.1, Math.min(3, scale * factor));
+  tx = cx - (cx - tx) * (next / scale);
+  ty = cy - (cy - ty) * (next / scale);
+  scale = next;
   updateTransform();
+}
+document.getElementById('btn-zoom-in').addEventListener('click', () => {
+  zoomBy(1.2);
 });
 document.getElementById('btn-zoom-out').addEventListener('click', () => {
-  scale = Math.max(0.1, scale / 1.2);
-  updateTransform();
+  zoomBy(1 / 1.2);
 });
 document.getElementById('btn-reset').addEventListener('click', resetView);
 
@@ -679,9 +756,9 @@ wrap.addEventListener('dblclick', (e) => {
 // ============================================================
 function buildTabs() {
   const tabsEl = document.getElementById('tabs');
-  let html = `<span class="tab active m-all" data-module="-1">全部</span>`;
+  let html = `<button type="button" class="tab active m-all" aria-pressed="true" data-module="-1">全部</button>`;
   for (let i = 0; i < MODULE_NAMES.length; i++) {
-    html += `<span class="tab m${i}" data-module="${i}">${MODULE_NAMES[i]}</span>`;
+    html += `<button type="button" class="tab m${i}" aria-pressed="false" data-module="${i}">${MODULE_NAMES[i]}</button>`;
   }
   tabsEl.innerHTML = html;
 
@@ -692,8 +769,9 @@ function buildTabs() {
     activeModule = mod;
 
     // Update active class
-    tabsEl.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tabsEl.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed','false'); });
     tab.classList.add('active');
+    tab.setAttribute('aria-pressed', 'true');
 
     // Filter nodes visibility
     filterByModule(mod);
@@ -701,6 +779,15 @@ function buildTabs() {
 }
 
 function filterByModule(mod) {
+  nodeActivation.cancel();
+  selectedNode = null;
+  tooltip.classList.remove('show');
+  updateNodeActions();
+  applyModuleVisibility(mod);
+  fitToScreen();
+}
+
+function applyModuleVisibility(mod) {
   const allNodes = flattenTree(allRoots);
   for (const [node, el] of nodeEls) {
     if (mod === -1 || node.module === mod) {
@@ -724,29 +811,13 @@ function filterByModule(mod) {
     }
   }
 
-  // If filtering to a single module, center it
-  if (mod !== -1) {
-    const root = allRoots[mod];
-    if (root) {
-      const bbox = computeBBox(root);
-      const wrapRect = wrap.getBoundingClientRect();
-      const cx = (bbox.minX + bbox.maxX) / 2;
-      const cy = (bbox.minY + bbox.maxY) / 2;
-      tx = wrapRect.width / 2 - cx * scale;
-      ty = wrapRect.height / 2 - cy * scale;
-    }
-  } else {
-    // Fit all
-    fitToScreen();
-  }
-  updateTransform();
 }
 
 // ============================================================
 //  VIEW MANAGEMENT
 // ============================================================
 function fitToScreen() {
-  const allNodes = flattenTree(allRoots);
+  const allNodes = flattenTree(activeModule === -1 ? allRoots : [allRoots[activeModule]]);
   if (allNodes.length === 0) return;
   let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
   for (const n of allNodes) {
@@ -755,23 +826,29 @@ function fitToScreen() {
     if (n.y < minY) minY = n.y;
     if (n.y > maxY) maxY = n.y;
   }
-  const pad = 100;
-  const cw = maxX - minX + pad * 2;
-  const ch = maxY - minY + pad * 2;
+  const padX = 140, padY = 60;
+  const cw = maxX - minX + padX * 2;
+  const ch = maxY - minY + padY * 2;
   const wrapRect = wrap.getBoundingClientRect();
   const sx = wrapRect.width / cw;
   const sy = wrapRect.height / ch;
-  scale = Math.min(sx, sy, 0.8);
-  tx = (wrapRect.width - cw * scale) / 2 - (minX - pad) * scale;
-  ty = (wrapRect.height - ch * scale) / 2 - (minY - pad) * scale;
+  scale = Math.min(sx, sy, 1);
+  // A selected module remains readable on phones; the canvas can be panned.
+  if (activeModule !== -1 && (wrapRect.width <= 768 || wrapRect.height < 400)) {
+    scale = Math.max(Math.min(1, wrapRect.width / 390), scale);
+  }
+  tx = (wrapRect.width - cw * scale) / 2 - (minX - padX) * scale;
+  ty = (wrapRect.height - ch * scale) / 2 - (minY - padY) * scale;
   updateTransform();
 }
 
 function resetView() {
   activeModule = -1;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  selectedNode = null;
+  tooltip.classList.remove('show');
+  document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed','false'); });
   const allTab = document.querySelector('.tab[data-module="-1"]');
-  if (allTab) allTab.classList.add('active');
+  if (allTab) { allTab.classList.add('active'); allTab.setAttribute('aria-pressed','true'); }
   // Uncollapse all
   for (const root of allRoots) collapseAll(root, false);
   layoutAll();
@@ -794,8 +871,8 @@ function collapseAll(node, state) {
 window.addEventListener('keydown', (e) => {
   switch (e.key) {
     case '0': resetView(); break;
-    case '+': case '=': scale = Math.min(3, scale * 1.2); updateTransform(); break;
-    case '-': scale = Math.max(0.1, scale / 1.2); updateTransform(); break;
+    case '+': case '=': zoomBy(1.2); break;
+    case '-': zoomBy(1 / 1.2); break;
     case 'r': case 'R': resetView(); break;
   }
 });
@@ -828,7 +905,7 @@ let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
-    if (activeModule === -1) fitToScreen();
+    fitToScreen();
   }, 200);
 });
 </script>
