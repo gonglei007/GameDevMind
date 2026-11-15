@@ -35,6 +35,10 @@
 
 ## AI 研发与应用
 
+<p align="center">
+  <a href="docs/AI/README.md"><img src="./images/subjects/isometric-v2/07-ai-development.png" width="320" alt="AI 游戏开发：人工决策、AI 执行与验证"></a>
+</p>
+
 **[进入 AI 研发与应用资料中心 →](docs/AI/README.md)**
 
 以《AI游戏开发》六篇实践手册为重点，汇集人工决策、AI 执行与验证方法，以及协作复核记录、工程模板和应用专题，适合随项目推进反复查阅。
