@@ -88,7 +88,7 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 <body>
 <div class="header">
   <h1>🎮 GameDevMind <span>交互式导航</span></h1>
-  <div class="subtitle">搜索 · 筛选 · 查找你需要的游戏开发知识 &nbsp;|&nbsp; <a href="panorama.html" style="color:var(--accent)">🗺️ 全景图</a> &nbsp;|&nbsp; <a href="../README.md" style="color:var(--muted)">← 返回仓库</a></div>
+  <div class="subtitle">搜索 · 筛选 · 查找你需要的游戏开发知识 &nbsp;|&nbsp; <a href="panorama.html" style="color:var(--accent)">🗺️ 全景图</a> &nbsp;|&nbsp; <a href="https://github.com/gonglei007/GameDevMind" style="color:var(--muted)">← 返回仓库</a></div>
 </div>
 <div class="container">
   <div class="controls">
@@ -196,7 +196,7 @@ function render(){
 
   // Paths — 点击筛选，再点取消
   document.getElementById('paths').innerHTML=`
-    <p class="path-guide">完整清单见 <a href="../mds/topics/推荐阅读路径.md">推荐阅读路径.md</a>（含必读/选读标记与配套资源）</p>
+    <p class="path-guide">完整清单见 <a href="${contentHref('mds/topics/推荐阅读路径.md')}">推荐阅读路径.md</a>（含必读/选读标记与配套资源）</p>
     ${LEARNING_PATHS.map(p=>`
     <div class="path-card ${activePath===p.id?'active':''}" onclick="selectPath('${p.id}')">
       <h3>${p.title}</h3>

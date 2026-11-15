@@ -39,7 +39,13 @@ def outputs(root: Path = ROOT) -> dict[Path, str]:
     js += "const DOCS = " + json.dumps(docs, ensure_ascii=False, indent=2) + ";\n"
     js += "const CONTENT_STATS = " + json.dumps(stats, ensure_ascii=False, indent=2) + ";\n"
     js += "const LEARNING_PATHS = " + json.dumps(catalog["paths"], ensure_ascii=False, indent=2) + ".map(p => ({...p, paths: new Set(p.paths)}));\n"
-    js += "\nfunction contentHref(path) {\n  return '../' + path.split('/').map(encodeURIComponent).join('/');\n}\n"
+    js += ("\nfunction contentHref(path) {\n"
+           "  const encoded = path.split('/').map(encodeURIComponent).join('/');\n"
+           "  if (location.hostname === 'gonglei007.github.io') {\n"
+           "    const view = path.endsWith('/') ? 'tree' : 'blob';\n"
+           "    return 'https://github.com/gonglei007/GameDevMind/' + view + '/main/' + encoded;\n"
+           "  }\n"
+           "  return '../' + encoded;\n}\n")
     js += "\nfunction contentText(value) {\n  return String(value).replace(/[&<>\"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;'}[char]));\n}\n"
     result = {root / "nav/content-data.js": js}
 

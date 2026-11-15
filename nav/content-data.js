@@ -1006,7 +1006,12 @@ const LEARNING_PATHS = [
 ].map(p => ({...p, paths: new Set(p.paths)}));
 
 function contentHref(path) {
-  return '../' + path.split('/').map(encodeURIComponent).join('/');
+  const encoded = path.split('/').map(encodeURIComponent).join('/');
+  if (location.hostname === 'gonglei007.github.io') {
+    const view = path.endsWith('/') ? 'tree' : 'blob';
+    return 'https://github.com/gonglei007/GameDevMind/' + view + '/main/' + encoded;
+  }
+  return '../' + encoded;
 }
 
 function contentText(value) {
