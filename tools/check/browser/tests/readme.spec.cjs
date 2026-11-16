@@ -12,7 +12,7 @@ if(committed.replace(/\r\n/g,'\n')!==fs.readFileSync(path.join(root,'README.md')
 const repo=`https://github.com/${repository}`;
 const summaries=['展开知识全景预览','更多示例与案例','微信联系、项目资料、贡献者与鸣谢'];
 const imageAlts=['AI 游戏开发：人工决策、AI 执行与验证','基础能力','技术能力','研发能力','生产能力','管理能力','运营能力',
-  '游戏开发技术图谱全景预览','联系微信','Vika','顶游社'];
+  '游戏开发技术图谱全景预览','联系微信','Vika','顶游社','GameDevMind Logo'];
 const localLinks=[
   ['阅读说明','mds/阅读说明.md'],['文档索引','INDEX.md'],['关键词索引','KEYWORDS.md'],
   ['代码示例','code/README.md'],['案例与诊断练习','cases/README.md'],['AI 研发与应用资料中心','docs/AI/README.md'],
@@ -35,7 +35,7 @@ async function audit(page,testInfo,url) {
     await control.click();await expect(detail).toHaveJSProperty('open',false);
     await control.click();await expect(detail).toHaveJSProperty('open',true);
   }
-  await expect(article.locator('img')).toHaveCount(14);
+  await expect(article.locator('img')).toHaveCount(imageAlts.length+3);
   for(const alt of imageAlts) {
     const img=article.getByRole('img',{name:alt,exact:true});
     await img.scrollIntoViewIfNeeded();
