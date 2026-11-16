@@ -1,5 +1,9 @@
 <div align="center">
 
+<p>
+  <img src="./images/brand/gamedevmind-logo-v1.png" width="520" alt="GameDevMind Logo">
+</p>
+
 # 游戏开发 · 技术图谱
 
 面向游戏程序员和技术负责人的系统化知识库，覆盖技术基础、游戏研发、生产管理与上线运营，提供可运行代码、案例与诊断练习、AI 研发实践资料。
