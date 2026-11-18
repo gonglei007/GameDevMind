@@ -148,7 +148,7 @@
 | 技术咨询与培训 | [顶游社](https://www.gltop.com?from=gamedevmind) · [gonglei@gltop.com](mailto:gonglei@gltop.com) |
 
 <details>
-<summary><strong>微信联系、项目资料、贡献者与鸣谢</strong></summary>
+<summary><strong>邮箱联系、项目资料、贡献者与鸣谢</strong></summary>
 
 感谢所有贡献内容、代码和建议的开发者：
 
@@ -156,9 +156,7 @@
 
 后续计划：多语言支持、B 站 / YouTube 系列视频。已有内容及进展见上方入口和更新记录。
 
-微信联系：
-
-<img src="images/联系人-G.L.png?raw=true" width="160" alt="联系微信">
+邮箱联系：[gonglei@gltop.com](mailto:gonglei@gltop.com)
 
 特别鸣谢：
 
