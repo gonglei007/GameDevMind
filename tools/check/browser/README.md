@@ -30,6 +30,8 @@ npm run test:readme
 
 README 的 11 张仓库配图必须加载且尺寸非零；3 个 shields.io 外部徽章校验数量、保留入口并附加加载诊断，不因第三方徽章服务暂时不可用而阻断本仓库。布局使用尺寸、可见区域与图片比例断言，并保存展示截图，不做依赖字体/平台的像素快照比较。
 
+README 提交页还会实际点击“GGFramework 实践导读 → 客户端网络实践样板 → 客户端网络系统”，检查 GitHub 文章渲染、窄屏布局与知识回链。该回归验证阅读路径，不运行外部 Unity 工程或 GGFramework 的网络后端。
+
 ## 当前提交与线上页面
 
 README 默认以本地 `git rev-parse HEAD` 构造 GitHub `/blob/<SHA>/README.md` 地址；CI 使用 `github.sha`，PR 检查合并候选 SHA，避免拿旧 main 的 README 验证新改动。`README_REF` 可指定另一条已在 GitHub 可见的提交；仓库从 `GITHUB_REPOSITORY` 读取，默认 `gonglei007/GameDevMind`。本地 README 必须与该 SHA 内容一致，未提交的 README 修改应先由离线检查核对，再提交并运行真实 GitHub 检查。

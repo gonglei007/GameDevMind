@@ -119,6 +119,7 @@
 | 代码 · [客户端网络生命周期](code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/) | 旧回调隔离、取消与重连恢复 |
 | 案例 · [SLG 循环引用](cases/memory-leak-slg.md) | 强弱引用与对象生命周期 |
 | 案例 · [MOBA 角色回弹复核](cases/network-reconciliation.md) | 输入确认、重放与显示校正 |
+| 工程 · [GGFramework 实践导读](docs/工程实践/GGFramework.md) | Unity 模块协作、运行步骤与验证边界 |
 
 <details>
 <summary><strong>更多示例与案例</strong></summary>
