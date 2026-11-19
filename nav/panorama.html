@@ -569,6 +569,7 @@ function renderAll() {
 // ============================================================
 let scale = 0.75;
 let tx = 0, ty = 0;
+let viewRevision = 0;
 let activeModule = -1; // -1 = all
 let selectedNode = null;
 let suppressNodeClick = false;
@@ -579,6 +580,7 @@ const nodeActivation = createNodeActivation(toggleNode, node => {
 });
 
 function updateTransform() {
+  viewRevision++;
   canvas.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
 }
 
@@ -968,9 +970,11 @@ function init() {
   buildTabs();
   renderAll();
   // Delay fit to ensure layout is computed
+  const revision = viewRevision;
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      fitToScreen();
+      // A filter, zoom or pan already positioned the view; keep that choice.
+      if (viewRevision === revision) fitToScreen();
     });
   });
 }
@@ -986,8 +990,9 @@ if (document.readyState === 'loading') {
 let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
+  const revision = viewRevision;
   resizeTimer = setTimeout(() => {
-    fitToScreen();
+    if (viewRevision === revision) fitToScreen();
   }, 200);
 });
 </script>

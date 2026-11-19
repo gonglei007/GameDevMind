@@ -46,4 +46,6 @@ README 默认以本地 `git rev-parse HEAD` 构造 GitHub `/blob/<SHA>/README.md
 
 配置不自动重试或忽略失败。网络/浏览器安装失败与断言失败都返回非零。现有 Node 状态/坐标计算与 Python 内容门禁继续保留；浏览器回归补足实际布局、原生按键、触摸命中及 GitHub 展示验证。触屏模拟不等于 iOS Safari/安卓真机验收；当前固定测试 Chromium。
 
+全景初始化的延迟居中与窗口 resize 的延迟适配，仅在调度后视图未改变时执行，避免覆盖随后发生的模块筛选、缩放或拖动。现有 `test_navigation_controls.cjs` 用可控帧与计时器验证这两类竞态，并检查无交互时仍会自动适配；手机浏览器用例继续核对放大、缩小后的中心位置，不增加等待或重试掩盖问题。
+
 工作流见 [browser-regression.yml](../../../.github/workflows/browser-regression.yml)。两个浏览器检查均已设为 main 的必需检查；完整保护配置、17 项清单、正反向验收和 PR 更新流程见 [CI 门禁与 main 分支维护](../../../.github/CI_MAINTENANCE.md)。
