@@ -9,7 +9,7 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 
 // Execute the actual page scripts with a small DOM adapter. These state/gesture
 // checks complement Playwright's real layout, hit testing and mobile gestures.
-function fixture(file) {
+function fixture(file, {deferFrames=false}={}) {
   const document = {readyState:'loading', activeElement:null};
   class Element {
     constructor() {
@@ -68,18 +68,20 @@ function fixture(file) {
       return null;
     }});
   const windowListeners = {};
-  const timers = new Map(); let serial = 0;
+  const timers = new Map(), frames = []; let serial = 0;
   const context = vm.createContext({
     document,
     window: {addEventListener(name,fn) { windowListeners[name] = fn; }, open() {}}, location:{hostname:'localhost'},
     setTimeout(fn) { const id=++serial; timers.set(id,fn); return id; },
-    clearTimeout: id=>timers.delete(id), requestAnimationFrame:fn=>fn(),
+    clearTimeout: id=>timers.delete(id), requestAnimationFrame:fn=>deferFrames ? frames.push(fn) : fn(),
   });
   vm.runInContext(read('nav/content-data.js'), context);
   vm.runInContext(read('nav/node-activation.js'), context);
   const script = read(file).match(/<script>([\s\S]*?)<\/script>/)[1];
   vm.runInContext(script, context);
-  return {get, document, windowListeners, run:code=>vm.runInContext(code,context), flush() {
+  return {get, document, windowListeners, run:code=>vm.runInContext(code,context), frame() {
+    const pending = frames.splice(0); pending.forEach(fn=>fn());
+  }, flush() {
     const pending = [...timers.values()]; timers.clear(); pending.forEach(fn=>fn());
   }};
 }
@@ -156,6 +158,42 @@ test('Zoom controls keep the viewport center anchored and respect scale limits',
   assert.ok(Math.abs(f.run('tx')-10)<1e-9); assert.ok(Math.abs(f.run('ty')-20)<1e-9);
   f.run('zoomBy(100)'); assert.equal(f.run('scale'),3);
   f.run('zoomBy(0.0001)'); assert.equal(f.run('scale'),0.1);
+});
+
+test('Deferred initial fit does not overwrite a module selection and button zoom', () => {
+  const f=fixture('nav/panorama.html', {deferFrames:true});
+  f.run('init(); activeModule=2; filterByModule(2)');
+  f.frame();
+  const before=f.run('JSON.stringify([scale,tx,ty])');
+  f.run('zoomBy(1.2)');
+  const zoomed=f.run('JSON.stringify([scale,tx,ty])');
+  f.frame();
+  assert.equal(f.run('JSON.stringify([scale,tx,ty])'),zoomed);
+  f.run('zoomBy(1/1.2)');
+  const actual=JSON.parse(f.run('JSON.stringify([scale,tx,ty])'));
+  JSON.parse(before).forEach((value,i)=>assert.ok(Math.abs(actual[i]-value)<1e-9));
+});
+
+test('A pending resize fit does not overwrite subsequent zoom or pan', () => {
+  for (const action of ['zoomBy(1.2)', 'tx+=40; ty+=30; updateTransform()']) {
+    const f=fixture('nav/panorama.html'); f.run('init(); activeModule=2; filterByModule(2)');
+    f.windowListeners.resize();
+    f.run(action);
+    const before=f.run('JSON.stringify([scale,tx,ty])');
+    f.flush();
+    assert.equal(f.run('JSON.stringify([scale,tx,ty])'),before);
+  }
+});
+
+test('Initial and resize fits still run when the view has not been changed', () => {
+  const f=fixture('nav/panorama.html', {deferFrames:true});
+  f.run('init()');
+  assert.equal(f.get('canvas').style.transform,undefined);
+  f.frame(); f.frame();
+  assert.match(f.get('canvas').style.transform,/scale\(/);
+  f.run('scale=1; tx=10; ty=20');
+  f.windowListeners.resize(); f.flush();
+  assert.notEqual(f.run('tx'),10);
 });
 
 test('Category and learning-path redraws preserve focus; search input is not replaced', () => {
