@@ -16,6 +16,7 @@ const imageAlts=['AI 游戏开发：人工决策、AI 执行与验证','基础�
 const localLinks=[
   ['阅读说明','mds/阅读说明.md'],['文档索引','INDEX.md'],['关键词索引','KEYWORDS.md'],
   ['代码示例','code/README.md'],['案例与诊断练习','cases/README.md'],['AI 研发与应用资料中心','docs/AI/README.md'],
+  ['GGFramework 实践导读','docs/工程实践/GGFramework.md'],
   ['内存池','code/gamedevmind/1.基础能力/1.1.2.C++语言/memory_pool/'],
   ['客户端网络生命周期','code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/'],
   ['四叉树','code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/'],
@@ -94,6 +95,17 @@ test('commit README: images, disclosures, important entry points and mobile geom
   await page.getByRole('article').getByRole('link',{name:'新人入门',exact:true}).click();
   await expect.poll(()=>decodeURIComponent(new URL(page.url()).pathname)).toContain('/mds/topics/推荐阅读路径.md');
   await expect(page.getByRole('article').getByRole('heading',{name:/路径 A/})).toBeVisible({timeout:45000});
+  await page.goBack();
+  await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
+  await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
+  await page.getByRole('article').getByRole('link',{name:'客户端网络实践样板',exact:true}).first().click();
+  const practice=page.getByRole('article');
+  await expect(practice.getByRole('heading',{name:'GGFramework 客户端网络实践：异常反馈与重试',exact:true})).toBeVisible({timeout:45000});
+  await expect(practice.getByRole('heading',{name:'两条实现路径',exact:true})).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await screenshot(page,testInfo,'ggframework-network-mobile',practice);
+  await practice.getByRole('link',{name:'客户端网络系统',exact:true}).first().click();
+  await expect(page.getByRole('article').getByRole('heading',{name:'客户端网络系统',exact:true})).toBeVisible({timeout:45000});
 });
 
 // A PR's candidate README is rendered above; the public homepage represents main.
