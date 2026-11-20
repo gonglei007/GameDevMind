@@ -1,0 +1,17 @@
+FAILURE
+Unity=6000.3.13f1; platform=WindowsEditor; editor=True
+PASS: Showcase initialized
+PASS: Guard rejects without coins
+PASS: Unsubscribed coin event has no effect
+PASS: Restored subscription delivers once
+PASS: Guard permits after coin event
+PASS: Repeated same-state entry rejected
+PASS: Edited Lua rule returns value without changing C# coins; Lua reward: 384
+PASS: First temporary Lua VM starts fresh
+PASS: Next temporary Lua VM has no prior globals
+PASS: Lua syntax error is reported
+PASS: Lua executes again after syntax error
+System.Exception: FAIL: First load owns one runtime copy;
+  at GGFramework.Demo.ShowcaseLifecycleChecks.Check (System.Boolean condition, System.String name, System.Collections.Generic.List`1[T] passed, System.String evidence) [0x00009] in <DEMO>\unity_project\Assets\FrameworkShowcase\ShowcaseLifecycleChecks.cs:49
+  at GGFramework.Demo.ShowcaseLifecycleChecks+<Exercise>d__5.MoveNext () [0x0047c] in <DEMO>\unity_project\Assets\FrameworkShowcase\ShowcaseLifecycleChecks.cs:113
+  at GGFramework.Demo.ShowcaseLifecycleChecks+<Run>d__0.MoveNext () [0x000c6] in <DEMO>\unity_project\Assets\FrameworkShowcase\ShowcaseLifecycleChecks.cs:35

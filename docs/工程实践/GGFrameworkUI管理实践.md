@@ -2,7 +2,7 @@
 
 本篇从“返回时回到哪一页、窗口属于谁、隐藏后还剩下什么”出发，先用 Demo 观察页面与窗口状态，再对照独立 GGUI 的实际实现。UI 设计原理见 [UI系统](../../mds/3.研发能力/3.1.6.UI系统.md)，资产与引用计数见[资源管理实践](GGFramework资源管理实践.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 完成固定源码核对与 Unity 实跑，实际结果及未覆盖项见[本轮运行记录](GGFrameworkUnity验证记录.md)。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
@@ -13,7 +13,7 @@
 | 核对对象 | 固定版本 | 与本篇相关的区别 |
 |---|---|---|
 | 独立 GGUI | [12ffe13](https://github.com/gonglei007/GGFramework-GGUI/tree/12ffe13297c281cbfa6253ac443aab1552ce3857)，默认分支 **master**，工程固定 Core `v0.1.1` | `GGFramework.GGUI` 命名空间，通过 `IUIImplementation` 适配后端 |
-| 集成 Demo | [3039f9a](https://github.com/gonglei007/GGFramework-Demo/tree/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb)，固定 Core `v0.3.0` | 使用旧 UI 源码副本，直接依赖 NGUI；体验大厅通过代码创建简单 UI 对象 |
+| 集成 Demo | [e2a7586](https://github.com/gonglei007/GGFramework-Demo/tree/e2a7586a1325fc8dd762b55d1105de81b9825154)，固定 Core `v0.3.0` | 使用旧 UI 源码副本，直接依赖 NGUI；体验大厅通过代码创建简单 UI 对象 |
 
 Demo 的行为不能证明独立 GGUI 的接口层、资源异步创建或动画修复已被同一测试覆盖。独立模块的准备顺序与 Prefab 约定见[固定版本接入指南](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/documents/quickstart.md)。
 
@@ -31,7 +31,7 @@ Demo 的行为不能证明独立 GGUI 的接口层、资源异步创建或动画
 
 ## 页面栈：入栈、隐藏与返回是不同操作
 
-以下行为在两套 [独立 UISystem](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/GGUI/Assets/Scripts/GGUI/Systems/UISystem.cs)和 [Demo UISystem](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/ggsource/Scripts/Systems/UISystem.cs)中均可核对：
+以下行为在两套 [独立 UISystem](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/GGUI/Assets/Scripts/GGUI/Systems/UISystem.cs)和 [Demo UISystem](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/ggsource/Scripts/Systems/UISystem.cs)中均可核对：
 
 | 调用 | 当前行为 | 接入时需要注意 |
 |---|---|---|
@@ -71,7 +71,7 @@ Demo 的 `OpenInventory` 会先用 `IsPageInStack` 防止重复入栈，`Back` �
 
 重写带完成委托的方法必须保证恰当时机交付一次；遗漏回调可能使隐藏无法结束，重复或过期回调也可能覆盖后续展示。`PresentPage` 的 `onShow` 在执行 Show 调用后触发，不能作为所有动画已播完的证明。
 
-UIBase 默认补间路径会播放后立即执行完成委托，不等待补间结束；UIPage 若有约定的 AnimationClip，会通过动画事件衔接完成流程。两套代码还存在差异：独立 UIPage 添加同名动画事件前会去重，隐藏结束进入 `base.OnPreHide`；[Demo UIPage](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/ggsource/Scripts/UI/UIPage.cs)仍逐次 AddEvent，隐藏结束进入 `base.OnShowed`。这需要独立动画回归，不能把无动画 Demo 的通过外推为完整转场保证。
+UIBase 默认补间路径会播放后立即执行完成委托，不等待补间结束；UIPage 若有约定的 AnimationClip，会通过动画事件衔接完成流程。两套代码还存在差异：独立 UIPage 添加同名动画事件前会去重，隐藏结束进入 `base.OnPreHide`；[Demo UIPage](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/ggsource/Scripts/UI/UIPage.cs)仍逐次 AddEvent，隐藏结束进入 `base.OnShowed`。这需要独立动画回归，不能把无动画 Demo 的通过外推为完整转场保证。
 
 ## 隐藏、移除登记、销毁与资源释放
 
@@ -83,6 +83,8 @@ UIBase 默认补间路径会播放后立即执行完成委托，不等待补间�
 | 创建页面 / 窗口 | 从 ResourceSystem 查询 / 监听资产并实例化；两套 UISystem 中未见与之配套的 `Retain / DestroyObject` 资产持有管理 |
 | UIPage 的组件表 | 保存 UIComponent 引用；不能据类注释认定返回页面时会自动卸载同 Bundle 组件 |
 | 管理器退出 | 有资源就绪事件的退订逻辑；不等于所有页面业务订阅、在途加载、UI 表和底层资源已经整体释放 |
+
+本轮 Demo 为大厅增加内部 `RemoveOwnedUI`：只清理仍指向该拥有者实例的登记、页面栈与窗口记录，并配合实例销毁。生命周期回归覆盖销毁后重开及另一个拥有者的 UI 登记保留；独立 GGUI 的公共 `RemoveUIBase` 仍保持上表契约。三份旧 NGUI Prefab 的修复只验收实际导入和脚本组件数量，没有验收动画视觉。
 
 接入方应分别记录 **页面或窗口实例、Prefab / 图集等共享资产、底层 Bundle 与依赖** 的拥有者。页面隐藏可以保留实例供返回复用；确定销毁时，再按资源契约释放自己的持有，不能因一页退出就强制清空共享缓存。具体计数与统一 Group 限制见[资源管理实践](GGFramework资源管理实践.md)。
 
@@ -99,7 +101,7 @@ UIBase 默认补间路径会播放后立即执行完成委托，不等待补间�
 | 再打开 Details，点击“返回主页” | 当前页回到 Home，Inventory 与其 Details 隐藏；不应因未创建通用对话框而报错 |
 | 再次进入背包 | 页面复用；本步骤需要人工确认不会残留窗口或重复事件，不能当作现有冒烟已覆盖的断言 |
 
-行为入口见 [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)，操作面板见 [FrameworkShowcase.GUI.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.GUI.cs)。大厅直接创建 GameObject 并添加 UIPage / UIWindow、登记并调用 OnLoad，没有走实际 UI Prefab 的异步资源创建，也没有给这些示例页面配置 AnimationClip。
+行为入口见 [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)，操作面板见 [FrameworkShowcase.GUI.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.GUI.cs)。大厅直接创建 GameObject 并添加 UIPage / UIWindow、登记并调用 OnLoad，没有走实际 UI Prefab 的异步资源创建，也没有给这些示例页面配置 AnimationClip。
 
 ## 方案取舍与不适用场景
 
@@ -116,10 +118,10 @@ UIBase 默认补间路径会播放后立即执行完成委托，不等待补间�
 
 ### 现有证据
 
-- [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)实际执行两次进入背包、显示详情、关闭全部窗口、重新显示并返回，断言当前页面与窗口状态。没有直接断言完整栈深、Parent 字段、全局窗口、动画事件次数、异步导航或资产释放。
+- [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)实际执行两次进入背包、显示详情、关闭全部窗口、重新显示并返回，断言当前页面与窗口状态。没有直接断言完整栈深、Parent 字段、全局窗口、动画事件次数、异步导航或资产释放。
 - 独立 GGUI 当前测试目录中的 [ResourceModelTests.cs](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/GGUI/Assets/Tests/EditMode/ResourceModelTests.cs)验证资源模型；不能将它称为页面栈或 UGUI 集成回归。
 
-历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。独立 GGUI 后端的验证不由大厅 IMGUI 操作代替。
+本轮结果与未覆盖项见[运行记录](GGFrameworkUnity验证记录.md)；历史证据与 CI 的区别见导读的[证据分层](GGFramework.md#验证方法与证据边界)。本轮独立 GGUI EditMode 11/11；其后端验证仍不由大厅 IMGUI 操作代替。
 
 ### 接入前仍需验证
 

@@ -1,0 +1,41 @@
+SUCCESS
+PASS: FSM guard rejects without coins
+PASS: Typed event delivers payload
+PASS: Unsubscribe stops delivery
+PASS: FSM guard permits after event
+PASS: Pool reuses same instance
+PASS: Async completion observed on main thread
+PASS: GGResource loads bundled fixture
+PASS: Resource cache preserves identity and retains
+PASS: Shared resource survives first release
+PASS: Final release removes cached resource
+PASS: Missing resource is recoverable
+PASS: Simulation loads source asset: Simulation 加载成功：{
+  "title": "GGFramework developer showcase",
+  "startingCoins": 128,
+  "source": "Bundled local Resources fixture",
+  "note": "Load twice to see cache and reference counting; release twice to remove."
+}
+
+PASS: Manifest and real AssetBundle: AssetBundle 加载成功：{
+  "title": "GGFramework developer showcase",
+  "startingCoins": 128,
+  "source": "Bundled local Resources fixture",
+  "note": "Load twice to see cache and reference counting; release twice to remove."
+}
+
+PASS: Page stack and window open
+PASS: HideAllWindows tolerates dictionary removal
+PASS: Back restores page and hides owned window without dialog
+PASS: Login failure delivered
+PASS: Login retry reaches success
+PASS: Payment success emits once
+PASS: Payment failure delivered
+PASS: Payment cancellation delivered
+PASS: Logout callback delivered
+PASS: UID stable on relogin
+PASS: Real loopback HTTP 200
+PASS: Business error feedback
+PASS: Cancel retry leaves HTTP idle
+PASS: HTTP recovers after failure
+PASS: ToLua executes editable rule and returns result
