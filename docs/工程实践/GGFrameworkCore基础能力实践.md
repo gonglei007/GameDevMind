@@ -130,6 +130,8 @@ MainThreadDispatcher 是独立 MonoBehaviour，不继承 Singleton<T>，没有�
 
 Core 包测试默认不在消费工程运行，需要 manifest 的 `testables` 含 `com.gonglei.ggframework.core`；Demo 已配置，运行与报告要求见[统一复现入口](GGFramework.md#运行一次完整体验)。稳定包本轮 EditMode 66/66；新增生命周期覆盖退出后的事件、池与迟到结果。具体环境和逐项证据见[运行记录](GGFrameworkUnity验证记录.md)，不外推到预览版或全部共享单例。
 
+后续[自动化 CI](GGFramework自动化回归与CI.md)在 Core 仓库为预览包另建 Unity 宿主，独立执行至少 104 项；Demo 仍测试它自己固定的稳定包。两条测试结果分别记录 SHA 和 artifact，不用预览版结果替代稳定版接入验证。
+
 | 项目待验项 | 注入与通过条件 |
 |---|---|
 | 状态转移契约 | 同状态、未登记路径、回调重入和进入 / 退出异常；记录 Current、回调顺序和明确的失败恢复策略 |

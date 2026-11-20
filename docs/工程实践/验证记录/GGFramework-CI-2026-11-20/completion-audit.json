@@ -1,0 +1,265 @@
+{
+  "checkedAtUtc": "2026-11-20T06:46:34.971988+00:00",
+  "repositories": [
+    {
+      "repository": "gonglei007/GGFramework-Demo",
+      "defaultBranch": "main",
+      "sha": "e40af9878ceeeb8ef13dbb77647c5b318377f31b",
+      "checksPassed": true,
+      "phases": {
+        "pr": [
+          {
+            "name": "Unity Regression",
+            "sha": "6fba3a32aae1951df8dd034dd15f36a36ab25895",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate PR CI Contract",
+            "sha": "6fba3a32aae1951df8dd034dd15f36a36ab25895",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "6fba3a32aae1951df8dd034dd15f36a36ab25895",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ],
+        "main": [
+          {
+            "name": "Unity Regression",
+            "sha": "e40af9878ceeeb8ef13dbb77647c5b318377f31b",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "e40af9878ceeeb8ef13dbb77647c5b318377f31b",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ]
+      },
+      "runnerRegistrations": 0
+    },
+    {
+      "repository": "gonglei007/GGFramework-Core",
+      "defaultBranch": "main",
+      "sha": "74d10ecd8cd57ca6691100e0a0ea33c3b139bae2",
+      "checksPassed": true,
+      "phases": {
+        "pr": [
+          {
+            "name": "Validate PR CI Contract",
+            "sha": "0771bf57690a8af6f0bd1fe06ff6473e4a957fe7",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Unity Regression",
+            "sha": "0771bf57690a8af6f0bd1fe06ff6473e4a957fe7",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "0771bf57690a8af6f0bd1fe06ff6473e4a957fe7",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ],
+        "main": [
+          {
+            "name": "Unity Regression",
+            "sha": "74d10ecd8cd57ca6691100e0a0ea33c3b139bae2",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "74d10ecd8cd57ca6691100e0a0ea33c3b139bae2",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ]
+      },
+      "runnerRegistrations": 0
+    },
+    {
+      "repository": "gonglei007/GGFramework-GGResource",
+      "defaultBranch": "main",
+      "sha": "921f2a5b6d3695c5a20c612758a32f03b896e6e0",
+      "checksPassed": true,
+      "phases": {
+        "pr": [
+          {
+            "name": "Validate PR CI Contract",
+            "sha": "909111938b796c1d509b4b2e84fd30ec37ac63ba",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Unity Regression",
+            "sha": "909111938b796c1d509b4b2e84fd30ec37ac63ba",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "909111938b796c1d509b4b2e84fd30ec37ac63ba",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ],
+        "main": [
+          {
+            "name": "Unity Regression",
+            "sha": "921f2a5b6d3695c5a20c612758a32f03b896e6e0",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "921f2a5b6d3695c5a20c612758a32f03b896e6e0",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ]
+      },
+      "runnerRegistrations": 0
+    },
+    {
+      "repository": "gonglei007/GGFramework-GGNetwork",
+      "defaultBranch": "main",
+      "sha": "529eededd51d04fbbae5638c70039e452809f048",
+      "checksPassed": true,
+      "phases": {
+        "pr": [
+          {
+            "name": "Validate PR CI Contract",
+            "sha": "22043a3ec1a42ba56a8af0cee022242806e368eb",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Unity Regression",
+            "sha": "22043a3ec1a42ba56a8af0cee022242806e368eb",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "22043a3ec1a42ba56a8af0cee022242806e368eb",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ],
+        "main": [
+          {
+            "name": "Unity Regression",
+            "sha": "529eededd51d04fbbae5638c70039e452809f048",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "529eededd51d04fbbae5638c70039e452809f048",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ]
+      },
+      "runnerRegistrations": 0
+    },
+    {
+      "repository": "gonglei007/GGFramework-GGUI",
+      "defaultBranch": "master",
+      "sha": "0e4d664296fffac123411de4564711b017c89922",
+      "checksPassed": true,
+      "phases": {
+        "pr": [
+          {
+            "name": "Validate PR CI Contract",
+            "sha": "ececc3f90898a1f8f6cc7ba2b9ce55fdb8e2dfb7",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Unity Regression",
+            "sha": "ececc3f90898a1f8f6cc7ba2b9ce55fdb8e2dfb7",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "ececc3f90898a1f8f6cc7ba2b9ce55fdb8e2dfb7",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ],
+        "main": [
+          {
+            "name": "Unity Regression",
+            "sha": "0e4d664296fffac123411de4564711b017c89922",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "0e4d664296fffac123411de4564711b017c89922",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ]
+      },
+      "runnerRegistrations": 0
+    },
+    {
+      "repository": "gonglei007/GGFramework-GGUser",
+      "defaultBranch": "main",
+      "sha": "8416a9a96c818442e77aaaeecc2041c52ece1225",
+      "checksPassed": true,
+      "phases": {
+        "pr": [
+          {
+            "name": "Unity Regression",
+            "sha": "77c0a270d2030c91e0ff18f5694c5bfa17b2f0ce",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "77c0a270d2030c91e0ff18f5694c5bfa17b2f0ce",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate PR CI Contract",
+            "sha": "77c0a270d2030c91e0ff18f5694c5bfa17b2f0ce",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ],
+        "main": [
+          {
+            "name": "Unity Regression",
+            "sha": "8416a9a96c818442e77aaaeecc2041c52ece1225",
+            "appId": 15368,
+            "conclusion": "success"
+          },
+          {
+            "name": "Validate Unity CI Contract",
+            "sha": "8416a9a96c818442e77aaaeecc2041c52ece1225",
+            "appId": 15368,
+            "conclusion": "success"
+          }
+        ]
+      },
+      "runnerRegistrations": 0
+    }
+  ],
+  "unityRunsVerified": 12,
+  "allPassed": true
+}

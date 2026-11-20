@@ -48,6 +48,10 @@ python tools/check/generate_catalog.py --check
 
 完整范围、统计口径和验证命令见 [tools/check/README.md](../../tools/check/README.md)。
 
+## 外部 GGFramework Unity 回归
+
+GGFramework Demo、Core、GGResource、GGNetwork、GGUI、GGUser 在各自仓库执行真实 Unity 6000.3.13f1 回归，包含 Demo 两轮播放/退出、资源释放与 Windows Mono Player，以及模块自己的测试契约。触发、一次性授权 runner、artifact 和未覆盖范围统一见 [GGFramework 自动化回归与 CI 复现](../../docs/工程实践/GGFramework自动化回归与CI.md)。这些外部工作流不替代本知识库的文档/浏览器检查，也不加入这里的 17 项必需检查清单。
+
 ## 其他维护流程
 
 [update-readme.yml](update-readme.yml) 每小时或手动检查 README 的可选最近提交区块，有变化时创建或复用固定更新 PR，不直推 main；无标记或无差异时不创建 PR。通过显式 `workflow_dispatch` 调度四个现有 CI 工作流，仍需通过 17 项必需检查后普通合并。只在该任务授予 contents、pull-requests、actions 写权限，不为机器人添加分支保护绕过。完整行为与本地验证见 [README 最近提交维护](../../tools/check/README.md#readme-最近提交维护)。正文统计由统一内容生成工具负责。

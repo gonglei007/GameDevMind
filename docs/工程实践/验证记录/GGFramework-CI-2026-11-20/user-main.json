@@ -1,0 +1,398 @@
+{
+  "workflow": {
+    "runId": 44689187989,
+    "url": "https://github.com/gonglei007/GGFramework-GGUser/actions/runs/44689187989",
+    "event": "push",
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "results": {
+    "schemaVersion": 1,
+    "repository": "gonglei007/GGFramework-GGUser",
+    "commit": "8416a9a96c818442e77aaaeecc2041c52ece1225",
+    "unityVersion": "6000.3.13f1",
+    "result": "Passed",
+    "stages": [
+      {
+        "name": "user-editmode",
+        "startedUtc": "2026-11-20T06:39:41.3237594+00:00",
+        "finishedUtc": "2026-11-20T06:43:54.9809740+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": false,
+        "testPlatform": "EditMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 71,
+            "passed": 71,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRegistryTests.CapabilityCast_ReturnsNullWhenNotImplemented",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRegistryTests.Contains_ReflectsRegistration",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRegistryTests.Get_CreatesLazilyAndCachesInstance",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRegistryTests.Get_UnknownId_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRegistryTests.Register_NullArgs_Ignored",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.AndroidCN_UsesPriorityWithoutHardConstraint",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.AndroidOversea_PrependsGooglePlay",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.Duplicates_AreRemoved",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.Editor_UsesConfiguredPayChannels",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.IOS_PrependsAppleStoreBeforePriority",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.NullContext_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.RouteHint_ForcesSingleChannel",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.RouteHint_UnregisteredChannel_ReturnsEmpty",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.ChannelRouterTests.UnregisteredChannels_AreSkipped",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.ExchangeToken_FailedLogin_ReturnsUnchangedWithoutCallingGateway",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.ExchangeToken_NoOnPost_SimulatesPlatformCredentials",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.ExchangeToken_NullLogin_ReturnsFailureNotNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.ExchangeToken_WithOnPost_ParsesPlatformUidAndToken",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.Verify_NoOnPost_SimulatesDeliveredForPurchased",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.Verify_NoOnPost_SimulatesNotDeliveredForFailed",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.Verify_NullPurchase_ReturnsNotDelivered",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGGatewayClientTests.Verify_WithOnPost_PostsToConfiguredUrlAndParsesResponse",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.CreatePayContext_PopulatesFields",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.CurrentPlatform_InEditor_IsEditor",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Init_Default_RegistersSimulationChannel",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Login_NoAvailableChannel_ReturnsFailure",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Login_Simulation_ExchangesPlatformToken",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Login_SpecificChannel_UsesThatChannel",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_AllChannelsUnavailable_ReturnsFailure",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_FallsBack_WhenFirstChannelConnectFails",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_FallsBack_WhenProductUnavailable",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_NoCandidates_ReturnsFailure",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_NullRequest_ReturnsFailure",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_PurchaseFailed_FinishesWithoutVerify",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_PurchasePending_DoesNotFinish",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_Simulation_WithSimulatedGateway_Succeeds",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_VerifyFailed_KeepsTransactionUnfinished",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_VerifySuccess_FinishesTransaction",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Pay_WithInjectedGateway_Succeeds",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.ProcessUnfinished_EmptyList_FiresOnAllDone",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.ProcessUnfinished_MultipleTransactions_FiresOnAllDoneOnce",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.ProcessUnfinished_UnknownChannel_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.ProcessUnfinished_UnknownChannel_FiresOnAllDone",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.ProcessUnfinished_VerifiesAndFinishes",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Restore_ReturnsChannelList",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.GGPlatformEditModeTests.Restore_UnknownChannel_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PayModelsTests.PayRequest_GetJsonString_ContainsCoreFields",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PayModelsTests.PurchaseResult_GetJsonString_SerializesStateAsInt",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PayModelsTests.PurchaseState_HasExpectedNumericOrder",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PlatformConfigTests.Default_ContainsSimulationChannel",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PlatformConfigTests.FromJson_NullOrEmpty_FallsBackToDefault",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PlatformConfigTests.FromJson_ParsesChannelsGatewayPriorityAndProductMap",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PlatformConfigTests.GetChannelProductId_Mapped_ReturnsChannelId",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PlatformConfigTests.GetChannelProductId_Unmapped_FallsBackToUnifiedId",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.PlatformConfigTests.GetPriority_UnknownKey_ReturnsEmptyNotNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SDKInjectionTests.ConfigureSDK_ReplacesFactoryDefault_AndRejectsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SDKInjectionTests.SDKInit_ReportsInitializationBeforeAnyLoginTransition_ExactlyOnce",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SDKInjectionTests.SDKPay_InjectedCancellation_DoesNotAlsoEmitEditorSuccess",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.Connect_ReturnsTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.FinishTransaction_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.Implements_BothLoginAndPayCapabilities",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.Login_ReturnsSuccessWithChannelCredentials",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.Purchase_ReturnsPurchasedWithTransactionId",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.QueryProducts_ReturnsOneProductPerRequestedId",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.SimulationChannelTests.Restore_And_QueryUnfinished_ReturnEmptyNotNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UIAdaptorTests.LogAdaptor_NoHooks_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UIAdaptorTests.LogAdaptor_PostError_InvokesHook",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UIAdaptorTests.ShowDialog_NoOnDialog_NullCallback_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UIAdaptorTests.ShowDialog_NoOnDialog_WithCallback_InvokesWithTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UIAdaptorTests.ShowDialog_WithOnDialog_PassesLocalizedTexts",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UIAdaptorTests.ShowWaiting_NoOnWaiting_DoesNotThrow",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "b04a332f544043c066c4a529a4f108b7f375115d6153df0d914311373d977ddf"
+          }
+        ],
+        "producedFiles": []
+      },
+      {
+        "name": "user-playmode",
+        "startedUtc": "2026-11-20T06:43:55.9568116+00:00",
+        "finishedUtc": "2026-11-20T06:44:17.2377286+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": true,
+        "testPlatform": "PlayMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "GGFramework.GGUser.Tests.UserManagerPlayModeTests.AdvancesToLogined_OnSDKLoginSuccessEvent",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserManagerPlayModeTests.Init_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserManagerPlayModeTests.Pay_DelegatesToUserSystem_RaisesPaySuccess",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserManagerPlayModeTests.RepeatedInit_DoesNotDoubleSubscribe",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.CallSDKLoginFailed_RaisesLoginFailedEvent",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.CallSDKLoginSuccess_SetsUserAndReachesLogined",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.Init_StoresChannel",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.SDKLogin_InEditor_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.SDKPay_InEditor_BroadcastsExactlyOnce",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.SDKPay_InEditor_RaisesPaySuccessEvent",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGUser.Tests.UserSystemPlayModeTests.TriggerEvent_InvokesSubscriber",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "014bd84c994f4585b84b407043c524d376c830c052992b65c8436fa363139e81"
+          }
+        ],
+        "producedFiles": []
+      }
+    ],
+    "environment": {
+      "batchmode": true,
+      "editorProductVersion": "6000.3.13f1_8c4f11e4fb20",
+      "os": "Microsoft Windows 10.0.26300",
+      "architecture": "X64"
+    }
+  }
+}

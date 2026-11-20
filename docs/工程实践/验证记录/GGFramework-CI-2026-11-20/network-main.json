@@ -1,0 +1,695 @@
+{
+  "workflow": {
+    "runId": 44685493910,
+    "url": "https://github.com/gonglei007/GGFramework-GGNetwork/actions/runs/44685493910",
+    "event": "push",
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "results": {
+    "schemaVersion": 1,
+    "repository": "gonglei007/GGFramework-GGNetwork",
+    "commit": "529eededd51d04fbbae5638c70039e452809f048",
+    "unityVersion": "6000.3.13f1",
+    "result": "Passed",
+    "stages": [
+      {
+        "name": "network-editmode",
+        "startedUtc": "2026-11-20T06:08:55.1046045+00:00",
+        "finishedUtc": "2026-11-20T06:18:49.5706895+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": false,
+        "testPlatform": "EditMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 162,
+            "passed": 162,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "TestEventManager.Test_AddCallBack_DuplicateId_FirstWins",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_AddCallBack_NullCallback_Ignored",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_AddCallBack_ThenInvoke",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_AddCallBack_ZeroId_Ignored",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_AddOnEvent_EmptyName_Ignored",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_AddOnEvent_MultipleSubscribers_AllInvoked",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_AddOnEvent_NullCallback_Ignored",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_Dispose_ClearsCallbacksAndEvents",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeCallBack_RemovesAfterFire",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeCallBack_ThrowingCallback_DoesNotPropagate",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeCallBack_UnknownId_ReturnsFalse",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeOnEvent_PersistsAcrossMultipleInvocations",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeOnEvent_SubscriberAddingDuringInvoke_NoIterationCrash",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeOnEvent_ThrowingSubscriber_IsolatedAndOthersStillRun",
+                "result": "Passed"
+              },
+              {
+                "name": "TestEventManager.Test_InvokeOnEvent_UnknownRoute_ReturnsFalse",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_Constants",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_ProcessHandshakeData_MissingCode_Fails",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_ProcessHandshakeData_Non200_Fails",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_ProcessHandshakeData_Success",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_ProcessHandshakeData_WithSmallHeartbeat_CreatesServiceButNoTimer",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_Request_NullUser_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_Request_SendsHandshakePackage",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHandShakeService.Test_Request_ThenProcess_InvokesBusinessCallbackWithUser",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSFactory_CreatesCorrectProvider",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSFactory_UnknownProviderReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSSystem_Cache_DomainAndIP",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSSystem_Cache_ResetUpdateTime",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSSystem_Cache_TTL",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSSystem_EStatus_Values",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNS.Test_HTTPDNSSystem_GetURLByIP_ReturnsOriginalWhenOff",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNSCache.Test_Cache_Defaults",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNSCache.Test_Cache_IsExpiredLogic",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNSCache.Test_Cache_MultipleResets",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNSCache.Test_Cache_TTLClampBoundary",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPDNSCache.Test_Cache_UpdateTimeStartsFresh",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPForm.Test_DefaultConstructor_CreatesForm",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPForm.Test_WrappingConstructor_Null",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPForm.Test_WrappingConstructor_ReturnsSameInstance",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_CreateGetRequest_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_CreatePostRequest_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_DefaultGetCurrentUri_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_DefaultGetExceptionMessage_ReturnsEmpty",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_DefaultGetState_ReturnsError",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_DefaultGetUri_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPRequest.Test_States_EnumValues",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPResponse.Test_DefaultGetData_IsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPResponse.Test_DefaultGetMessage_IsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPResponse.Test_DefaultIsSuccess_False",
+                "result": "Passed"
+              },
+              {
+                "name": "TestHTTPResponse.Test_DefaultStatusCode_IsZero",
+                "result": "Passed"
+              },
+              {
+                "name": "TestLogAdaptor.Test_PostError_MultipleCallbacks_LastWins",
+                "result": "Passed"
+              },
+              {
+                "name": "TestLogAdaptor.Test_PostError_Network_NoCallback_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestLogAdaptor.Test_PostError_Network_WithCallback",
+                "result": "Passed"
+              },
+              {
+                "name": "TestLogAdaptor.Test_PostError_String_NoCallback_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestLogAdaptor.Test_PostError_String_WithCallback",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Constants",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_InvalidJsonBody_ProducesErrorPayload",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_NullOrEmpty_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Push_CompressedRoute",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Push_TruncatedRoute_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Push_UncompressedRoute",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Push_UnknownCompressedRoute_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_RequestType_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Response_ConsumedOnce_SecondReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Response_RestoresRouteFromReqMap",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Decode_Response_UnknownId_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Encode_CompressedRoute_SetsRouteMaskAndTwoByteIndex",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Encode_Notify_FlagHasNotifyBit",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Encode_NullMsg_ProducesEmptyJsonBody",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Encode_Request_UncompressedRoute",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Encode_RouteAtLimit_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Encode_RouteTooLong_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_Message_Constructor",
+                "result": "Passed"
+              },
+              {
+                "name": "TestMessageProtocol.Test_MessageType_Values",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkConst.Test_CodeConstants",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkConst.Test_ErrorMessage",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkConst.Test_InitEx_Defaults",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkConst.Test_InitEx_WithParams",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_ChangeState_InvokesCallbackOnce",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_ChangeState_NullCallback_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_ChangeState_SameState_NoCallback",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Constructor_Callback1_SetsType",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Constructor_Callback2_SetsType",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Constructor_LuaCallback_SetsType",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Constructor_LuaCallback2_SetsModuleFunc",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Constructor_RouteOnly_DefaultState",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_DoCallback_Callback1_InvokesWithData",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_DoCallback_Callback2_InvokesWithDataAndMsg",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_DoCallback_LuaCallback_InvokesWithString",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Update_NonProcessing_TimerUnchanged",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkRequest.Test_Update_Processing_AccumulatesTimer",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetFileLengthString_Bytes",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetFileLengthString_GB",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetFileLengthString_KB",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetFileLengthString_MB",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetFileLengthString_TB",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetFileLengthString_Zero",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetHostFromUrl_Https",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetHostFromUrl_Standard",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetIPFromHost_InvalidHost",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_GetTimeStamp_ReturnsPositive",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_Sign_JsonObject_Basic",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_Sign_JsonObject_Deterministic",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_Sign_JsonObject_EmptyInput",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_Sign_JsonObject_NullInput",
+                "result": "Passed"
+              },
+              {
+                "name": "TestNetworkUtil.Test_Sign_StringMessage_WithParams",
+                "result": "Passed"
+              },
+              {
+                "name": "TestOptionalBestHTTP.ConfiguredDiagnosticsRemainDisabledWithoutPlugin",
+                "result": "Passed"
+              },
+              {
+                "name": "TestOptionalBestHTTP.SelectingMissingBackendFailsExplicitly",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Decode_ExactlyHeader_ReturnsEmptyBody",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Decode_NullBuffer_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Decode_RoundTrip",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Decode_TooShortBuffer_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Encode_LargeBody_ThreeByteLength",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Encode_TypeOnly_ProducesFourZeroLengthBytes",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Encode_WithBody_WritesBigEndianLength",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Encode_WithEmptyBody_HeaderOnly",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Encode_WithNullBody_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Package_Constructor_NullBody_LengthZero",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_Package_Constructor_SetsLengthFromBody",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageProtocol.Test_PackageType_Values",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Clear_DropsPendingBytes",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Constructor_NullCallback_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Dispose_StopsCallbacks",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_ByteByByte",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_FragmentedPackage",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_HeartbeatNoBody",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_IllegalLength_DiscardsBufferNoHang",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_MultiplePackagesThenFragment",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_NullOrEmpty_NoCallback",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_SingleCompletePackage",
+                "result": "Passed"
+              },
+              {
+                "name": "TestPackageStream.Test_Feed_StickyPackets_TwoAtOnce",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_GetText_NoCallback_ReturnsOriginal",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_GetText_WithCallback_TransformsText",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_ShowDialog_NoCallback_CallsTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_ShowDialog_WithCallback_Delegates",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_ShowDialog_WithLocalizedText",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_ShowWaiting_NoCallback_DoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "TestUIAdaptor.Test_ShowWaiting_WithCallback_Invokes",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_ByteLength_Ascii",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_ByteLength_Empty",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_ByteLength_MultiByteUtf8",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_DecodeUInt32_StopsAtContinuationBit",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_DecodeUInt32_WithOffset",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_EncodeUInt32_128",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_EncodeUInt32_SingleByte",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_EncodeUInt32_TwoBytes",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_EncodeUInt32_Zero",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(0)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(1)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(-1)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(2)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(-2)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(100)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_SInt32_RoundTrip(-100)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(uint.MinValue)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(1)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(127)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(128)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(300)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(16383)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(16384)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(2097151)",
+                "result": "Passed"
+              },
+              {
+                "name": "TestWsCodec.Test_UInt32_RoundTrip(uint.MaxValue)",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "5a03590b7f2fdb9f7fbbad2e739f765d31723380cc4e3dae1c67e9ac09e51836"
+          }
+        ],
+        "producedFiles": []
+      }
+    ],
+    "environment": {
+      "editorProductVersion": "6000.3.13f1_8c4f11e4fb20",
+      "batchmode": true,
+      "os": "Microsoft Windows 10.0.26300",
+      "architecture": "X64"
+    }
+  }
+}

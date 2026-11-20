@@ -121,6 +121,8 @@
 
 本轮独立 GGResource EditMode 为 15/15；Demo 生命周期还记录了本地示例 Bundle 数量恢复为加载前值，并修复内置 Loxodon 的跨播放静态退出标记。它不证明全部 Bundle 依赖或 CPU / GPU 内存已释放，补丁没有自动传播到独立模块的第三方副本。
 
+后续[自动化 CI](GGFramework自动化回归与CI.md)为独立 GGResource 增加 2 项 PlayMode：最后引用释放后原生 TextAsset 销毁，以及显式独占组清理后的缓存与原生对象释放。它们不初始化 Loxodon，也不证明共享同名资产或底层 Bundle 依赖已经安全释放。
+
 ### 接入前仍需验证
 
 | 需要回答的问题 | 故障注入与验收要点 |

@@ -1,0 +1,463 @@
+{
+  "workflow": {
+    "runId": 44682532919,
+    "url": "https://github.com/gonglei007/GGFramework-Core/actions/runs/44682532919",
+    "event": "push",
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "results": {
+    "schemaVersion": 1,
+    "repository": "gonglei007/GGFramework-Core",
+    "commit": "74d10ecd8cd57ca6691100e0a0ea33c3b139bae2",
+    "unityVersion": "6000.3.13f1",
+    "result": "Passed",
+    "stages": [
+      {
+        "name": "core-editmode",
+        "startedUtc": "2026-11-20T05:51:40.4191926+00:00",
+        "finishedUtc": "2026-11-20T05:52:44.3117277+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": false,
+        "testPlatform": "EditMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 104,
+            "passed": 104,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "CoreStructureTests.CoroutineUtil_DerivesFrom_SingletonOfCoroutineUtil",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.CoroutineUtil_ExposesStaticDoCoroutine",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.Singleton_And_CoroutineUtil_AreInGlobalNamespace",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.Singleton_IsMonoBehaviour_WithMonoBehaviourConstraint",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.TaskSystem_And_GTask_LiveIn_GGTaskNamespace",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.TaskSystem_DerivesFrom_SingletonOfTaskSystem",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Clear_RemovesAllSubscribers",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_HandlerThrowing_DoesNotBreakOthers",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_HandlerUnsubscribingDuringDispatch_IsSafe",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_NotifiesAllSubscribers_InOrder",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_NotifiesSubscriber_WithPayload",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_WithoutSubscriber_IsNoOp",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Subscribe_IsSegregatedByEventType",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Subscribe_NullHandler_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Subscribe_SameHandlerTwice_IsDeduplicated",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Unsubscribe_StopsNotifications",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.DataSize_FormatsBytesAndScalesThroughUnits",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.Md5Hex_IsLowercase32Hex",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.Md5Hex_KnownVector",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.UnixTimestampMs_PositiveAndCloseToNow",
+                "result": "Passed"
+              },
+              {
+                "name": "GTaskTests.GTask_Dispose_IsIdempotentAndDoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GTaskTests.GTask_FastJob_AlwaysCallsCompletion",
+                "result": "Passed"
+              },
+              {
+                "name": "GTaskTests.GTask_Start_RunsThreadStartDelegate",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.Enqueue_DefersUntilProcessQueue",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.IsMainThread_TrueOnTestThread",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.PendingCount_ReflectsQueue",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.Post_NullAction_NoThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.Post_OnMainThread_ExecutesImmediately",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.ProcessQueue_DrainsInFifoOrder",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.ProcessQueue_IsolatesException_ContinuesRemaining",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.HostFromUrl_ExtractsHost",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.Sign_DeterministicForSameInput",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.Sign_MissingQuery_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.Sign_ParamOrderInsensitive",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_Get_ReturnsActiveInstance",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_MaxSize_DropsExcessOnRelease",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_NullPrefab_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_ReleaseThenGet_ReusesInstance",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_Clear_EmptiesInactive",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_Get_CreatesViaFactory_WhenEmpty",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_MaxSize_DropsExcessOnRelease",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_NullFactory_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_OnGet_ResetsState",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_OnGetAndOnRelease_AreInvoked",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_Preload_FillsInactiveUpfront",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_ReleaseNull_IsIgnored",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_ReleaseThenGet_ReusesInstance_WithoutNewFactoryCall",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.Candidates_IncludesApplicationPersistentDataPath_AndBestNotNull",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.FileExists_TrueForRealFile_FalseForMissing",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.IsDirectoryWritable_NonExistent_False",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.IsDirectoryWritable_ProbeFileCleanedUp",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.IsDirectoryWritable_TempDir_True",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.active resources may exceed budget; ending scope evicts oldest idle value",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.lookup updates recency across scopes",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.repeated access pins only once",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.trim unused releases idle values but protects current use",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.budget changes evict idle data immediately",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.duplicate keys leave existing ownership intact",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.negative weights reject before transfer",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.weight overflow rejects before transfer",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.zero-weight resources still release on explicit clear",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.all release failures are reported after accounting and other releases",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.release callback cannot reenter cache mutation",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.clear releases protected entries exactly once",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.cache comparer preserves ordinal resource path identity",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.cache miss neither pins nor changes ownership",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.queued and active requests share one lease and factory",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.queue schedules FIFO within its concurrency limit",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.scope cancellation invalidates queued and running work before replacement",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.queued and duplicate completions cannot decrement active work",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.lowering concurrency preserves active requests and stops new admission",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.raising concurrency admits additional queued work",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.synchronous completion and pump reentry do not grow recursion",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.start failure releases its admission slot and permits later work",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.factory failure leaves no queued request and can retry",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.null factories and invalid concurrency fail without poisoning queue",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.request paths use the configured comparer",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.cancellation during start cannot complete a same-key replacement",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.null pump callback leaves pending work intact",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.factory cannot recursively register the same key",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.factory cannot cancel or admit existing work or change its limit",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.foreign and null leases cannot consume an active request",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.existing requests do not need another factory",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.start failure after cancellation preserves replacement for the next pump",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.synchronous completion followed by start failure does not double decrement",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.clear attempts every release including pinned values after failures",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.all release-time cache mutations are rejected before state changes",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.negative trim target and reduced budget still preserve current ownership",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.invalid cache keys and missing release callback fail without ownership transfer",
+                "result": "Passed"
+              },
+              {
+                "name": "ResourceManagementTests.many obsolete leases cannot consume the current request",
+                "result": "Passed"
+              },
+              {
+                "name": "SingletonLifetimeTests.Instance_WhenQuitting_ReturnsNull_WithoutCreatingObject",
+                "result": "Passed"
+              },
+              {
+                "name": "SingletonLifetimeTests.IsQuitting_IsSettableStaticBool",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.AddTransitionGuard_NullGuard_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_InvokesExitThenEnter",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_SetsCurrent_AndReturnsTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_ToSameState_ReturnsFalse_AndNoCallback",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_ToUnconfiguredState_StillWorks",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.Clear_ResetsState",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.InitialState_HasNoState",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.StateChanged_FiresWithPreviousAndNext",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.TransitionGuard_BlocksWhenFalse_AllowsWhenTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.Update_BeforeAnyState_IsNoOp",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.Update_ForwardsDeltaTime_ToCurrentStateOnly",
+                "result": "Passed"
+              },
+              {
+                "name": "TaskSystemTests.TimedOutJob_DoesNotBlockFollowingJob_AndInitIsIdempotent",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "e5cd342fd9ab312104e849e76fc7edf132f8b1e92362a5305d7235c055a78b14"
+          }
+        ],
+        "producedFiles": []
+      }
+    ],
+    "environment": {
+      "editorProductVersion": "6000.3.13f1_8c4f11e4fb20",
+      "architecture": "X64",
+      "os": "Microsoft Windows 10.0.26300",
+      "batchmode": true
+    }
+  }
+}

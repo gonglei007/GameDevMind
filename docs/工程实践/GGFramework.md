@@ -22,7 +22,7 @@
 |---|---|---|
 | 集成 Demo | [e2a7586 manifest](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Packages/manifest.json) | Core `v0.3.0`，已启用包测试；含本轮生命周期与 Prefab 修复，业务模块和 ToLua 使用内置源码 |
 | Core 稳定包 | [c0567a8 package.json](https://github.com/gonglei007/GGFramework-Core/blob/c0567a89ebf3837754eaf504ae10e93a184ea146/package.json) | 已发布 `v0.3.0`，Demo 使用此提交 |
-| Core 开发快照 | [7e0fa45 package.json](https://github.com/gonglei007/GGFramework-Core/blob/7e0fa45c3b514fde135d04f5449a2e0bc9202b4a/package.json) | `0.4.0-preview.1`；新增资源契约不在 Demo 稳定包的测试范围内 |
+| Core 开发快照 | [7e0fa45 package.json](https://github.com/gonglei007/GGFramework-Core/blob/7e0fa45c3b514fde135d04f5449a2e0bc9202b4a/package.json) | `0.4.0-preview.1`；新增资源契约不在 Demo 稳定包范围内，由 Core 独立 CI 的 104 项测试另验 |
 | 独立 GGResource | [14c7a68 manifest](https://github.com/gonglei007/GGFramework-GGResource/blob/14c7a685b2b75686e5585f852d1bab93f5f46195/GGResource/Packages/manifest.json) | Core `v0.1.1`；资源页只运行其特定集成路径 |
 | 独立 GGNetwork | [7e371ea manifest](https://github.com/gonglei007/GGFramework-GGNetwork/blob/7e371eab8b9de00f06e713ca7bd8468ebb890ea0/GGNetwork/Packages/manifest.json) | Core `v0.1.1`；默认 UnityWebRequest；可选 BestHTTP 需安装插件并启用宏，Demo 使用其内置 BestHTTP |
 | 独立 GGUI | [12ffe13 manifest](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/GGUI/Packages/manifest.json) | 默认分支 master，Core `v0.1.1`；独立后端与 Demo 旧副本分别评估 |
@@ -61,6 +61,8 @@ git checkout --detach e2a7586a1325fc8dd762b55d1105de81b9825154
 
 6. 执行 **Run Lifecycle Checks Twice Without Domain Reload**，检查两个完整播放 / 退出周期和同会话重开；保存逐轮报告。原始失败、修复依据及 Player 生命周期命令见[实跑记录](GGFrameworkUnity验证记录.md)。
 
+需要每次修改后重复验证时，使用[自动化回归与 CI 复现](GGFramework自动化回归与CI.md)：六仓各自维护执行契约，统一脚本检查准确提交、退出码、新报告和关键清理断言；拥有者提交通过一次性 Windows runner 执行真实 Unity CI。
+
 构建示例 Bundle 是完整冒烟的前置条件。单独体验 Core、HTTP、UI、SDK、Lua 页时不代表已经使用了 Bundle；资源页的 LocalResources、Simulation 与真实 Bundle 也分别验收。切换目标平台后重新构建 Bundle。
 
 首次体验建议完成三个对照：取消订阅前后金币是否变化、资源引用是否归零、HTTP 失败后是否能恢复。每个对照都应能从界面状态追到对应 API，避免只看功能列表。
@@ -94,12 +96,15 @@ git checkout --detach e2a7586a1325fc8dd762b55d1105de81b9825154
 | 文中的操作预期 | 按专题表格手工复现，保存实际结果 | 表格给出验收任务；未附运行报告的步骤不记为本轮通过 |
 | 上游历史运行记录 | [2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md) | Windows 11 / Unity 6000.3.13f1 / x64 Mono Development Player 的历史结果；原始报告未入库；与本轮独立保存的运行证据分开 |
 | 本轮 Unity 实跑 | [2026-11-20 环境与结果](GGFrameworkUnity验证记录.md)，含脱敏断言、NUnit 逐项结果、原始摘要及失败前后对照 | 验证固定 Windows Editor / Mono Player 中所列 API 与退出路径；不证明全部内存无泄漏、所有竞态或生产服务可用 |
-| 本轮文档与 CI | 链接、导航与统计一致性，GitHub 桌面 / 手机展示，六篇实践及十组图谱双向跳转 | 证明系列可读、入口可达；不运行外部 Unity、模块测试、真实渠道或补丁服务 |
+| 各仓自动化 Unity CI | [六仓回归工作流与复现](GGFramework自动化回归与CI.md)，逐一核对 PR / 合并提交、执行契约及保全的 artifact 结果 | 证明固定提交在所记环境下完成自动化测试；稳定 Core 与预览包分别计数，仍不覆盖真实渠道或补丁服务 |
+| 本知识库文档 CI | 链接、导航与统计一致性，GitHub 桌面 / 手机展示，六篇实践及十组图谱双向跳转 | 证明系列可读、入口可达 |
 | 本仓库教学模型 | 例如 Python 客户端网络生命周期模型；由各自 CI 检查 | 模型契约独立成立，不是 GGNetwork 适配器，也不证明框架拥有同一保证 |
 | 读者本机复现 | 固定提交，执行指南中的测试，保存退出码、报告、日志与截图 | 证明所记录环境下的实际结果；独立模块的测试需在其工程中另跑 |
 | 项目接入验收 | 真实后端、弱网、切网、前后台、场景关闭、业务幂等、容量与依赖升级 | 决定是否满足产品需求，必须由项目单独完成 |
 
 历史记录中的稳定版 Core EditMode 为 66 / 66，大厅 Editor 冒烟为 28 / 28，Windows Player 冒烟为 27 / 27（不含 Editor Simulation）。这些数值描述历史记录。本轮另外重跑得到相同的 Core / 冒烟数量，并新增生命周期与独立模块实跑；详见[本轮结果](GGFrameworkUnity验证记录.md)。两者均不覆盖 Core 预览版或各独立模块全部路径。
+
+其后接入的[独立 Unity CI](GGFramework自动化回归与CI.md)分别执行稳定包、Core 预览包及各模块契约；预览包 104 项不计为 Demo 稳定包 66 项的同一次验证，也不构成预览能力的生产验收。
 
 建议记录 `提交 SHA / 包锁定版本 / Unity / 平台与构建后端 / 配置与来源 / 操作 / 预期 / 实际 / 日志位置 / 未覆盖项`，并标注结果属于源码核对、操作预期、历史运行、本轮文档验证还是项目验收。
 
