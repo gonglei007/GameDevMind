@@ -4,7 +4,7 @@
 
 **项目关系：** GGFramework 是本知识库作者维护的项目系列。这里将其作为工程参考，展示实现与取舍；采用前仍需与项目已有方案比较。通用知识保留在图谱，跨模块架构以 [GGFramework-Docs](https://github.com/gonglei007/GGFramework-Docs) 为来源，各模块 API 和接入步骤以模块仓库为来源。
 
-**复核日期：** 2026-11-20。本轮核对公开文档与源码，未重新运行 Unity 工程；上游已记录的运行结果与本知识库 CI 的验证范围分别见[验证方法与证据](#验证方法与证据)。
+**复核日期：** 2026-11-20。本轮核对固定源码、测试断言与系列阅读路径，未重跑 Unity，也未完成目标平台或生产接入验收。各类证据的范围见[验证方法与证据边界](#验证方法与证据边界)。
 
 ## 适用条件
 
@@ -14,26 +14,52 @@
 | 为已有工程评估某项能力 | 明确目标平台、Unity 版本、依赖与现有接口 | 只评估对应模块，比较改造与维护成本 |
 | 研究模块拆分与复用 | 了解程序集、UPM 与版本锁定 | 对照 Core、依赖矩阵和架构决策记录 |
 
-整体体验路径按 **Windows Editor / Windows 桌面 Player、Unity 6000.3.13f1** 编写；需要 Git，并在首次包解析时访问 GitHub 与 Unity 包服务。Core 声明最低 Unity 2021.3，与整个 Demo 的验证版本是两个范围，不能相互替代。其他平台、IL2CPP 或其他 Unity 版本需要另行编译和运行验证。
+六篇共用的 Demo 环境为 **Windows Editor / Windows x64 Mono Development Player、Unity 6000.3.13f1**，与上游历史验收一致；需要 Git，首次包解析需访问 GitHub 和 Unity 包服务。Core 稳定包声明最低 Unity 2021.3，这只是包声明，不能代替 Demo 的实际验收范围。其他平台、构建后端或 Unity 版本需单独验证；Lua 还需匹配平台的 ToLua 原生插件。
+
+## 固定源码基线
+
+| 核对对象 | 固定源码依据 | 依赖与边界 |
+|---|---|---|
+| 集成 Demo | [3039f9a manifest](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Packages/manifest.json) | Core `v0.3.0`，已启用包测试；业务模块和 ToLua 使用 Demo 内置源码 |
+| Core 稳定包 | [c0567a8 package.json](https://github.com/gonglei007/GGFramework-Core/blob/c0567a89ebf3837754eaf504ae10e93a184ea146/package.json) | 已发布 `v0.3.0`，Demo 使用此提交 |
+| Core 开发快照 | [7e0fa45 package.json](https://github.com/gonglei007/GGFramework-Core/blob/7e0fa45c3b514fde135d04f5449a2e0bc9202b4a/package.json) | `0.4.0-preview.1`；新增资源契约不在 Demo 稳定包的测试范围内 |
+| 独立 GGResource | [14c7a68 manifest](https://github.com/gonglei007/GGFramework-GGResource/blob/14c7a685b2b75686e5585f852d1bab93f5f46195/GGResource/Packages/manifest.json) | Core `v0.1.1`；资源页只运行其特定集成路径 |
+| 独立 GGNetwork | [a80eaa7 manifest](https://github.com/gonglei007/GGFramework-GGNetwork/blob/a80eaa7a55fa29fb700fd8b12e78ab290a0fc37d/GGNetwork/Packages/manifest.json) | Core `v0.1.1`；默认 UnityWebRequest，Demo 使用 BestHTTP |
+| 独立 GGUI | [12ffe13 manifest](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/GGUI/Packages/manifest.json) | 默认分支 master，Core `v0.1.1`；独立后端与 Demo 旧副本分别评估 |
+| 独立 GGUser | [2f9f5ad manifest](https://github.com/gonglei007/GGFramework-GGUser/blob/2f9f5ad9291300faff00c31d953c3218323bdc82/GGUser/Packages/manifest.json) | Core `v0.2.0`；传统接口、聚合平台与 ShowcaseSDK 分开验证 |
+
+各篇在此基线上链接具体实现与测试。文中的“当前实现”指这些固定提交；采用更新版本时重新核对 manifest、API 和运行结果。ToLua 等第三方实现保留各自来源，不归为 Core 包能力。
 
 ## 从问题选择实践入口
 
-| 想观察什么 | 图谱中的原理入口 | 工程中的观察任务 | 实现入口 |
+| 想观察什么 | 图谱主入口（双向） | 工程中的观察任务 | 实践文档 |
 |---|---|---|---|
 | 状态、事件与对象复用 | [客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md) | 状态守卫拒绝后重新进入；退订后发布事件；核对池复用与退出责任 | [Core 基础能力实践](GGFrameworkCore基础能力实践.md) |
 | 资源来源与释放责任 | [客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md)、[产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md) | 加载两次、释放两次，观察引用计数；读取缺失资源后恢复；构建并加载本地 Bundle | [资源管理实践](GGFramework资源管理实践.md) |
-| 请求失败后的交互与恢复 | [客户端网络系统](../../mds/3.研发能力/3.1.4.客户端网络系统.md) | 区分成功、业务拒绝和 HTTP 503；取消重试后再发成功请求 | [客户端网络实践样板](GGFramework客户端网络实践.md) |
-| 页面与窗口的归属 | [UI系统](../../mds/3.研发能力/3.1.6.UI系统.md) | 背包 → 详情窗口 → 返回，观察页面栈、窗口归属与生命周期 | [UI 管理实践](GGFrameworkUI管理实践.md) |
+| 请求失败后的交互与恢复 | [客户端网络系统](../../mds/3.研发能力/3.1.4.客户端网络系统.md) | 区分成功、业务拒绝和 HTTP 503；取消重试后再发成功请求 | [客户端网络实践](GGFramework客户端网络实践.md) |
+| 页面与窗口的归属 | [UI系统](../../mds/3.研发能力/3.1.6.UI系统.md)、[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md) | 背包 → 详情窗口 → 返回，观察页面栈、窗口归属与生命周期 | [UI 管理实践](GGFrameworkUI管理实践.md) |
 | SDK 与游戏业务解耦 | [用户与帐号系统](../../mds/3.研发能力/3.3.5.用户与帐号系统.md)、[支付与变现](../../mds/6.运营能力/6.3.2.帐号与支付.md) | 注入登录失败再重试；区分支付事件、模拟验单与真实后端责任 | [用户与 SDK 接入实践](GGFramework用户与SDK接入实践.md) |
 | Lua 规则与热更新边界 | [产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md)、[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md) | 修改倍率并读取返回值；核对加载器、绑定与脚本释放责任 | [Lua 与热更新实践](GGFrameworkLua与热更新实践.md) |
 
+上表维护六篇实践与十组双向图谱入口；各篇的其他知识链接用于延伸阅读。首页保留一条[实践导读入口](../../README.md#可立即使用的资源)，由本页组织完整系列。
+
 ## 运行一次完整体验
 
-1. 安装上述 Unity 版本和 Git，克隆 [GGFramework-Demo](https://github.com/gonglei007/GGFramework-Demo)，打开其中的 `unity_project`。记录 Demo 提交 SHA、Unity 版本、平台和构建后端。
-2. 等待 Package Manager 完成解析。当前 Demo 固定引用已发布的 Core `v0.3.0`；无需同级克隆其他模块，首次导入仍需要网络。
+各篇的准备步骤统一在这里维护。先安装上述 Unity 版本和 Git，固定 Demo 提交：
+
+```bash
+git clone https://github.com/gonglei007/GGFramework-Demo.git
+cd GGFramework-Demo
+git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
+```
+
+1. 打开 `unity_project`，记录 Demo / Core 提交、Unity、平台和构建后端。
+2. 等待 Package Manager 完成解析，核对 manifest 与包锁定记录。无需同级克隆其他模块；修改为本地包或更新依赖后需重新验证。
 3. 在非播放状态执行 **GGFramework → Demo → Build Sample Bundles**，为真实本地 AssetBundle 体验和完整冒烟测试生成资源。它只生成示例配置的 Bundle；切换目标平台后重新构建。
 4. 选择 **Play Showcase**。先体验 Core，再进入资源、HTTP、UI、用户和 Lua 页；每次只执行一个操作，对照状态与回调记录。
-5. 退出 Play Mode 后执行 **Run Smoke Tests**，保存 `unity_project/Logs/showcase-smoke-results.txt` 与 Unity 日志。完整命令、Player 构建和测试入口见[开发者体验指南](https://github.com/gonglei007/GGFramework-Demo/blob/main/documents/showcase-guide.md)。
+5. 退出 Play Mode 后执行 **Run Smoke Tests**，保存 `unity_project/Logs/showcase-smoke-results.txt` 与 Unity 日志。这是完整大厅冒烟，包含所有专题；Core EditMode 包测试在 Test Runner 中另行执行，Demo 已配置 `testables`。完整命令、Player 构建和测试入口见[固定版本操作指南](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-guide.md)。
+
+构建示例 Bundle 是完整冒烟的前置条件。单独体验 Core、HTTP、UI、SDK、Lua 页时不代表已经使用了 Bundle；资源页的 LocalResources、Simulation 与真实 Bundle 也分别验收。切换目标平台后重新构建 Bundle。
 
 首次体验建议完成三个对照：取消订阅前后金币是否变化、资源引用是否归零、HTTP 失败后是否能恢复。每个对照都应能从界面状态追到对应 API，避免只看功能列表。
 
@@ -50,22 +76,29 @@
 
 ## 不适用场景
 
-- 需要未经评估直接上线的完整游戏客户端。多个业务模块仍标注内测状态，接入方必须验收自己的目标环境。
+- 需要直接上线的完整游戏客户端。各篇列出了尚需项目验证的契约，接入方必须验收自己的目标环境。
 - 希望通过 Demo 证明独立 GGNetwork 的全部能力。Demo 的 HTTP 链路使用 BestHTTP 副本，独立模块默认使用 UnityWebRequest，详见[网络实践的实现对照](GGFramework客户端网络实践.md#两条实现路径)。
 - 需要直接在 WebGL 复现回环 HTTP 服务。示例服务使用本机 TCP；其他桌面平台也需匹配的 ToLua 原生插件。
-- 希望 GGUI 的现有 UGUI 后端直接替代 NGUI。独立 GGUI 当前默认 NGUI，UGUI 为待补全的占位实现；Demo 大厅的 IMGUI 操作面板也不能证明 UGUI 后端已实现。
+- 希望 GGUI 的现有 UGUI 后端直接替代 NGUI。独立 GGUI 默认 NGUI，UGUI 已有部分控件实现，输入环境、布局与动画等仍待补齐；Demo 的 IMGUI 面板不能证明该后端完整可用。
 - 需要真实渠道支付、服务端验单或生产热更新验收。模拟 SDK 只产生本地事件，本地 Bundle 示例未覆盖完整发布、下载、校验和回滚链路。
 
-## 验证方法与证据
+<a id="验证方法与证据"></a>
+
+## 验证方法与证据边界
 
 | 证据层次 | 应检查什么 | 可以说明什么 |
 |---|---|---|
-| 本知识库的文档与 CI | 链接、导航与统计一致性，GitHub 实际展示；已有 Python 生命周期模型 | 阅读路径可达、文档可读、教学模型契约成立；不证明 Unity 集成通过 |
-| 上游维护者的运行记录 | [2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md) | 记录了特定 Windows / Unity 环境中的编译、Core 测试与 Demo 冒烟；原始报告未入库，本轮未独立重跑 |
-| 读者本机复现 | 固定提交，执行指南中的测试，保存退出码、报告、日志与截图 | 证明该提交在记录环境下的实际结果，不能跨平台外推 |
+| 固定源码核对 | 比较实际调用、默认参数、失败分支与测试断言 | 说明该提交的实现与覆盖意图；不等于已执行测试 |
+| 文中的操作预期 | 按专题表格手工复现，保存实际结果 | 表格给出验收任务；未附运行报告的步骤不记为本轮通过 |
+| 上游历史运行记录 | [2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md) | Windows 11 / Unity 6000.3.13f1 / x64 Mono Development Player 的历史结果；原始报告未入库，本轮未重跑 |
+| 本轮文档与 CI | 链接、导航与统计一致性，GitHub 桌面 / 手机展示，六篇实践及十组图谱双向跳转 | 证明系列可读、入口可达；不运行外部 Unity、模块测试、真实渠道或补丁服务 |
+| 本仓库教学模型 | 例如 Python 客户端网络生命周期模型；由各自 CI 检查 | 模型契约独立成立，不是 GGNetwork 适配器，也不证明框架拥有同一保证 |
+| 读者本机复现 | 固定提交，执行指南中的测试，保存退出码、报告、日志与截图 | 证明所记录环境下的实际结果；独立模块的测试需在其工程中另跑 |
 | 项目接入验收 | 真实后端、弱网、切网、前后台、场景关闭、业务幂等、容量与依赖升级 | 决定是否满足产品需求，必须由项目单独完成 |
 
-建议保存一份自己的记录：`提交 SHA / Core 锁定版本 / Unity / 平台与后端 / 操作 / 预期 / 实际 / 日志位置 / 未覆盖项`。先完成一个任务的复现，再扩大接入范围。
+历史记录中的稳定版 Core EditMode 为 66 / 66，大厅 Editor 冒烟为 28 / 28，Windows Player 冒烟为 27 / 27（不含 Editor Simulation）。这些数量来自上游历史报告，不是本轮重新运行的结果，也不覆盖 Core 预览版或各独立模块全部路径。
+
+建议记录 `提交 SHA / 包锁定版本 / Unity / 平台与构建后端 / 配置与来源 / 操作 / 预期 / 实际 / 日志位置 / 未覆盖项`，并标注结果属于源码核对、操作预期、历史运行、本轮文档验证还是项目验收。
 
 ## 来源与维护
 
@@ -73,4 +106,4 @@
 
 本文维护阅读路径和知识映射，不复制模块 API 手册；发现框架问题在对应模块反馈，发现本导读的链接、归类或验证表述问题在 GameDevMind 反馈。
 
-继续阅读：[Lua 与热更新实践](GGFrameworkLua与热更新实践.md) · [Core 基础能力实践](GGFrameworkCore基础能力实践.md) · [用户与 SDK 接入实践](GGFramework用户与SDK接入实践.md) · [UI 管理实践](GGFrameworkUI管理实践.md) · [资源管理实践](GGFramework资源管理实践.md) · [客户端网络实践样板](GGFramework客户端网络实践.md) · [全部代码示例](../../code/README.md) · [返回首页](../../README.md#可立即使用的资源)。
+继续阅读：[全部代码示例](../../code/README.md) · [返回首页](../../README.md#可立即使用的资源)。

@@ -2,12 +2,12 @@
 
 本篇从“返回时回到哪一页、窗口属于谁、隐藏后还剩下什么”出发，先用 Demo 观察页面与窗口状态，再对照独立 GGUI 的实际实现。UI 设计原理见 [UI系统](../../mds/3.研发能力/3.1.6.UI系统.md)，资产与引用计数见[资源管理实践](GGFramework资源管理实践.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定提交的公开源码与文档，本轮未重跑 Unity。下面将源码行为、操作预期、上游历史验收和项目接入待验项分别说明。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
 - 具备 C#、Unity GameObject / 组件、Prefab 和事件回调基础，需要组织全屏页面、附属窗口与界面退出流程。
-- Demo 体验按 Windows Editor / Windows 桌面 Player、Unity **6000.3.13f1** 编写；安装 Git，首次包解析需要访问 GitHub 和 Unity 包服务。
+- 能为所选 UI 后端准备输入环境、Prefab、分层与资源约定。
 - 先观察现有框架行为，再评估是否适合项目的 UI 后端、路由与资源契约；不将 IMGUI 演示面板当成目标平台完整 UI 验收。
 
 | 核对对象 | 固定版本 | 与本篇相关的区别 |
@@ -88,13 +88,7 @@ UIBase 默认补间路径会播放后立即执行完成委托，不等待补间�
 
 ## 用 Demo 复现页面与窗口流程
 
-```bash
-git clone https://github.com/gonglei007/GGFramework-Demo.git
-cd GGFramework-Demo
-git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
-```
-
-用上述 Unity 打开 `unity_project`，完成包解析；在非播放状态执行 **GGFramework → Demo → Build Sample Bundles**，再执行 **Play Showcase** 进入 UI 页。构建 Bundle 是完整冒烟的前置条件，UI 页本身使用代码创建的对象。
+按导读的[统一复现入口](GGFramework.md#运行一次完整体验)固定 Demo 并完成准备，再进入 **Play Showcase → UI** 页。示例页面由代码创建，没有完整的 UI Prefab / 动画配置。
 
 | 操作 | 预期结果与观察点 |
 |---|---|
@@ -124,9 +118,8 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 
 - [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)实际执行两次进入背包、显示详情、关闭全部窗口、重新显示并返回，断言当前页面与窗口状态。没有直接断言完整栈深、Parent 字段、全局窗口、动画事件次数、异步导航或资产释放。
 - 独立 GGUI 当前测试目录中的 [ResourceModelTests.cs](https://github.com/gonglei007/GGFramework-GGUI/blob/12ffe13297c281cbfa6253ac443aab1552ce3857/GGUI/Assets/Tests/EditMode/ResourceModelTests.cs)验证资源模型；不能将它称为页面栈或 UGUI 集成回归。
-- 上游 [2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md)记录了 Windows / Unity 的历史测试与 UI 展示，原始报告未入库。本轮为源码与文档核对，未重跑这些 Unity 测试。
 
-本机复现整个大厅时，退出 Play Mode 后执行 **Run Smoke Tests**，保存 `unity_project/Logs/showcase-smoke-results.txt` 与 Unity 日志；详见[固定版本操作指南](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-guide.md)。GameDevMind 的 CI 只验证本文链接、生成一致性与 GitHub 阅读路径，不运行外部 GGUI 或 Demo。
+历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。独立 GGUI 后端的验证不由大厅 IMGUI 操作代替。
 
 ### 接入前仍需验证
 

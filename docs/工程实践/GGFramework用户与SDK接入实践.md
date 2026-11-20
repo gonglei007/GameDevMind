@@ -2,12 +2,11 @@
 
 本篇从“初始化完成后能做什么、谁确认登录有效、支付回调能否发货”出发，用 Demo 观察事件，再对照 GGUser 的传统 SDK 接口与聚合平台实现。身份建模见[用户与帐号系统](../../mds/3.研发能力/3.3.5.用户与帐号系统.md)，订单与发货见[支付与变现](../../mds/6.运营能力/6.3.2.帐号与支付.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定提交的源码、测试与文档，本轮未重跑 Unity，也未接入真实渠道或支付服务。下文分别说明已有实现、模拟行为和项目仍需完成的验收。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
 - 具备 C#、Unity 组件、状态机与异步回调基础，需要隔离渠道 SDK 与游戏业务，或梳理已有登录、支付接入的责任。
-- 集成 Demo 的操作按 Windows Editor / Windows 桌面 Player、Unity **6000.3.13f1** 编写；安装 Git，首次包解析需要访问 GitHub 和 Unity 包服务。其他平台、Unity 版本和 IL2CPP 需另行验证。
 - 真正上线需要渠道开发者配置、匹配的原生插件、可信游戏后端与订单服务；本地事件和模拟网关只用于研究调用流程。
 
 ## 三条路径与版本边界
@@ -89,13 +88,7 @@ Demo 使用订单 `demo-order`、商品 `demo-coins`、金额 0，回调传入�
 
 ## 用集成 Demo 复现用户页
 
-```bash
-git clone https://github.com/gonglei007/GGFramework-Demo.git
-cd GGFramework-Demo
-git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
-```
-
-用上述 Unity 打开 `unity_project`，完成包解析；在非播放状态执行 **GGFramework → Demo → Build Sample Bundles**，再执行 **Play Showcase** 并进入用户页。Bundle 是完整大厅冒烟的前置条件，用户页本身不访问支付服务。
+按导读的[统一复现入口](GGFramework.md#运行一次完整体验)固定 Demo 并完成准备，再进入 **Play Showcase → 用户** 页。按钮只驱动本地 ShowcaseSDK，不访问真实支付服务。
 
 | 操作 | 预期与观察点 |
 |---|---|
@@ -125,9 +118,8 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 | [SDKInjectionTests.cs](https://github.com/gonglei007/GGFramework-GGUser/blob/2f9f5ad9291300faff00c31d953c3218323bdc82/GGUser/Assets/Tests/EditMode/SDKInjectionTests.cs) | 注入、null 拒绝、初始化事件、注入取消不再附加 Editor 成功回调 | 真实渠道、多线程或所有请求全局恰好一次 |
 | [GGPlatformEditModeTests.cs](https://github.com/gonglei007/GGFramework-GGUser/blob/2f9f5ad9291300faff00c31d953c3218323bdc82/GGUser/Assets/Tests/EditMode/GGPlatformEditModeTests.cs) | 假渠道 / 网关下的路由回退、Pending、验单后 Finish、验单拒绝保留、未完成列表和恢复委托 | 真实网络认证、商店票据、持久化账本或真机恢复 |
 | [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 登录失败后成功，三种支付事件，成功支付事件数增加一次，登出后再登录 UID 一致 | 所有回调唯一、跨进程持久化、NativeSDK 或聚合平台通过 |
-| [上游 2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md) | 特定 Windows / Unity 环境的历史运行记录；原始报告未入库 | 本轮重新执行或其他平台同样通过 |
 
-本机复现时，按[固定版本操作指南](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-guide.md)退出 Play Mode 后执行 **Run Smoke Tests**，保存 `unity_project/Logs/showcase-smoke-results.txt` 与 Unity 日志。独立模块测试应在它自己的工程中分别执行；本知识库 CI 只验证文档、导航与 GitHub 阅读路径，不运行这些外部 Unity 测试。
+历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。独立 GGUser 的测试需在其工程中另跑；本轮未接入真实渠道、认证或支付服务。
 
 | 接入待验项 | 注入方式与通过条件 |
 |---|---|
