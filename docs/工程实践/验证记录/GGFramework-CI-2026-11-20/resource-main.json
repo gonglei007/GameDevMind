@@ -1,0 +1,138 @@
+{
+  "workflow": {
+    "runId": 44683732072,
+    "url": "https://github.com/gonglei007/GGFramework-GGResource/actions/runs/44683732072",
+    "event": "push",
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "results": {
+    "schemaVersion": 1,
+    "repository": "gonglei007/GGFramework-GGResource",
+    "commit": "921f2a5b6d3695c5a20c612758a32f03b896e6e0",
+    "unityVersion": "6000.3.13f1",
+    "result": "Passed",
+    "stages": [
+      {
+        "name": "resource-editmode",
+        "startedUtc": "2026-11-20T06:22:41.9422753+00:00",
+        "finishedUtc": "2026-11-20T06:26:45.4253569+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": false,
+        "testPlatform": "EditMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 15,
+            "passed": 15,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.ClearObjects_DestroysGroupAssetsAndEmptiesTable",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.ClearObjects_MultiKeySnapshot_NoIterationException",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.ClearResources_ClearsCurrentGroup",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.DestroyObject_Retained_NotDestroyedUntilAllReleased",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.DestroyObject_Unretained_RemovesAndDestroys",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.GetAssets_FiltersByAssetType",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.GetAssets_UnknownBundle_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.GetKeyByGroupTag_FormatsGroupDashTag",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.GetObject_Unknown_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.GetResourceTable_CachesSameInstancePerGroupTag",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.ListenObject_WhenAlreadyLoaded_InvokesImmediately",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.ListenObject_WhenNotLoaded_DefersUntilSetObject",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.Retain_Unknown_NoThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.SetObject_GetObject_Roundtrip",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceSystemTests.SetObject_Null_IsIgnored",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "714b343f9c900965077968aaf5740233592c1031c9a82ad65757be9ca3dea2d6"
+          }
+        ],
+        "producedFiles": []
+      },
+      {
+        "name": "resource-playmode",
+        "startedUtc": "2026-11-20T06:26:46.3947878+00:00",
+        "finishedUtc": "2026-11-20T06:27:18.8442699+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": true,
+        "testPlatform": "PlayMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 2,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceReleasePlayModeTests.ExplicitOwnerTeardownClearsCacheAndNativeObjects",
+                "result": "Passed"
+              },
+              {
+                "name": "GGFramework.GGResource.Tests.ResourceReleasePlayModeTests.LastReleaseDestroysNativeAssetAfterOtherOwnerReleases",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "9ff3fd91185c0f1d1069e97bbcab85d586fa1708538b37b7d28317ae024fa620"
+          }
+        ],
+        "producedFiles": []
+      }
+    ],
+    "environment": {
+      "editorProductVersion": "6000.3.13f1_8c4f11e4fb20",
+      "architecture": "X64",
+      "os": "Microsoft Windows 10.0.26300",
+      "batchmode": true
+    }
+  }
+}

@@ -1,0 +1,686 @@
+{
+  "workflow": {
+    "runId": 44683712316,
+    "url": "https://github.com/gonglei007/GGFramework-Demo/actions/runs/44683712316",
+    "event": "push",
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "results": {
+    "schemaVersion": 1,
+    "repository": "gonglei007/GGFramework-Demo",
+    "commit": "e40af9878ceeeb8ef13dbb77647c5b318377f31b",
+    "unityVersion": "6000.3.13f1",
+    "result": "Passed",
+    "stages": [
+      {
+        "name": "core-editmode",
+        "startedUtc": "2026-11-20T05:55:30.5028661+00:00",
+        "finishedUtc": "2026-11-20T06:05:52.0097869+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": false,
+        "testPlatform": "EditMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 66,
+            "passed": 66,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "CoreStructureTests.CoroutineUtil_DerivesFrom_SingletonOfCoroutineUtil",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.CoroutineUtil_ExposesStaticDoCoroutine",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.Singleton_And_CoroutineUtil_AreInGlobalNamespace",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.Singleton_IsMonoBehaviour_WithMonoBehaviourConstraint",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.TaskSystem_And_GTask_LiveIn_GGTaskNamespace",
+                "result": "Passed"
+              },
+              {
+                "name": "CoreStructureTests.TaskSystem_DerivesFrom_SingletonOfTaskSystem",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Clear_RemovesAllSubscribers",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_HandlerThrowing_DoesNotBreakOthers",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_HandlerUnsubscribingDuringDispatch_IsSafe",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_NotifiesAllSubscribers_InOrder",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_NotifiesSubscriber_WithPayload",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Publish_WithoutSubscriber_IsNoOp",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Subscribe_IsSegregatedByEventType",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Subscribe_NullHandler_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Subscribe_SameHandlerTwice_IsDeduplicated",
+                "result": "Passed"
+              },
+              {
+                "name": "EventBusTests.Unsubscribe_StopsNotifications",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.DataSize_FormatsBytesAndScalesThroughUnits",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.Md5Hex_IsLowercase32Hex",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.Md5Hex_KnownVector",
+                "result": "Passed"
+              },
+              {
+                "name": "FormatUtilTests.UnixTimestampMs_PositiveAndCloseToNow",
+                "result": "Passed"
+              },
+              {
+                "name": "GTaskTests.GTask_Dispose_IsIdempotentAndDoesNotThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "GTaskTests.GTask_FastJob_AlwaysCallsCompletion",
+                "result": "Passed"
+              },
+              {
+                "name": "GTaskTests.GTask_Start_RunsThreadStartDelegate",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.Enqueue_DefersUntilProcessQueue",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.IsMainThread_TrueOnTestThread",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.PendingCount_ReflectsQueue",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.Post_NullAction_NoThrow",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.Post_OnMainThread_ExecutesImmediately",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.ProcessQueue_DrainsInFifoOrder",
+                "result": "Passed"
+              },
+              {
+                "name": "MainThreadDispatcherTests.ProcessQueue_IsolatesException_ContinuesRemaining",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.HostFromUrl_ExtractsHost",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.Sign_DeterministicForSameInput",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.Sign_MissingQuery_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "NetUtilTests.Sign_ParamOrderInsensitive",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_Get_ReturnsActiveInstance",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_MaxSize_DropsExcessOnRelease",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_NullPrefab_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.GameObjectPool_ReleaseThenGet_ReusesInstance",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_Clear_EmptiesInactive",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_Get_CreatesViaFactory_WhenEmpty",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_MaxSize_DropsExcessOnRelease",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_NullFactory_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_OnGet_ResetsState",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_OnGetAndOnRelease_AreInvoked",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_Preload_FillsInactiveUpfront",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_ReleaseNull_IsIgnored",
+                "result": "Passed"
+              },
+              {
+                "name": "ObjectPoolTests.Pool_ReleaseThenGet_ReusesInstance_WithoutNewFactoryCall",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.Candidates_IncludesApplicationPersistentDataPath_AndBestNotNull",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.FileExists_TrueForRealFile_FalseForMissing",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.IsDirectoryWritable_NonExistent_False",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.IsDirectoryWritable_ProbeFileCleanedUp",
+                "result": "Passed"
+              },
+              {
+                "name": "PersistentPathResolverTests.IsDirectoryWritable_TempDir_True",
+                "result": "Passed"
+              },
+              {
+                "name": "SingletonLifetimeTests.Instance_WhenQuitting_ReturnsNull_WithoutCreatingObject",
+                "result": "Passed"
+              },
+              {
+                "name": "SingletonLifetimeTests.IsQuitting_IsSettableStaticBool",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.AddTransitionGuard_NullGuard_Throws",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_InvokesExitThenEnter",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_SetsCurrent_AndReturnsTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_ToSameState_ReturnsFalse_AndNoCallback",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.ChangeState_ToUnconfiguredState_StillWorks",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.Clear_ResetsState",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.InitialState_HasNoState",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.StateChanged_FiresWithPreviousAndNext",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.TransitionGuard_BlocksWhenFalse_AllowsWhenTrue",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.Update_BeforeAnyState_IsNoOp",
+                "result": "Passed"
+              },
+              {
+                "name": "StateMachineTests.Update_ForwardsDeltaTime_ToCurrentStateOnly",
+                "result": "Passed"
+              },
+              {
+                "name": "TaskSystemTests.TimedOutJob_DoesNotBlockFollowingJob_AndInitIsIdempotent",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "979d8e9d0c5e5ac9ea87128502bddbd25b0d923bd393223dbbe14b0a8d41f5ad"
+          }
+        ],
+        "producedFiles": []
+      },
+      {
+        "name": "sample-bundles",
+        "startedUtc": "2026-11-20T06:05:56.0809764+00:00",
+        "finishedUtc": "2026-11-20T06:06:45.0607043+00:00",
+        "exitCode": 0,
+        "mode": "method",
+        "graphicsEnabled": false,
+        "reports": [],
+        "producedFiles": [
+          {
+            "file": "Assets/StreamingAssets/ShowcaseBundles/manifest.json",
+            "sha256": "1d8b62ffa0d8ff7ab779b99aadc3934adcd8152b4643f8fded351ba2d62ed9b1"
+          }
+        ]
+      },
+      {
+        "name": "editor-smoke",
+        "startedUtc": "2026-11-20T06:06:45.9810703+00:00",
+        "finishedUtc": "2026-11-20T06:07:13.4549992+00:00",
+        "exitCode": 0,
+        "mode": "method",
+        "graphicsEnabled": true,
+        "reports": [
+          {
+            "kind": "text",
+            "passedAssertions": 28,
+            "assertions": [
+              "PASS: FSM guard rejects without coins",
+              "PASS: Typed event delivers payload",
+              "PASS: Unsubscribe stops delivery",
+              "PASS: FSM guard permits after event",
+              "PASS: Pool reuses same instance",
+              "PASS: Async completion observed on main thread",
+              "PASS: GGResource loads bundled fixture",
+              "PASS: Resource cache preserves identity and retains",
+              "PASS: Shared resource survives first release",
+              "PASS: Final release removes cached resource",
+              "PASS: Missing resource is recoverable",
+              "PASS: Simulation loads source asset: Simulation 加载成功：{",
+              "PASS: Manifest and real AssetBundle: AssetBundle 加载成功：{",
+              "PASS: Page stack and window open",
+              "PASS: HideAllWindows tolerates dictionary removal",
+              "PASS: Back restores page and hides owned window without dialog",
+              "PASS: Login failure delivered",
+              "PASS: Login retry reaches success",
+              "PASS: Payment success emits once",
+              "PASS: Payment failure delivered",
+              "PASS: Payment cancellation delivered",
+              "PASS: Logout callback delivered",
+              "PASS: UID stable on relogin",
+              "PASS: Real loopback HTTP 200",
+              "PASS: Business error feedback",
+              "PASS: Cancel retry leaves HTTP idle",
+              "PASS: HTTP recovers after failure",
+              "PASS: ToLua executes editable rule and returns result"
+            ],
+            "requiredEvidence": [],
+            "rawReportSha256": "238d8e9630b1dff368f2a2f47888f0aeaf6e448ce01490d002ae8c169cb9a05f"
+          }
+        ],
+        "producedFiles": []
+      },
+      {
+        "name": "editor-lifecycle",
+        "startedUtc": "2026-11-20T06:07:14.4896816+00:00",
+        "finishedUtc": "2026-11-20T06:07:37.9946722+00:00",
+        "exitCode": 0,
+        "mode": "method",
+        "graphicsEnabled": true,
+        "reports": [
+          {
+            "kind": "text",
+            "passedAssertions": 35,
+            "assertions": [
+              "PASS: Showcase initialized",
+              "PASS: Guard rejects without coins",
+              "PASS: Unsubscribed coin event has no effect",
+              "PASS: Restored subscription delivers once",
+              "PASS: Guard permits after coin event",
+              "PASS: Repeated same-state entry rejected",
+              "PASS: Edited Lua rule returns value without changing C# coins; Lua reward: 384",
+              "PASS: First temporary Lua VM starts fresh",
+              "PASS: Next temporary Lua VM has no prior globals",
+              "PASS: Lua syntax error is reported",
+              "PASS: Lua executes again after syntax error",
+              "PASS: First load owns one runtime copy; cached=1, status=GGResource LocalResources → ResourceSystem 缓存成功",
+              "PASS: Imported source and runtime copy differ",
+              "PASS: Second load retains the same cache identity",
+              "PASS: First release preserves other owner",
+              "PASS: Final release removes cache and destroys runtime TextAsset",
+              "PASS: Imported source survives runtime-copy release",
+              "PASS: Missing resource reaches failure terminal state",
+              "PASS: Normal resource reload works after missing asset",
+              "PASS: Real local Bundle reads configuration",
+              "PASS: Temporary Bundle loader leaves no additional sample Bundle; before=0, after=0",
+              "PASS: Owned page and window are active before close",
+              "PASS: Borrowed pool instances are destroyed with their owner",
+              "PASS: Exit releases all exclusive showcase cache holds",
+              "PASS: Exit removes owned event subscriptions",
+              "PASS: Publishing on retired bus cannot update old owner",
+              "PASS: Late background/coroutine results cannot update destroyed owner",
+              "PASS: Exit closes the loopback listener",
+              "PASS: Exit removes owned UI registrations",
+              "PASS: Exit empties the owned page route",
+              "PASS: Exit preserves another owner's UI registration",
+              "PASS: Showcase can reopen in the same Play Mode session",
+              "PASS: Reopened UI stays under its owner root",
+              "PASS: Reopened owner has exactly one coin subscription",
+              "PASS: Second exit leaves no owned UI route or registration"
+            ],
+            "requiredEvidence": [
+              "Exit removes owned UI registrations",
+              "Exit empties the owned page route",
+              "Exit preserves another owner's UI registration",
+              "Exit releases all exclusive showcase cache holds",
+              "Borrowed pool instances are destroyed with their owner",
+              "Exit removes owned event subscriptions",
+              "Late background/coroutine results cannot update destroyed owner",
+              "Exit closes the loopback listener",
+              "Showcase can reopen in the same Play Mode session",
+              "Second exit leaves no owned UI route or registration"
+            ],
+            "rawReportSha256": "d6791403afe4d7131864ba5808dabf12f263dbd65f39e744803595d665e3ac6f"
+          },
+          {
+            "kind": "text",
+            "passedAssertions": 35,
+            "assertions": [
+              "PASS: Showcase initialized",
+              "PASS: Guard rejects without coins",
+              "PASS: Unsubscribed coin event has no effect",
+              "PASS: Restored subscription delivers once",
+              "PASS: Guard permits after coin event",
+              "PASS: Repeated same-state entry rejected",
+              "PASS: Edited Lua rule returns value without changing C# coins; Lua reward: 384",
+              "PASS: First temporary Lua VM starts fresh",
+              "PASS: Next temporary Lua VM has no prior globals",
+              "PASS: Lua syntax error is reported",
+              "PASS: Lua executes again after syntax error",
+              "PASS: First load owns one runtime copy; cached=1, status=GGResource LocalResources → ResourceSystem 缓存成功",
+              "PASS: Imported source and runtime copy differ",
+              "PASS: Second load retains the same cache identity",
+              "PASS: First release preserves other owner",
+              "PASS: Final release removes cache and destroys runtime TextAsset",
+              "PASS: Imported source survives runtime-copy release",
+              "PASS: Missing resource reaches failure terminal state",
+              "PASS: Normal resource reload works after missing asset",
+              "PASS: Real local Bundle reads configuration",
+              "PASS: Temporary Bundle loader leaves no additional sample Bundle; before=0, after=0",
+              "PASS: Owned page and window are active before close",
+              "PASS: Borrowed pool instances are destroyed with their owner",
+              "PASS: Exit releases all exclusive showcase cache holds",
+              "PASS: Exit removes owned event subscriptions",
+              "PASS: Publishing on retired bus cannot update old owner",
+              "PASS: Late background/coroutine results cannot update destroyed owner",
+              "PASS: Exit closes the loopback listener",
+              "PASS: Exit removes owned UI registrations",
+              "PASS: Exit empties the owned page route",
+              "PASS: Exit preserves another owner's UI registration",
+              "PASS: Showcase can reopen in the same Play Mode session",
+              "PASS: Reopened UI stays under its owner root",
+              "PASS: Reopened owner has exactly one coin subscription",
+              "PASS: Second exit leaves no owned UI route or registration"
+            ],
+            "requiredEvidence": [
+              "Exit removes owned UI registrations",
+              "Exit empties the owned page route",
+              "Exit preserves another owner's UI registration",
+              "Exit releases all exclusive showcase cache holds",
+              "Borrowed pool instances are destroyed with their owner",
+              "Exit removes owned event subscriptions",
+              "Late background/coroutine results cannot update destroyed owner",
+              "Exit closes the loopback listener",
+              "Showcase can reopen in the same Play Mode session",
+              "Second exit leaves no owned UI route or registration"
+            ],
+            "rawReportSha256": "d6791403afe4d7131864ba5808dabf12f263dbd65f39e744803595d665e3ac6f"
+          },
+          {
+            "kind": "text",
+            "passedAssertions": 35,
+            "assertions": [
+              "PASS: Showcase initialized",
+              "PASS: Guard rejects without coins",
+              "PASS: Unsubscribed coin event has no effect",
+              "PASS: Restored subscription delivers once",
+              "PASS: Guard permits after coin event",
+              "PASS: Repeated same-state entry rejected",
+              "PASS: Edited Lua rule returns value without changing C# coins; Lua reward: 384",
+              "PASS: First temporary Lua VM starts fresh",
+              "PASS: Next temporary Lua VM has no prior globals",
+              "PASS: Lua syntax error is reported",
+              "PASS: Lua executes again after syntax error",
+              "PASS: First load owns one runtime copy; cached=1, status=GGResource LocalResources → ResourceSystem 缓存成功",
+              "PASS: Imported source and runtime copy differ",
+              "PASS: Second load retains the same cache identity",
+              "PASS: First release preserves other owner",
+              "PASS: Final release removes cache and destroys runtime TextAsset",
+              "PASS: Imported source survives runtime-copy release",
+              "PASS: Missing resource reaches failure terminal state",
+              "PASS: Normal resource reload works after missing asset",
+              "PASS: Real local Bundle reads configuration",
+              "PASS: Temporary Bundle loader leaves no additional sample Bundle; before=0, after=0",
+              "PASS: Owned page and window are active before close",
+              "PASS: Borrowed pool instances are destroyed with their owner",
+              "PASS: Exit releases all exclusive showcase cache holds",
+              "PASS: Exit removes owned event subscriptions",
+              "PASS: Publishing on retired bus cannot update old owner",
+              "PASS: Late background/coroutine results cannot update destroyed owner",
+              "PASS: Exit closes the loopback listener",
+              "PASS: Exit removes owned UI registrations",
+              "PASS: Exit empties the owned page route",
+              "PASS: Exit preserves another owner's UI registration",
+              "PASS: Showcase can reopen in the same Play Mode session",
+              "PASS: Reopened UI stays under its owner root",
+              "PASS: Reopened owner has exactly one coin subscription",
+              "PASS: Second exit leaves no owned UI route or registration"
+            ],
+            "requiredEvidence": [
+              "Exit removes owned UI registrations",
+              "Exit empties the owned page route",
+              "Exit preserves another owner's UI registration",
+              "Exit releases all exclusive showcase cache holds",
+              "Borrowed pool instances are destroyed with their owner",
+              "Exit removes owned event subscriptions",
+              "Late background/coroutine results cannot update destroyed owner",
+              "Exit closes the loopback listener",
+              "Showcase can reopen in the same Play Mode session",
+              "Second exit leaves no owned UI route or registration",
+              "Editor settings restored; completed Play Mode exits=2"
+            ],
+            "rawReportSha256": "116cad8cdb82ccd5e3fbe5d085240b73cb565ef1713562de58196a3e7a1bd30f"
+          },
+          {
+            "kind": "text",
+            "passedAssertions": 3,
+            "assertions": [
+              "PASS: UISwitch_AllComplete; missing=0; UISprite=8; plain UIWidget=1",
+              "PASS: UISwitch_in; missing=0; UISprite=8; plain UIWidget=1",
+              "PASS: UISwitch_out; missing=0; UISprite=8; plain UIWidget=1"
+            ],
+            "requiredEvidence": [
+              "missing=0; UISprite=8; plain UIWidget=1"
+            ],
+            "rawReportSha256": "a45b658bd59b3036a1782bb1df2e3be622166c849e38992174c0b07fd4426fe7"
+          }
+        ],
+        "producedFiles": []
+      },
+      {
+        "name": "windows-player-build",
+        "startedUtc": "2026-11-20T06:07:38.9768089+00:00",
+        "finishedUtc": "2026-11-20T06:10:18.9603289+00:00",
+        "exitCode": 0,
+        "mode": "method",
+        "graphicsEnabled": false,
+        "reports": [],
+        "producedFiles": [
+          {
+            "file": "output/showcase/GGFrameworkDemo.exe",
+            "sha256": "47b23bfad0dbb1200a41daae299396c49924b87c0222e2e4258687a3505334a0"
+          }
+        ]
+      },
+      {
+        "name": "player-smoke",
+        "startedUtc": "2026-11-20T06:10:20.6858290+00:00",
+        "finishedUtc": "2026-11-20T06:10:52.2920049+00:00",
+        "exitCode": 0,
+        "mode": "player",
+        "graphicsEnabled": false,
+        "reports": [
+          {
+            "kind": "text",
+            "passedAssertions": 27,
+            "assertions": [
+              "PASS: FSM guard rejects without coins",
+              "PASS: Typed event delivers payload",
+              "PASS: Unsubscribe stops delivery",
+              "PASS: FSM guard permits after event",
+              "PASS: Pool reuses same instance",
+              "PASS: Async completion observed on main thread",
+              "PASS: GGResource loads bundled fixture",
+              "PASS: Resource cache preserves identity and retains",
+              "PASS: Shared resource survives first release",
+              "PASS: Final release removes cached resource",
+              "PASS: Missing resource is recoverable",
+              "PASS: Manifest and real AssetBundle: AssetBundle 加载成功：{",
+              "PASS: Page stack and window open",
+              "PASS: HideAllWindows tolerates dictionary removal",
+              "PASS: Back restores page and hides owned window without dialog",
+              "PASS: Login failure delivered",
+              "PASS: Login retry reaches success",
+              "PASS: Payment success emits once",
+              "PASS: Payment failure delivered",
+              "PASS: Payment cancellation delivered",
+              "PASS: Logout callback delivered",
+              "PASS: UID stable on relogin",
+              "PASS: Real loopback HTTP 200",
+              "PASS: Business error feedback",
+              "PASS: Cancel retry leaves HTTP idle",
+              "PASS: HTTP recovers after failure",
+              "PASS: ToLua executes editable rule and returns result"
+            ],
+            "requiredEvidence": [],
+            "rawReportSha256": "989779805f64622c859ebcfaa0747d4851999c3b9faae55246703319891f9b37"
+          }
+        ],
+        "producedFiles": []
+      },
+      {
+        "name": "player-lifecycle",
+        "startedUtc": "2026-11-20T06:10:52.4244638+00:00",
+        "finishedUtc": "2026-11-20T06:11:00.0035646+00:00",
+        "exitCode": 0,
+        "mode": "player",
+        "graphicsEnabled": false,
+        "reports": [
+          {
+            "kind": "text",
+            "passedAssertions": 35,
+            "assertions": [
+              "PASS: Showcase initialized",
+              "PASS: Guard rejects without coins",
+              "PASS: Unsubscribed coin event has no effect",
+              "PASS: Restored subscription delivers once",
+              "PASS: Guard permits after coin event",
+              "PASS: Repeated same-state entry rejected",
+              "PASS: Edited Lua rule returns value without changing C# coins; Lua reward: 384",
+              "PASS: First temporary Lua VM starts fresh",
+              "PASS: Next temporary Lua VM has no prior globals",
+              "PASS: Lua syntax error is reported",
+              "PASS: Lua executes again after syntax error",
+              "PASS: First load owns one runtime copy; cached=1, status=GGResource LocalResources → ResourceSystem 缓存成功",
+              "PASS: Imported source and runtime copy differ",
+              "PASS: Second load retains the same cache identity",
+              "PASS: First release preserves other owner",
+              "PASS: Final release removes cache and destroys runtime TextAsset",
+              "PASS: Imported source survives runtime-copy release",
+              "PASS: Missing resource reaches failure terminal state",
+              "PASS: Normal resource reload works after missing asset",
+              "PASS: Real local Bundle reads configuration",
+              "PASS: Temporary Bundle loader leaves no additional sample Bundle; before=0, after=0",
+              "PASS: Owned page and window are active before close",
+              "PASS: Borrowed pool instances are destroyed with their owner",
+              "PASS: Exit releases all exclusive showcase cache holds",
+              "PASS: Exit removes owned event subscriptions",
+              "PASS: Publishing on retired bus cannot update old owner",
+              "PASS: Late background/coroutine results cannot update destroyed owner",
+              "PASS: Exit closes the loopback listener",
+              "PASS: Exit removes owned UI registrations",
+              "PASS: Exit empties the owned page route",
+              "PASS: Exit preserves another owner's UI registration",
+              "PASS: Showcase can reopen in the same Play Mode session",
+              "PASS: Reopened UI stays under its owner root",
+              "PASS: Reopened owner has exactly one coin subscription",
+              "PASS: Second exit leaves no owned UI route or registration"
+            ],
+            "requiredEvidence": [
+              "Exit removes owned UI registrations",
+              "Exit empties the owned page route",
+              "Exit preserves another owner's UI registration",
+              "Exit releases all exclusive showcase cache holds",
+              "Borrowed pool instances are destroyed with their owner",
+              "Exit removes owned event subscriptions",
+              "Late background/coroutine results cannot update destroyed owner",
+              "Exit closes the loopback listener",
+              "Showcase can reopen in the same Play Mode session",
+              "Second exit leaves no owned UI route or registration"
+            ],
+            "rawReportSha256": "58302ef4a1c52a0843e0389cdf35a79065763653a5c66f5796e0f4579578297a"
+          }
+        ],
+        "producedFiles": []
+      }
+    ],
+    "environment": {
+      "batchmode": true,
+      "os": "Microsoft Windows 10.0.26300",
+      "architecture": "X64",
+      "editorProductVersion": "6000.3.13f1_8c4f11e4fb20"
+    }
+  }
+}
