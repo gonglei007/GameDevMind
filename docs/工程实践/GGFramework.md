@@ -25,13 +25,14 @@
 | 请求失败后的交互与恢复 | [客户端网络系统](../../mds/3.研发能力/3.1.4.客户端网络系统.md) | 区分成功、业务拒绝和 HTTP 503；取消重试后再发成功请求 | [客户端网络实践样板](GGFramework客户端网络实践.md) |
 | 页面与窗口的归属 | [UI系统](../../mds/3.研发能力/3.1.6.UI系统.md) | 背包 → 详情窗口 → 返回，观察页面栈、窗口归属与生命周期 | [UI 管理实践](GGFrameworkUI管理实践.md) |
 | SDK 与游戏业务解耦 | [用户与帐号系统](../../mds/3.研发能力/3.3.5.用户与帐号系统.md)、[支付与变现](../../mds/6.运营能力/6.3.2.帐号与支付.md) | 注入登录失败再重试；区分支付事件、模拟验单与真实后端责任 | [用户与 SDK 接入实践](GGFramework用户与SDK接入实践.md) |
+| Lua 规则与热更新边界 | [产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md)、[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md) | 修改倍率并读取返回值；核对加载器、绑定与脚本释放责任 | [Lua 与热更新实践](GGFrameworkLua与热更新实践.md) |
 
 ## 运行一次完整体验
 
 1. 安装上述 Unity 版本和 Git，克隆 [GGFramework-Demo](https://github.com/gonglei007/GGFramework-Demo)，打开其中的 `unity_project`。记录 Demo 提交 SHA、Unity 版本、平台和构建后端。
 2. 等待 Package Manager 完成解析。当前 Demo 固定引用已发布的 Core `v0.3.0`；无需同级克隆其他模块，首次导入仍需要网络。
 3. 在非播放状态执行 **GGFramework → Demo → Build Sample Bundles**，为真实本地 AssetBundle 体验和完整冒烟测试生成资源。它只生成示例配置的 Bundle；切换目标平台后重新构建。
-4. 选择 **Play Showcase**。先体验 Core，再进入资源、HTTP、UI 和用户页；每次只执行一个操作，对照状态与回调记录。
+4. 选择 **Play Showcase**。先体验 Core，再进入资源、HTTP、UI、用户和 Lua 页；每次只执行一个操作，对照状态与回调记录。
 5. 退出 Play Mode 后执行 **Run Smoke Tests**，保存 `unity_project/Logs/showcase-smoke-results.txt` 与 Unity 日志。完整命令、Player 构建和测试入口见[开发者体验指南](https://github.com/gonglei007/GGFramework-Demo/blob/main/documents/showcase-guide.md)。
 
 首次体验建议完成三个对照：取消订阅前后金币是否变化、资源引用是否归零、HTTP 失败后是否能恢复。每个对照都应能从界面状态追到对应 API，避免只看功能列表。
@@ -72,4 +73,4 @@
 
 本文维护阅读路径和知识映射，不复制模块 API 手册；发现框架问题在对应模块反馈，发现本导读的链接、归类或验证表述问题在 GameDevMind 反馈。
 
-继续阅读：[Core 基础能力实践](GGFrameworkCore基础能力实践.md) · [用户与 SDK 接入实践](GGFramework用户与SDK接入实践.md) · [UI 管理实践](GGFrameworkUI管理实践.md) · [资源管理实践](GGFramework资源管理实践.md) · [客户端网络实践样板](GGFramework客户端网络实践.md) · [全部代码示例](../../code/README.md) · [返回首页](../../README.md#可立即使用的资源)。
+继续阅读：[Lua 与热更新实践](GGFrameworkLua与热更新实践.md) · [Core 基础能力实践](GGFrameworkCore基础能力实践.md) · [用户与 SDK 接入实践](GGFramework用户与SDK接入实践.md) · [UI 管理实践](GGFrameworkUI管理实践.md) · [资源管理实践](GGFramework资源管理实践.md) · [客户端网络实践样板](GGFramework客户端网络实践.md) · [全部代码示例](../../code/README.md) · [返回首页](../../README.md#可立即使用的资源)。
