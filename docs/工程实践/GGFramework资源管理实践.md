@@ -2,12 +2,12 @@
 
 本篇从“资源从哪里来、谁在持有、什么时候可以释放”三个问题出发，先运行 Demo 的资源页，再对照独立 GGResource 的加载器、缓存和异步接口。原理入口见[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md)，版本更新与回滚见[产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对公开文档和固定提交源码，本轮未重新运行 Unity。以下明确区分源码行为、可复现步骤、上游历史验收与项目接入待验项。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
 - 具备 C#、Unity 资产与实例、协程和 AssetBundle 基础，需要理解资源共享、加载失败与页面退出时的责任。
-- 整体体验使用 Windows Editor / Windows 桌面 Player、Unity **6000.3.13f1**，具备 Git 和首次包解析所需的网络访问；切换平台后重新构建示例 Bundle。
+- 切换目标平台后，按导读的准备流程重新构建示例 Bundle；区分源码配置、模拟资产与平台 Bundle。
 - 先使用示例配置资源，不对生产资产直接执行销毁或强制清理。本文不提供已验收的远程热更新发布链路。
 
 | 核对对象 | 固定提交与依赖 | 本篇使用的实现 |
@@ -84,15 +84,7 @@
 
 ## 复现步骤与预期
 
-固定 Demo 版本，避免后续源码变化导致对照失准：
-
-```bash
-git clone https://github.com/gonglei007/GGFramework-Demo.git
-cd GGFramework-Demo
-git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
-```
-
-用上述 Unity 打开 `unity_project`。包解析完成后，先在非播放状态执行 **GGFramework → Demo → Build Sample Bundles**，再选择 **Play Showcase** 进入资源页；若已经进入 Play Mode，先停止再构建：
+按导读的[统一复现入口](GGFramework.md#运行一次完整体验)固定 Demo 并完成准备，再进入 **Play Showcase → 资源** 页，分别观察以下三种路径：
 
 | 操作顺序 | 预期与观察对象 |
 |---|---|
@@ -104,7 +96,7 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 | Editor 中点击“Simulation 模拟加载” | 显示配置文本；Player 不包含这个按钮 |
 | 先执行“Build Sample Bundles”，再点击“加载真实 AssetBundle” | 当前平台清单与真实 Bundle 被读取，显示配置文本；不增加 ShowcaseConfig 引用 |
 
-示例 Bundle 由 [ShowcaseTools.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/Editor/ShowcaseTools.cs)生成到 `Assets/StreamingAssets/ShowcaseBundles/`。具体菜单、批处理与报告路径见[固定版本操作指南](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-guide.md)。
+示例 Bundle 由 [ShowcaseTools.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/Editor/ShowcaseTools.cs)生成到 `Assets/StreamingAssets/ShowcaseBundles/`。菜单、批处理和报告路径统一见导读及其固定版本指南。
 
 ## 方案取舍与不适用场景
 
@@ -124,9 +116,8 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 
 - 独立模块的 [ResourceSystemTests.cs](https://github.com/gonglei007/GGFramework-GGResource/blob/14c7a685b2b75686e5585f852d1bab93f5f46195/GGResource/Assets/Tests/EditMode/ResourceSystemTests.cs)覆盖内存态缓存 / 类型过滤、Retain 配对释放和强制清理。文件明确不覆盖 Init / Loxodon 运行时异步路径；需在该 Unity 工程的 Test Runner 中运行，不能拿本文的文档 CI 代替。
 - Demo 的 [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)检查缓存身份及 `1 → 2 → 1 → 移除`、缺失资源失败状态、Editor Simulation 和真实本地 Bundle。缺失资源后再次加载正常资源属于上述手工步骤，现有冒烟没有直接断言它；也没有断言峰值内存、远程选源、页面退出竞态或所有 Bundle 已卸载。
-- 上游 [2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md)记录了 Windows / Unity 的历史运行结果，原始报告未入库。本轮为文档与源码核对，未重跑该 Unity 工程。
 
-本机重跑 Demo 时，先退出 Play Mode、执行 **Build Sample Bundles**，再执行 **Run Smoke Tests**。保存 `unity_project/Logs/showcase-smoke-results.txt`、Unity 退出码与日志；整个冒烟还运行网络、UI、SDK 与 Lua，不是单独的资源测试。GameDevMind CI 只验证本文链接、生成一致性和 GitHub 阅读路径，不运行外部 GGResource / Demo 的 Unity 测试。
+历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。完整大厅冒烟与独立 GGResource 的测试分别运行，不能互相替代。
 
 ### 接入前仍需验证
 
@@ -148,4 +139,4 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 - [产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md)：资源来源、版本、校验与回滚。
 - [客户端优化](../../mds/3.研发能力/3.1.3.客户端优化.md)：加载峰值、实例与资产占用的实测。
 
-继续阅读：[GGFramework 实践导读](GGFramework.md) · [客户端网络实践样板](GGFramework客户端网络实践.md) · [返回首页](../../README.md#可立即使用的资源)。
+继续阅读：[GGFramework 实践导读](GGFramework.md) · [客户端网络实践](GGFramework客户端网络实践.md) · [返回首页](../../README.md#可立即使用的资源)。

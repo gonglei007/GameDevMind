@@ -2,13 +2,14 @@
 
 本篇从“脚本来自哪里、C# 与 Lua 怎样互调、旧回调何时失效、退出时释放什么”出发，先复现 Demo 的本地规则执行，再对照旧 LuaManager 和内置 ToLua 源码。发布流程原理见[产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md)，系统职责见[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对 Demo 固定提交 [3039f9a](https://github.com/gonglei007/GGFramework-Demo/tree/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb)及其 ToLua 副本，本轮未重跑 Unity 或真实补丁发布。ToLua 的来源见副本内的 [readme](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/LuaGame/ToLua/readme.txt)；本文不将旧副本的行为泛指为上游当前版本的保证。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
+
+ToLua 来源见 Demo 固定提交内的 [readme](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/LuaGame/ToLua/readme.txt)；本文核对该旧副本，不泛指上游当前版本。
 
 ## 适用条件
 
 - 具备 C# 委托、Unity 对象与资源生命周期、Lua 函数 / 表 / require 基础，需要研究脚本规则、业务绑定或已有 ToLua 接入。
-- 体验路径按 Windows Editor / Windows 桌面 Player、Unity **6000.3.13f1** 编写；需要 Git、包解析网络和匹配平台的 ToLua 原生插件。Demo 固定 Core `v0.3.0`，Lua 执行来自内置 ToLua，不能把二者当成同一个包的能力。
-- 先记录 Demo 提交、原生库、生成绑定和目标构建后端。Windows Mono 的历史通过不能替代移动端、WebGL、IL2CPP 或其他 Unity 版本验收。
+- 使用匹配目标平台的 ToLua 原生插件与生成绑定。Demo 的 Lua 执行来自内置 ToLua，Core 包与脚本运行时分别评估。
 
 ## 两条执行路径
 
@@ -96,13 +97,7 @@ ToLua 的 [LuaClient.cs](https://github.com/gonglei007/GGFramework-Demo/blob/303
 
 ## 用 Demo 复现规则执行
 
-```bash
-git clone https://github.com/gonglei007/GGFramework-Demo.git
-cd GGFramework-Demo
-git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
-```
-
-用上述 Unity 打开 `unity_project` 并完成包解析。完整大厅冒烟前在非播放态执行 **GGFramework → Demo → Build Sample Bundles**，再执行 **Play Showcase** 并进入 Lua 页。Lua 页本身不加载业务 Lua 包，也不从公网下载补丁。
+按导读的[统一复现入口](GGFramework.md#运行一次完整体验)固定 Demo 并完成准备，再进入 **Play Showcase → Lua** 页。此页不启动 LuaManager 业务链，也不从公网下载补丁。
 
 | 操作 | 预期与观察点 |
 |---|---|
@@ -127,8 +122,8 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 ## 验证方法与证据边界
 
 - [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)只调用 RunLua 并断言默认结果为 `Lua reward: 256`；没有直接断言文件选源、双向业务绑定、模块重载、句柄平衡、退出泄漏或补丁回滚。
-- [上游 2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md)记录 Windows / Unity、Mono Player 及大厅冒烟的历史结果，原始报告未入库；本轮没有重跑这些测试。
-- 按[固定版本操作指南](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-guide.md)退出 Play Mode 后执行 **Run Smoke Tests**，保存 `unity_project/Logs/showcase-smoke-results.txt` 与 Unity 日志。本知识库 CI 只验证文档、导航与 GitHub 阅读路径，不运行外部 Unity / ToLua 或补丁服务。
+
+历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。本轮未运行外部 ToLua 或真实补丁发布；上表后三项仍是待执行的操作预期。
 
 | 接入待验项 | 注入与通过条件 |
 |---|---|

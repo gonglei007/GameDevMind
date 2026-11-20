@@ -2,13 +2,14 @@
 
 本篇从“状态为什么没切换、退订何时生效、对象归还后还剩下什么、退出时谁停止工作”出发，用 Demo 观察 Core 基础能力，再核对实现与测试。架构定位见[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md)，模式与所有权原理见[设计模式](../../mds/1.基础能力/1.2.1.设计模式.md)和[内存管理](../../mds/1.基础能力/1.1.6.内存管理.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定提交的 Core、Demo 源码与测试，本轮未重跑 Unity。下面区分源码行为、复现预期、上游历史验收和项目待验范围。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
-## 适用条件与版本
+<a id="适用条件与版本"></a>
+
+## 适用条件
 
 - 具备 C# 委托、泛型、Unity 组件与主线程基础，需要组织轻量流程、模块事件、短生命周期实例或统一退出责任。
 - Core 是零第三方依赖的 UPM 包，但包内有 Unity API；不要把“普通托管对象”理解为整个包可以脱离 Unity 直接运行。
-- Demo 体验按 Windows Editor / Windows 桌面 Player、Unity **6000.3.13f1** 编写；安装 Git，首次包解析需要网络。Core 声明最低 Unity 2021.3，不等于 Demo 已在所有该范围版本或平台验收。
 
 | 核对对象 | 版本基线 | 本篇范围 |
 |---|---|---|
@@ -92,13 +93,7 @@ MainThreadDispatcher 是独立 MonoBehaviour，不继承 Singleton<T>，没有�
 
 ## 用 Demo 复现 Core 页
 
-```bash
-git clone https://github.com/gonglei007/GGFramework-Demo.git
-cd GGFramework-Demo
-git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
-```
-
-用上述 Unity 打开 `unity_project` 并完成包解析。运行完整冒烟前，在非播放态执行 **GGFramework → Demo → Build Sample Bundles**；再执行 **Play Showcase**，选择 **Core 基础**。Core 页本身不需要支付或公网服务，完整大厅仍包含其他模块与本机回环服务。
+按导读的[统一复现入口](GGFramework.md#运行一次完整体验)固定 Demo 并完成准备，再进入 **Play Showcase → Core 基础** 页。该页使用稳定 Core 包，不执行预览版资源契约。
 
 | 操作 | 预期与观察点 |
 |---|---|
@@ -133,9 +128,7 @@ git checkout --detach 3039f9aad1813b8ad72e373a30b3eb073e0ee2eb
 | [TaskSystemTests.cs](https://github.com/gonglei007/GGFramework-Core/blob/c0567a89ebf3837754eaf504ae10e93a184ea146/Tests/TaskSystemTests.cs) | 重复 Init 与超时任务不阻塞后一任务 | 工作函数真正取消、退出前排空或结果代次隔离 |
 | [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 守卫拒绝后成功、金币退订、对象身份复用、协程 / 后台完成计数和主线程观察 | 在工作中退出、泄漏检测、重复播放与性能基准 |
 
-Core 包测试默认不在消费工程运行，需要 manifest 的 `testables` 含 `com.gonglei.ggframework.core`；Demo 已配置。按[固定版本指南](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-guide.md)执行 EditMode 包测试及退出 Play Mode 后的 **Run Smoke Tests**，保存 XML、`unity_project/Logs/showcase-smoke-results.txt` 和 Unity 日志。
-
-[上游 2026-11-19 验收记录](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/documents/showcase-verification.md)记录稳定版 Core 66 / 66、独立克隆 Demo 的 PlayMode 冒烟 28 / 28 等结果，原始报告未入库；本轮没有重新执行这些测试。GameDevMind CI 验证链接、导航、统计与 GitHub 阅读路径，不运行外部 Unity，也不将预览版独立资源契约测试算作上述稳定版验收。
+Core 包测试默认不在消费工程运行，需要 manifest 的 `testables` 含 `com.gonglei.ggframework.core`；Demo 已配置，运行与报告要求见[统一复现入口](GGFramework.md#运行一次完整体验)。稳定版历史运行、本轮文档验证和预览版范围统一按导读的[证据分层](GGFramework.md#验证方法与证据边界)区分。
 
 | 项目待验项 | 注入与通过条件 |
 |---|---|

@@ -23,6 +23,78 @@ const localLinks=[
   ['帧同步 vs 状态同步','code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/'],
   ['开放世界卡顿复核','cases/drawcall-optimization.md'],['贡献指南','CONTRIBUTING.md'],['更新记录','HISTORY.md'],
 ];
+const seriesGuideTitle='从知识点到 Unity 工程：GGFramework 实践导读';
+const commonNode={label:'客户端底层通用系统',path:'mds/3.研发能力/3.1.1.客户端底层通用系统.md'};
+const updateNode={label:'产品热更新',path:'mds/6.运营能力/6.2.3.产品热更新.md'};
+const practices=[
+  {label:'Core 基础能力实践',file:'GGFrameworkCore基础能力实践.md',title:'GGFramework Core 基础能力实践：状态、订阅、复用与退出',
+    section:'退出生命周期：标志、任务与实例分别处理',image:'ggframework-core',nodes:[commonNode]},
+  {label:'资源管理实践',file:'GGFramework资源管理实践.md',title:'GGFramework 资源管理实践：加载来源与释放责任',
+    section:'引用计数：缓存查询不等于取得所有权',image:'ggframework-resource',nodes:[commonNode,updateNode]},
+  {label:'客户端网络实践',file:'GGFramework客户端网络实践.md',title:'GGFramework 客户端网络实践：异常反馈与重试',
+    section:'两条实现路径',image:'ggframework-network',nodes:[{label:'客户端网络系统',path:'mds/3.研发能力/3.1.4.客户端网络系统.md'}]},
+  {label:'UI 管理实践',file:'GGFrameworkUI管理实践.md',title:'GGFramework UI 管理实践：页面栈、窗口归属与生命周期',
+    section:'NGUI、UGUI 与 Demo 的支持状态',image:'ggframework-ui',nodes:[{label:'UI系统',path:'mds/3.研发能力/3.1.6.UI系统.md'},commonNode]},
+  {label:'用户与 SDK 接入实践',file:'GGFramework用户与SDK接入实践.md',title:'GGFramework 用户与 SDK 接入实践：登录状态与支付验证边界',
+    section:'支付回调与服务端验单',image:'ggframework-user-sdk',nodes:[{label:'用户与帐号系统',path:'mds/3.研发能力/3.3.5.用户与帐号系统.md'},
+      {label:'支付与变现',path:'mds/6.运营能力/6.3.2.帐号与支付.md'}]},
+  {label:'Lua 与热更新实践',file:'GGFrameworkLua与热更新实践.md',title:'GGFramework Lua 与热更新实践：脚本加载、互调与释放',
+    section:'本地执行与生产热更新的边界',image:'ggframework-lua',nodes:[updateNode,commonNode]},
+];
+async function committedPath(page,destination) {
+  await expect.poll(()=>decodeURIComponent(new URL(page.url()).pathname)).toBe(`/${repository}/blob/${ref}/${destination}`);
+}
+async function practiceArticle(page,practice) {
+  await committedPath(page,'docs/工程实践/'+practice.file);
+  const article=page.getByRole('article');
+  for(const name of [practice.title,practice.section,'适用条件','验证方法与证据边界']) {
+    await expect(article.getByRole('heading',{name,exact:true})).toBeVisible({timeout:45000});
+  }
+  for(const [label,anchor] of [['适用环境','适用条件'],['源码基线','固定源码基线'],['证据分层','验证方法与证据边界']]) {
+    const href=await article.getByRole('link',{name:label,exact:true}).first().getAttribute('href');
+    const target=new URL(href,repo);
+    expect(target.origin).toBe('https://github.com');
+    expect(decodeURIComponent(target.pathname)).toBe(`/${repository}/blob/${ref}/docs/工程实践/GGFramework.md`);
+    expect(decodeURIComponent(target.hash)).toBe('#'+anchor);
+  }
+  return article;
+}
+async function auditSeries(page,testInfo) {
+  for(const practice of practices) {
+    await committedPath(page,'docs/工程实践/GGFramework.md');
+    const guide=page.getByRole('article');
+    await expect(guide.getByRole('heading',{name:seriesGuideTitle,exact:true})).toBeVisible({timeout:45000});
+    const entry=guide.getByRole('link',{name:practice.label,exact:true});
+    await expect(entry).toHaveCount(1);
+    await entry.click();
+    const article=await practiceArticle(page,practice);
+    for(const [width,height,suffix] of [[390,844,'mobile'],[1440,1000,'desktop']]) {
+      await page.setViewportSize({width,height});
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      await screenshot(page,testInfo,practice.image+'-'+suffix,article);
+    }
+    await page.setViewportSize({width:390,height:844});
+    for(const node of practice.nodes) {
+      await article.getByRole('link',{name:node.label,exact:true}).first().click();
+      await committedPath(page,node.path);
+      const knowledge=page.getByRole('article');
+      await expect(knowledge.getByRole('heading',{name:node.label,exact:true})).toBeVisible({timeout:45000});
+      const backlink=knowledge.getByRole('link',{name:'GGFramework '+practice.label,exact:true});
+      await expect(backlink).toHaveCount(1);
+      await backlink.click();
+      await practiceArticle(page,practice);
+    }
+    // Check the common boundary anchor with a real click, then return via the footer.
+    await article.getByRole('link',{name:'证据分层',exact:true}).first().click();
+    await committedPath(page,'docs/工程实践/GGFramework.md');
+    await expect(page.getByRole('article').getByRole('heading',{name:'验证方法与证据边界',exact:true})).toBeVisible({timeout:45000});
+    await page.goBack();
+    await practiceArticle(page,practice);
+    await article.getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
+  }
+  await committedPath(page,'docs/工程实践/GGFramework.md');
+  await expect(page.getByRole('article').getByRole('heading',{name:seriesGuideTitle,exact:true})).toBeVisible({timeout:45000});
+}
 async function audit(page,testInfo,url) {
   await page.goto(url,{waitUntil:'domcontentloaded'});
   const article=page.getByRole('article');
@@ -98,87 +170,7 @@ test('commit README: images, disclosures, important entry points and mobile geom
   await page.goBack();
   await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
   await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
-  await page.getByRole('article').getByRole('link',{name:'Lua 与热更新实践',exact:true}).first().click();
-  const lua=page.getByRole('article');
-  await expect(lua.getByRole('heading',{name:'GGFramework Lua 与热更新实践：脚本加载、互调与释放',exact:true})).toBeVisible({timeout:45000});
-  await expect(lua.getByRole('heading',{name:'本地执行与生产热更新的边界',exact:true})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await screenshot(page,testInfo,'ggframework-lua-mobile',lua);
-  await page.setViewportSize({width:1440,height:1000});
-  await screenshot(page,testInfo,'ggframework-lua-desktop',lua);
-  await page.setViewportSize({width:390,height:844});
-  await lua.getByRole('link',{name:'产品热更新',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'产品热更新',exact:true})).toBeVisible({timeout:45000});
-  await page.goBack();
-  await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
-  await page.getByRole('article').getByRole('link',{name:'Core 基础能力实践',exact:true}).first().click();
-  const core=page.getByRole('article');
-  await expect(core.getByRole('heading',{name:'GGFramework Core 基础能力实践：状态、订阅、复用与退出',exact:true})).toBeVisible({timeout:45000});
-  await expect(core.getByRole('heading',{name:'退出生命周期：标志、任务与实例分别处理',exact:true})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await screenshot(page,testInfo,'ggframework-core-mobile',core);
-  await page.setViewportSize({width:1440,height:1000});
-  await screenshot(page,testInfo,'ggframework-core-desktop',core);
-  await page.setViewportSize({width:390,height:844});
-  await core.getByRole('link',{name:'客户端底层通用系统',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'客户端底层通用系统',exact:true})).toBeVisible({timeout:45000});
-  await page.goBack();
-  await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
-  await page.getByRole('article').getByRole('link',{name:'用户与 SDK 接入实践',exact:true}).first().click();
-  const users=page.getByRole('article');
-  await expect(users.getByRole('heading',{name:'GGFramework 用户与 SDK 接入实践：登录状态与支付验证边界',exact:true})).toBeVisible({timeout:45000});
-  await expect(users.getByRole('heading',{name:'支付回调与服务端验单',exact:true})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await screenshot(page,testInfo,'ggframework-user-sdk-mobile',users);
-  await page.setViewportSize({width:1440,height:1000});
-  await screenshot(page,testInfo,'ggframework-user-sdk-desktop',users);
-  await page.setViewportSize({width:390,height:844});
-  await users.getByRole('link',{name:'用户与帐号系统',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'用户与帐号系统',exact:true})).toBeVisible({timeout:45000});
-  await page.goBack();
-  await page.getByRole('article').getByRole('link',{name:'支付与变现',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'支付与变现',exact:true})).toBeVisible({timeout:45000});
-  await page.goBack();
-  await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
-  await page.getByRole('article').getByRole('link',{name:'UI 管理实践',exact:true}).first().click();
-  const ui=page.getByRole('article');
-  await expect(ui.getByRole('heading',{name:'GGFramework UI 管理实践：页面栈、窗口归属与生命周期',exact:true})).toBeVisible({timeout:45000});
-  await expect(ui.getByRole('heading',{name:'NGUI、UGUI 与 Demo 的支持状态',exact:true})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await screenshot(page,testInfo,'ggframework-ui-mobile',ui);
-  await page.setViewportSize({width:1440,height:1000});
-  await screenshot(page,testInfo,'ggframework-ui-desktop',ui);
-  await page.setViewportSize({width:390,height:844});
-  await ui.getByRole('link',{name:'UI系统',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'UI系统',exact:true})).toBeVisible({timeout:45000});
-  await page.goBack();
-  await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
-  await page.getByRole('article').getByRole('link',{name:'资源管理实践',exact:true}).first().click();
-  const resources=page.getByRole('article');
-  await expect(resources.getByRole('heading',{name:'GGFramework 资源管理实践：加载来源与释放责任',exact:true})).toBeVisible({timeout:45000});
-  await expect(resources.getByRole('heading',{name:'引用计数：缓存查询不等于取得所有权',exact:true})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await screenshot(page,testInfo,'ggframework-resource-mobile',resources);
-  await page.setViewportSize({width:1440,height:1000});
-  await screenshot(page,testInfo,'ggframework-resource-desktop',resources);
-  await page.setViewportSize({width:390,height:844});
-  await resources.getByRole('link',{name:'客户端底层通用系统',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'客户端底层通用系统',exact:true})).toBeVisible({timeout:45000});
-  await page.goBack();
-  await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
-  await page.getByRole('article').getByRole('link',{name:'客户端网络实践样板',exact:true}).first().click();
-  const practice=page.getByRole('article');
-  await expect(practice.getByRole('heading',{name:'GGFramework 客户端网络实践：异常反馈与重试',exact:true})).toBeVisible({timeout:45000});
-  await expect(practice.getByRole('heading',{name:'两条实现路径',exact:true})).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await screenshot(page,testInfo,'ggframework-network-mobile',practice);
-  await practice.getByRole('link',{name:'客户端网络系统',exact:true}).first().click();
-  await expect(page.getByRole('article').getByRole('heading',{name:'客户端网络系统',exact:true})).toBeVisible({timeout:45000});
+  await auditSeries(page,testInfo);
 });
 
 // A PR's candidate README is rendered above; the public homepage represents main.
