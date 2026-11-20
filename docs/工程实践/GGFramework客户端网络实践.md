@@ -2,7 +2,7 @@
 
 本篇从“请求失败后，玩家看到什么、是否重发、还能否继续操作”出发，使用 GGFramework 的现有 Demo 观察 HTTP 异常反馈，再对照独立 GGNetwork 的接口与实现。先读[客户端网络系统](../../mds/3.研发能力/3.1.4.客户端网络系统.md)中的生命周期与重试契约，可帮助区分界面交互、传输结果和业务结果。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 完成固定源码核对与 Unity 实跑，实际结果及未覆盖项见[本轮运行记录](GGFrameworkUnity验证记录.md)。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
@@ -13,15 +13,15 @@ Demo 回环服务不是弱网工具；本篇也不演示帧同步、状态同步
 
 ## 两条实现路径
 
-| 对照项 | 本篇先运行的 Demo | 后续单独评估的 GGNetwork |
+| 对照项 | 本篇先运行的 Demo | 独立 GGNetwork |
 |---|---|---|
-| 源码基线 | [Demo `3039f9a`](https://github.com/gonglei007/GGFramework-Demo/tree/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb) | [GGNetwork `a80eaa7`](https://github.com/gonglei007/GGFramework-GGNetwork/tree/a80eaa7a55fa29fb700fd8b12e78ab290a0fc37d) |
-| HTTP 路径 | Demo `HttpNetworkSystem → TaskSystem → BestHTTP → ShowcaseServer` | 默认 UnityWebRequest，通过 HTTP 工厂适配底层；可选 BestHTTP 回退 |
+| 源码基线 | [Demo `e2a7586`](https://github.com/gonglei007/GGFramework-Demo/tree/e2a7586a1325fc8dd762b55d1105de81b9825154) | [GGNetwork `7e371ea`](https://github.com/gonglei007/GGFramework-GGNetwork/tree/7e371eab8b9de00f06e713ca7bd8468ebb890ea0) |
+| HTTP 路径 | Demo `HttpNetworkSystem → TaskSystem → BestHTTP → ShowcaseServer` | 默认 UnityWebRequest，通过 HTTP 工厂适配底层；可选 BestHTTP 需安装插件及 `GGNETWORK_BESTHTTP` 宏；缺失时显式失败 |
 | 反馈接口 | `onWaiting`、`onResponseError`、`onDialog` | `UIAdaptor` 与 `LogAdaptor`，不是 Demo 的同一套事件接口 |
 | Core 依赖 | Demo 固定 `v0.3.0` | 固定提交的 manifest 为 `v0.1.1`；完整依据见导读源码基线 |
-| 能验证的范围 | 本机真实 HTTP 请求、固定错误响应与交互恢复 | 必须在该模块自己的工程及后端上另行验证 |
+| 能验证的范围 | 本机真实 HTTP 请求、固定错误响应与交互恢复 | 本轮默认工程 162 项 EditMode 通过；真实后端联调另验 |
 
-两套 API 不应混用，也不要把独立 GGNetwork 的源码直接覆盖到 Demo 后宣称原有验证仍然有效。独立模块的[快速接入](https://github.com/gonglei007/GGFramework-GGNetwork/blob/a80eaa7a55fa29fb700fd8b12e78ab290a0fc37d/documents/quickstart.md)和[手册](https://github.com/gonglei007/GGFramework-GGNetwork/blob/a80eaa7a55fa29fb700fd8b12e78ab290a0fc37d/documents/manual.md)用于理解接口；行为仍需与源码和运行结果核对。
+两套 API 不应混用，也不要把独立 GGNetwork 的源码直接覆盖到 Demo 后宣称原有验证仍然有效。独立模块的[快速接入](https://github.com/gonglei007/GGFramework-GGNetwork/blob/7e371eab8b9de00f06e713ca7bd8468ebb890ea0/documents/quickstart.md)和[手册](https://github.com/gonglei007/GGFramework-GGNetwork/blob/7e371eab8b9de00f06e713ca7bd8468ebb890ea0/documents/manual.md)用于理解接口；行为仍需与源码和运行结果核对。
 
 ## 复现步骤与预期
 
@@ -42,10 +42,10 @@ Demo 回环服务不是弱网工具；本篇也不演示帧同步、状态同步
 
 | 入口（固定提交） | 阅读什么 |
 |---|---|
-| [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs) | `SendRequest` 准入、回调、`ResolveNetworkDialog` 重试决策，以及退出时 Abort / 解除事件绑定 |
-| [ShowcaseServer.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseServer.cs) | `/success`、`/business-error`、`/unavailable` 对应的 HTTP 状态与 JSON 内容，回环监听和关闭责任 |
-| [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 200、业务 409、503、取消重试后空闲、后续恢复的断言 |
-| [独立 HttpNetworkSystem.cs](https://github.com/gonglei007/GGFramework-GGNetwork/blob/a80eaa7a55fa29fb700fd8b12e78ab290a0fc37d/GGNetwork/Assets/Scripts/GGNetwork/Systems/HttpNetworkSystem.cs) | 默认后端选择、业务错误码开关、UI 适配与异常处理；不要仅凭枚举名判断重试安全性 |
+| [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs) | `SendRequest` 准入、回调、`ResolveNetworkDialog` 重试决策，以及退出时 Abort / 解除事件绑定 |
+| [ShowcaseServer.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseServer.cs) | `/success`、`/business-error`、`/unavailable` 对应的 HTTP 状态与 JSON 内容，回环监听和关闭责任 |
+| [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 200、业务 409、503、取消重试后空闲、后续恢复的断言 |
+| [独立 HttpNetworkSystem.cs](https://github.com/gonglei007/GGFramework-GGNetwork/blob/7e371eab8b9de00f06e713ca7bd8468ebb890ea0/GGNetwork/Assets/Scripts/GGNetwork/Systems/HttpNetworkSystem.cs) | 默认后端选择、业务错误码开关、UI 适配与异常处理；不要仅凭枚举名判断重试安全性 |
 
 Demo 的单请求等待状态便于观察流程，不能据此认定已有多请求隔离、全局背压或交易幂等。独立模块源码中的 `AutoRetry` 分支仍有避免立即无限重试的待办，错误路径可再次调用发送方法；未增加退避、总预算和出口并完成回归前，不将它作为生产自动重试方案。
 
@@ -76,7 +76,9 @@ python -m unittest discover -s 'code/gamedevmind/3.研发能力/3.1.4.客户端�
 
 该 [Python 生命周期模型](../../code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/README.md)使用人工事件，不是 GGNetwork 的传输适配器，也没有与其绑定。模型通过不能证明框架实现具备相同保证。
 
-历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。
+本轮结果与未覆盖项见[运行记录](GGFrameworkUnity验证记录.md)；历史证据与 CI 的区别见导读的[证据分层](GGFramework.md#验证方法与证据边界)。
+
+本轮修复独立 GGNetwork 默认检出对未安装 BestHTTP 的无条件编译依赖，162/162 包含 2 项缺失依赖回归。Demo 生命周期另验大厅销毁后的回环监听关闭；没有补上延迟 HTTP、Abort / 完成竞争或真实第三方后端联调。
 
 ### 接入项目后仍需验证
 

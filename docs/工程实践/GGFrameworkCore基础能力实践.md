@@ -2,7 +2,7 @@
 
 本篇从“状态为什么没切换、退订何时生效、对象归还后还剩下什么、退出时谁停止工作”出发，用 Demo 观察 Core 基础能力，再核对实现与测试。架构定位见[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md)，模式与所有权原理见[设计模式](../../mds/1.基础能力/1.2.1.设计模式.md)和[内存管理](../../mds/1.基础能力/1.1.6.内存管理.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 完成固定源码核对与 Unity 实跑，实际结果及未覆盖项见[本轮运行记录](GGFrameworkUnity验证记录.md)。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 <a id="适用条件与版本"></a>
 
@@ -15,7 +15,7 @@
 |---|---|---|
 | Core 稳定版 | `v0.3.0`，标签对应 [c0567a8](https://github.com/gonglei007/GGFramework-Core/tree/c0567a89ebf3837754eaf504ae10e93a184ea146) | 状态机、事件总线、两种对象池、单例、任务及主线程派发 |
 | Core 开发分支 | [7e0fa45](https://github.com/gonglei007/GGFramework-Core/tree/7e0fa45c3b514fde135d04f5449a2e0bc9202b4a)，包版本 `0.4.0-preview.1` | 相对稳定版新增资源缓存 / 请求队列等；本文所核对的上述 Runtime 文件未变，不将预览能力算入 Demo |
-| 集成 Demo | [3039f9a](https://github.com/gonglei007/GGFramework-Demo/tree/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb) | [manifest](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Packages/manifest.json)固定 Core `v0.3.0` 并启用包测试；Core 页直接调用该 UPM 包 |
+| 集成 Demo | [e2a7586](https://github.com/gonglei007/GGFramework-Demo/tree/e2a7586a1325fc8dd762b55d1105de81b9825154) | [manifest](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Packages/manifest.json)固定 Core `v0.3.0` 并启用包测试；Core 页直接调用该 UPM 包 |
 
 Core 的这些类型位于 `GGFramework.Core`；`Singleton<T> / SingletonLifetime / CoroutineUtil` 仍在全局命名空间，`TaskSystem / GTask` 在 `GGFramework.GGTask`。引入包前检查旧同名副本与程序集引用，避免与 `UnityEngine.Pool`、旧单例或第三方状态机混用。其他业务模块的版本与源码副本仍按各自 manifest 核对。
 
@@ -87,7 +87,7 @@ MainThreadDispatcher 是独立 MonoBehaviour，不继承 Singleton<T>，没有�
 
 ### Demo 做了哪些清理
 
-[FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)的 OnDestroy 先置 disposed，停止大厅自身协程、终止当前 HTTP、释放本地服务与资源入口、退订外部事件，再清自己的 Events，归还 active 中的对象并清池，释放示例缓存持有。
+[FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)的 OnDestroy 先置 disposed，停止大厅自身协程、终止当前 HTTP、释放本地服务与资源入口、退订外部事件，再清自己的 Events、按实例身份移除所属 UI 登记及路由，归还 active 中的对象并清池，释放示例缓存持有。
 
 后台与 CoroutineUtil 的完成委托会检查 disposed 后再更新大厅。这个检查阻止已销毁大厅接收结果，**没有取消底层计算或全局协程，也没有排空所有静态队列**。OnDestroy 未调用 Machine.Clear；状态机回调及 StateChanged 仍需按对象是否继续被外部持有来判断释放责任。不要把示例清理路径扩大为跨场景、跨会话或进程退出的全局保证。
 
@@ -102,9 +102,9 @@ MainThreadDispatcher 是独立 MonoBehaviour，不继承 Singleton<T>，没有�
 | 点击“取消订阅”，再次发布 | Coins 不变；恢复订阅再发布后增加 |
 | “取出对象 → 归还对象 → 再取出” | 比较日志 instanceID，复用同一对象；使用中与空闲数量分别变化 |
 | 点击“后台计算 → 主线程回调”和“协程延迟完成” | 观察各完成计数和线程记录；等待完成不等于退出时会自动取消 |
-| 工作未完成时退出，再进入播放 | 人工检查没有旧大厅状态写回、重复订阅或遗留对象；此项不是现有冒烟已覆盖的退出断言 |
+| 工作未完成时退出，再进入播放 | 本轮新增生命周期回归已断言旧结果不写回、退订、池实例销毁与重开；完整播放两轮也通过，仍不等于取消底层任务 |
 
-按钮与顺序见 [FrameworkShowcase.GUI.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.GUI.cs)。Demo 预热 3 个、最多缓存 8 个对象，业务状态守卫只有 `Idle → Running`；不要从这一个守卫外推出完整状态合法转移表。
+按钮与顺序见 [FrameworkShowcase.GUI.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.GUI.cs)。Demo 预热 3 个、最多缓存 8 个对象，业务状态守卫只有 `Idle → Running`；不要从这一个守卫外推出完整状态合法转移表。
 
 ## 方案取舍与不适用场景
 
@@ -126,9 +126,9 @@ MainThreadDispatcher 是独立 MonoBehaviour，不继承 Singleton<T>，没有�
 | [ObjectPoolTests.cs](https://github.com/gonglei007/GGFramework-Core/blob/c0567a89ebf3837754eaf504ae10e93a184ea146/Tests/ObjectPoolTests.cs) | 两种池的复用、泛型重置 / 预热 / 空闲上限与 Clear、GameObject 激活 | 重复归还、外来对象、在用对象清理或目标平台内存收益 |
 | [SingletonLifetimeTests.cs](https://github.com/gonglei007/GGFramework-Core/blob/c0567a89ebf3837754eaf504ae10e93a184ea146/Tests/SingletonLifetimeTests.cs) | 共享标志可设、退出标志为 true 时 Instance 返回 null | 实际销毁顺序、完整单例创建 / 销毁链或关闭域重载后的多轮播放 |
 | [TaskSystemTests.cs](https://github.com/gonglei007/GGFramework-Core/blob/c0567a89ebf3837754eaf504ae10e93a184ea146/Tests/TaskSystemTests.cs) | 重复 Init 与超时任务不阻塞后一任务 | 工作函数真正取消、退出前排空或结果代次隔离 |
-| [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 守卫拒绝后成功、金币退订、对象身份复用、协程 / 后台完成计数和主线程观察 | 在工作中退出、泄漏检测、重复播放与性能基准 |
+| [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 守卫拒绝后成功、金币退订、对象身份复用、协程 / 后台完成计数和主线程观察 | 在工作中退出、泄漏检测、重复播放与性能基准 |
 
-Core 包测试默认不在消费工程运行，需要 manifest 的 `testables` 含 `com.gonglei.ggframework.core`；Demo 已配置，运行与报告要求见[统一复现入口](GGFramework.md#运行一次完整体验)。稳定版历史运行、本轮文档验证和预览版范围统一按导读的[证据分层](GGFramework.md#验证方法与证据边界)区分。
+Core 包测试默认不在消费工程运行，需要 manifest 的 `testables` 含 `com.gonglei.ggframework.core`；Demo 已配置，运行与报告要求见[统一复现入口](GGFramework.md#运行一次完整体验)。稳定包本轮 EditMode 66/66；新增生命周期覆盖退出后的事件、池与迟到结果。具体环境和逐项证据见[运行记录](GGFrameworkUnity验证记录.md)，不外推到预览版或全部共享单例。
 
 | 项目待验项 | 注入与通过条件 |
 |---|---|

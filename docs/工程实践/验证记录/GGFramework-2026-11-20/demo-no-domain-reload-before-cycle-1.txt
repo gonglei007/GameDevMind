@@ -1,0 +1,37 @@
+SUCCESS
+Unity=6000.3.13f1; platform=WindowsEditor; editor=True
+PASS: Showcase initialized
+PASS: Guard rejects without coins
+PASS: Unsubscribed coin event has no effect
+PASS: Restored subscription delivers once
+PASS: Guard permits after coin event
+PASS: Repeated same-state entry rejected
+PASS: Edited Lua rule returns value without changing C# coins; Lua reward: 384
+PASS: First temporary Lua VM starts fresh
+PASS: Next temporary Lua VM has no prior globals
+PASS: Lua syntax error is reported
+PASS: Lua executes again after syntax error
+PASS: First load owns one runtime copy
+PASS: Imported source and runtime copy differ
+PASS: Second load retains the same cache identity
+PASS: First release preserves other owner
+PASS: Final release removes cache and destroys runtime TextAsset
+PASS: Imported source survives runtime-copy release
+PASS: Missing resource reaches failure terminal state
+PASS: Normal resource reload works after missing asset
+PASS: Real local Bundle reads configuration
+PASS: Temporary Bundle loader leaves no additional sample Bundle; before=0, after=0
+PASS: Owned page and window are active before close
+PASS: Borrowed pool instances are destroyed with their owner
+PASS: Exit releases all exclusive showcase cache holds
+PASS: Exit removes owned event subscriptions
+PASS: Publishing on retired bus cannot update old owner
+PASS: Late background/coroutine results cannot update destroyed owner
+PASS: Exit closes the loopback listener
+PASS: Exit removes owned UI registrations
+PASS: Exit empties the owned page route
+PASS: Exit preserves another owner's UI registration
+PASS: Showcase can reopen in the same Play Mode session
+PASS: Reopened UI stays under its owner root
+PASS: Reopened owner has exactly one coin subscription
+PASS: Second exit leaves no owned UI route or registration

@@ -2,7 +2,7 @@
 
 本篇从“资源从哪里来、谁在持有、什么时候可以释放”三个问题出发，先运行 Demo 的资源页，再对照独立 GGResource 的加载器、缓存和异步接口。原理入口见[客户端底层通用系统](../../mds/3.研发能力/3.1.1.客户端底层通用系统.md)，版本更新与回滚见[产品热更新](../../mds/6.运营能力/6.2.3.产品热更新.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 完成固定源码核对与 Unity 实跑，实际结果及未覆盖项见[本轮运行记录](GGFrameworkUnity验证记录.md)。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
@@ -13,7 +13,7 @@
 | 核对对象 | 固定提交与依赖 | 本篇使用的实现 |
 |---|---|---|
 | 独立 GGResource | [14c7a68](https://github.com/gonglei007/GGFramework-GGResource/tree/14c7a685b2b75686e5585f852d1bab93f5f46195)，工程固定 Core `v0.1.1` | `ResourceSystem`、`ResourceObject`、`GBundleBuilder` 与内存态 EditMode 测试 |
-| 集成 Demo | [3039f9a](https://github.com/gonglei007/GGFramework-Demo/tree/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb)，固定 Core `v0.3.0` | Demo 自有资源源码副本、体验大厅与冒烟测试 |
+| 集成 Demo | [e2a7586](https://github.com/gonglei007/GGFramework-Demo/tree/e2a7586a1325fc8dd762b55d1105de81b9825154)，固定 Core `v0.3.0` | Demo 自有资源源码副本、体验大厅与冒烟测试 |
 
 两边的 `Retain` / `DestroyObject` / `ClearObjects` 在本次核对中具有下述相同语义，但源码副本不会自动同步。Demo 资源页也没有执行独立模块的完整 `Init → StartLoading` 路径。
 
@@ -44,7 +44,7 @@
 | Simulation 模拟加载 | Editor 的 `SimulationResources` 读取配置源资产，不需要预打包 | 使用临时 loader，在 `using` 内等待完成并读取文本；不进入 `ShowcaseConfig` 引用计数 |
 | 加载真实 AssetBundle | `StreamingAssets/ShowcaseBundles` 中当前平台的 manifest 与 Bundle，通过 `FileAsyncBundleLoaderBuilder` 读取 | 临时 `BundleResources` 在完成读取后 Dispose；同样不进入 `ShowcaseConfig` 计数，也未走 `GBundleBuilder` 的远程选源 |
 
-资源来源实现见 [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)与 [FrameworkShowcase.Bundles.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.Bundles.cs)。三条路径最终都能显示配置文本，但不能相互替代验收。
+资源来源实现见 [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)与 [FrameworkShowcase.Bundles.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.Bundles.cs)。三条路径最终都能显示配置文本，但不能相互替代验收。
 
 ## 引用计数：缓存查询不等于取得所有权
 
@@ -96,7 +96,7 @@
 | Editor 中点击“Simulation 模拟加载” | 显示配置文本；Player 不包含这个按钮 |
 | 先执行“Build Sample Bundles”，再点击“加载真实 AssetBundle” | 当前平台清单与真实 Bundle 被读取，显示配置文本；不增加 ShowcaseConfig 引用 |
 
-示例 Bundle 由 [ShowcaseTools.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/Editor/ShowcaseTools.cs)生成到 `Assets/StreamingAssets/ShowcaseBundles/`。菜单、批处理和报告路径统一见导读及其固定版本指南。
+示例 Bundle 由 [ShowcaseTools.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/Editor/ShowcaseTools.cs)生成到 `Assets/StreamingAssets/ShowcaseBundles/`。菜单、批处理和报告路径统一见导读及其固定版本指南。
 
 ## 方案取舍与不适用场景
 
@@ -115,9 +115,11 @@
 ### 已有测试能说明什么
 
 - 独立模块的 [ResourceSystemTests.cs](https://github.com/gonglei007/GGFramework-GGResource/blob/14c7a685b2b75686e5585f852d1bab93f5f46195/GGResource/Assets/Tests/EditMode/ResourceSystemTests.cs)覆盖内存态缓存 / 类型过滤、Retain 配对释放和强制清理。文件明确不覆盖 Init / Loxodon 运行时异步路径；需在该 Unity 工程的 Test Runner 中运行，不能拿本文的文档 CI 代替。
-- Demo 的 [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)检查缓存身份及 `1 → 2 → 1 → 移除`、缺失资源失败状态、Editor Simulation 和真实本地 Bundle。缺失资源后再次加载正常资源属于上述手工步骤，现有冒烟没有直接断言它；也没有断言峰值内存、远程选源、页面退出竞态或所有 Bundle 已卸载。
+- Demo 的 [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs)检查缓存身份及 `1 → 2 → 1 → 移除`、缺失资源失败状态、Editor Simulation 和真实本地 Bundle。缺失资源后恢复、最终运行时副本销毁、导入源保留及退出后专属缓存释放，由本轮新增生命周期回归另行断言；原有冒烟没有这些完整退出断言；也没有断言峰值内存、远程选源、页面退出竞态或所有 Bundle 已卸载。
 
-历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。完整大厅冒烟与独立 GGResource 的测试分别运行，不能互相替代。
+本轮结果与未覆盖项见[运行记录](GGFrameworkUnity验证记录.md)；历史证据与 CI 的区别见导读的[证据分层](GGFramework.md#验证方法与证据边界)。完整大厅冒烟与独立 GGResource 的测试分别运行，不能互相替代。
+
+本轮独立 GGResource EditMode 为 15/15；Demo 生命周期还记录了本地示例 Bundle 数量恢复为加载前值，并修复内置 Loxodon 的跨播放静态退出标记。它不证明全部 Bundle 依赖或 CPU / GPU 内存已释放，补丁没有自动传播到独立模块的第三方副本。
 
 ### 接入前仍需验证
 

@@ -2,7 +2,7 @@
 
 本篇从“初始化完成后能做什么、谁确认登录有效、支付回调能否发货”出发，用 Demo 观察事件，再对照 GGUser 的传统 SDK 接口与聚合平台实现。身份建模见[用户与帐号系统](../../mds/3.研发能力/3.3.5.用户与帐号系统.md)，订单与发货见[支付与变现](../../mds/6.运营能力/6.3.2.帐号与支付.md)。
 
-**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 核对固定源码与测试断言，本轮未重跑 Unity。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
+**项目关系与复核：** GGFramework 由本知识库作者维护；本文是工程参考。2026-11-20 完成固定源码核对与 Unity 实跑，实际结果及未覆盖项见[本轮运行记录](GGFrameworkUnity验证记录.md)。共用的[适用环境](GGFramework.md#适用条件)、[源码基线](GGFramework.md#固定源码基线)和[证据分层](GGFramework.md#验证方法与证据边界)由导读统一维护。
 
 ## 适用条件
 
@@ -15,7 +15,7 @@
 |---|---|---|
 | 独立 GGUser 的传统接口 | [2f9f5ad](https://github.com/gonglei007/GGFramework-GGUser/tree/2f9f5ad9291300faff00c31d953c3218323bdc82)，固定 Core `v0.2.0`；`GGFramework.GGUser` 命名空间，`UserSystem / ISDK / UserManager` | UserSystem 使用 Core 状态机；SDK 登录成功不表示游戏服认证完成 |
 | 同一独立模块的聚合平台 | `GGPlatform`、`ILoginChannel / IPayChannel`、可注入网关传输 | 默认只注册 simulation；`PayRequest / PurchaseResult` 不是传统 `Order`，也没有自动同步传统 UserSystem 的会话 |
-| 集成 Demo | [3039f9a](https://github.com/gonglei007/GGFramework-Demo/tree/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb)，固定 Core `v0.3.0`；旧 UserSystem 副本与显式注入的 `ShowcaseSDK` | 仍使用旧状态机与全局类型，订单为 `UserSystem.Order`；没有运行聚合平台或真实商店支付 |
+| 集成 Demo | [e2a7586](https://github.com/gonglei007/GGFramework-Demo/tree/e2a7586a1325fc8dd762b55d1105de81b9825154)，固定 Core `v0.3.0`；旧 UserSystem 副本与显式注入的 `ShowcaseSDK` | 仍使用旧状态机与全局类型，订单为 `UserSystem.Order`；没有运行聚合平台或真实商店支付 |
 
 独立模块另有一个 [UGUI Demo](https://github.com/gonglei007/GGFramework-GGUser/blob/2f9f5ad9291300faff00c31d953c3218323bdc82/GGUser/Assets/Demo/Scripts/Demo.cs)：它运行聚合平台，却用本地 `onPost` 委托直接返回固定平台凭证和 `delivered: true`。日志显示 POST 不代表真的发出了网络请求；不要与集成体验大厅混为同一条验证链路。
 
@@ -98,7 +98,7 @@ Demo 使用订单 `demo-order`、商品 `demo-coins`、金额 0，回调传入�
 | 点击“登出”，再登录 | 先清用户并退出登录，再次登录 UID 不变；不代表 NativeSDK 的退出行为相同 |
 | 退出并重新运行大厅 | 人工核对 UID 文件仍在时的稳定性；删除文件、卸载和换设备的身份恢复需另验 |
 
-调用顺序可在 [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)和 [ShowcaseSDK.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSDK.cs)核对：先获取 UserSystem，构造并注入模拟器，订阅事件，再调用无参数 Init。模拟 UID 保存在 `Application.persistentDataPath/GGFrameworkShowcase/demo-uid.txt`；`demo-token` 是固定演示字符串，不是经过认证的会话。
+调用顺序可在 [FrameworkShowcase.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/FrameworkShowcase.cs)和 [ShowcaseSDK.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseSDK.cs)核对：先获取 UserSystem，构造并注入模拟器，订阅事件，再调用无参数 Init。模拟 UID 保存在 `Application.persistentDataPath/GGFrameworkShowcase/demo-uid.txt`；`demo-token` 是固定演示字符串，不是经过认证的会话。
 
 ## 方案取舍与不适用场景
 
@@ -117,9 +117,9 @@ Demo 使用订单 `demo-order`、商品 `demo-coins`、金额 0，回调传入�
 |---|---|---|
 | [SDKInjectionTests.cs](https://github.com/gonglei007/GGFramework-GGUser/blob/2f9f5ad9291300faff00c31d953c3218323bdc82/GGUser/Assets/Tests/EditMode/SDKInjectionTests.cs) | 注入、null 拒绝、初始化事件、注入取消不再附加 Editor 成功回调 | 真实渠道、多线程或所有请求全局恰好一次 |
 | [GGPlatformEditModeTests.cs](https://github.com/gonglei007/GGFramework-GGUser/blob/2f9f5ad9291300faff00c31d953c3218323bdc82/GGUser/Assets/Tests/EditMode/GGPlatformEditModeTests.cs) | 假渠道 / 网关下的路由回退、Pending、验单后 Finish、验单拒绝保留、未完成列表和恢复委托 | 真实网络认证、商店票据、持久化账本或真机恢复 |
-| [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/3039f9aad1813b8ad72e373a30b3eb073e0ee2eb/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 登录失败后成功，三种支付事件，成功支付事件数增加一次，登出后再登录 UID 一致 | 所有回调唯一、跨进程持久化、NativeSDK 或聚合平台通过 |
+| [ShowcaseSmoke.cs](https://github.com/gonglei007/GGFramework-Demo/blob/e2a7586a1325fc8dd762b55d1105de81b9825154/unity_project/Assets/FrameworkShowcase/ShowcaseSmoke.cs) | 登录失败后成功，三种支付事件，成功支付事件数增加一次，登出后再登录 UID 一致 | 所有回调唯一、跨进程持久化、NativeSDK 或聚合平台通过 |
 
-历史运行与本轮文档验证的共同范围见导读的[证据分层](GGFramework.md#验证方法与证据边界)。独立 GGUser 的测试需在其工程中另跑；本轮未接入真实渠道、认证或支付服务。
+本轮结果与未覆盖项见[运行记录](GGFrameworkUnity验证记录.md)；历史证据与 CI 的区别见导读的[证据分层](GGFramework.md#验证方法与证据边界)。本轮已分别运行独立 GGUser EditMode 71/71 与 PlayMode 11/11；使用假渠道和网关，没有接入真实渠道、认证或支付服务。
 
 | 接入待验项 | 注入方式与通过条件 |
 |---|---|
