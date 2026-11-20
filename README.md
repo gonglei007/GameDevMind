@@ -17,7 +17,7 @@
   <a href="https://github.com/gonglei007/GameDevMind/graphs/contributors"><img src="https://img.shields.io/github/contributors/gonglei007/GameDevMind.svg" alt="Contributors"></a>
 </p>
 
-[能力图谱](#六大核心能力域) · [AI 研发](#ai-研发与应用) · [实战资源](#可立即使用的资源) · [参与交流](#参与与联系) · [English](https://github.com/gonglei007/GameDevMind-EN)
+[能力图谱](#六大核心能力域) · [工程实践](#ggframework-工程实践) · [AI 研发](#ai-研发与应用) · [示例与案例](#代码示例与诊断练习) · [参与交流](#参与与联系) · [English](https://github.com/gonglei007/GameDevMind-EN)
 
 <!-- BEGIN GENERATED:content-stats -->
 **📚 124 篇文档** · **💻 2 类代码示例** · **🏥 8 个案例与诊断练习** · **🤖 [AI 研发与应用](docs/AI/README.md)**（5 个协作记录）
@@ -92,6 +92,20 @@
 
 </details>
 
+<a id="可立即使用的资源"></a><a id="ggframework-工程实践"></a>
+
+## GGFramework：把知识点放进真实工程
+
+通过作者维护的 Unity Demo，把状态、资源、网络、UI、SDK 与 Lua 放进同一工程观察：先运行，再沿调用理解模块协作与释放责任。
+
+**[GGFramework 实践导读](docs/工程实践/GGFramework.md)** · **[运行 Demo 与查看验证记录](docs/工程实践/GGFrameworkUnity验证记录.md)**
+
+- [Core 基础能力实践](docs/工程实践/GGFrameworkCore基础能力实践.md) · [资源管理实践](docs/工程实践/GGFramework资源管理实践.md)：状态、事件、对象池与资源归属。
+- [客户端网络实践](docs/工程实践/GGFramework客户端网络实践.md) · [UI 管理实践](docs/工程实践/GGFrameworkUI管理实践.md)：请求恢复、页面栈与关闭责任。
+- [用户与 SDK 接入实践](docs/工程实践/GGFramework用户与SDK接入实践.md) · [Lua 与热更新实践](docs/工程实践/GGFrameworkLua与热更新实践.md)：渠道适配、脚本互调与验证边界。
+
+适用条件与验证边界见导读；重复执行步骤见[自动化回归与 CI 复现](docs/工程实践/GGFramework自动化回归与CI.md)。
+
 <a id="精选-ai-协作记录"></a>
 
 ## AI 研发与应用
@@ -111,7 +125,12 @@
 
 <a id="精选代码示例"></a><a id="精选实战案例"></a>
 
-## 可立即使用的资源
+## 代码示例与诊断练习
+
+[全部代码示例](code/README.md) · [全部案例与诊断练习](cases/README.md)
+
+<details>
+<summary><strong>展开精选示例与案例</strong></summary>
 
 | 精选入口 | 可以核对什么 |
 |---|---|
@@ -119,16 +138,9 @@
 | 代码 · [客户端网络生命周期](code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/) | 旧回调隔离、取消与重连恢复 |
 | 案例 · [SLG 循环引用](cases/memory-leak-slg.md) | 强弱引用与对象生命周期 |
 | 案例 · [MOBA 角色回弹复核](cases/network-reconciliation.md) | 输入确认、重放与显示校正 |
-| 工程 · [GGFramework 实践导读](docs/工程实践/GGFramework.md) | Unity 模块协作、运行步骤与验证边界 |
-
-<details>
-<summary><strong>更多示例与案例</strong></summary>
-
-- [四叉树](code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/)：空间分区与碰撞候选查询。
-- [帧同步 vs 状态同步](code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/)：Lockstep 与预测校正的本地模型。
-- [开放世界卡顿复核](cases/drawcall-optimization.md)：材质、合批与 UI 假设的诊断练习。
-
-完整目录：[全部代码示例](code/README.md) · [全部案例与诊断练习](cases/README.md)。
+| 代码 · [四叉树](code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/) | 空间分区与碰撞候选查询 |
+| 代码 · [帧同步 vs 状态同步](code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/) | Lockstep 与预测校正的本地模型 |
+| 案例 · [开放世界卡顿复核](cases/drawcall-optimization.md) | 材质、合批与 UI 假设的诊断练习 |
 
 </details>
 
