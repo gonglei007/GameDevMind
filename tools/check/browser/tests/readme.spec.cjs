@@ -10,15 +10,21 @@ if(!/^[\w.-]+\/[\w.-]+$/.test(repository) || !/^[a-f0-9]{40,64}$/.test(ref))thro
 const committed=execFileSync('git',['show',`${ref}:README.md`],{cwd:root,encoding:'utf8'});
 if(committed.replace(/\r\n/g,'\n')!==fs.readFileSync(path.join(root,'README.md'),'utf8').replace(/\r\n/g,'\n'))throw new Error('README.md differs from README_REF: the live GitHub test must match the checked-out README');
 const repo=`https://github.com/${repository}`;
-const summaries=['展开知识全景预览','更多示例与案例','邮箱联系、项目资料、贡献者与鸣谢'];
+const exampleSummary='展开精选示例与案例';
+const featureTitle='GGFramework：把知识点放进真实工程';
+const summaries=['展开知识全景预览',exampleSummary,'邮箱联系、项目资料、贡献者与鸣谢'];
+const exampleNames=['内存池','客户端网络生命周期','SLG 循环引用','MOBA 角色回弹复核','四叉树','帧同步 vs 状态同步','开放世界卡顿复核'];
 const imageAlts=['AI 游戏开发：人工决策、AI 执行与验证','基础能力','技术能力','研发能力','生产能力','管理能力','运营能力',
   '游戏开发技术图谱全景预览','Vika','顶游社','GameDevMind Logo'];
 const localLinks=[
   ['阅读说明','mds/阅读说明.md'],['文档索引','INDEX.md'],['关键词索引','KEYWORDS.md'],
   ['代码示例','code/README.md'],['案例与诊断练习','cases/README.md'],['AI 研发与应用资料中心','docs/AI/README.md'],
   ['GGFramework 实践导读','docs/工程实践/GGFramework.md'],
+  ['运行 Demo 与查看验证记录','docs/工程实践/GGFrameworkUnity验证记录.md'],
+  ['自动化回归与 CI 复现','docs/工程实践/GGFramework自动化回归与CI.md'],
   ['内存池','code/gamedevmind/1.基础能力/1.1.2.C++语言/memory_pool/'],
   ['客户端网络生命周期','code/gamedevmind/3.研发能力/3.1.4.客户端网络系统/client_network/'],
+  ['SLG 循环引用','cases/memory-leak-slg.md'],['MOBA 角色回弹复核','cases/network-reconciliation.md'],
   ['四叉树','code/gamedevmind/1.基础能力/1.2.2.数据结构/quadtree/'],
   ['帧同步 vs 状态同步','code/gamedevmind/2.技术能力/2.2.1.网络与通信/network_sync/'],
   ['开放世界卡顿复核','cases/drawcall-optimization.md'],['贡献指南','CONTRIBUTING.md'],['更新记录','HISTORY.md'],
@@ -41,6 +47,21 @@ const practices=[
   {label:'Lua 与热更新实践',file:'GGFrameworkLua与热更新实践.md',title:'GGFramework Lua 与热更新实践：脚本加载、互调与释放',
     section:'本地执行与生产热更新的边界',image:'ggframework-lua',nodes:[updateNode,commonNode]},
 ];
+async function assertExamples(article,open) {
+  for(const name of exampleNames) {
+    const link=article.getByRole('link',{name,exact:true,includeHidden:true});
+    await expect(link).toHaveCount(1);
+    if(open)await expect(link).toBeVisible();
+    else await expect(link).toBeHidden();
+  }
+}
+async function assertFeature(article) {
+  await expect(article.getByRole('heading',{name:featureTitle,exact:true})).toBeVisible();
+  for(const name of ['GGFramework 实践导读','运行 Demo 与查看验证记录','自动化回归与 CI 复现',...practices.map(p=>p.label)]) {
+    const link=article.getByRole('link',{name,exact:true});
+    await expect(link).toHaveCount(1);await expect(link).toBeVisible();
+  }
+}
 async function committedPath(page,destination) {
   await expect.poll(()=>decodeURIComponent(new URL(page.url()).pathname)).toBe(`/${repository}/blob/${ref}/${destination}`);
 }
@@ -99,12 +120,22 @@ async function audit(page,testInfo,url) {
   await page.goto(url,{waitUntil:'domcontentloaded'});
   const article=page.getByRole('article');
   await expect(article.getByRole('heading',{name:'游戏开发 · 技术图谱',exact:true})).toBeVisible({timeout:45000});
+  await assertFeature(article);
+  await assertExamples(article,false);
+  const headings=await article.getByRole('heading',{level:2}).allTextContents();
+  expect(headings.indexOf(featureTitle)).toBeGreaterThan(headings.indexOf('六大核心能力域'));
+  expect(headings.indexOf(featureTitle)).toBeLessThan(headings.indexOf('AI 研发与应用'));
+  const ids=await article.locator('a[id]').evaluateAll(anchors=>anchors.map(a=>a.id));
+  for(const id of ['可立即使用的资源','精选代码示例','精选实战案例','ggframework-工程实践']) {
+    expect(ids.some(value=>value===id || value==='user-content-'+id),id+' compatibility anchor').toBe(true);
+  }
   await expect(article.locator('details')).toHaveCount(3);
   for(const summary of summaries) {
     const control=article.locator('summary').filter({hasText:summary});
     const detail=control.locator('..');
     await expect(detail).toHaveJSProperty('open',false);
     await control.click();await expect(detail).toHaveJSProperty('open',true);
+    if(summary===exampleSummary)await assertExamples(article,true);
     await control.click();await expect(detail).toHaveJSProperty('open',false);
     await control.click();await expect(detail).toHaveJSProperty('open',true);
   }
@@ -117,7 +148,7 @@ async function audit(page,testInfo,url) {
     await expect.poll(()=>img.evaluate(i=>i.complete && i.naturalWidth>0),{timeout:45000,message:`Missing README image: ${alt}`}).toBe(true);
     await expect(img).toBeVisible();
   }
-  for(const [name,destination] of localLinks) {
+  for(const [name,destination] of [...localLinks,...practices.map(p=>[p.label,'docs/工程实践/'+p.file])]) {
     const href=await article.getByRole('link',{name,exact:true}).getAttribute('href');
     const target=new URL(href,repo);
     expect(target.origin,name).toBe('https://github.com');
@@ -137,8 +168,13 @@ async function audit(page,testInfo,url) {
     expect(decodeURIComponent(new URL(href,repo).pathname)).toContain('/mds/topics/推荐阅读路径.md');
     expect(new URL(href,repo).hash).not.toBe('');
   }
+  const exampleControl=article.locator('summary').filter({hasText:exampleSummary});
+  await exampleControl.click();await assertExamples(article,false);
   await screenshot(page,testInfo,'readme-desktop',article);
   await page.setViewportSize({width:390,height:844});
+  await assertFeature(article);
+  await exampleControl.click();await assertExamples(article,true);
+  await exampleControl.click();await assertExamples(article,false);
   for(const alt of imageAlts) {
     const img=article.getByRole('img',{name:alt,exact:true});
     const geometry=await img.evaluate(i=>{const r=i.getBoundingClientRect();return {w:r.width,h:r.height,nw:i.naturalWidth,nh:i.naturalHeight};});
@@ -171,6 +207,12 @@ test('commit README: images, disclosures, important entry points and mobile geom
   await page.getByRole('article').getByRole('link',{name:'GGFramework 实践导读',exact:true}).click();
   await expect(page.getByRole('article').getByRole('heading',{name:'从知识点到 Unity 工程：GGFramework 实践导读',exact:true})).toBeVisible({timeout:45000});
   await auditSeries(page,testInfo);
+  await page.getByRole('article').getByRole('link',{name:'返回首页',exact:true}).click();
+  await committedPath(page,'README.md');
+  await expect(page.getByRole('article').getByRole('heading',{name:featureTitle,exact:true})).toBeInViewport({timeout:45000});
+  // Old article footers still target this alias; verify the real GitHub anchor jump.
+  await page.goto(`${repo}/blob/${ref}/README.md#${encodeURIComponent('可立即使用的资源')}`,{waitUntil:'domcontentloaded'});
+  await expect(page.getByRole('article').getByRole('heading',{name:featureTitle,exact:true})).toBeInViewport({timeout:45000});
 });
 
 // A PR's candidate README is rendered above; the public homepage represents main.
