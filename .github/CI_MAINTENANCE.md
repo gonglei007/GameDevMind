@@ -46,7 +46,7 @@ CI 失败、必需检查未产生或仍在运行时不能合并；分支落后�
 
 这四个工作流都在面向 main 的 PR 中运行。Pages 的 `build`、`deploy`、`report-build-status` 属于合并后发布检查，不加入上述 PR 必需清单，否则 PR 可能永久等待未触发的任务。main 上通常看到的 20 项检查，是这 17 项再加 3 项 Pages 检查。
 
-定时/手动的 [update-readme.yml](workflows/update-readme.yml) 不属于 PR 门禁。它保留了历史直推逻辑；若需要让它实际写入 main，应先改为创建 PR，不能为机器人添加绕过权限。
+定时/手动的 [update-readme.yml](workflows/update-readme.yml) 不属于 PR 门禁。它只更新固定的 `codex/auto-readme-updates` 分支，并创建或复用面向 main 的更新 PR，不直推 main、不自动审批或合并。README 没有成对的最近提交标记或生成内容无变化时不创建新 PR。生成范围、保护检查和 CI 调度见 [README 最近提交维护](../tools/check/README.md#readme-最近提交维护)。
 
 ## 正反向实测记录
 

@@ -1,0 +1,4 @@
+Unity=6000.3.13f1
+PASS: UISwitch_AllComplete; missing=0; UISprite=8; plain UIWidget=1
+PASS: UISwitch_in; missing=0; UISprite=8; plain UIWidget=1
+PASS: UISwitch_out; missing=0; UISprite=8; plain UIWidget=1

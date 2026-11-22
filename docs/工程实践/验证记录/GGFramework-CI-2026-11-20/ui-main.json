@@ -1,0 +1,91 @@
+{
+  "workflow": {
+    "runId": 44687293948,
+    "url": "https://github.com/gonglei007/GGFramework-GGUI/actions/runs/44687293948",
+    "event": "push",
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "results": {
+    "schemaVersion": 1,
+    "repository": "gonglei007/GGFramework-GGUI",
+    "commit": "0e4d664296fffac123411de4564711b017c89922",
+    "unityVersion": "6000.3.13f1",
+    "result": "Passed",
+    "stages": [
+      {
+        "name": "ui-editmode",
+        "startedUtc": "2026-11-20T06:26:38.7054345+00:00",
+        "finishedUtc": "2026-11-20T06:31:09.0190228+00:00",
+        "exitCode": 0,
+        "mode": "nunit",
+        "graphicsEnabled": false,
+        "testPlatform": "EditMode",
+        "reports": [
+          {
+            "kind": "nunit",
+            "total": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "inconclusive": 0,
+            "cases": [
+              {
+                "name": "GGUI.Tests.EditMode.GMappingPathInfoParserTests.Parse_IsCaseInsensitive_OnQuery",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.GMappingPathInfoParserTests.Parse_MultiplePublishedBundles_MapsEachAssetToItsOwnBundle",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.GMappingPathInfoParserTests.Parse_PreservesQueriedPathCasingInAssetName",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.GMappingPathInfoParserTests.Parse_PublishedAsset_ReturnsBundleNameAndQueriedPath",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.GMappingPathInfoParserTests.Parse_UnknownPath_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.GMappingPathInfoParserTests.Parse_UnpublishedBundleAsset_ReturnsNull",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.ResourceModelTests.ResourceItem_Ctor_AssignsFieldsAndDefaults",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.ResourceModelTests.ResourceItem_PrioritySemantics_ArePreserved",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.ResourceModelTests.ResourceObject_Ctor_AllowsNullAsset",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.ResourceModelTests.ResourceObject_Ctor_AssignsFields",
+                "result": "Passed"
+              },
+              {
+                "name": "GGUI.Tests.EditMode.ResourceModelTests.ResourceSystemTag_EnumMembers_AreStable",
+                "result": "Passed"
+              }
+            ],
+            "rawReportSha256": "c63e24cbcc5238bf690b16fdf055d122cd36ca8b4adc6edce26f307498b4b734"
+          }
+        ],
+        "producedFiles": []
+      }
+    ],
+    "environment": {
+      "architecture": "X64",
+      "editorProductVersion": "6000.3.13f1_8c4f11e4fb20",
+      "batchmode": true,
+      "os": "Microsoft Windows 10.0.26300"
+    }
+  }
+}
