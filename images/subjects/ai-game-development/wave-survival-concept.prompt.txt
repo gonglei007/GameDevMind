@@ -1,0 +1,3 @@
+Generated with the built-in imagegen tool.
+
+Use case: illustration-story. Create one original wide landscape editorial illustration for a Chinese game development handbook about a fictional top-down wave survival prototype. Show a small adventurer in a forest clearing casting a single bright amber fireball at a visible incoming wave of several green slimes, with a compact game HUD along the bottom containing recognizable equipment icons in a few square slots. Strict overhead game camera, polished stylized 2D game art, muted forest greens and warm stone with a clear amber focal point, crisp readable silhouettes, simple coherent layout at small widths. No lettering, no numbers, no logos, no watermark. This is concept art for a hypothetical example.
