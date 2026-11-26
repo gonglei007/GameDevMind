@@ -74,7 +74,7 @@ class CatalogChecks(TestCase):
     def fixture(self, root):
         sources = {
             "mds/1.基础能力/1.基础能力.md": "## 基础能力\n## 目录\n<!-- BEGIN GENERATED:module-index -->\n<!-- END GENERATED:module-index -->\n",
-            "mds/1.基础能力/1.1.编程语言.md": "## 编程语言\n",
+            "mds/1.基础能力/1.1.编程语言.md": "## 编程语言\n<!-- BEGIN GENERATED:section-index -->\n<!-- END GENERATED:section-index -->\n",
             "mds/1.基础能力/1.1.3.C#语言.md": "## C#语言\n**关键词:**<br/>\n*C#,语言*\n**标签:**\n*等级: 初级|中级, 角色: 客户端开发*\n",
             "mds/topics/推荐阅读路径.md": "<!-- BEGIN GENERATED:document-count -->\n<!-- END GENERATED:document-count -->\n## 路径 A：新人入门线\n[C#](../1.基础能力/1.1.3.C%23语言.md)\n## 路径 B：研发实战线\n[C#](../1.基础能力/1.1.3.C%23语言.md)\n## 路径 C：上线运营线\n[C#](../1.基础能力/1.1.3.C%23语言.md)\n",
             "README.md": "Preserve my prose\n<!-- BEGIN GENERATED:content-stats -->\n<!-- END GENERATED:content-stats -->\n",
@@ -95,6 +95,7 @@ class CatalogChecks(TestCase):
             (root / "mds/1.基础能力/1.1.4.新增.md").write_text("## 新增\n", encoding="utf-8")
             generated = outputs(root)
             self.assertIn("新增", generated[root / "INDEX.md"])
+            self.assertIn("[新增](1.1.4.新增.md)", generated[root / "mds/1.基础能力/1.1.编程语言.md"])
             self.assertIn("5 篇文档", generated[root / "README.md"])
             self.assertIn("Preserve my prose", generated[root / "README.md"])
             self.assertIn("C%23语言.md", generated[root / "KEYWORDS.md"])
@@ -108,17 +109,24 @@ class CatalogChecks(TestCase):
         with TemporaryDirectory() as folder:
             root = Path(folder).resolve()
             self.fixture(root)
-            for name, title in [("2.技术能力/2.技术能力.md", "技术能力"),
-                                ("2.技术能力/2.1.客户端技术.md", "客户端技术"),
-                                ("4.生产能力/4.生产能力.md", "生产能力"),
-                                ("4.生产能力/4.1.游戏生产.md", "游戏生产"),
-                                ("4.生产能力/4.1.3.引擎.md", "引擎")]:
+            for name, title, block in [("2.技术能力/2.技术能力.md", "技术能力", "module-index"),
+                                       ("2.技术能力/2.1.客户端技术.md", "客户端技术", "section-index"),
+                                       ("4.生产能力/4.生产能力.md", "生产能力", "module-index"),
+                                       ("4.生产能力/4.1.游戏生产.md", "游戏生产", "section-index"),
+                                       ("4.生产能力/4.1.3.引擎.md", "引擎", ""),
+                                       ("4.生产能力/4.1.1.资产.md", "资产", "")]:
                 p = root / "mds" / name
                 p.parent.mkdir(parents=True, exist_ok=True)
-                p.write_text(f"## {title}\n", encoding="utf-8")
+                contents = f"## {title}\n"
+                if block:
+                    contents += f"<!-- BEGIN GENERATED:{block} -->\n<!-- END GENERATED:{block} -->\n"
+                p.write_text(contents, encoding="utf-8")
             doc = next(d for d in build_catalog(root)["docs"] if d["t"] == "引擎")
             self.assertEqual(doc["c"], 2)
             self.assertEqual(doc["parent"], "mds/2.技术能力/2.1.客户端技术.md")
+            generated = outputs(root)
+            self.assertIn("[引擎](../4.生产能力/4.1.3.引擎.md)", generated[root / "mds/2.技术能力/2.1.客户端技术.md"])
+            self.assertNotIn("引擎", generated[root / "mds/4.生产能力/4.1.游戏生产.md"])
 
     def test_leading_table_of_contents_is_not_used_as_document_title(self):
         with TemporaryDirectory() as folder:

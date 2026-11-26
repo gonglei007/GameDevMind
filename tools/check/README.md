@@ -16,7 +16,7 @@
 python tools/check/generate_catalog.py
 ```
 
-统一更新：`INDEX.md`、`KEYWORDS.md`、`nav/content-data.js`、六个模块首页目录、README 统计与阅读路径篇数。两个导航页共用 `content-data.js`，不再各自维护 DOCS 数组。生成结果不包含运行时间，重复执行不会产生无意义差异。正文和 README 的生成区块之外仍可手工编辑。
+命令统一更新 `INDEX.md`、`KEYWORDS.md`、`nav/content-data.js`、能力域和二级目录、README 统计与阅读路径篇数。两个导航页共用 `content-data.js`。一级页的 `module-index` 包含完整子树，二级页的 `section-index` 只列直接子篇，两者都使用逻辑归属。新增有子篇的二级页时，在「目录」标题下预留一对 `BEGIN GENERATED:section-index` / `END GENERATED:section-index` HTML 注释。场景速查、配套实践和图谱放在生成区块之外，由编辑维护。
 
 ## 提交前验证
 

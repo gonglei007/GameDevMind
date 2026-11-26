@@ -59,6 +59,17 @@ def outputs(root: Path = ROOT) -> dict[Path, str]:
             source = root / doc["p"]
             body = "\n".join(directory_lines(docs, source, root, doc["c"]))
             result[source] = replace_block(source.read_text(encoding="utf-8-sig"), "module-index", body)
+    children_by_parent: dict[str, list[dict]] = {}
+    for doc in docs:
+        children_by_parent.setdefault(doc["parent"], []).append(doc)
+    for doc in docs:
+        if doc["parent"] and doc["p"] in children_by_parent:
+            source = root / doc["p"]
+            body = "\n".join(
+                "- " + md_link(child["t"], relative(child["p"], source, root))
+                for child in children_by_parent[doc["p"]]
+            )
+            result[source] = replace_block(source.read_text(encoding="utf-8-sig"), "section-index", body)
     lines += ["## 专题与说明", ""]
     lines += ["- " + md_link(title_of(root / p), p) for p in catalog["supplementary"]]
     lines += ["", "## 统计口径", "", f"- **总文档数**: {stats['documents']}（`mds/` 下全部 Markdown 文件）",
